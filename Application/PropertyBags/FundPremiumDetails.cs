@@ -2,7 +2,7 @@
 {
     public class FundPremiumDetails
     {
-        public FundPremiumDetails(string fundId, string premium)
+        public FundPremiumDetails(string fundId, decimal premium)
         {
             FundId = fundId;
             Premium = premium;
@@ -10,6 +10,6 @@
 
         public string FundId { get; }
 
-        public string Premium { get; }
+        public decimal Premium { get; }
     }
 }

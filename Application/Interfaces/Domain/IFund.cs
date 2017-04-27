@@ -2,8 +2,10 @@
 {
     public interface IFund
     {
-        string FundId { get; }
+        string FundId { get; set; }
 
-        decimal Units { get; }
+        decimal UnallocatedPremiums { get; set; }
+
+        decimal Units { get; set; }
     }
 }

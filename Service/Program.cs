@@ -3,7 +3,9 @@ using Application.Commands;
 using Application.Interfaces;
 using Application.Interfaces.Domain;
 using Application.Interfaces.Repositories;
+using Application.PropertyBags;
 using Application.Queries;
+using Application.Views;
 using Microsoft.Practices.ObjectBuilder2;
 using Service.Factories;
 using Microsoft.Practices.Unity;
@@ -26,21 +28,34 @@ namespace Service
             bus.Apply(new CreatePolicyCommand(14));
 
             var policyQuery = new PolicyQuery(eventStore, eventPlayer);
+
             var policyView = policyQuery.Read(12332);
+            policyView.ForEach(SummarisePolicy);
 
-            policyView.ForEach(policy =>
-            {
-                Console.WriteLine($"Policy: {policy.PolicyNumber}, Customer: {policy.CustomerId}");
-            });
+            bus.Apply(new AddPremiumCommand("3", new FundPremiumDetails("fund1", 50.00m)));
+            bus.Apply(new AddPremiumCommand("3", new FundPremiumDetails("fund1", 23.32m)));
+            bus.Apply(new AddPremiumCommand("3", new FundPremiumDetails("fund1", 12.00m)));
 
-            policyView = policyQuery.Read(14);
+            bus.Apply(new AddPremiumCommand("3", new FundPremiumDetails("fund2", 12.00m)));
 
-            policyView.ForEach(policy =>
-            {
-                Console.WriteLine($"Policy: {policy.PolicyNumber}, Customer: {policy.CustomerId}");
-            });
+            bus.Apply(new AddPremiumCommand("3", new FundPremiumDetails("fund3", 12.00m)));
+            bus.Apply(new AddPremiumCommand("3", new FundPremiumDetails("fund3", 12.00m)));
+
+            policyView = policyQuery.Read(12332);
+            policyView.ForEach(SummarisePolicy);
 
             Console.ReadLine();
+        }
+
+        private static void SummarisePolicy(PolicyView policy)
+        {
+            Console.WriteLine("-------------------------------------------------------------------------------------");
+            Console.WriteLine($"Policy: {policy.PolicyNumber}, Customer: {policy.CustomerId}");
+
+            policy.Funds?.ForEach(fund =>
+            {
+                Console.WriteLine($"Fund: {fund.FundId}, premiums: {fund.UnallocatedPremiums}");
+            });
         }
     }
 }

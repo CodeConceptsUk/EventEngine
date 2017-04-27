@@ -54,9 +54,12 @@
   <ItemGroup>
     <Compile Include="Commands\AddPremiumCommand.cs" />
     <Compile Include="Commands\CreatePolicyCommand.cs" />
+    <Compile Include="Commands\UnitAllocationCommand.cs" />
     <Compile Include="EventEvaluators\PolicyCreatedEventEvaluator.cs" />
     <Compile Include="CommandHandlers\AddFundChargeHandler.cs" />
+    <Compile Include="Events\AddPremiumEvent.cs" />
     <Compile Include="Interfaces\IQuery.cs" />
+    <Compile Include="PropertyBags\Fund.cs" />
     <Compile Include="PropertyBags\FundPremiumDetails.cs" />
     <Compile Include="CommandHandlers\AddPremiumHandler.cs" />
     <Compile Include="CommandHandlers\CreatePolicyHandler.cs" />
@@ -79,6 +82,10 @@
     <Compile Include="Interfaces\IEventEvaluator.cs" />
     <Compile Include="Interfaces\Repositories\ISequencingRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Interfaces\Queries\IPolicyEventContextIdQuery.cs" />
+    <Compile Include="Views\PolicyContextView.cs" />
+    <Compile Include="Queries\PolicyEventContextIdQuery.cs" />
+    <Compile Include="Views\PolicyFundsView.cs" />
     <Compile Include="Queries\PolicyQuery.cs" />
     <Compile Include="Views\PolicyView.cs" />
   </ItemGroup>

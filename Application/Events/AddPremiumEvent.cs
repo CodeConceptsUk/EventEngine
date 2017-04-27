@@ -4,22 +4,25 @@ using Application.Interfaces.Domain;
 
 namespace Application.Events
 {
-    public class AppliedFundChargeEvent : IEvent<IPolicyContext>
+    public class AddPremiumEvent : IEvent<IPolicyContext>
     {
-        public AppliedFundChargeEvent(Guid eventContextId, string fundId )
+        public AddPremiumEvent(Guid eventContextId, string fundId, decimal premium)
         {
             EventContextId = eventContextId;
             FundId = fundId;
+            Premium = premium;
             EventId = Guid.NewGuid();
             EventDateTime = DateTime.Now;
         }
+
+        public string FundId { get; set; }
+
+        public decimal Premium { get; set; }
 
         public Guid EventContextId { get; set; }
 
         public Guid EventId { get; set; }
 
         public DateTime EventDateTime { get; set; }
-        
-        public string FundId { get; }
     }
 }

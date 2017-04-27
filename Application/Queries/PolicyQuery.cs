@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Application.Events;
-using Application.Extensions;
 using Application.Interfaces;
 using Application.Interfaces.Domain;
 using Application.Interfaces.Repositories;
@@ -10,15 +8,24 @@ using Application.Views;
 
 namespace Application.Queries
 {
-    public class PolicyQuery : IQuery<PolicyView, IPolicyContext>        
+    public abstract class PolicyQueryBase <TView>: IQuery<TView, IPolicyContext>
+        where TView : class, IView<IPolicyContext>
     {
-        private readonly IEventStoreRepository<IPolicyContext> _eventStore;
-        private readonly IEventPlayer _player;
+        protected readonly IEventStoreRepository<IPolicyContext> _eventStore;
+        protected readonly IEventPlayer _player;
 
-        public PolicyQuery (IEventStoreRepository<IPolicyContext> eventStore, IEventPlayer player)
+        protected PolicyQueryBase(IEventStoreRepository<IPolicyContext> eventStore, IEventPlayer player)
         {
             _eventStore = eventStore;
             _player = player;
+        }
+    }
+
+    public class PolicyQuery : PolicyQueryBase<PolicyView>
+    {
+        public PolicyQuery(IEventStoreRepository<IPolicyContext> eventStore, IEventPlayer player)
+            : base(eventStore, player)
+        {
         }
 
         public IEnumerable<PolicyView> Read(int customerId)
@@ -37,10 +44,5 @@ namespace Application.Queries
             var @event = t as PolicyCreatedEvent;
             return @event?.CustomerId == customerId;
         }
-    }
-
-    public class PolicyFundsView : IView<IPolicyContext>
-    {
-        
     }
 }

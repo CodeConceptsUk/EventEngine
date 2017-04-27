@@ -7,14 +7,14 @@ namespace Application.Commands
 {
     public class AddPremiumCommand : ICommand<IPolicyContext>
     {
-        public AddPremiumCommand(string policyNumber, IEnumerable<FundPremiumDetails> fundPremiums)
+        public AddPremiumCommand(string policyNumber, FundPremiumDetails fundPremiumDetails)
         {
             PolicyNumber = policyNumber;
-            FundPremiums = fundPremiums;
+            FundPremiumDetails = fundPremiumDetails;
         }
 
         public string PolicyNumber { get; }
 
-        public IEnumerable<FundPremiumDetails> FundPremiums { get; }
+        public FundPremiumDetails FundPremiumDetails { get; }
     }
 }

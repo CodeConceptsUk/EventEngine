@@ -3,7 +3,9 @@ using Application.CommandHandlers;
 using Application.EventEvaluators;
 using Application.Interfaces;
 using Application.Interfaces.Domain;
+using Application.Interfaces.Queries;
 using Application.Interfaces.Repositories;
+using Application.Queries;
 using DataAccess;
 using Microsoft.Practices.Unity;
 
@@ -33,6 +35,9 @@ namespace Service.Factories
             // Events
             container.RegisterType<IEventEvaluator, AppliedFundChargeEventEvaluator>("AppliedFundChargeEventEvaluator");
             container.RegisterType<IEventEvaluator, PolicyCreatedEventEvaluator>("PolicyCreatedEventEvaluator");
+            container.RegisterType<IEventEvaluator, AddPremiumEventEvaluator>("AddPremiumEventEvaluator");
+            // Queries
+            container.RegisterType<IPolicyEventContextIdQuery, PolicyEventContextIdQuery>();
         }
     }
 }
