@@ -18,14 +18,15 @@ namespace Policy.Plugin.Isa.Policy.CommandHandlers
 
         public IEnumerable<IEvent<IPolicyContext>> Execute(AddPremiumCommand command)
         {
-            var eventContextId = _policyEventContextIdQuery.Read(command.PolicyNumber).EventContextId;
+            var eventContextId = _policyEventContextIdQuery.GetEventContextId(command.PolicyNumber);
 
             return new IEvent<IPolicyContext>[]
             {
                 new AddPremiumEvent(
                     eventContextId,
                     command.FundPremiumDetails.FundId,
-                    command.FundPremiumDetails.Premium)
+                    command.FundPremiumDetails.Premium,
+                    command.PremiumDateTime)
             };
         }
     }

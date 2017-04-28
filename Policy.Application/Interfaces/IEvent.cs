@@ -5,10 +5,10 @@ namespace Policy.Application.Interfaces
     public interface IEvent<TContext>
         where TContext : class
     {
-        Guid EventContextId { get; set; }
+        Guid EventContextId { get; }
 
-        Guid EventId { get; set; }
+        Guid EventId { get; }
 
-        DateTime EventDateTime { get; set; }
+        DateTime EventDateTime { get; }
     }
 }   

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using Microsoft.Practices.ObjectBuilder2;
 using Microsoft.Practices.Unity;
 using Policy.Application.Interfaces;
@@ -32,18 +33,45 @@ namespace Program
             var policyView = policyQuery.Read(12332);
             policyView.ForEach(SummarisePolicy);
 
-            bus.Apply(new AddPremiumCommand("3", new FundPremiumDetails("fund1", 50.00m)));
-            bus.Apply(new AddPremiumCommand("3", new FundPremiumDetails("fund1", 23.32m)));
-            bus.Apply(new AddPremiumCommand("3", new FundPremiumDetails("fund1", 12.00m)));
+            var premiumRandom = new Random(123456);
+            var fundRandom = new Random(1236);
+            for (var day = 0; day < 365; day++)
+            {
+                var date = DateTime.Now.AddDays(800 - day);
+                bus.Apply(new AddPremiumCommand("3", date, new FundPremiumDetails($"fund{fundRandom.Next(1, 10)}", Math.Round((decimal)premiumRandom.NextDouble() * 100, 2))));
+                bus.Apply(new UnitAllocationCommand("3", date));
+            }
 
-            bus.Apply(new AddPremiumCommand("3", new FundPremiumDetails("fund2", 12.00m)));
+            //DateTime day;
+            //day = DateTime.Now.AddDays(-7);
 
-            bus.Apply(new AddPremiumCommand("3", new FundPremiumDetails("fund3", 12.00m)));
-            bus.Apply(new AddPremiumCommand("3", new FundPremiumDetails("fund3", 12.00m)));
+            //bus.Apply(new AddPremiumCommand("3", day, new FundPremiumDetails("fund1", 50.00m)));
+            //bus.Apply(new AddPremiumCommand("3", day, new FundPremiumDetails("fund2", 23.32m)));
+            //bus.Apply(new AddPremiumCommand("3", day, new FundPremiumDetails("fund3", 12.00m)));
+            //bus.Apply(new UnitAllocationCommand("3", day));
 
-            policyView = policyQuery.Read(12332);
+            //policyView = policyQuery.Read(12332);
+            //policyView.ForEach(SummarisePolicy);
+
+            //day = DateTime.Now.AddDays(-6);
+            //bus.Apply(new AddPremiumCommand("3", day, new FundPremiumDetails("fund2", 12.00m)));
+            //bus.Apply(new UnitAllocationCommand("3", day));
+
+            //policyView = policyQuery.Read(12332);
+            //policyView.ForEach(SummarisePolicy);
+
+            //day = DateTime.Now.AddDays(-3);
+            //bus.Apply(new AddPremiumCommand("3", day, new FundPremiumDetails("fund3", 12.00m)));
+            //bus.Apply(new AddPremiumCommand("3", day, new FundPremiumDetails("fund3", 12.00m)));
+            //bus.Apply(new UnitAllocationCommand("3", day));
+
+            var timer = new Stopwatch();
+            timer.Start();
+            policyView = policyQuery.Read("3");
             policyView.ForEach(SummarisePolicy);
+            timer.Stop();
 
+            Console.WriteLine($"{timer.Elapsed}");
             Console.ReadLine();
         }
 
@@ -54,7 +82,7 @@ namespace Program
 
             policy.Funds?.ForEach(fund =>
             {
-                Console.WriteLine($"Fund: {fund.FundId}, premiums: {fund.UnallocatedPremiums}");
+                Console.WriteLine($"Fund: {fund.FundId}, premiums: {fund.UnallocatedPremiums}, units {fund.Units.ToString("0.00000")}");
             });
         }
     }

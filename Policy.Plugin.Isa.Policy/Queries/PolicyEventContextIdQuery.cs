@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using Policy.Application.Interfaces;
 using Policy.Application.Interfaces.Repositories;
@@ -15,10 +16,10 @@ namespace Policy.Plugin.Isa.Policy.Queries
         {
         }
 
-        public PolicyContextView Read(string policyNumber)
+        public Guid GetEventContextId(string policyNumber)
         {
-            var contextIds = _eventStore.FindContextIds(t => IsEventForPolicyNumber(policyNumber, t));
-            return new PolicyContextView {EventContextId = contextIds.First()};
+            var contextIds = EventStore.FindContextIds(t => IsEventForPolicyNumber(policyNumber, t));
+            return new PolicyContextView { EventContextId = contextIds.First() }.EventContextId;
         }
 
         private static bool IsEventForPolicyNumber(string policyNumber, IEvent<IPolicyContext> t)

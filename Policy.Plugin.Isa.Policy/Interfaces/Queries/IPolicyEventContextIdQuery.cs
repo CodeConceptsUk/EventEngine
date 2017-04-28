@@ -1,9 +1,9 @@
-﻿using Policy.Plugin.Isa.Policy.Views;
+﻿using System;
 
 namespace Policy.Plugin.Isa.Policy.Interfaces.Queries
 {
     public interface IPolicyEventContextIdQuery
     {
-        PolicyContextView Read(string policyNumber);
+        Guid GetEventContextId(string policyNumber);
     }
 }

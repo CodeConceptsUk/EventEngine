@@ -55,6 +55,7 @@
     <Compile Include="CommandBus.cs" />
     <Compile Include="EventPlayer.cs" />
     <Compile Include="Extensions\LinqExtensions.cs" />
+    <Compile Include="Interfaces\IContainer.cs" />
     <Compile Include="Interfaces\ICommand.cs" />
     <Compile Include="Interfaces\ICommandBus.cs" />
     <Compile Include="Interfaces\ICommandHandler.cs" />

@@ -1,4 +1,5 @@
-﻿using Policy.Application.Interfaces;
+﻿using System;
+using Policy.Application.Interfaces;
 using Policy.Plugin.Isa.Policy.Interfaces.Domain;
 using Policy.Plugin.Isa.Policy.PropertyBags;
 
@@ -6,13 +7,15 @@ namespace Policy.Plugin.Isa.Policy.Commands
 {
     public class AddPremiumCommand : ICommand<IPolicyContext>
     {
-        public AddPremiumCommand(string policyNumber, FundPremiumDetails fundPremiumDetails)
+        public AddPremiumCommand(string policyNumber, DateTime premiumDateTime,  FundPremiumDetails fundPremiumDetails)
         {
             PolicyNumber = policyNumber;
+            PremiumDateTime = premiumDateTime;
             FundPremiumDetails = fundPremiumDetails;
         }
 
         public string PolicyNumber { get; }
+        public DateTime PremiumDateTime { get; }
 
         public FundPremiumDetails FundPremiumDetails { get; }
     }
