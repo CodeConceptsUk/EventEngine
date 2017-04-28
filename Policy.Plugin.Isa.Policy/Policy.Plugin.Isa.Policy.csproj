@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{CED460F4-690F-4561-94BE-8A5DCD250A5A}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Policy.Plugin.Isa.Policy</RootNamespace>
+    <AssemblyName>Policy.Plugin.Isa.Policy</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\CommonServiceLocator.1.3\lib\portable-net4+sl5+netcore45+wpa81+wp8\Microsoft.Practices.ServiceLocation.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.4.0.1\lib\net45\Microsoft.Practices.Unity.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.Configuration, Version=4.0.0.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.4.0.1\lib\net45\Microsoft.Practices.Unity.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.RegistrationByConvention, Version=4.0.0.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.4.0.1\lib\net45\Microsoft.Practices.Unity.RegistrationByConvention.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CommandHandlers\AddFundChargeHandler.cs" />
+    <Compile Include="CommandHandlers\AddPremiumHandler.cs" />
+    <Compile Include="CommandHandlers\CreatePolicyHandler.cs" />
+    <Compile Include="Commands\AddFundChargeCommand.cs" />
+    <Compile Include="Commands\AddPremiumCommand.cs" />
+    <Compile Include="Commands\CreatePolicyCommand.cs" />
+    <Compile Include="Commands\UnitAllocationCommand.cs" />
+    <Compile Include="EventEvaluators\AppliedFundChargeEventEvaluator.cs" />
+    <Compile Include="EventEvaluators\PolicyCreatedEventEvaluator.cs" />
+    <Compile Include="Events\AddPremiumEvent.cs" />
+    <Compile Include="Events\AppliedFundChargeEvent.cs" />
+    <Compile Include="Events\PolicyCreatedEvent.cs" />
+    <Compile Include="Interfaces\DataAccess\ISequencingRepository.cs" />
+    <Compile Include="Interfaces\Domain\IFund.cs" />
+    <Compile Include="Interfaces\Domain\IFundPremium.cs" />
+    <Compile Include="Interfaces\Domain\IPolicyContext.cs" />
+    <Compile Include="Interfaces\Queries\IPolicyEventContextIdQuery.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PropertyBags\Fund.cs" />
+    <Compile Include="PropertyBags\FundPremiumDetails.cs" />
+    <Compile Include="Queries\PolicyEventContextIdQuery.cs" />
+    <Compile Include="Queries\PolicyQuery.cs" />
+    <Compile Include="Views\PolicyContextView.cs" />
+    <Compile Include="Views\PolicyFundsView.cs" />
+    <Compile Include="Views\PolicyView.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Policy.Application\Policy.Application.csproj">
+      <Project>{18373edd-6bd2-43d9-9aeb-b5c8668e5e9d}</Project>
+      <Name>Policy.Application</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
