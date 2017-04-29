@@ -7,6 +7,7 @@
 		CommandId uniqueidentifier not null,
 		Instant datetime2 not null,
 		Creator nvarchar(250) not null,
+		[Data] nvarchar(MAX) not null,
 		CONSTRAINT PK_Events_Id PRIMARY KEY NONCLUSTERED (Id)
 	)
 ;

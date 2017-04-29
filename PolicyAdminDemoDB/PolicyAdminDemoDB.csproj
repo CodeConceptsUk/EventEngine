@@ -64,11 +64,15 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Scripts\Script0002 - CommandTable.sql" />
+    <EmbeddedResource Include="Scripts\Script0002 - CommandsTable.sql" />
     <EmbeddedResource Include="Scripts\Script0003 - PolicyViewSnapshotsTable.sql" />
+    <EmbeddedResource Include="Scripts\Script0004 - PolicyViewSnapshots Procs.sql" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Scripts\Script0001 - EventTable.sql" />
+    <EmbeddedResource Include="Scripts\Script0001 - EventsTable.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Scripts\Script0005 - Events Procs.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
