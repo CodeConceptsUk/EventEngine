@@ -1,9 +1,10 @@
 ﻿CREATE TABLE
 	dbo.PolicyViewSnapshots
 	(
-		[DateTime] datetime2 not null,
-		[Data] nvarchar(MAX) not null,
-		CONSTRAINT PK_PolicyViewSnapshots_DateTime PRIMARY KEY CLUSTERED ([DateTime])
+		[ContextId] UNIQUEIDENTIFIER NOT NULL,
+		[DateTime] DATETIME2 NOT NULL,
+		[Data] NVARCHAR(MAX) NOT NULL,
+		CONSTRAINT PK_PolicyViewSnapshots_DateTime PRIMARY KEY CLUSTERED ([ContextId], [DateTime])
 	)
 ;
 

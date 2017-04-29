@@ -1,4 +1,5 @@
-﻿using System.Reflection;
+﻿using System.Data.SqlClient;
+using System.Reflection;
 using DbUp;
 using ManyConsole;
 using log4net;
@@ -13,6 +14,8 @@ namespace DemoDB
 
         public bool CreateDatabase { get; set; }
 
+        public bool ReplaceDatabase { get; set; }
+
         public InitializeCommand()
         {
             IsCommand("Initialize", "Initialize the database ready for use");
@@ -23,15 +26,26 @@ namespace DemoDB
             
             HasRequiredOption("s|server=", "The hostname / ip address of the server", p => Server = p);
 
-            HasOption("d|database=", "The database name to use", p => Database = p ?? "PolicyAdminDemoDB");
+            HasOption("d|database=", "The database name to use", p => Database = p);
 
             HasOption("c|createdb", "Should we create the database if it isn't found?", p => { CreateDatabase = true; } );
+
+            HasOption("replace", "Should we replace the database if it is found?", p => { ReplaceDatabase = true; } );
         }
 
         public override int Run(string[] remainingArguments)
         {
+            if (string.IsNullOrWhiteSpace(Database))
+            {
+                Database = "PolicyAdminDemoDB";
+            }
             var logger = LogManager.GetLogger(nameof(InitializeCommand));
             logger.Info($"Executing Initialize for {Database} on {Server}");
+
+            if (ReplaceDatabase)
+            {
+                RemoveOldDatabase();
+            }
             var connectionString = $"Server={Server}; Database={Database}; Trusted_connection=true";
             if (CreateDatabase)
             {
@@ -60,6 +74,21 @@ namespace DemoDB
                 logger.Error(result.Error);
             }
             return 0;
+        }
+
+        private void RemoveOldDatabase()
+        {
+            LogManager.GetLogger(nameof(InitializeCommand)).Warn($"Deleting {Database}");
+            var connectionString = $"Server={Server}; Database=master; Trusted_connection=true";
+            using (var conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+                using (var cmd = new SqlCommand($"IF EXISTS(select * from sys.databases where name='{Database}') DROP DATABASE {Database}"))
+                {
+                    cmd.Connection = conn;
+                    cmd.ExecuteNonQuery();
+                }
+            }
         }
     }
 }
