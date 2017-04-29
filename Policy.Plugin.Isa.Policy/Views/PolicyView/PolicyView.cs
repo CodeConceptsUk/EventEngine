@@ -2,7 +2,7 @@
 using Policy.Application.Interfaces;
 using Policy.Plugin.Isa.Policy.Interfaces.Domain;
 
-namespace Policy.Plugin.Isa.Policy.Views
+namespace Policy.Plugin.Isa.Policy.Views.PolicyView
 {
     public class PolicyView : IView<IPolicyContext>
     {

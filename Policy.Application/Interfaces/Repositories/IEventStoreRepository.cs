@@ -9,7 +9,7 @@ namespace Policy.Application.Interfaces.Repositories
     {
         IEnumerable<Guid> FindContextIds(Expression<Func<IEvent<TContext>, bool>> where);
 
-        IEnumerable<IEvent<TContext>> Get(Guid eventContextId);
+        IEnumerable<IEvent<TContext>> Get(Guid eventContextId, Guid? afterEventId = null);
 
         void Add(IEnumerable<IEvent<TContext>> events);
     }

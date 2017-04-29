@@ -6,9 +6,9 @@ using Policy.Application.Interfaces;
 using Policy.Application.Interfaces.Repositories;
 using Policy.Plugin.Isa.Policy.Commands;
 using Policy.Plugin.Isa.Policy.Interfaces.Domain;
+using Policy.Plugin.Isa.Policy.Interfaces.Queries;
 using Policy.Plugin.Isa.Policy.PropertyBags;
-using Policy.Plugin.Isa.Policy.Queries;
-using Policy.Plugin.Isa.Policy.Views;
+using Policy.Plugin.Isa.Policy.Views.PolicyView;
 using Program.Factories;
 
 namespace Program
@@ -19,8 +19,8 @@ namespace Program
         {
             var container = new ContainerFactory().Create();
             var bus = container.Resolve<ICommandBus>();
-            var eventStore = container.Resolve<IEventStoreRepository<IPolicyContext>>();
-            var eventPlayer = container.Resolve<IEventPlayer>();
+            var policyQuery = container.Resolve<IPolicyQuery>();
+            var snapshotRepo = container.Resolve<ISnapshotStore<PolicyView, IPolicyContext>>();
 
             bus.Apply(new CreatePolicyCommand(14));
             bus.Apply(new CreatePolicyCommand(1234));
@@ -28,17 +28,13 @@ namespace Program
             bus.Apply(new CreatePolicyCommand(123));
             bus.Apply(new CreatePolicyCommand(14));
 
-            var policyQuery = new PolicyQuery(eventStore, eventPlayer);
-
-            var policyView = policyQuery.Read(12332);
-            policyView.ForEach(SummarisePolicy);
-
             var premiumRandom = new Random(123456);
             var fundRandom = new Random(1236);
-            for (var day = 0; day < 365; day++)
+            var premium = 1;
+            for (var day = 0; day < 100000; day++)
             {
                 var date = DateTime.Now.AddDays(800 - day);
-                bus.Apply(new AddPremiumCommand("3", date, new FundPremiumDetails($"fund{fundRandom.Next(1, 10)}", Math.Round((decimal)premiumRandom.NextDouble() * 100, 2))));
+                bus.Apply(new AddPremiumCommand("3", date, new FundPremiumDetails($"fund{fundRandom.Next(1, 2)}", 1)));
                 bus.Apply(new UnitAllocationCommand("3", date));
             }
 
@@ -67,8 +63,8 @@ namespace Program
 
             var timer = new Stopwatch();
             timer.Start();
-            policyView = policyQuery.Read("3");
-            policyView.ForEach(SummarisePolicy);
+            var policyView = policyQuery.Read("3");
+            SummarisePolicy(policyView);
             timer.Stop();
 
             Console.WriteLine($"{timer.Elapsed}");

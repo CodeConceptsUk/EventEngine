@@ -12,7 +12,7 @@ namespace Policy.Plugin.Isa.Policy.DataAccess
     public class PolicyContextEventStoreRepository : IEventStoreRepository<IPolicyContext>
     {
         private static readonly IList<IEvent<IPolicyContext>> Events = new List<IEvent<IPolicyContext>>();
-        
+
         public IEnumerable<Guid> FindContextIds(Expression<Func<IEvent<IPolicyContext>, bool>> @where)
         {
             var expression = @where.Compile();
@@ -20,8 +20,17 @@ namespace Policy.Plugin.Isa.Policy.DataAccess
             return events;
         }
 
-        public IEnumerable<IEvent<IPolicyContext>> Get(Guid eventContextId)
+        public IEnumerable<IEvent<IPolicyContext>> Get(Guid eventContextId, Guid? eventId = null)
         {
+            if (eventId.HasValue)
+            {
+                var eventIndex = Events.IndexOf(Events.FirstOrDefault(t => t.EventId == eventId));
+                if (eventIndex != -1)
+                    return Events.Skip(eventIndex + 1);
+
+                throw new Exception($"Event {eventId} not found in the event store.");
+            }
+
             return Events.Where(t => t.EventContextId == eventContextId);
         }
 

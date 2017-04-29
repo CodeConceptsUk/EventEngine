@@ -14,8 +14,8 @@ namespace Policy.Application.Interfaces
 
     public interface IEventPlayer
     {
-        TView Handle<TContext, TView>(IEnumerable<IEvent<TContext>> events)
+        TView Handle<TContext, TView>(IEnumerable<IEvent<TContext>> events, TView view)
             where TContext : class, IContext
-            where TView : class, IView<TContext>, new();
+            where TView : class, IView<TContext>;
     }
 }

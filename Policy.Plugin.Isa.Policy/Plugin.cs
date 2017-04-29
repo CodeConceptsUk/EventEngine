@@ -1,9 +1,9 @@
 ﻿using Microsoft.Practices.Unity;
 using Policy.Application.Interfaces;
 using Policy.Plugin.Isa.Policy.CommandHandlers;
-using Policy.Plugin.Isa.Policy.EventEvaluators;
 using Policy.Plugin.Isa.Policy.Interfaces.Queries;
 using Policy.Plugin.Isa.Policy.Queries;
+using Policy.Plugin.Isa.Policy.Views.PolicyView.EventEvaluators;
 
 namespace Policy.Plugin.Isa.Policy
 {
@@ -21,6 +21,7 @@ namespace Policy.Plugin.Isa.Policy
             // Queries
             container.RegisterType<IPolicyEventContextIdQuery, PolicyEventContextIdQuery>();
             container.RegisterType<IPolicyQuery, PolicyQuery>();
+            container.RegisterType<ISinglePolicyQuery, SinglePolicyQuery>();
         }
 
         private static void SetupEvents(IUnityContainer container)

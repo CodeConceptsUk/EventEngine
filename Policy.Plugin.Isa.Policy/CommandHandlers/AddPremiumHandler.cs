@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using Policy.Application.Exceptions;
 using Policy.Application.Interfaces;
 using Policy.Plugin.Isa.Policy.Commands;
 using Policy.Plugin.Isa.Policy.Events;
@@ -19,11 +21,13 @@ namespace Policy.Plugin.Isa.Policy.CommandHandlers
         public IEnumerable<IEvent<IPolicyContext>> Execute(AddPremiumCommand command)
         {
             var eventContextId = _policyEventContextIdQuery.GetEventContextId(command.PolicyNumber);
+            if (!eventContextId.HasValue)
+                throw new QueryException($"The policy {command.PolicyNumber} does not exist!");
 
             return new IEvent<IPolicyContext>[]
             {
                 new AddPremiumEvent(
-                    eventContextId,
+                    eventContextId.Value,
                     command.FundPremiumDetails.FundId,
                     command.FundPremiumDetails.Premium,
                     command.PremiumDateTime)

@@ -17,12 +17,10 @@ namespace Policy.Application
             handlers.ForEach(handler => _handlers.Add((IEventEvaluator)handler));
         }
 
-        public TView Handle<TContext, TView>(IEnumerable<IEvent<TContext>> events)
+        public TView Handle<TContext, TView>(IEnumerable<IEvent<TContext>> events, TView view)
             where TContext : class, IContext
-            where TView : class, IView<TContext>, new()
+            where TView : class, IView<TContext>
         {
-            var view = new TView();
-            
             events.ForEach(@event =>
             {
                 var evaluators = GetEvaluator(@event.GetType(), typeof(TContext), typeof(TView));

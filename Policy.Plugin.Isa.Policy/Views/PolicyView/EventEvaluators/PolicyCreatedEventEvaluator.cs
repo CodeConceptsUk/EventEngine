@@ -3,9 +3,8 @@ using Policy.Application.Interfaces;
 using Policy.Plugin.Isa.Policy.Events;
 using Policy.Plugin.Isa.Policy.Interfaces.Domain;
 using Policy.Plugin.Isa.Policy.PropertyBags;
-using Policy.Plugin.Isa.Policy.Views;
 
-namespace Policy.Plugin.Isa.Policy.EventEvaluators
+namespace Policy.Plugin.Isa.Policy.Views.PolicyView.EventEvaluators
 {
     public class PolicyCreatedEventEvaluator : IEventEvaluator<PolicyCreatedEvent, IPolicyContext, PolicyView>
     {
