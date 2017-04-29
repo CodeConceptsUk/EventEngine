@@ -35,16 +35,12 @@ namespace Program
 
             var premiumRandom = new Random(123456);
             var fundRandom = new Random(1236);
-
-            var timer = new Stopwatch();
-            timer.Start();
-            for (var day = 0; day < 3650; day++)
+            for (var day = 0; day < 365; day++)
             {
                 var date = DateTime.Now.AddDays(800 - day);
                 bus.Apply(new AddPremiumCommand("3", date, new FundPremiumDetails($"fund{fundRandom.Next(1, 10)}", Math.Round((decimal)premiumRandom.NextDouble() * 100, 2))));
                 bus.Apply(new UnitAllocationCommand("3", date));
             }
-            timer.Stop();
 
             //DateTime day;
             //day = DateTime.Now.AddDays(-7);
@@ -69,9 +65,7 @@ namespace Program
             //bus.Apply(new AddPremiumCommand("3", day, new FundPremiumDetails("fund3", 12.00m)));
             //bus.Apply(new UnitAllocationCommand("3", day));
 
-            var commandTime = timer.Elapsed;
-            Console.WriteLine($"{commandTime}");
-            timer.Reset();
+            var timer = new Stopwatch();
             timer.Start();
             policyView = policyQuery.Read("3");
             policyView.ForEach(SummarisePolicy);

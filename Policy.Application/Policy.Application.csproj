@@ -64,7 +64,6 @@
     <Compile Include="Interfaces\IEventPlayer.cs" />
     <Compile Include="Interfaces\IQuery.cs" />
     <Compile Include="Interfaces\Repositories\IEventStoreRepository.cs" />
-    <Compile Include="Interfaces\Repositories\ISnapshotRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

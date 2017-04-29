@@ -54,7 +54,6 @@
   <ItemGroup>
     <Compile Include="Plugin.cs" />
     <Compile Include="PolicyContextEventStoreRepository.cs" />
-    <Compile Include="PolicyViewSnapshotRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SequencingRepository.cs" />
     <Compile Include="UnitPricingRepository.cs" />

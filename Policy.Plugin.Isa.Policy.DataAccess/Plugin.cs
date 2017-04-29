@@ -1,9 +1,6 @@
 ﻿using Microsoft.Practices.Unity;
 using Policy.Application.Interfaces;
-using Policy.Application.Interfaces.Repositories;
 using Policy.Plugin.Isa.Policy.Interfaces.DataAccess;
-using Policy.Plugin.Isa.Policy.Interfaces.Domain;
-using Policy.Plugin.Isa.Policy.Views;
 
 namespace Policy.Plugin.Isa.Policy.DataAccess
 {
@@ -13,7 +10,6 @@ namespace Policy.Plugin.Isa.Policy.DataAccess
         {
             container.RegisterType<ISequencingRepository, SequencingRepository>();
             container.RegisterType<IUnitPricingRepository, UnitPricingRepository>();
-            container.RegisterType<ISnapshotRepository<IPolicyContext, PolicyView>, PolicyViewSnapshotRepository>();
         }
     }
 }

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace Policy.Application.Interfaces
 {
@@ -10,9 +9,7 @@ namespace Policy.Application.Interfaces
     public interface IView<TContext>
         where TContext : class, IContext
     {
-        DateTime LastCalculatedEventAt { get; }
-
-        Guid LastCalculatedEventId { get; }
+        
     }
 
     public interface IEventPlayer
