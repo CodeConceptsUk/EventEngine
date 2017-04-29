@@ -23,7 +23,7 @@ namespace DemoDB
             
             HasRequiredOption("s|server=", "The hostname / ip address of the server", p => Server = p);
 
-            HasOption("d|database=", "The database name to use", p => Database = p ?? "DemoDB");
+            HasOption("d|database=", "The database name to use", p => Database = p ?? "PolicyAdminDemoDB");
 
             HasOption("c|createdb", "Should we create the database if it isn't found?", p => { CreateDatabase = true; } );
         }
