@@ -3,9 +3,7 @@ using System.Diagnostics;
 using Microsoft.Practices.ObjectBuilder2;
 using Microsoft.Practices.Unity;
 using Policy.Application.Interfaces;
-using Policy.Application.Interfaces.Repositories;
 using Policy.Plugin.Isa.Policy.Commands;
-using Policy.Plugin.Isa.Policy.Interfaces.Domain;
 using Policy.Plugin.Isa.Policy.Interfaces.Queries;
 using Policy.Plugin.Isa.Policy.PropertyBags;
 using Policy.Plugin.Isa.Policy.Views.PolicyView;
@@ -20,7 +18,6 @@ namespace Program
             var container = new ContainerFactory().Create();
             var bus = container.Resolve<ICommandBus>();
             var policyQuery = container.Resolve<IPolicyQuery>();
-            var snapshotRepo = container.Resolve<ISnapshotStore<PolicyView, IPolicyContext>>();
 
             bus.Apply(new CreatePolicyCommand(14));
             bus.Apply(new CreatePolicyCommand(1234));
@@ -30,12 +27,24 @@ namespace Program
 
             var premiumRandom = new Random(123456);
             var fundRandom = new Random(1236);
-            var premium = 1;
-            for (var day = 0; day < 100000; day++)
+            var stopwatch = new Stopwatch();
+            stopwatch.Start();
+            var day = -100000;
+            while ( day < 0)
             {
-                var date = DateTime.Now.AddDays(800 - day);
-                bus.Apply(new AddPremiumCommand("3", date, new FundPremiumDetails($"fund{fundRandom.Next(1, 2)}", 1)));
+                var date = DateTime.Now.AddDays(day);
+                bus.Apply(new AddPremiumCommand("3", date, new FundPremiumDetails($"fund{fundRandom.Next(1, 10)}", ((decimal)premiumRandom.NextDouble())*10m)));
+                bus.Apply(new AddPremiumCommand("3", date, new FundPremiumDetails($"fund{fundRandom.Next(1, 10)}", ((decimal)premiumRandom.NextDouble())*10m)));
+                bus.Apply(new AddPremiumCommand("3", date, new FundPremiumDetails($"fund{fundRandom.Next(1, 10)}", ((decimal)premiumRandom.NextDouble())*10m)));
                 bus.Apply(new UnitAllocationCommand("3", date));
+                day++;
+                if (day % 1000 == 0)
+                {
+                    var time = stopwatch.Elapsed;
+                    stopwatch.Reset();
+                    Console.WriteLine($"At {day} last 1000 took {time}");
+                    stopwatch.Start();
+                }
             }
 
             //DateTime day;

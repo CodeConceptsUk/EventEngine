@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using Policy.Application.Interfaces.Repositories;
 using Policy.Plugin.Isa.Policy.Interfaces.DataAccess;
 
 // ReSharper disable CollectionNeverUpdated.Local

@@ -46,6 +46,7 @@
       <HintPath>..\packages\Newtonsoft.Json.10.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -59,7 +60,8 @@
     <Compile Include="PolicyContextEventStoreRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SequencingRepository.cs" />
-    <Compile Include="SinglePolicySnapshotStore.cs" />
+    <Compile Include="SinglePolicySnapshotMemoryStore.cs" />
+    <Compile Include="SinglePolicySnapshotSqlStore.cs" />
     <Compile Include="UnitPricingRepository.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using Policy.Application.Interfaces;
-using Policy.Application.Interfaces.Repositories;
 using Policy.Plugin.Isa.Policy.Commands;
 using Policy.Plugin.Isa.Policy.Events;
 using Policy.Plugin.Isa.Policy.Interfaces.DataAccess;

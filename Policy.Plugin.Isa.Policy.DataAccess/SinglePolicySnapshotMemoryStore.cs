@@ -11,11 +11,11 @@ using Policy.Plugin.Isa.Policy.Views.PolicyView;
 
 namespace Policy.Plugin.Isa.Policy.DataAccess
 {
-    public class SinglePolicySnapshotStore : ISnapshotStore<PolicyView, IPolicyContext>
+    public class SinglePolicySnapshotMemoryStore : ISnapshotStore<PolicyView, IPolicyContext>
     {
         private static readonly Dictionary<Guid, OrderedDictionary> Store = new Dictionary<Guid, OrderedDictionary>();
 
-        private static readonly JsonSerializerSettings _jsonSerializerSettings = new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.All };
+        private static readonly JsonSerializerSettings JsonSerializerSettings = new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.All };
 
         public ISnapshot<PolicyView, IPolicyContext> Get(Guid contextId)
         {
@@ -39,12 +39,12 @@ namespace Policy.Plugin.Isa.Policy.DataAccess
 
         private string Serialize(Snapshot<PolicyView, IPolicyContext> value)
         {
-            return JsonConvert.SerializeObject(value, _jsonSerializerSettings);
+            return JsonConvert.SerializeObject(value, JsonSerializerSettings);
         }
 
         private Snapshot<PolicyView, IPolicyContext> Deserialize(string value)
         {
-            return JsonConvert.DeserializeObject<Snapshot<PolicyView, IPolicyContext>>(value, _jsonSerializerSettings);
+            return JsonConvert.DeserializeObject<Snapshot<PolicyView, IPolicyContext>>(value, JsonSerializerSettings);
         }
     }
 }

@@ -6,7 +6,6 @@ using Policy.Application.Interfaces.Repositories;
 using Policy.Plugin.Isa.Policy.Events;
 using Policy.Plugin.Isa.Policy.Interfaces.Domain;
 using Policy.Plugin.Isa.Policy.Interfaces.Queries;
-using Policy.Plugin.Isa.Policy.Views;
 
 namespace Policy.Plugin.Isa.Policy.Queries
 {
