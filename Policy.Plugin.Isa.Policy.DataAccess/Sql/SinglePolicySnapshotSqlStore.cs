@@ -25,6 +25,7 @@ namespace Policy.Plugin.Isa.Policy.DataAccess.Sql
                 using (var command = new SqlCommand("SelectLatestPolicyViewSnapshot", connection) { CommandType = CommandType.StoredProcedure })
                 {
                     command.Parameters.Add(new SqlParameter("@ContextId", SqlDbType.UniqueIdentifier));
+                    command.Parameters["@ContextId"].Value = contextId;
                     var viewData = (string)command.ExecuteScalar();
                     return viewData != null ? Deserialize(viewData) : null;
                 }
@@ -38,6 +39,10 @@ namespace Policy.Plugin.Isa.Policy.DataAccess.Sql
                 connection.Open();
                 using (var command = new SqlCommand("InsertPolicyViewSnapshot", connection) { CommandType = CommandType.StoredProcedure })
                 {
+                    command.Parameters.Add(new SqlParameter("@ContextId", SqlDbType.UniqueIdentifier));
+                    command.Parameters.Add(new SqlParameter("@DateTime", SqlDbType.DateTime2));
+                    command.Parameters.Add(new SqlParameter("@Data", SqlDbType.NVarChar, -1));
+
                     var snapshot = new Snapshot<PolicyView, IPolicyContext>(@event, view);
                     var data = Serialize(snapshot);
 
