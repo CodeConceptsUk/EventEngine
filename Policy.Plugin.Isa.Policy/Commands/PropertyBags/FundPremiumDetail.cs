@@ -1,4 +1,4 @@
-﻿namespace Policy.Plugin.Isa.Policy.PropertyBags
+﻿namespace Policy.Plugin.Isa.Policy.Commands.PropertyBags
 {
     public class FundPremiumDetail
     {

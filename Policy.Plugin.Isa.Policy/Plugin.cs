@@ -4,6 +4,7 @@ using Microsoft.Practices.Unity;
 using Policy.Application;
 using Policy.Application.Interfaces;
 using Policy.Plugin.Isa.Policy.Commands;
+using Policy.Plugin.Isa.Policy.Commands.Commands;
 using Policy.Plugin.Isa.Policy.Events;
 using IContainer = Policy.Application.Interfaces.IContainer;
 

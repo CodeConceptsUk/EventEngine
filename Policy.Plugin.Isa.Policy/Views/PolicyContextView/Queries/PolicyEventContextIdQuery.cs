@@ -6,7 +6,7 @@ using Policy.Application.Interfaces.Repositories;
 using Policy.Plugin.Isa.Policy.Events;
 using Policy.Plugin.Isa.Policy.Interfaces.Queries;
 
-namespace Policy.Plugin.Isa.Policy.Queries
+namespace Policy.Plugin.Isa.Policy.Views.PolicyContextView.Queries
 {
     public class PolicyeventContextIdQuery : IPolicyeventContextIdQuery
     {

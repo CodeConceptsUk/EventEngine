@@ -1,4 +1,4 @@
-﻿namespace Policy.Plugin.Isa.Policy.Views.PolicyView
+﻿namespace Policy.Plugin.Isa.Policy.Views.PolicyView.Domain
 {
     public class PremiumPartition
     {

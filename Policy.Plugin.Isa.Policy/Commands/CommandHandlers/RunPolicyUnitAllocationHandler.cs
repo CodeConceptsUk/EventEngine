@@ -1,17 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using Microsoft.Practices.ObjectBuilder2;
 using Policy.Application.Exceptions;
 using Policy.Application.Interfaces;
-using Policy.Plugin.Isa.Policy.Commands;
+using Policy.Plugin.Isa.Policy.Commands.Commands;
 using Policy.Plugin.Isa.Policy.Events;
 using Policy.Plugin.Isa.Policy.Interfaces.DataAccess;
 using Policy.Plugin.Isa.Policy.Interfaces.Queries;
-using Policy.Plugin.Isa.Policy.Views.PolicyView;
+
 // ReSharper disable SuspiciousTypeConversion.Global
 
-namespace Policy.Plugin.Isa.Policy.CommandHandlers
+namespace Policy.Plugin.Isa.Policy.Commands.CommandHandlers
 {
     public class UnitAllocationHandler : ICommandHandler<UnitAllocationCommand>
     {

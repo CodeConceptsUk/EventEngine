@@ -20,7 +20,7 @@ namespace Policy.Application
 
         public CommandDispatcher(IUnityContainer container)
         {
-            _logger = LogManager.GetLogger(typeof(CommandDispatcher<TCommand, TEvent>));
+            _logger = LogManager.GetLogger(typeof(CommandDispatcher<,>));
             var handlers = container.ResolveAll(typeof(ICommandHandler));
             handlers.ForEach(handler => _handlers.Add((ICommandHandler)handler));
             _container = container;

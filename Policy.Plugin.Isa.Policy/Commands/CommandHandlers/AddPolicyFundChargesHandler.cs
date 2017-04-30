@@ -1,13 +1,11 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using Policy.Application.Exceptions;
 using Policy.Application.Interfaces;
-using Policy.Plugin.Isa.Policy.Commands;
-using Policy.Plugin.Isa.Policy.Events;
+using Policy.Plugin.Isa.Policy.Commands.Commands;
 using Policy.Plugin.Isa.Policy.Interfaces.Domain;
 using Policy.Plugin.Isa.Policy.Interfaces.Queries;
 
-namespace Policy.Plugin.Isa.Policy.CommandHandlers
+namespace Policy.Plugin.Isa.Policy.Commands.CommandHandlers
 {
     public class AddPolicyFundChargesHandler : ICommandHandler<AddPolicyFundChargesCommand>
     {

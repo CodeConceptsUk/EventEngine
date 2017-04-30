@@ -1,9 +1,7 @@
 ﻿using System.Collections.Generic;
 using Policy.Application.Interfaces;
-using Policy.Plugin.Isa.Policy.Interfaces.Domain;
-using Policy.Plugin.Isa.Policy.PropertyBags;
 
-namespace Policy.Plugin.Isa.Policy.Views.PolicyView
+namespace Policy.Plugin.Isa.Policy.Views.PolicyView.Domain
 {
     public class PolicyView : IView
     {

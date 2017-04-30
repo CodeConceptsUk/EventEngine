@@ -3,9 +3,9 @@ using Policy.Plugin.Isa.Policy.Events;
 
 namespace Policy.Plugin.Isa.Policy.Views.PolicyView.EventEvaluators
 {
-    public class PolicyCreatedEventEvaluator : IEventEvaluator<PolicyCreatedEvent, PolicyView>
+    public class PolicyCreatedEventEvaluator : IEventEvaluator<PolicyCreatedEvent, Domain.PolicyView>
     {
-        public void Evaluate(PolicyView view, PolicyCreatedEvent @event)
+        public void Evaluate(Domain.PolicyView view, PolicyCreatedEvent @event)
         {
             view.PolicyNumber = @event.PolicyNumber;
             view.CustomerId = @event.CustomerId;

@@ -2,12 +2,13 @@ using System.Linq;
 using Microsoft.Practices.ObjectBuilder2;
 using Policy.Application.Interfaces;
 using Policy.Plugin.Isa.Policy.Events;
+using Policy.Plugin.Isa.Policy.Views.PolicyView.Domain;
 
 namespace Policy.Plugin.Isa.Policy.Views.PolicyView.EventEvaluators
 {
-    public class AddPremiumEventEvaluator : IEventEvaluator<AddPremiumEvent, PolicyView>
+    public class AddPremiumEventEvaluator : IEventEvaluator<AddPremiumEvent, Domain.PolicyView>
     {
-        public void Evaluate(PolicyView view, AddPremiumEvent @event)
+        public void Evaluate(Domain.PolicyView view, AddPremiumEvent @event)
         {
             var premium = new Premium
             {

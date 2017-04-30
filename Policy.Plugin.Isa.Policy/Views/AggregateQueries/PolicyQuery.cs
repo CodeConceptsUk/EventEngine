@@ -1,9 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Policy.Plugin.Isa.Policy.Interfaces.Queries;
-using Policy.Plugin.Isa.Policy.Views.PolicyView;
 
-namespace Policy.Plugin.Isa.Policy.Queries
+namespace Policy.Plugin.Isa.Policy.Views.AggregateQueries
 {
     public class PolicyQuery : IPolicyQuery
     {
@@ -16,15 +15,15 @@ namespace Policy.Plugin.Isa.Policy.Queries
             _singlePolicyQuery = singlePolicyQuery;
         }
 
-        public PolicyView Read(string policyNumber)
+        public PolicyView.Domain.PolicyView Read(string policyNumber)
         {
             var contextId = _policyeventContextIdQuery.GeteventContextId(policyNumber);
-            return !contextId.HasValue 
-                ? null 
+            return !contextId.HasValue
+                ? null
                 : _singlePolicyQuery.Build(contextId.Value);
         }
 
-        public IEnumerable<PolicyView> Read(int customerId)
+        public IEnumerable<PolicyView.Domain.PolicyView> Read(int customerId)
         {
             var contextIds = _policyeventContextIdQuery.GeteventContextId(customerId);
             return contextIds.Select(contextId => _singlePolicyQuery.Build(contextId));

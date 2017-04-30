@@ -1,15 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using System.Threading;
 using FrameworkExtensions.LinqExtensions;
 using log4net;
 using Microsoft.Practices.Unity;
 using Policy.Application.Interfaces;
 using Policy.Plugin.Isa.Policy.Commands;
+using Policy.Plugin.Isa.Policy.Commands.Commands;
+using Policy.Plugin.Isa.Policy.Commands.PropertyBags;
 using Policy.Plugin.Isa.Policy.Interfaces.Queries;
-using Policy.Plugin.Isa.Policy.PropertyBags;
 using Policy.Plugin.Isa.Policy.Views.PolicyView;
+using Policy.Plugin.Isa.Policy.Views.PolicyView.Domain;
 using Program.Factories;
 
 [assembly: log4net.Config.XmlConfigurator()]
@@ -25,12 +28,7 @@ namespace Program
             var policyQuery = container.Resolve<IPolicyQuery>();
 
             var createCommand = new CreatePolicyCommand(1);
-            var addPremiumCommand = new AddPremiumCommand("1", Guid.NewGuid().ToString(), DateTime.Now,
-                new List<FundPremiumDetail>
-                {
-                    new FundPremiumDetail("F1", 100),
-                    new FundPremiumDetail("F2", 50)
-                });
+            var addPremiumCommand = new AddPremiumCommand("1", Guid.NewGuid().ToString(), DateTime.Now, CreateRandomPremiumDetails());
 
 
             Thread.Sleep(300);
@@ -40,36 +38,29 @@ namespace Program
             dispatcher.Apply(addPremiumCommand);
             dispatcher.Apply(unitAllocationCommand);
 
-            var policy = policyQuery.Read("1");
-
-            dispatcher.Apply(new CreatePolicyCommand(14));
-            dispatcher.Apply(new CreatePolicyCommand(1234));
-            dispatcher.Apply(new CreatePolicyCommand(12332));
-            dispatcher.Apply(new CreatePolicyCommand(123));
-            dispatcher.Apply(new CreatePolicyCommand(14));
-
-            policy = policyQuery.Read("1");
-
             var premiumRandom = new Random(123456);
             var fundRandom = new Random(1236);
             var stopwatch = new Stopwatch();
             stopwatch.Start();
-            var day = -10;
+            var day = -1000;
             while (day < 0)
             {
                 var date = DateTime.Now.AddDays(day);
-                //dispatcher.Apply(new AddPremiumCommand("3", date, new FundPremiumDetail($"fund{fundRandom.Next(1, 10)}", ((decimal)premiumRandom.NextDouble())*10m)));
-                //dispatcher.Apply(new AddPremiumCommand("3", date, new FundPremiumDetail($"fund{fundRandom.Next(1, 10)}", ((decimal)premiumRandom.NextDouble())*10m)));
-                //dispatcher.Apply(new AddPremiumCommand("3", date, new FundPremiumDetail($"fund{fundRandom.Next(1, 10)}", ((decimal)premiumRandom.NextDouble())*10m)));
-                //dispatcher.Apply(new UnitAllocationCommand("3", date));
+                if (day % 7 == 0) // add a new premium every 7 days
+                {
+                    dispatcher.Apply(new AddPremiumCommand("1", Guid.NewGuid().ToString(), date,
+                        CreateRandomPremiumDetails()));
+                }
+                dispatcher.Apply(new UnitAllocationCommand("1", date)); // alloate units daily
+                dispatcher.Apply(new AddPolicyFundChargesCommand("1")); // make charges daily
                 day++;
-                if (day % 1000 != 0)
+                if (day % 100 != 0)
                     continue;
 
                 var time = stopwatch.Elapsed;
                 stopwatch.Reset();
                 Console.WriteLine($"At {day} last 1000 took {time}");
-                var policyViewss = policyQuery.Read("3");
+                var policyViewss = policyQuery.Read("1");
                 SummarisePolicy(policyViewss);
                 stopwatch.Start();
             }
@@ -84,19 +75,40 @@ namespace Program
             Console.ReadLine();
         }
 
+        private static List<FundPremiumDetail> CreateRandomPremiumDetails()
+        {
+            return new List<FundPremiumDetail>
+            {
+                new FundPremiumDetail("F1", 100),
+                new FundPremiumDetail("F2", 50)
+            };
+        }
+
         private static void SummarisePolicy(PolicyView policy)
         {
-            Console.WriteLine("-------------------------------------------------------------------------------------");
-            Console.WriteLine($"Policy: {policy.PolicyNumber}, Customer: {policy.CustomerId}");
-
-            policy.Premiums?.ForEach(p =>
+            if (policy == null)
             {
+                Console.WriteLine("NULL");
+                return;
+            }
+            Console.WriteLine("-------------------------------------------------------------------------------------");
+            Console.WriteLine($"Policy: {policy?.PolicyNumber}, Customer: {policy?.CustomerId}, {policy?.Premiums?.Count} totalling {policy?.Premiums?.Sum(t => t.Total)}");
+            policy?.Premiums?.ForEach(p =>
+            {
+                var allocated = p.IsAllocated ? "is" : "is not";
+                Console.WriteLine($"\tPremium: {p.PremiumId} {allocated} and was {p.Total:0.00}");
                 p.Partitions.ForEach(a =>
                 {
-                    
-                    Console.WriteLine($"FundId: {a.FundId}, Amount: {a.Amount} ");
+                    Console.WriteLine($"\t\tFundId: {a.FundId}, Amount: {a.Amount:0.00} ");
                 });
-                //Console.WriteLine($"Fund: {fund.FundId}, premiums: {fund.UnallocatedPremiums:0.00}, units {fund.Units:0.00000}");
+            });
+            policy?.Funds?.ForEach(f =>
+            {
+                Console.WriteLine($"\tAllocations of {f.FundId}:");
+                f.Allocations.ForEach(a =>
+                {
+                    Console.WriteLine($"\t\t{a.PremiumPartition.Amount:0.00} was allocated to {a.Units:0.0000} units");
+                });
             });
         }
     }

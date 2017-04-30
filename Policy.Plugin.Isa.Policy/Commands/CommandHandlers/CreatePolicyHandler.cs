@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 using Policy.Application.Interfaces;
-using Policy.Plugin.Isa.Policy.Commands;
+using Policy.Plugin.Isa.Policy.Commands.Commands;
 using Policy.Plugin.Isa.Policy.Events;
 using Policy.Plugin.Isa.Policy.Interfaces.DataAccess;
 
-namespace Policy.Plugin.Isa.Policy.CommandHandlers
+namespace Policy.Plugin.Isa.Policy.Commands.CommandHandlers
 {
     public class CreatePolicyHandler : ICommandHandler<CreatePolicyCommand>
     {
