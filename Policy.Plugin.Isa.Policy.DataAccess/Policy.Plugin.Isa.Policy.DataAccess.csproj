@@ -56,6 +56,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="NoSql\SinglePolicySnapshotNoSqlStore.cs" />
     <Compile Include="Plugin.cs" />
     <Compile Include="InMemory\PolicyContextEventStoreInMemoryStore.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -78,9 +79,6 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="NoSql\" />
-    <Folder Include="Scripts\Sql\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
