@@ -11,9 +11,9 @@ using Program.Factories;
 
 namespace Program
 {
-    class Program
+    internal class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             var container = new ContainerFactory().Create();
             var bus = container.Resolve<ICommandBus>();
@@ -49,29 +49,6 @@ namespace Program
                 stopwatch.Start();
             }
 
-            //DateTime day;
-            //day = DateTime.Now.AddDays(-7);
-
-            //bus.Apply(new AddPremiumCommand("3", day, new FundPremiumDetails("fund1", 50.00m)));
-            //bus.Apply(new AddPremiumCommand("3", day, new FundPremiumDetails("fund2", 23.32m)));
-            //bus.Apply(new AddPremiumCommand("3", day, new FundPremiumDetails("fund3", 12.00m)));
-            //bus.Apply(new UnitAllocationCommand("3", day));
-
-            //policyView = policyQuery.Read(12332);
-            //policyView.ForEach(SummarisePolicy);
-
-            //day = DateTime.Now.AddDays(-6);
-            //bus.Apply(new AddPremiumCommand("3", day, new FundPremiumDetails("fund2", 12.00m)));
-            //bus.Apply(new UnitAllocationCommand("3", day));
-
-            //policyView = policyQuery.Read(12332);
-            //policyView.ForEach(SummarisePolicy);
-
-            //day = DateTime.Now.AddDays(-3);
-            //bus.Apply(new AddPremiumCommand("3", day, new FundPremiumDetails("fund3", 12.00m)));
-            //bus.Apply(new AddPremiumCommand("3", day, new FundPremiumDetails("fund3", 12.00m)));
-            //bus.Apply(new UnitAllocationCommand("3", day));
-
             var timer = new Stopwatch();
             timer.Start();
             var policyView = policyQuery.Read("3");
@@ -89,7 +66,7 @@ namespace Program
 
             policy.Funds?.ForEach(fund =>
             {
-                Console.WriteLine($"Fund: {fund.FundId}, premiums: {fund.UnallocatedPremiums}, units {fund.Units.ToString("0.00000")}");
+                Console.WriteLine($"Fund: {fund.FundId}, premiums: {fund.UnallocatedPremiums}, units {fund.Units:0.00000}");
             });
         }
     }

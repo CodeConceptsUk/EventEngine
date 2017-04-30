@@ -7,7 +7,7 @@ namespace Policy.Plugin.Isa.Policy.DataAccess.InMemory
 {
     public class SequencingInMemoryStore : ISequencingRepository
     {
-        readonly Dictionary<string, int> _numbers = new Dictionary<string, int>();
+        private readonly Dictionary<string, int> _numbers = new Dictionary<string, int>();
         
         public string Get(string type)
         {
