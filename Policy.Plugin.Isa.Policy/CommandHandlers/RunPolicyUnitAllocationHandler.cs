@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.Practices.ObjectBuilder2;
 using Policy.Application.Exceptions;
 using Policy.Application.Interfaces;
 using Policy.Plugin.Isa.Policy.Commands;
@@ -8,6 +9,7 @@ using Policy.Plugin.Isa.Policy.Events;
 using Policy.Plugin.Isa.Policy.Interfaces.DataAccess;
 using Policy.Plugin.Isa.Policy.Interfaces.Queries;
 using Policy.Plugin.Isa.Policy.Views.PolicyView;
+// ReSharper disable SuspiciousTypeConversion.Global
 
 namespace Policy.Plugin.Isa.Policy.CommandHandlers
 {
@@ -31,17 +33,14 @@ namespace Policy.Plugin.Isa.Policy.CommandHandlers
             if (!eventContextId.HasValue)
                 throw new QueryException($"The policy {command.PolicyNumber} does not exist!");
 
-            return CreateUnitAllocationEventsForPolicyFunds(command, policy, eventContextId);
-        }
-
-        private IEnumerable<IEvent> CreateUnitAllocationEventsForPolicyFunds(UnitAllocationCommand command, PolicyView policy, Guid? eventContextId)
-        {
-            return policy.Funds.Where(fund => fund.UnallocatedPremiums != 0).Select(fund =>
+            return policy.Premiums.Where(p => !p.IsAllocated).Select(p =>
             {
-                var units = _unitPricingRepository.Get(fund.FundId, command.DateOfAllocation, fund.UnallocatedPremiums);
-                return new UnitsAllocatedEvent(eventContextId.Value, fund.FundId, units, fund.UnallocatedPremiums,
-                    command.DateOfAllocation);
-            });
+                return p.Partitions.Select(part =>
+                {
+                    var units = _unitPricingRepository.Get(part.FundId, command.DateOfAllocation, part.Amount);
+                    return new UnitsAllocatedEvent(eventContextId.Value, part.FundId, units, part.Amount, command.DateOfAllocation);
+                });
+            }).OfType<IEvent>();
         }
     }
 }

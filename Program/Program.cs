@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading;
 using FrameworkExtensions.LinqExtensions;
@@ -24,34 +25,43 @@ namespace Program
             var policyQuery = container.Resolve<IPolicyQuery>();
 
             var createCommand = new CreatePolicyCommand(1);
-            var addPremiumCommand = new AddPremiumCommand("1", DateTime.Now, new FundPremiumDetails($"F1", 1000m));
+            var addPremiumCommand = new AddPremiumCommand("1", Guid.NewGuid().ToString(), DateTime.Now,
+                new List<FundPremiumDetail>
+                {
+                    new FundPremiumDetail("F1", 100),
+                    new FundPremiumDetail("F2", 50)
+                });
+
+
             Thread.Sleep(300);
             var unitAllocationCommand = new UnitAllocationCommand("1", DateTime.Now);
 
             dispatcher.Apply(createCommand);
             dispatcher.Apply(addPremiumCommand);
             dispatcher.Apply(unitAllocationCommand);
-            
+
+            var policy = policyQuery.Read("1");
+
             dispatcher.Apply(new CreatePolicyCommand(14));
             dispatcher.Apply(new CreatePolicyCommand(1234));
             dispatcher.Apply(new CreatePolicyCommand(12332));
             dispatcher.Apply(new CreatePolicyCommand(123));
             dispatcher.Apply(new CreatePolicyCommand(14));
 
-            var policy = policyQuery.Read("3");
+            policy = policyQuery.Read("1");
 
             var premiumRandom = new Random(123456);
             var fundRandom = new Random(1236);
             var stopwatch = new Stopwatch();
             stopwatch.Start();
             var day = -10;
-            while ( day < 0)
+            while (day < 0)
             {
                 var date = DateTime.Now.AddDays(day);
-                dispatcher.Apply(new AddPremiumCommand("3", date, new FundPremiumDetails($"fund{fundRandom.Next(1, 10)}", ((decimal)premiumRandom.NextDouble())*10m)));
-                dispatcher.Apply(new AddPremiumCommand("3", date, new FundPremiumDetails($"fund{fundRandom.Next(1, 10)}", ((decimal)premiumRandom.NextDouble())*10m)));
-                dispatcher.Apply(new AddPremiumCommand("3", date, new FundPremiumDetails($"fund{fundRandom.Next(1, 10)}", ((decimal)premiumRandom.NextDouble())*10m)));
-                dispatcher.Apply(new UnitAllocationCommand("3", date));
+                //dispatcher.Apply(new AddPremiumCommand("3", date, new FundPremiumDetail($"fund{fundRandom.Next(1, 10)}", ((decimal)premiumRandom.NextDouble())*10m)));
+                //dispatcher.Apply(new AddPremiumCommand("3", date, new FundPremiumDetail($"fund{fundRandom.Next(1, 10)}", ((decimal)premiumRandom.NextDouble())*10m)));
+                //dispatcher.Apply(new AddPremiumCommand("3", date, new FundPremiumDetail($"fund{fundRandom.Next(1, 10)}", ((decimal)premiumRandom.NextDouble())*10m)));
+                //dispatcher.Apply(new UnitAllocationCommand("3", date));
                 day++;
                 if (day % 1000 != 0)
                     continue;
@@ -66,7 +76,7 @@ namespace Program
 
             var timer = new Stopwatch();
             timer.Start();
-            var policyView = policyQuery.Read("3");
+            var policyView = policyQuery.Read("1");
             SummarisePolicy(policyView);
             timer.Stop();
 
@@ -79,9 +89,14 @@ namespace Program
             Console.WriteLine("-------------------------------------------------------------------------------------");
             Console.WriteLine($"Policy: {policy.PolicyNumber}, Customer: {policy.CustomerId}");
 
-            policy.Funds?.ForEach(fund =>
+            policy.Premiums?.ForEach(p =>
             {
-                Console.WriteLine($"Fund: {fund.FundId}, premiums: {fund.UnallocatedPremiums:0.00}, units {fund.Units:0.00000}");
+                p.Partitions.ForEach(a =>
+                {
+                    
+                    Console.WriteLine($"FundId: {a.FundId}, Amount: {a.Amount} ");
+                });
+                //Console.WriteLine($"Fund: {fund.FundId}, premiums: {fund.UnallocatedPremiums:0.00}, units {fund.Units:0.00000}");
             });
         }
     }

@@ -24,9 +24,10 @@ namespace Policy.Plugin.Isa.Policy.DataAccess.InMemory
         {
             if (eventId.HasValue)
             {
-                var eventIndex = Events.IndexOf(Events.FirstOrDefault(t => t.EventId == eventId));
+                var events = Events.Where(t => t.EventContextId == eventContextId).ToList();
+                var eventIndex = events.IndexOf(Events.FirstOrDefault(t => t.EventId == eventId));
                 if (eventIndex != -1)
-                    return Events.Skip(eventIndex + 1);
+                    return events.Skip(eventIndex + 1);
 
                 throw new Exception($"Event {eventId} not found in the event store.");
             }

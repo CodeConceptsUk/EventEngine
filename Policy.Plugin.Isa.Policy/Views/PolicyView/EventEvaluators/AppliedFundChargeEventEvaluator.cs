@@ -8,8 +8,8 @@ namespace Policy.Plugin.Isa.Policy.Views.PolicyView.EventEvaluators
     {
         public void Evaluate(PolicyView view, AppliedFundChargeEvent @event)
         {
-            var fund = view.Funds.First(f => f.FundId == @event.FundId);
-            fund.Units += @event.Units;
+            //var fund = view.Funds.First(f => f.FundId == @event.FundId);
+            //fund.Units += @event.Units;
         }
     }
 }

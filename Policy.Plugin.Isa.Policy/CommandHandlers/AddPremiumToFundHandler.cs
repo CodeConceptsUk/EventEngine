@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Policy.Application.Exceptions;
 using Policy.Application.Interfaces;
 using Policy.Plugin.Isa.Policy.Commands;
@@ -26,9 +27,9 @@ namespace Policy.Plugin.Isa.Policy.CommandHandlers
             {
                 new AddPremiumEvent(
                     eventContextId.Value,
-                    command.FundPremiumDetails.FundId,
-                    command.FundPremiumDetails.Premium,
-                    command.PremiumDateTime)
+                    command.PremiumId,
+                    command.PremiumDateTime,
+                    command.FundPremiumDetail.Select(t => new PremiumPartitionDetails { Amount =  t.Amount, FundId = t.FundId}).ToList())
             };
         }
     }

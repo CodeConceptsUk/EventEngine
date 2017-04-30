@@ -27,12 +27,13 @@ namespace Policy.Plugin.Isa.Policy.CommandHandlers
             if (!eventContextId.HasValue)
                 throw new QueryException($"The policy {command.PolicyNumber} does not exist!");
 
-            var policy = _policyQuery.Read(command.PolicyNumber);
-            return policy.Funds.Where(FundHasCharging).Select(fund =>
-            {
-                var units = CalculateFundDeduction(fund);
-                return new AppliedFundChargeEvent(eventContextId.Value, fund.FundId, units);
-            });
+            //var policy = _policyQuery.Read(command.PolicyNumber);
+            //return policy.Funds.Where(FundHasCharging).Select(fund =>
+            //{
+            //    var units = CalculateFundDeduction(fund);
+            //    return new AppliedFundChargeEvent(eventContextId.Value, fund.FundId, units);
+            //});
+            return null;
         }
 
         private static decimal CalculateFundDeduction(IFund fund)

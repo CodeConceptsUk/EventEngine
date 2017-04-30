@@ -82,15 +82,18 @@
     <Compile Include="Interfaces\Queries\IPolicyEventContextIdQuery.cs" />
     <Compile Include="Plugin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="PropertyBags\Fund.cs" />
-    <Compile Include="PropertyBags\FundPremiumDetails.cs" />
+    <Compile Include="Views\PolicyView\Fund.cs" />
+    <Compile Include="PropertyBags\FundPremiumDetail.cs" />
     <Compile Include="Interfaces\Queries\IPolicyQuery.cs" />
     <Compile Include="Queries\PolicyEventContextIdQuery.cs" />
     <Compile Include="Queries\PolicyQuery.cs" />
     <Compile Include="Views\PolicyContextView.cs" />
     <Compile Include="Views\PolicyFundsView.cs" />
     <Compile Include="Views\PolicyView\EventEvaluators\UnitsAllocatedEventEvaluator.cs" />
+    <Compile Include="Views\PolicyView\FundAllocation.cs" />
     <Compile Include="Views\PolicyView\PolicyView.cs" />
+    <Compile Include="Views\PolicyView\Premium.cs" />
+    <Compile Include="Views\PolicyView\PremiumPartition.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Policy.Application\Policy.Application.csproj">

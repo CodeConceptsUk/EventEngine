@@ -1,7 +1,7 @@
 using System.Linq;
+using Microsoft.Practices.ObjectBuilder2;
 using Policy.Application.Interfaces;
 using Policy.Plugin.Isa.Policy.Events;
-using Policy.Plugin.Isa.Policy.PropertyBags;
 
 namespace Policy.Plugin.Isa.Policy.Views.PolicyView.EventEvaluators
 {
@@ -9,14 +9,18 @@ namespace Policy.Plugin.Isa.Policy.Views.PolicyView.EventEvaluators
     {
         public void Evaluate(PolicyView view, AddPremiumEvent @event)
         {
-            var fund = view.Funds.FirstOrDefault(t => t.FundId == @event.FundId);
-            if (fund == null)
+            var premium = new Premium
             {
-                fund = new Fund(@event.FundId);
-                view.Funds.Add(fund);
-            }
+                PremiumId = @event.PremiumId,
+                Total = @event.PartitionDetails.Sum(p => p.Amount)
+            };
+            view.Premiums.Add(premium);
 
-            fund.UnallocatedPremiums += @event.Premium;
+            @event.PartitionDetails.ForEach(p =>
+            {
+                var partition = new PremiumPartition {FundId = p.FundId, Amount = p.Amount};
+                premium.Partitions.Add(partition);
+            });
         }
     }
 }
