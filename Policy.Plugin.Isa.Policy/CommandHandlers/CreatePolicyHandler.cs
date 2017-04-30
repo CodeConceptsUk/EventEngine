@@ -3,11 +3,10 @@ using Policy.Application.Interfaces;
 using Policy.Plugin.Isa.Policy.Commands;
 using Policy.Plugin.Isa.Policy.Events;
 using Policy.Plugin.Isa.Policy.Interfaces.DataAccess;
-using Policy.Plugin.Isa.Policy.Interfaces.Domain;
 
 namespace Policy.Plugin.Isa.Policy.CommandHandlers
 {
-    public class CreatePolicyHandler : ICommandHandler<CreatePolicyCommand, IPolicyContext>
+    public class CreatePolicyHandler : ICommandHandler<CreatePolicyCommand>
     {
         private readonly ISequencingRepository _sequencingRepository;
 
@@ -16,7 +15,7 @@ namespace Policy.Plugin.Isa.Policy.CommandHandlers
             _sequencingRepository = sequencingRepository;
         }
 
-        public IEnumerable<IEvent<IPolicyContext>> Execute(CreatePolicyCommand command)
+        public IEnumerable<IEvent> Execute(CreatePolicyCommand command)
         {
             var policyNumber = _sequencingRepository.Get("IsaPolicy");
             var @event = new PolicyCreatedEvent(policyNumber, command.CustomerId);

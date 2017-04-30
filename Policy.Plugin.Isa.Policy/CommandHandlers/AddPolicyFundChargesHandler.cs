@@ -9,21 +9,21 @@ using Policy.Plugin.Isa.Policy.Interfaces.Queries;
 
 namespace Policy.Plugin.Isa.Policy.CommandHandlers
 {
-    public class AddPolicyFundChargesHandler : ICommandHandler<AddPolicyFundChargesCommand, IPolicyContext>
+    public class AddPolicyFundChargesHandler : ICommandHandler<AddPolicyFundChargesCommand>
     {
-        private readonly IPolicyEventContextIdQuery _policyEventContextIdQuery;
+        private readonly IPolicyeventContextIdQuery _policyeventContextIdQuery;
         private readonly IPolicyQuery _policyQuery;
 
-        public AddPolicyFundChargesHandler(IPolicyEventContextIdQuery policyEventContextIdQuery, IPolicyQuery policyQuery)
+        public AddPolicyFundChargesHandler(IPolicyeventContextIdQuery policyeventContextIdQuery, IPolicyQuery policyQuery)
         {
-            _policyEventContextIdQuery = policyEventContextIdQuery;
+            _policyeventContextIdQuery = policyeventContextIdQuery;
             _policyQuery = policyQuery;
         }
         
-        public IEnumerable<IEvent<IPolicyContext>> Execute(AddPolicyFundChargesCommand command)
+        public IEnumerable<IEvent> Execute(AddPolicyFundChargesCommand command)
         {
             // Fund 1, 2 have charges
-            var eventContextId =  _policyEventContextIdQuery.GetEventContextId(command.PolicyNumber);
+            var eventContextId =  _policyeventContextIdQuery.GeteventContextId(command.PolicyNumber);
             if (!eventContextId.HasValue)
                 throw new QueryException($"The policy {command.PolicyNumber} does not exist!");
 

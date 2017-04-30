@@ -4,7 +4,6 @@ using Policy.Application.Interfaces;
 using Policy.Application.Interfaces.Repositories;
 using Policy.Plugin.Isa.Policy.DataAccess;
 using Policy.Plugin.Isa.Policy.DataAccess.InMemory;
-using Policy.Plugin.Isa.Policy.Interfaces.Domain;
 
 namespace Program.Factories
 {
@@ -15,7 +14,7 @@ namespace Program.Factories
             var container = new UnityContainer();
             container.RegisterType<IEventPlayer, EventPlayer>();
             container.RegisterType<ICommandBus, CommandBus>();
-            container.RegisterType<IEventStoreRepository<IPolicyContext>, PolicyContextEventStoreInMemoryStore>();
+            container.RegisterType<IEventStoreRepository, PolicyContextEventStoreInMemoryStore>();
 
             SetupPolicyPlugin(container);
             SetupPolicyPluginDataAccess(container);

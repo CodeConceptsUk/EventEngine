@@ -2,12 +2,11 @@
 
 namespace Policy.Application.Interfaces.Repositories
 {
-    public interface ISnapshotStore<TView, TContext>
-        where TContext : class, IContext
-        where TView : class, IView<TContext>
+    public interface ISnapshotStore<TView>
+        where TView : class, IView
     {
-        ISnapshot<TView, TContext> Get(Guid contextId);
+        ISnapshot<TView> Get(Guid contextId);
 
-        void Add(TView view, IEvent<TContext> @event);
+        void Add(TView view, IEvent @event);
     }
 }

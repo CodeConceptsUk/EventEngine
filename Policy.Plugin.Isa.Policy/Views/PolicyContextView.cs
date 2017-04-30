@@ -1,10 +1,9 @@
 using System;
 using Policy.Application.Interfaces;
-using Policy.Plugin.Isa.Policy.Interfaces.Domain;
 
 namespace Policy.Plugin.Isa.Policy.Views
 {
-    public class PolicyContextView : IView<IPolicyContext>
+    public class PolicyContextView : IView
     {
         public Guid EventContextId { get; set; }
     }

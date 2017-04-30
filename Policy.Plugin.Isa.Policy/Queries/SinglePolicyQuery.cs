@@ -2,21 +2,20 @@
 using System.Linq;
 using Policy.Application.Interfaces;
 using Policy.Application.Interfaces.Repositories;
-using Policy.Plugin.Isa.Policy.Interfaces.Domain;
 using Policy.Plugin.Isa.Policy.Interfaces.Queries;
 using Policy.Plugin.Isa.Policy.Views.PolicyView;
 // ReSharper disable PossibleMultipleEnumeration
 
 namespace Policy.Plugin.Isa.Policy.Queries
 {
-    public class SinglePolicyQuery : IQuery<PolicyView, IPolicyContext>, ISinglePolicyQuery
+    public class SinglePolicyQuery : ISinglePolicyQuery
     {
-        private readonly IEventStoreRepository<IPolicyContext> _eventStore;
-        private readonly ISnapshotStore<PolicyView, IPolicyContext> _snapshotStoreStore;
+        private readonly IEventStoreRepository _eventStore;
+        private readonly ISnapshotStore<PolicyView> _snapshotStoreStore;
         private readonly IEventPlayer _player;
 
-        public SinglePolicyQuery(IEventStoreRepository<IPolicyContext> eventStore,
-            ISnapshotStore<PolicyView, IPolicyContext> snapshotStore, IEventPlayer player)
+        public SinglePolicyQuery(IEventStoreRepository eventStore,
+            ISnapshotStore<PolicyView> snapshotStore, IEventPlayer player)
         {
             _eventStore = eventStore;
             _snapshotStoreStore = snapshotStore;

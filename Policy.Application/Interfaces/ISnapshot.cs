@@ -1,10 +1,9 @@
 ﻿namespace Policy.Application.Interfaces
 {
-    public interface ISnapshot<TView, TContext>
-        where TContext : class, IContext
-        where TView : class, IView<TContext>
+    public interface ISnapshot<TView>
+        where TView : class, IView
     {
-        IEvent<TContext> Event { get; set; }
+        IEvent Event { get; set; }
 
         TView View { get; set; }
     }

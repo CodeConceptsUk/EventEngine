@@ -74,10 +74,6 @@
       <Project>{18373edd-6bd2-43d9-9aeb-b5c8668e5e9d}</Project>
       <Name>Policy.Application</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Policy.DataAccess\Policy.DataAccess.csproj">
-      <Project>{7d1441ae-9d97-47c2-a3f6-ca806d524061}</Project>
-      <Name>Policy.DataAccess</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Policy.Plugin.Isa.Policy.DataAccess\Policy.Plugin.Isa.Policy.DataAccess.csproj">
       <Project>{6464b49c-b9ab-4919-ac2a-fef20598cb49}</Project>
       <Name>Policy.Plugin.Isa.Policy.DataAccess</Name>

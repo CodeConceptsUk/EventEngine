@@ -10,20 +10,19 @@ using Newtonsoft.Json;
 using Policy.Application.Interfaces;
 using Policy.Application.Interfaces.Repositories;
 using Policy.Application.PropertyBags;
-using Policy.Plugin.Isa.Policy.Interfaces.Domain;
 using Policy.Plugin.Isa.Policy.Views.PolicyView;
 
 namespace Policy.Plugin.Isa.Policy.DataAccess.Sql
 {
-    public class PolicyContextEventStoreInMemoryStore : IEventStoreRepository<IPolicyContext>
+    public class PolicyContextEventStoreInMemoryStore : IEventStoreRepository
     {
         private static string ConnectionString { get; } = ConfigurationManager.ConnectionStrings["Events"].ConnectionString;
 
         private static readonly JsonSerializerSettings JsonSerializerSettings = new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.All };
 
-        private static readonly IList<IEvent<IPolicyContext>> Events = new List<IEvent<IPolicyContext>>();
+        private static readonly IList<IEvent> Events = new List<IEvent>();
 
-        public IEnumerable<Guid> FindContextIds(Expression<Func<IEvent<IPolicyContext>, bool>> @where)
+        public IEnumerable<Guid> FindContextIds(Expression<Func<IEvent, bool>> @where)
         {
             throw new NotImplementedException();
             var expression = @where.Compile();
@@ -31,7 +30,7 @@ namespace Policy.Plugin.Isa.Policy.DataAccess.Sql
             return events;
         }
 
-        public IEnumerable<IEvent<IPolicyContext>> Get(Guid eventContextId, Guid? eventId = null)
+        public IEnumerable<IEvent> Get(Guid eventContextId, Guid? eventId = null)
         {
             throw new NotImplementedException();
             if (eventId.HasValue)
@@ -59,7 +58,7 @@ namespace Policy.Plugin.Isa.Policy.DataAccess.Sql
             }
         }
 
-        public void Add(IEnumerable<IEvent<IPolicyContext>> events)
+        public void Add(IEnumerable<IEvent> events)
         {
             throw new NotImplementedException();
             events.ForEach(t => Events.Add(t));
@@ -74,7 +73,7 @@ namespace Policy.Plugin.Isa.Policy.DataAccess.Sql
                     command.Parameters.Add(new SqlParameter("@DateTime", SqlDbType.DateTime2));
                     command.Parameters.Add(new SqlParameter("@Data", SqlDbType.NVarChar, -1));
 
-                   // var snapshot = new Snapshot<PolicyView, IPolicyContext>(@event, view);
+                   // var snapshot = new Snapshot<PolicyView>(@event, view);
                    // var data = Serialize(snapshot);
 
                    // command.Parameters["@ContextId"].Value = @event.EventContextId;
@@ -85,14 +84,14 @@ namespace Policy.Plugin.Isa.Policy.DataAccess.Sql
             }
         }
 
-        private static string Serialize(Snapshot<PolicyView, IPolicyContext> value)
+        private static string Serialize(Snapshot<PolicyView> value)
         {
             return JsonConvert.SerializeObject(value, JsonSerializerSettings);
         }
 
-        private Snapshot<PolicyView, IPolicyContext> Deserialize(string value)
+        private Snapshot<PolicyView> Deserialize(string value)
         {
-            return JsonConvert.DeserializeObject<Snapshot<PolicyView, IPolicyContext>>(value, JsonSerializerSettings);
+            return JsonConvert.DeserializeObject<Snapshot<PolicyView>>(value, JsonSerializerSettings);
         }
     }
 }

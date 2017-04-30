@@ -4,7 +4,7 @@ using Policy.Plugin.Isa.Policy.Interfaces.Domain;
 
 namespace Policy.Plugin.Isa.Policy.Views.PolicyView
 {
-    public class PolicyView : IView<IPolicyContext>
+    public class PolicyView : IView
     {
         public PolicyView()
         {

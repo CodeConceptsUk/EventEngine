@@ -2,8 +2,7 @@
 
 namespace Policy.Application.Interfaces
 {
-    public interface IEvent<TContext>
-        where TContext : class
+    public interface IEvent
     {
         Guid EventContextId { get; }
 

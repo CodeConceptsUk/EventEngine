@@ -1,10 +1,9 @@
 ﻿using System;
 using Policy.Application.Interfaces;
-using Policy.Plugin.Isa.Policy.Interfaces.Domain;
 
 namespace Policy.Plugin.Isa.Policy.Commands
 {
-    public class UnitAllocationCommand : ICommand<IPolicyContext>
+    public class UnitAllocationCommand : ICommand
     {
         public UnitAllocationCommand(string policyNumber, DateTime dateOfAllocation)
         {

@@ -66,6 +66,7 @@
     <Compile Include="Interfaces\IEventEvaluator.cs" />
     <Compile Include="Interfaces\IEventPlayer.cs" />
     <Compile Include="Interfaces\IQuery.cs" />
+    <Compile Include="Interfaces\IView.cs" />
     <Compile Include="Interfaces\Repositories\IEventStoreRepository.cs" />
     <Compile Include="Interfaces\ISnapshot.cs" />
     <Compile Include="Interfaces\Repositories\ISnapshotStore.cs" />

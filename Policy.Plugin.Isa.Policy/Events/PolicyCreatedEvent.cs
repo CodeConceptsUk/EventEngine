@@ -1,16 +1,17 @@
 ﻿using System;
 using Policy.Application.Interfaces;
-using Policy.Plugin.Isa.Policy.Interfaces.Domain;
 
 namespace Policy.Plugin.Isa.Policy.Events
 {
-    public class PolicyCreatedEvent : IEvent<IPolicyContext>
+    public class PolicyCreatedEvent : IEvent
     {
         public PolicyCreatedEvent(string policyNumber, int customerId)
         {
             PolicyNumber = policyNumber;
             CustomerId = customerId;
             EventContextId = Guid.NewGuid();
+            EventId = Guid.NewGuid();
+            EventDateTime = DateTime.Now;
         }
 
         public Guid EventContextId { get; set; }

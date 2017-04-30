@@ -2,7 +2,6 @@
 {
     public interface ICommandBus
     {
-        void Apply<TContext>(ICommand<TContext> command)
-            where TContext : class, IContext;
+        void Apply(ICommand command);
     }
 }

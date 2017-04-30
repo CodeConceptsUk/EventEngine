@@ -4,39 +4,38 @@ using System.Linq;
 using Policy.Application.Interfaces;
 using Policy.Application.Interfaces.Repositories;
 using Policy.Plugin.Isa.Policy.Events;
-using Policy.Plugin.Isa.Policy.Interfaces.Domain;
 using Policy.Plugin.Isa.Policy.Interfaces.Queries;
 
 namespace Policy.Plugin.Isa.Policy.Queries
 {
-    public class PolicyEventContextIdQuery : IPolicyEventContextIdQuery
+    public class PolicyeventContextIdQuery : IPolicyeventContextIdQuery
     {
-        private readonly IEventStoreRepository<IPolicyContext> _eventStore;
+        private readonly IEventStoreRepository _eventStore;
 
-        public PolicyEventContextIdQuery(IEventStoreRepository<IPolicyContext> eventStore)
+        public PolicyeventContextIdQuery(IEventStoreRepository eventStore)
         {
             _eventStore = eventStore;
         }
 
-        public Guid? GetEventContextId(string policyNumber)
+        public Guid? GeteventContextId(string policyNumber)
         {
             var contextIds = _eventStore.FindContextIds(t => IsEventForPolicyNumber(policyNumber, t));
             return contextIds.FirstOrDefault();
         }
 
-        public IEnumerable<Guid> GetEventContextId(int clientId)
+        public IEnumerable<Guid> GeteventContextId(int clientId)
         {
             var contextIds = _eventStore.FindContextIds(t => IsEventForCustomer(clientId, t));
             return contextIds;
         }
 
-        private static bool IsEventForCustomer(int customerId, IEvent<IPolicyContext> t)
+        private static bool IsEventForCustomer(int customerId, IEvent t)
         {
             var @event = t as PolicyCreatedEvent;
             return @event?.CustomerId == customerId;
         }
 
-        private static bool IsEventForPolicyNumber(string policyNumber, IEvent<IPolicyContext> t)
+        private static bool IsEventForPolicyNumber(string policyNumber, IEvent t)
         {
             var @event = t as PolicyCreatedEvent;
             return @event?.PolicyNumber == policyNumber;

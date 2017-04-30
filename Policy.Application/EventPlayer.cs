@@ -22,16 +22,15 @@ namespace Policy.Application
             handlers.ForEach(handler => _handlers.Add((IEventEvaluator)handler));
         }
 
-        public TView Handle<TContext, TView>(IEnumerable<IEvent<TContext>> events, TView view)
-            where TContext : class, IContext
-            where TView : class, IView<TContext>
+        public TView Handle<TView>(IEnumerable<IEvent> events, TView view)
+            where TView : class, IView
         {
             _logger.Debug($"Evaluating {events.Count()} events against {view.GetType().Name}");
             var stopwatch = new Stopwatch();
             stopwatch.Start();
             events.ForEach(@event =>
             {
-                var evaluators = GetEvaluator(@event.GetType(), typeof(TContext), typeof(TView));
+                var evaluators = GetEvaluator(@event.GetType(), typeof(TView));
                 evaluators.ForEach(evaluator =>
                 {
                     evaluator.AsDynamic().Evaluate(view, @event.AsDynamic());
@@ -43,23 +42,22 @@ namespace Policy.Application
             return view;
         }
 
-        private IEnumerable<IEventEvaluator> GetEvaluator(Type @event, Type context, Type view)
+        private IEnumerable<IEventEvaluator> GetEvaluator(Type @event, Type view)
         {
             return _handlers
                 .Where(t => t.GetType()
                 .GetInterfaces()
-                .Any(i => IsCorrectHandler(i, @event, context, view)));
+                .Any(i => IsCorrectHandler(i, @event, view)));
         }
 
-        private static bool IsCorrectHandler(Type handlerInterface, Type eventType, Type contextType, Type viewType)
+        private static bool IsCorrectHandler(Type handlerInterface, Type eventType, Type viewType)
         {
-            if (!handlerInterface.IsGenericType || handlerInterface.GetGenericArguments().Length != 3)
+            if (!handlerInterface.IsGenericType || handlerInterface.GetGenericArguments().Length != 2)
                 return false;
 
             var args = handlerInterface.GetGenericArguments();
             return args[0] == eventType &&
-                   args[1] == contextType &&
-                   args[2] == viewType;
+                   args[1] == viewType;
         }
     }
 }

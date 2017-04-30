@@ -6,10 +6,9 @@ namespace Policy.Application.Interfaces
     {
     }
 
-    public interface ICommandHandler<in TCommand, TContext> : ICommandHandler
-        where TCommand : class, ICommand<TContext>
-        where TContext : class, IContext
+    public interface ICommandHandler<in TCommand> : ICommandHandler
+        where TCommand : class, ICommand
     {
-        IEnumerable<IEvent<TContext>> Execute(TCommand command);
+        IEnumerable<IEvent> Execute(TCommand command);
     }
 }

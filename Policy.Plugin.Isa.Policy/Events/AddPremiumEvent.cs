@@ -1,10 +1,9 @@
 ﻿using System;
 using Policy.Application.Interfaces;
-using Policy.Plugin.Isa.Policy.Interfaces.Domain;
 
 namespace Policy.Plugin.Isa.Policy.Events
 {
-    public class AddPremiumEvent : IEvent<IPolicyContext>
+    public class AddPremiumEvent : IEvent
     {
         public AddPremiumEvent(Guid eventContextId, string fundId, decimal premium, DateTime  premiumDateTime)
         {

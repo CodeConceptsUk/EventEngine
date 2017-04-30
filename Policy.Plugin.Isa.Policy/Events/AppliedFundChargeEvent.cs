@@ -1,10 +1,9 @@
 ﻿using System;
 using Policy.Application.Interfaces;
-using Policy.Plugin.Isa.Policy.Interfaces.Domain;
 
 namespace Policy.Plugin.Isa.Policy.Events
 {
-    public class AppliedFundChargeEvent : IEvent<IPolicyContext>
+    public class AppliedFundChargeEvent : IEvent
     {
         public AppliedFundChargeEvent(Guid eventContextId, string fundId, decimal units)
         {

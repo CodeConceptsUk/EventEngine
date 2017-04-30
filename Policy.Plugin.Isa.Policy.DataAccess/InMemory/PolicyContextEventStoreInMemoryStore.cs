@@ -5,22 +5,21 @@ using System.Linq.Expressions;
 using FrameworkExtensions.LinqExtensions;
 using Policy.Application.Interfaces;
 using Policy.Application.Interfaces.Repositories;
-using Policy.Plugin.Isa.Policy.Interfaces.Domain;
 
 namespace Policy.Plugin.Isa.Policy.DataAccess.InMemory
 {
-    public class PolicyContextEventStoreInMemoryStore : IEventStoreRepository<IPolicyContext>
+    public class PolicyContextEventStoreInMemoryStore : IEventStoreRepository
     {
-        private static readonly IList<IEvent<IPolicyContext>> Events = new List<IEvent<IPolicyContext>>();
+        private static readonly IList<IEvent> Events = new List<IEvent>();
 
-        public IEnumerable<Guid> FindContextIds(Expression<Func<IEvent<IPolicyContext>, bool>> @where)
+        public IEnumerable<Guid> FindContextIds(Expression<Func<IEvent, bool>> @where)
         {
             var expression = @where.Compile();
             var events = Events.Where(t => expression(t)).Select(t => t.EventContextId);
             return events;
         }
 
-        public IEnumerable<IEvent<IPolicyContext>> Get(Guid eventContextId, Guid? eventId = null)
+        public IEnumerable<IEvent> Get(Guid eventContextId, Guid? eventId = null)
         {
             if (eventId.HasValue)
             {
@@ -34,7 +33,7 @@ namespace Policy.Plugin.Isa.Policy.DataAccess.InMemory
             return Events.Where(t => t.EventContextId == eventContextId);
         }
 
-        public void Add(IEnumerable<IEvent<IPolicyContext>> events)
+        public void Add(IEnumerable<IEvent> events)
         {
             events.ForEach(t => Events.Add(t));
         }

@@ -2,17 +2,16 @@
 
 namespace Policy.Application.PropertyBags
 {
-    public class Snapshot<TView, TContext> : ISnapshot<TView, TContext>
-        where TContext : class, IContext
-        where TView : class, IView<TContext>
+    public class Snapshot<TView> : ISnapshot<TView>
+        where TView : class, IView
     {
-        public Snapshot(IEvent<TContext> @event, TView view)
+        public Snapshot(IEvent @event, TView view)
         {
             Event = @event;
             View = view;
         }
 
-        public IEvent<TContext> Event { get; set; }
+        public IEvent Event { get; set; }
 
         public TView View { get; set; }
     }

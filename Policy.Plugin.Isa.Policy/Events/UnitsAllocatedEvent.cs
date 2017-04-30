@@ -1,10 +1,9 @@
 ﻿using System;
 using Policy.Application.Interfaces;
-using Policy.Plugin.Isa.Policy.Interfaces.Domain;
 
 namespace Policy.Plugin.Isa.Policy.Events
 {
-    public class UnitsAllocatedEvent : IEvent<IPolicyContext>
+    public class UnitsAllocatedEvent : IEvent
     {
         public UnitsAllocatedEvent(Guid eventContextId, string fundId, decimal units, decimal usedPremium, DateTime allocationDateTime)
         {

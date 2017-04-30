@@ -1,12 +1,11 @@
 using System.Linq;
 using Policy.Application.Interfaces;
 using Policy.Plugin.Isa.Policy.Events;
-using Policy.Plugin.Isa.Policy.Interfaces.Domain;
 using Policy.Plugin.Isa.Policy.PropertyBags;
 
 namespace Policy.Plugin.Isa.Policy.Views.PolicyView.EventEvaluators
 {
-    public class AddPremiumEventEvaluator : IEventEvaluator<AddPremiumEvent, IPolicyContext, PolicyView>
+    public class AddPremiumEventEvaluator : IEventEvaluator<AddPremiumEvent, PolicyView>
     {
         public void Evaluate(PolicyView view, AddPremiumEvent @event)
         {

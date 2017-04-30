@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Threading;
 using FrameworkExtensions.LinqExtensions;
 using log4net;
 using Microsoft.Practices.Unity;
@@ -21,6 +22,23 @@ namespace Program
             var container = new ContainerFactory().Create();
             var bus = container.Resolve<ICommandBus>();
             var policyQuery = container.Resolve<IPolicyQuery>();
+
+            var createCommand = new CreatePolicyCommand(1);
+            var addPremiumCommand = new AddPremiumCommand("1", DateTime.Now, new FundPremiumDetails($"F1", 1000m));
+            Thread.Sleep(300);
+            var unitAllocationCommand = new UnitAllocationCommand("1", DateTime.Now);
+
+            bus.Apply(createCommand);
+            bus.Apply(addPremiumCommand);
+            bus.Apply(unitAllocationCommand);
+
+
+
+
+
+
+
+
 
             bus.Apply(new CreatePolicyCommand(14));
             bus.Apply(new CreatePolicyCommand(1234));

@@ -25,9 +25,15 @@ namespace Policy.Application
 
         public void Apply(ICommand command)
         {
-            var repository = _container.Resolve<IEventStoreRepository>();
+<<<<<<< Updated upstream
+            var repository = _container.Resolve<IEventStoreRepository<TContext>>();
             var handlers = GetHandler(command).ToArray();
-            var events = new List<IEvent>();
+            var events = new List<IEvent<TContext>>();
+=======
+            var repository = _container.Resolve<IEventStoreRepository>();
+            var handlers = GetHandler(command);
+
+>>>>>>> Stashed changes
             // TODO: Should we allow more than one handler per command?
             // TODO: Can one command run many actions to create events (for example create customer, create, email ...)
             _logger.Debug($"Applying {command.GetType().Name} using {handlers.Count()} handlers");
@@ -35,7 +41,13 @@ namespace Policy.Application
             {
                 _logger.Debug($"\tUsing handler {handler.GetType().Name}");
                 // TODO: Pre (Can execute?)
-                events.AddRange((IEnumerable<IEvent>) handler.Execute(command.AsDynamic()));
+<<<<<<< Updated upstream
+                events.AddRange((IEnumerable<IEvent<TContext>>) handler.Execute(command.AsDynamic()));
+=======
+                var @event = (IEnumerable<IEvent>) handler.Execute(command.AsDynamic());
+                // TODO: Post (Can save?)
+                repository.Add(@event);
+>>>>>>> Stashed changes
             });
             _logger.Debug($"\tAdding {events.Count} event(s) to {repository.GetType().Name}");
             // TODO: Post (Can save?)

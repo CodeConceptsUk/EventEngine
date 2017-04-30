@@ -3,27 +3,26 @@ using Policy.Application.Exceptions;
 using Policy.Application.Interfaces;
 using Policy.Plugin.Isa.Policy.Commands;
 using Policy.Plugin.Isa.Policy.Events;
-using Policy.Plugin.Isa.Policy.Interfaces.Domain;
 using Policy.Plugin.Isa.Policy.Interfaces.Queries;
 
 namespace Policy.Plugin.Isa.Policy.CommandHandlers
 {
-    public class AddPremiumHandler : ICommandHandler<AddPremiumCommand, IPolicyContext>
+    public class AddPremiumHandler : ICommandHandler<AddPremiumCommand>
     {
-        private readonly IPolicyEventContextIdQuery _policyEventContextIdQuery;
+        private readonly IPolicyeventContextIdQuery _policyeventContextIdQuery;
 
-        public AddPremiumHandler(IPolicyEventContextIdQuery policyEventContextIdQuery)
+        public AddPremiumHandler(IPolicyeventContextIdQuery policyeventContextIdQuery)
         {
-            _policyEventContextIdQuery = policyEventContextIdQuery;
+            _policyeventContextIdQuery = policyeventContextIdQuery;
         }
 
-        public IEnumerable<IEvent<IPolicyContext>> Execute(AddPremiumCommand command)
+        public IEnumerable<IEvent> Execute(AddPremiumCommand command)
         {
-            var eventContextId = _policyEventContextIdQuery.GetEventContextId(command.PolicyNumber);
+            var eventContextId = _policyeventContextIdQuery.GeteventContextId(command.PolicyNumber);
             if (!eventContextId.HasValue)
                 throw new QueryException($"The policy {command.PolicyNumber} does not exist!");
 
-            return new IEvent<IPolicyContext>[]
+            return new IEvent[]
             {
                 new AddPremiumEvent(
                     eventContextId.Value,
