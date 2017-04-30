@@ -60,6 +60,7 @@
     <Compile Include="Plugin.cs" />
     <Compile Include="InMemory\PolicyContextEventStoreInMemoryStore.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Sql\PolicyContextEventSqlStore.cs" />
     <Compile Include="Sql\SeqencingSqlStore.cs" />
     <Compile Include="InMemory\SequencingInMemoryStore.cs" />
     <Compile Include="InMemory\SinglePolicySnapshotMemoryStore.cs" />
