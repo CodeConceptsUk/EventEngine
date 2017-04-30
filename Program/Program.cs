@@ -7,11 +7,9 @@ using FrameworkExtensions.LinqExtensions;
 using log4net;
 using Microsoft.Practices.Unity;
 using Policy.Application.Interfaces;
-using Policy.Plugin.Isa.Policy.Commands;
 using Policy.Plugin.Isa.Policy.Commands.Commands;
 using Policy.Plugin.Isa.Policy.Commands.PropertyBags;
 using Policy.Plugin.Isa.Policy.Interfaces.Queries;
-using Policy.Plugin.Isa.Policy.Views.PolicyView;
 using Policy.Plugin.Isa.Policy.Views.PolicyView.Domain;
 using Program.Factories;
 
@@ -20,7 +18,7 @@ namespace Program
 {
     internal class Program
     {
-        private static void Main(string[] args)
+        private static void Main()
         {
             LogManager.GetLogger(nameof(Program)).Debug("Logger Working");
             var container = new ContainerFactory().Create();
@@ -38,11 +36,10 @@ namespace Program
             dispatcher.Apply(addPremiumCommand);
             dispatcher.Apply(unitAllocationCommand);
 
-            var premiumRandom = new Random(123456);
-            var fundRandom = new Random(1236);
             var stopwatch = new Stopwatch();
             stopwatch.Start();
             var day = -1000;
+            var displayEvery = 100;
             while (day < 0)
             {
                 var date = DateTime.Now.AddDays(day);
@@ -54,12 +51,12 @@ namespace Program
                 dispatcher.Apply(new UnitAllocationCommand("1", date)); // alloate units daily
                 dispatcher.Apply(new AddPolicyFundChargesCommand("1")); // make charges daily
                 day++;
-                if (day % 100 != 0)
+                if (day % displayEvery != 0)
                     continue;
 
                 var time = stopwatch.Elapsed;
                 stopwatch.Reset();
-                Console.WriteLine($"At {day} last 1000 took {time}");
+                Console.WriteLine($"At {day} last {displayEvery} took {time}");
                 var policyViewss = policyQuery.Read("1");
                 SummarisePolicy(policyViewss);
                 stopwatch.Start();
@@ -75,12 +72,14 @@ namespace Program
             Console.ReadLine();
         }
 
+        private static readonly Random Rng = new Random(123456);
+
         private static List<FundPremiumDetail> CreateRandomPremiumDetails()
         {
             return new List<FundPremiumDetail>
             {
-                new FundPremiumDetail("F1", 100),
-                new FundPremiumDetail("F2", 50)
+                new FundPremiumDetail($"F{Rng.Next(1,5)}", Rng.Next(10,201)),
+                new FundPremiumDetail($"F{Rng.Next(1,5)}", Rng.Next(300,500))
             };
         }
 

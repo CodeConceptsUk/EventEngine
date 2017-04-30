@@ -4,7 +4,7 @@ using Policy.Application.Interfaces;
 
 namespace Policy.Plugin.Isa.Policy.Interfaces.Queries
 {
-    public interface IPolicyeventContextIdQuery : IQuery
+    public interface IPolicyEventContextIdQuery : IQuery
     {
         Guid? GeteventContextId(string policyNumber);
 

@@ -78,6 +78,14 @@
       <Project>{6464b49c-b9ab-4919-ac2a-fef20598cb49}</Project>
       <Name>Policy.Plugin.Isa.Policy.DataAccess</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Policy.Plugin.Isa.Policy.Operations\Policy.Plugin.Isa.Policy.Operations.csproj">
+      <Project>{48D68DF9-3F79-417D-821D-48F8053C8F49}</Project>
+      <Name>Policy.Plugin.Isa.Policy.Operations</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Policy.Plugin.Isa.Policy.Views\Policy.Plugin.Isa.Policy.Views.csproj">
+      <Project>{F411399C-6A83-42F2-87EF-08ADF7DE1D9F}</Project>
+      <Name>Policy.Plugin.Isa.Policy.Views</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Policy.Plugin.Isa.Policy\Policy.Plugin.Isa.Policy.csproj">
       <Project>{ced460f4-690f-4561-94be-8a5dcd250a5a}</Project>
       <Name>Policy.Plugin.Isa.Policy</Name>

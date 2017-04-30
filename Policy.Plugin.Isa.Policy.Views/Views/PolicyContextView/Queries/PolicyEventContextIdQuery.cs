@@ -6,13 +6,13 @@ using Policy.Application.Interfaces.Repositories;
 using Policy.Plugin.Isa.Policy.Events;
 using Policy.Plugin.Isa.Policy.Interfaces.Queries;
 
-namespace Policy.Plugin.Isa.Policy.Views.PolicyContextView.Queries
+namespace Policy.Plugin.Isa.Policy.Views.Views.PolicyContextView.Queries
 {
-    public class PolicyeventContextIdQuery : IPolicyeventContextIdQuery
+    public class PolicyEventContextIdQuery : IPolicyEventContextIdQuery
     {
         private readonly IEventStoreRepository<IsaPolicyEvent> _eventStore;
 
-        public PolicyeventContextIdQuery(IEventStoreRepository<IsaPolicyEvent> eventStore)
+        public PolicyEventContextIdQuery(IEventStoreRepository<IsaPolicyEvent> eventStore)
         {
             _eventStore = eventStore;
         }

@@ -9,17 +9,17 @@ using Policy.Plugin.Isa.Policy.Interfaces.Queries;
 
 // ReSharper disable SuspiciousTypeConversion.Global
 
-namespace Policy.Plugin.Isa.Policy.Commands.CommandHandlers
+namespace Policy.Plugin.Isa.Policy.Operations.CommandHandlers
 {
     public class UnitAllocationHandler : ICommandHandler<UnitAllocationCommand>
     {
-        private readonly IPolicyeventContextIdQuery _policyeventContextIdQuery;
+        private readonly IPolicyEventContextIdQuery _policyEventContextIdQuery;
         private readonly IPolicyQuery _policyQuery;
         private readonly IUnitPricingRepository _unitPricingRepository;
 
-        public UnitAllocationHandler(IPolicyeventContextIdQuery policyeventContextIdQuery, IPolicyQuery policyQuery, IUnitPricingRepository unitPricingRepository)
+        public UnitAllocationHandler(IPolicyEventContextIdQuery policyEventContextIdQuery, IPolicyQuery policyQuery, IUnitPricingRepository unitPricingRepository)
         {
-            _policyeventContextIdQuery = policyeventContextIdQuery;
+            _policyEventContextIdQuery = policyEventContextIdQuery;
             _policyQuery = policyQuery;
             _unitPricingRepository = unitPricingRepository;
         }
@@ -27,7 +27,7 @@ namespace Policy.Plugin.Isa.Policy.Commands.CommandHandlers
         public IEnumerable<IEvent> Execute(UnitAllocationCommand command)
         {
             var policy = _policyQuery.Read(command.PolicyNumber);
-            var eventContextId = _policyeventContextIdQuery.GeteventContextId(command.PolicyNumber);
+            var eventContextId = _policyEventContextIdQuery.GeteventContextId(command.PolicyNumber);
             if (!eventContextId.HasValue)
                 throw new QueryException($"The policy {command.PolicyNumber} does not exist!");
 

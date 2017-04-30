@@ -55,30 +55,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Commands\CommandHandlers\AddPolicyFundChargesHandler.cs" />
-    <Compile Include="Commands\CommandHandlers\AddPremiumToFundHandler.cs" />
-    <Compile Include="Commands\CommandHandlers\CreatePolicyHandler.cs" />
-    <Compile Include="Commands\CommandHandlers\IsaPolicyCommandHandler.cs" />
-    <Compile Include="Commands\CommandHandlers\RunPolicyUnitAllocationHandler.cs" />
-    <Compile Include="Commands\Commands\AddPolicyFundChargesCommand.cs" />
-    <Compile Include="Commands\Commands\AddPremiumToFundCommand.cs" />
-    <Compile Include="Commands\Commands\CreatePolicyCommand.cs" />
-    <Compile Include="Commands\Commands\IsaPolicyCommand.cs" />
-    <Compile Include="Commands\Commands\UnitAllocationCommand.cs" />
-    <Compile Include="Commands\PropertyBags\FundPremiumDetail.cs" />
     <Compile Include="Events\IsaPolicyEvent.cs" />
-    <Compile Include="Interfaces\Queries\ISinglePolicyQuery.cs" />
-    <Compile Include="Views\AggregateQueries\PolicyQuery.cs" />
-    <Compile Include="Views\PolicyContextView\Domain\PolicyContextView.cs" />
-    <Compile Include="Views\PolicyContextView\Queries\PolicyEventContextIdQuery.cs" />
-    <Compile Include="Views\PolicyView\Domain\Fund.cs" />
-    <Compile Include="Views\PolicyView\Domain\FundAllocation.cs" />
-    <Compile Include="Views\PolicyView\Domain\PolicyView.cs" />
-    <Compile Include="Views\PolicyView\Domain\Premium.cs" />
-    <Compile Include="Views\PolicyView\Domain\PremiumPartition.cs" />
-    <Compile Include="Views\PolicyView\EventEvaluators\AddPremiumEventEvaluator.cs" />
-    <Compile Include="Views\PolicyView\EventEvaluators\AppliedFundChargeEventEvaluator.cs" />
-    <Compile Include="Views\PolicyView\EventEvaluators\PolicyCreatedEventEvaluator.cs" />
     <Compile Include="Events\AddPremiumEvent.cs" />
     <Compile Include="Events\AppliedFundChargeEvent.cs" />
     <Compile Include="Events\PolicyCreatedEvent.cs" />
@@ -87,12 +64,8 @@
     <Compile Include="Interfaces\DataAccess\IUnitPricingRepository.cs" />
     <Compile Include="Interfaces\Domain\IFund.cs" />
     <Compile Include="Interfaces\Domain\IFundPremium.cs" />
-    <Compile Include="Interfaces\Queries\IPolicyEventContextIdQuery.cs" />
     <Compile Include="Plugin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Interfaces\Queries\IPolicyQuery.cs" />
-    <Compile Include="Views\PolicyView\EventEvaluators\UnitsAllocatedEventEvaluator.cs" />
-    <Compile Include="Views\PolicyView\Queries\SinglePolicyQuery.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Policy.Application\Policy.Application.csproj">

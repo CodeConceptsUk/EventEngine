@@ -5,14 +5,14 @@ using Policy.Plugin.Isa.Policy.Commands.Commands;
 using Policy.Plugin.Isa.Policy.Interfaces.Domain;
 using Policy.Plugin.Isa.Policy.Interfaces.Queries;
 
-namespace Policy.Plugin.Isa.Policy.Commands.CommandHandlers
+namespace Policy.Plugin.Isa.Policy.Operations.CommandHandlers
 {
     public class AddPolicyFundChargesHandler : ICommandHandler<AddPolicyFundChargesCommand>
     {
-        private readonly IPolicyeventContextIdQuery _policyeventContextIdQuery;
+        private readonly IPolicyEventContextIdQuery _policyeventContextIdQuery;
         private readonly IPolicyQuery _policyQuery;
 
-        public AddPolicyFundChargesHandler(IPolicyeventContextIdQuery policyeventContextIdQuery, IPolicyQuery policyQuery)
+        public AddPolicyFundChargesHandler(IPolicyEventContextIdQuery policyeventContextIdQuery, IPolicyQuery policyQuery)
         {
             _policyeventContextIdQuery = policyeventContextIdQuery;
             _policyQuery = policyQuery;

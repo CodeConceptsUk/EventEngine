@@ -6,20 +6,20 @@ using Policy.Plugin.Isa.Policy.Commands.Commands;
 using Policy.Plugin.Isa.Policy.Events;
 using Policy.Plugin.Isa.Policy.Interfaces.Queries;
 
-namespace Policy.Plugin.Isa.Policy.Commands.CommandHandlers
+namespace Policy.Plugin.Isa.Policy.Operations.CommandHandlers
 {
     public class AddPremiumHandler : ICommandHandler<AddPremiumCommand>
     {
-        private readonly IPolicyeventContextIdQuery _policyeventContextIdQuery;
+        private readonly IPolicyEventContextIdQuery _policyEventContextIdQuery;
 
-        public AddPremiumHandler(IPolicyeventContextIdQuery policyeventContextIdQuery)
+        public AddPremiumHandler(IPolicyEventContextIdQuery policyEventContextIdQuery)
         {
-            _policyeventContextIdQuery = policyeventContextIdQuery;
+            _policyEventContextIdQuery = policyEventContextIdQuery;
         }
 
         public IEnumerable<IEvent> Execute(AddPremiumCommand command)
         {
-            var eventContextId = _policyeventContextIdQuery.GeteventContextId(command.PolicyNumber);
+            var eventContextId = _policyEventContextIdQuery.GeteventContextId(command.PolicyNumber);
             if (!eventContextId.HasValue)
                 throw new QueryException($"The policy {command.PolicyNumber} does not exist!");
 

@@ -79,6 +79,10 @@
       <Project>{18373edd-6bd2-43d9-9aeb-b5c8668e5e9d}</Project>
       <Name>Policy.Application</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Policy.Plugin.Isa.Policy.Views\Policy.Plugin.Isa.Policy.Views.csproj">
+      <Project>{f411399c-6a83-42f2-87ef-08adf7de1d9f}</Project>
+      <Name>Policy.Plugin.Isa.Policy.Views</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Policy.Plugin.Isa.Policy\Policy.Plugin.Isa.Policy.csproj">
       <Project>{ced460f4-690f-4561-94be-8a5dcd250a5a}</Project>
       <Name>Policy.Plugin.Isa.Policy</Name>
