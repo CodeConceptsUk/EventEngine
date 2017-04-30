@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
-using Microsoft.Practices.ObjectBuilder2;
+using FrameworkExtensions.LinqExtensions;
 using Microsoft.Practices.Unity;
 using Policy.Application.Interfaces;
 using Policy.Plugin.Isa.Policy.Commands;

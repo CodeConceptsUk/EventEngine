@@ -5,7 +5,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Linq.Expressions;
-using Microsoft.Practices.ObjectBuilder2;
+using FrameworkExtensions.LinqExtensions;
 using Newtonsoft.Json;
 using Policy.Application.Interfaces;
 using Policy.Application.Interfaces.Repositories;

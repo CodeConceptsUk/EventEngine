@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using Microsoft.Practices.ObjectBuilder2;
+using FrameworkExtensions.LinqExtensions;
 using Policy.Application.Interfaces;
 using Policy.Application.Interfaces.Repositories;
 using Policy.Plugin.Isa.Policy.Interfaces.Domain;
