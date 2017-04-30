@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using FrameworkExtensions.LinqExtensions;
+using log4net;
 using Microsoft.Practices.Unity;
 using Policy.Application.Interfaces;
 using Policy.Plugin.Isa.Policy.Commands;
@@ -9,12 +10,14 @@ using Policy.Plugin.Isa.Policy.PropertyBags;
 using Policy.Plugin.Isa.Policy.Views.PolicyView;
 using Program.Factories;
 
+[assembly: log4net.Config.XmlConfigurator()]
 namespace Program
 {
     internal class Program
     {
         private static void Main(string[] args)
         {
+            LogManager.GetLogger(nameof(Program)).Debug("Logger Working");
             var container = new ContainerFactory().Create();
             var bus = container.Resolve<ICommandBus>();
             var policyQuery = container.Resolve<IPolicyQuery>();
