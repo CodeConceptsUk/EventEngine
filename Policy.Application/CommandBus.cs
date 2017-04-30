@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using FrameworkExtensions.LinqExtensions;
+using FrameworkExtensions.ObjectExtensions;
 using Microsoft.Practices.Unity;
-using Policy.Application.Extensions;
 using Policy.Application.Interfaces;
 using Policy.Application.Interfaces.Repositories;
 
