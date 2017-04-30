@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using FrameworkExtensions.LinqExtensions;
 using FrameworkExtensions.ObjectExtensions;
+using log4net;
 using Microsoft.Practices.Unity;
 using Policy.Application.Interfaces;
 
@@ -11,9 +13,11 @@ namespace Policy.Application
     public class EventPlayer : IEventPlayer
     {
         private readonly IList<IEventEvaluator> _handlers = new List<IEventEvaluator>();
+        private ILog _logger;
 
         public EventPlayer(IUnityContainer container)
         {
+            _logger = LogManager.GetLogger(typeof(EventPlayer));
             var handlers = container.ResolveAll(typeof(IEventEvaluator));
             handlers.ForEach(handler => _handlers.Add((IEventEvaluator)handler));
         }
@@ -22,6 +26,9 @@ namespace Policy.Application
             where TContext : class, IContext
             where TView : class, IView<TContext>
         {
+            _logger.Debug($"Evaluating {events.Count()} events against {view.GetType().Name}");
+            var stopwatch = new Stopwatch();
+            stopwatch.Start();
             events.ForEach(@event =>
             {
                 var evaluators = GetEvaluator(@event.GetType(), typeof(TContext), typeof(TView));
@@ -30,6 +37,8 @@ namespace Policy.Application
                     evaluator.AsDynamic().Evaluate(view, @event.AsDynamic());
                 });
             });
+            stopwatch.Stop();
+            _logger.Debug($"Evaluation completed in {stopwatch.Elapsed}");
 
             return view;
         }

@@ -15,7 +15,7 @@ namespace Policy.Plugin.Isa.Policy.DataAccess
         {
             container.RegisterType<ISequencingRepository, SequencingInMemoryStore>();
             container.RegisterType<IUnitPricingRepository, UnitPricingInMemoryStore>();
-            container.RegisterType<ISnapshotStore<PolicyView, IPolicyContext>, SinglePolicySnapshotSqlStore>();
+            container.RegisterType<ISnapshotStore<PolicyView, IPolicyContext>, SinglePolicySnapshotMemoryStore>();
         }
     }
 }

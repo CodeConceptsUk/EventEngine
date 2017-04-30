@@ -49,6 +49,8 @@ namespace Program
                 var time = stopwatch.Elapsed;
                 stopwatch.Reset();
                 Console.WriteLine($"At {day} last 1000 took {time}");
+                var policyViewss = policyQuery.Read("3");
+                SummarisePolicy(policyViewss);
                 stopwatch.Start();
             }
 
@@ -69,7 +71,7 @@ namespace Program
 
             policy.Funds?.ForEach(fund =>
             {
-                Console.WriteLine($"Fund: {fund.FundId}, premiums: {fund.UnallocatedPremiums}, units {fund.Units:0.00000}");
+                Console.WriteLine($"Fund: {fund.FundId}, premiums: {fund.UnallocatedPremiums:0.00}, units {fund.Units:0.00000}");
             });
         }
     }
