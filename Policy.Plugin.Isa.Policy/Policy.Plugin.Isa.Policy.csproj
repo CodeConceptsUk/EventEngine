@@ -58,11 +58,14 @@
     <Compile Include="CommandHandlers\AddPolicyFundChargesHandler.cs" />
     <Compile Include="CommandHandlers\AddPremiumToFundHandler.cs" />
     <Compile Include="CommandHandlers\CreatePolicyHandler.cs" />
+    <Compile Include="CommandHandlers\IsaPolicyCommandHandler.cs" />
     <Compile Include="CommandHandlers\RunPolicyUnitAllocationHandler.cs" />
     <Compile Include="Commands\AddPolicyFundChargesCommand.cs" />
     <Compile Include="Commands\AddPremiumToFundCommand.cs" />
     <Compile Include="Commands\CreatePolicyCommand.cs" />
+    <Compile Include="Commands\IsaPolicyCommand.cs" />
     <Compile Include="Commands\RunPolicyUnitAllocation.cs" />
+    <Compile Include="Events\IsaPolicyEvent.cs" />
     <Compile Include="Interfaces\Queries\ISinglePolicyQuery.cs" />
     <Compile Include="Queries\SinglePolicyQuery.cs" />
     <Compile Include="Views\PolicyView\EventEvaluators\AddPremiumEventEvaluator.cs" />

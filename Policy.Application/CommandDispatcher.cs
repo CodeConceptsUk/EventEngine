@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using FrameworkExtensions.LinqExtensions;
 using FrameworkExtensions.ObjectExtensions;
@@ -9,25 +10,27 @@ using Policy.Application.Interfaces.Repositories;
 
 namespace Policy.Application
 {
-    public class CommandBus : ICommandBus
+    public class CommandDispatcher<TCommand, TEvent> : ICommandDispatcher<TCommand>
+        where TCommand : class, ICommand
+        where TEvent : class, IEvent
     {
         private readonly IUnityContainer _container;
         private readonly IList<ICommandHandler> _handlers = new List<ICommandHandler>();
-        private ILog _logger;
+        private readonly ILog _logger;
 
-        public CommandBus(IUnityContainer container)
+        public CommandDispatcher(IUnityContainer container)
         {
-            _logger = LogManager.GetLogger(typeof(CommandBus));
+            _logger = LogManager.GetLogger(typeof(CommandDispatcher<TCommand, TEvent>));
             var handlers = container.ResolveAll(typeof(ICommandHandler));
-            handlers.ForEach(handler => _handlers.Add((ICommandHandler) handler));
+            handlers.ForEach(handler => _handlers.Add((ICommandHandler)handler));
             _container = container;
         }
 
-        public void Apply(ICommand command)
+        public void Apply(TCommand command)
         {
-            var repository = _container.Resolve<IEventStoreRepository>();
+            var repository = _container.Resolve<IEventStoreRepository<TEvent>>(); // TODO: Add type for Event
             var handlers = GetHandler(command).ToArray();
-            var events = new List<IEvent>();
+            var events = new List<TEvent>();
             // TODO: Should we allow more than one handler per command?
             // TODO: Can one command run many actions to create events (for example create customer, create, email ...)
             _logger.Debug($"Applying {command.GetType().Name} using {handlers.Count()} handlers");
@@ -35,7 +38,8 @@ namespace Policy.Application
             {
                 _logger.Debug($"\tUsing handler {handler.GetType().Name}");
                 // TODO: Pre (Can execute?)
-                events.AddRange((IEnumerable<IEvent>) handler.Execute(command.AsDynamic()));
+                var results = handler.Execute(command.AsDynamic()) as IEnumerable;
+                events.AddRange(results.OfType<TEvent>());
             });
             _logger.Debug($"\tAdding {events.Count} event(s) to {repository.GetType().Name}");
             // TODO: Post (Can save?)

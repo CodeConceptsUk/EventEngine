@@ -10,11 +10,12 @@ using Newtonsoft.Json;
 using Policy.Application.Interfaces;
 using Policy.Application.Interfaces.Repositories;
 using Policy.Application.PropertyBags;
+using Policy.Plugin.Isa.Policy.Events;
 using Policy.Plugin.Isa.Policy.Views.PolicyView;
 
 namespace Policy.Plugin.Isa.Policy.DataAccess.Sql
 {
-    public class PolicyContextEventStoreInMemoryStore : IEventStoreRepository
+    public class PolicyContextEventStoreInMemoryStore : IEventStoreRepository<IsaPolicyEvent>
     {
         private static string ConnectionString { get; } = ConfigurationManager.ConnectionStrings["Events"].ConnectionString;
 
@@ -30,35 +31,35 @@ namespace Policy.Plugin.Isa.Policy.DataAccess.Sql
             return events;
         }
 
-        public IEnumerable<IEvent> Get(Guid eventContextId, Guid? eventId = null)
+        public IEnumerable<IsaPolicyEvent> Get(Guid eventContextId, Guid? eventId = null)
         {
             throw new NotImplementedException();
-            if (eventId.HasValue)
-            {
-                var eventIndex = Events.IndexOf(Events.FirstOrDefault(t => t.EventId == eventId));
-                if (eventIndex != -1)
-                    return Events.Skip(eventIndex + 1);
+            //if (eventId.HasValue)
+            //{
+            //    var eventIndex = Events.IndexOf(Events.FirstOrDefault(t => t.EventId == eventId));
+            //    if (eventIndex != -1)
+            //        return Events.Skip(eventIndex + 1);
 
-                throw new Exception($"Event {eventId} not found in the event store.");
-            }
+            //    throw new Exception($"Event {eventId} not found in the event store.");
+            //}
 
-            return Events.Where(t => t.EventContextId == eventContextId);
+            //return Events.Where(t => t.EventContextId == eventContextId);
 
 
-            using (var connection = new SqlConnection(ConnectionString))
-            {
-                connection.Open();
-                using (var command = new SqlCommand("SelectLatestPolicyViewSnapshot", connection) { CommandType = CommandType.StoredProcedure })
-                {
-                    command.Parameters.Add(new SqlParameter("@ContextId", SqlDbType.UniqueIdentifier));
-                   // command.Parameters["@ContextId"].Value = contextId;
-                    var viewData = (string)command.ExecuteScalar();
-                   // return viewData != null ? Deserialize(viewData) : null;
-                }
-            }
+            //using (var connection = new SqlConnection(ConnectionString))
+            //{
+            //    connection.Open();
+            //    using (var command = new SqlCommand("SelectLatestPolicyViewSnapshot", connection) { CommandType = CommandType.StoredProcedure })
+            //    {
+            //        command.Parameters.Add(new SqlParameter("@ContextId", SqlDbType.UniqueIdentifier));
+            //       // command.Parameters["@ContextId"].Value = contextId;
+            //        var viewData = (string)command.ExecuteScalar();
+            //       // return viewData != null ? Deserialize(viewData) : null;
+            //    }
+            //}
         }
 
-        public void Add(IEnumerable<IEvent> events)
+        public void Add(IEnumerable<IsaPolicyEvent> events)
         {
             throw new NotImplementedException();
             events.ForEach(t => Events.Add(t));

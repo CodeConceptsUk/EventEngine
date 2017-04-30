@@ -10,19 +10,20 @@ using Policy.Application.Interfaces;
 
 namespace Policy.Application
 {
-    public class EventPlayer : IEventPlayer
+    public class EventPlayer <TEvent>: IEventPlayer<TEvent>
+        where TEvent : class, IEvent
     {
         private readonly IList<IEventEvaluator> _handlers = new List<IEventEvaluator>();
         private ILog _logger;
 
         public EventPlayer(IUnityContainer container)
         {
-            _logger = LogManager.GetLogger(typeof(EventPlayer));
+            _logger = LogManager.GetLogger(typeof(EventPlayer<TEvent>));
             var handlers = container.ResolveAll(typeof(IEventEvaluator));
             handlers.ForEach(handler => _handlers.Add((IEventEvaluator)handler));
         }
 
-        public TView Handle<TView>(IEnumerable<IEvent> events, TView view)
+        public TView Handle<TView>(IEnumerable<TEvent> events, TView view)
             where TView : class, IView
         {
             _logger.Debug($"Evaluating {events.Count()} events against {view.GetType().Name}");

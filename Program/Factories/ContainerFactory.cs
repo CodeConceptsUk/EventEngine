@@ -12,9 +12,6 @@ namespace Program.Factories
         public IUnityContainer Create()
         {
             var container = new UnityContainer();
-            container.RegisterType<IEventPlayer, EventPlayer>();
-            container.RegisterType<ICommandBus, CommandBus>();
-            container.RegisterType<IEventStoreRepository, PolicyContextEventStoreInMemoryStore>();
 
             SetupPolicyPlugin(container);
             SetupPolicyPluginDataAccess(container);

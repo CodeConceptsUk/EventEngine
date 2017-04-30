@@ -55,12 +55,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CommandBus.cs" />
+    <Compile Include="CommandDispatcher.cs" />
     <Compile Include="EventPlayer.cs" />
     <Compile Include="Exceptions\QueryException.cs" />
     <Compile Include="Interfaces\IContainer.cs" />
     <Compile Include="Interfaces\ICommand.cs" />
-    <Compile Include="Interfaces\ICommandBus.cs" />
+    <Compile Include="Interfaces\ICommandDispatcher.cs" />
     <Compile Include="Interfaces\ICommandHandler.cs" />
     <Compile Include="Interfaces\IEvent.cs" />
     <Compile Include="Interfaces\IEventEvaluator.cs" />

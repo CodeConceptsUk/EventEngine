@@ -2,7 +2,7 @@
 
 namespace Policy.Plugin.Isa.Policy.Commands
 {
-    public class AddPolicyFundChargesCommand : ICommand
+    public class AddPolicyFundChargesCommand : IsaPolicyCommand
     {
         public AddPolicyFundChargesCommand(string policyNumber)
         {

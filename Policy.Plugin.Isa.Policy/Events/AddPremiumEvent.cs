@@ -1,18 +1,15 @@
 ﻿using System;
-using Policy.Application.Interfaces;
 
 namespace Policy.Plugin.Isa.Policy.Events
 {
-    public class AddPremiumEvent : IEvent
+    public class AddPremiumEvent : IsaPolicyEvent
     {
         public AddPremiumEvent(Guid eventContextId, string fundId, decimal premium, DateTime  premiumDateTime)
+            :base(eventContextId)
         {
-            EventContextId = eventContextId;
             FundId = fundId;
             Premium = premium;
             PremiumDateTime = premiumDateTime;
-            EventId = Guid.NewGuid();
-            EventDateTime = DateTime.Now;
         }
 
         public string FundId { get; set; }
@@ -20,11 +17,5 @@ namespace Policy.Plugin.Isa.Policy.Events
         public decimal Premium { get; set; }
 
         public DateTime PremiumDateTime { get; set; }
-
-        public Guid EventContextId { get; set; }
-
-        public Guid EventId { get; set; }
-
-        public DateTime EventDateTime { get; set; }
     }
 }

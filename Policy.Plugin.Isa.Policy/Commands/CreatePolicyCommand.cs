@@ -2,7 +2,7 @@
 
 namespace Policy.Plugin.Isa.Policy.Commands
 {
-    public class CreatePolicyCommand : ICommand
+    public class CreatePolicyCommand : IsaPolicyCommand
     {
         public CreatePolicyCommand(int customerId)
         {

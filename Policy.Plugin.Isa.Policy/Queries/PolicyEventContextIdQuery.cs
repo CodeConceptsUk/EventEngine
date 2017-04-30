@@ -10,9 +10,9 @@ namespace Policy.Plugin.Isa.Policy.Queries
 {
     public class PolicyeventContextIdQuery : IPolicyeventContextIdQuery
     {
-        private readonly IEventStoreRepository _eventStore;
+        private readonly IEventStoreRepository<IsaPolicyEvent> _eventStore;
 
-        public PolicyeventContextIdQuery(IEventStoreRepository eventStore)
+        public PolicyeventContextIdQuery(IEventStoreRepository<IsaPolicyEvent> eventStore)
         {
             _eventStore = eventStore;
         }

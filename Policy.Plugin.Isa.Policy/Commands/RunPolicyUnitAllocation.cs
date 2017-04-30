@@ -3,7 +3,7 @@ using Policy.Application.Interfaces;
 
 namespace Policy.Plugin.Isa.Policy.Commands
 {
-    public class UnitAllocationCommand : ICommand
+    public class UnitAllocationCommand : IsaPolicyCommand
     {
         public UnitAllocationCommand(string policyNumber, DateTime dateOfAllocation)
         {

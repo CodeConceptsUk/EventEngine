@@ -20,7 +20,7 @@ namespace Program
         {
             LogManager.GetLogger(nameof(Program)).Debug("Logger Working");
             var container = new ContainerFactory().Create();
-            var bus = container.Resolve<ICommandBus>();
+            var dispatcher = container.Resolve<ICommandDispatcher<IsaPolicyCommand>>();
             var policyQuery = container.Resolve<IPolicyQuery>();
 
             var createCommand = new CreatePolicyCommand(1);
@@ -28,23 +28,15 @@ namespace Program
             Thread.Sleep(300);
             var unitAllocationCommand = new UnitAllocationCommand("1", DateTime.Now);
 
-            bus.Apply(createCommand);
-            bus.Apply(addPremiumCommand);
-            bus.Apply(unitAllocationCommand);
-
-
-
-
-
-
-
-
-
-            bus.Apply(new CreatePolicyCommand(14));
-            bus.Apply(new CreatePolicyCommand(1234));
-            bus.Apply(new CreatePolicyCommand(12332));
-            bus.Apply(new CreatePolicyCommand(123));
-            bus.Apply(new CreatePolicyCommand(14));
+            dispatcher.Apply(createCommand);
+            dispatcher.Apply(addPremiumCommand);
+            dispatcher.Apply(unitAllocationCommand);
+            
+            dispatcher.Apply(new CreatePolicyCommand(14));
+            dispatcher.Apply(new CreatePolicyCommand(1234));
+            dispatcher.Apply(new CreatePolicyCommand(12332));
+            dispatcher.Apply(new CreatePolicyCommand(123));
+            dispatcher.Apply(new CreatePolicyCommand(14));
 
             var policy = policyQuery.Read("3");
 
@@ -52,14 +44,14 @@ namespace Program
             var fundRandom = new Random(1236);
             var stopwatch = new Stopwatch();
             stopwatch.Start();
-            var day = -10000;
+            var day = -10;
             while ( day < 0)
             {
                 var date = DateTime.Now.AddDays(day);
-                bus.Apply(new AddPremiumCommand("3", date, new FundPremiumDetails($"fund{fundRandom.Next(1, 10)}", ((decimal)premiumRandom.NextDouble())*10m)));
-                bus.Apply(new AddPremiumCommand("3", date, new FundPremiumDetails($"fund{fundRandom.Next(1, 10)}", ((decimal)premiumRandom.NextDouble())*10m)));
-                bus.Apply(new AddPremiumCommand("3", date, new FundPremiumDetails($"fund{fundRandom.Next(1, 10)}", ((decimal)premiumRandom.NextDouble())*10m)));
-                bus.Apply(new UnitAllocationCommand("3", date));
+                dispatcher.Apply(new AddPremiumCommand("3", date, new FundPremiumDetails($"fund{fundRandom.Next(1, 10)}", ((decimal)premiumRandom.NextDouble())*10m)));
+                dispatcher.Apply(new AddPremiumCommand("3", date, new FundPremiumDetails($"fund{fundRandom.Next(1, 10)}", ((decimal)premiumRandom.NextDouble())*10m)));
+                dispatcher.Apply(new AddPremiumCommand("3", date, new FundPremiumDetails($"fund{fundRandom.Next(1, 10)}", ((decimal)premiumRandom.NextDouble())*10m)));
+                dispatcher.Apply(new UnitAllocationCommand("3", date));
                 day++;
                 if (day % 1000 != 0)
                     continue;

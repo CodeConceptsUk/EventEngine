@@ -4,13 +4,14 @@ using System.Linq.Expressions;
 
 namespace Policy.Application.Interfaces.Repositories
 {
-    public interface IEventStoreRepository
+    public interface IEventStoreRepository<TEvent>
+        where TEvent : class, IEvent
     {
         IEnumerable<Guid> FindContextIds(Expression<Func<IEvent, bool>> where);
 
-        IEnumerable<IEvent> Get(Guid eventContextId, Guid? afterEventId = null);
+        IEnumerable<TEvent> Get(Guid eventContextId, Guid? afterEventId = null);
 
-        void Add(IEnumerable<IEvent> events);
+        void Add(IEnumerable<TEvent> events);
     }
 
     //public interface 

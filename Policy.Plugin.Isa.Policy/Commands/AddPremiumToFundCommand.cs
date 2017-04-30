@@ -4,7 +4,7 @@ using Policy.Plugin.Isa.Policy.PropertyBags;
 
 namespace Policy.Plugin.Isa.Policy.Commands
 {
-    public class AddPremiumCommand : ICommand
+    public class AddPremiumCommand : IsaPolicyCommand
     {
         public AddPremiumCommand(string policyNumber, DateTime premiumDateTime,  FundPremiumDetails fundPremiumDetails)
         {
