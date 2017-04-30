@@ -6,10 +6,11 @@ namespace Policy.Plugin.Isa.Policy.Events
 {
     public class AppliedFundChargeEvent : IEvent<IPolicyContext>
     {
-        public AppliedFundChargeEvent(Guid eventContextId, string fundId )
+        public AppliedFundChargeEvent(Guid eventContextId, string fundId, decimal units)
         {
             EventContextId = eventContextId;
             FundId = fundId;
+            Units = units;
             EventId = Guid.NewGuid();
             EventDateTime = DateTime.Now;
         }
@@ -20,6 +21,8 @@ namespace Policy.Plugin.Isa.Policy.Events
 
         public DateTime EventDateTime { get; set; }
         
-        public string FundId { get; }
+        public string FundId { get; set; }
+
+        public decimal Units { get; set; }
     }
 }

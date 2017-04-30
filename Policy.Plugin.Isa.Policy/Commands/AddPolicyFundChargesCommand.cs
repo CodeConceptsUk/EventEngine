@@ -3,16 +3,13 @@ using Policy.Plugin.Isa.Policy.Interfaces.Domain;
 
 namespace Policy.Plugin.Isa.Policy.Commands
 {
-    public class AddFundChargeCommand : ICommand<IPolicyContext>
+    public class AddPolicyFundChargesCommand : ICommand<IPolicyContext>
     {
-        public AddFundChargeCommand(string policyNumber, string fundId)
+        public AddPolicyFundChargesCommand(string policyNumber)
         {
             PolicyNumber = policyNumber;
-            FundId = fundId;
         }
 
         public string PolicyNumber { get; }
-
-        public string FundId { get; }
     }
 }

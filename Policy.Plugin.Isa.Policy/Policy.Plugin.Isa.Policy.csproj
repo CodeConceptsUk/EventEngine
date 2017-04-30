@@ -52,16 +52,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CommandHandlers\AddFundChargeHandler.cs" />
+    <Compile Include="CommandHandlers\AddPolicyFundChargesHandler.cs" />
     <Compile Include="CommandHandlers\AddPremiumHandler.cs" />
     <Compile Include="CommandHandlers\CreatePolicyHandler.cs" />
     <Compile Include="CommandHandlers\UnitAllocationHandler.cs" />
-    <Compile Include="Commands\AddFundChargeCommand.cs" />
+    <Compile Include="Commands\AddPolicyFundChargesCommand.cs" />
     <Compile Include="Commands\AddPremiumCommand.cs" />
     <Compile Include="Commands\CreatePolicyCommand.cs" />
     <Compile Include="Commands\UnitAllocationCommand.cs" />
     <Compile Include="Interfaces\Queries\ISinglePolicyQuery.cs" />
     <Compile Include="Queries\SinglePolicyQuery.cs" />
+    <Compile Include="Views\PolicyView\EventEvaluators\AddPremiumEventEvaluator.cs" />
     <Compile Include="Views\PolicyView\EventEvaluators\AppliedFundChargeEventEvaluator.cs" />
     <Compile Include="Views\PolicyView\EventEvaluators\PolicyCreatedEventEvaluator.cs" />
     <Compile Include="Events\AddPremiumEvent.cs" />

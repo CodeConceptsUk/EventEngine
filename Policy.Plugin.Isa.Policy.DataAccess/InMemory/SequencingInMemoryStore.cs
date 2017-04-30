@@ -3,9 +3,9 @@ using Policy.Plugin.Isa.Policy.Interfaces.DataAccess;
 
 // ReSharper disable CollectionNeverUpdated.Local
 
-namespace Policy.Plugin.Isa.Policy.DataAccess
+namespace Policy.Plugin.Isa.Policy.DataAccess.InMemory
 {
-    public class SequencingRepository : ISequencingRepository
+    public class SequencingInMemoryStore : ISequencingRepository
     {
         readonly Dictionary<string, int> _numbers = new Dictionary<string, int>();
         

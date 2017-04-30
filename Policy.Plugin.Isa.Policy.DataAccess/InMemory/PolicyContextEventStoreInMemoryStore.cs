@@ -7,9 +7,9 @@ using Policy.Application.Interfaces;
 using Policy.Application.Interfaces.Repositories;
 using Policy.Plugin.Isa.Policy.Interfaces.Domain;
 
-namespace Policy.Plugin.Isa.Policy.DataAccess
+namespace Policy.Plugin.Isa.Policy.DataAccess.InMemory
 {
-    public class PolicyContextEventStoreRepository : IEventStoreRepository<IPolicyContext>
+    public class PolicyContextEventStoreInMemoryStore : IEventStoreRepository<IPolicyContext>
     {
         private static readonly IList<IEvent<IPolicyContext>> Events = new List<IEvent<IPolicyContext>>();
 

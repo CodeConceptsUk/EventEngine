@@ -57,12 +57,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Plugin.cs" />
-    <Compile Include="PolicyContextEventStoreRepository.cs" />
+    <Compile Include="InMemory\PolicyContextEventStoreInMemoryStore.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SequencingRepository.cs" />
-    <Compile Include="SinglePolicySnapshotMemoryStore.cs" />
-    <Compile Include="SinglePolicySnapshotSqlStore.cs" />
-    <Compile Include="UnitPricingRepository.cs" />
+    <Compile Include="Sql\SeqencingSqlStore.cs" />
+    <Compile Include="InMemory\SequencingInMemoryStore.cs" />
+    <Compile Include="InMemory\SinglePolicySnapshotMemoryStore.cs" />
+    <Compile Include="Sql\SinglePolicySnapshotSqlStore.cs" />
+    <Compile Include="InMemory\UnitPricingInMemoryStore.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Policy.Application\Policy.Application.csproj">
@@ -76,6 +77,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="NoSql\" />
+    <Folder Include="Scripts\Sql\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

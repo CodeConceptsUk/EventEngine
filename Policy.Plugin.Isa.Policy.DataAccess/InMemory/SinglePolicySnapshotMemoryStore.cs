@@ -9,7 +9,7 @@ using Policy.Application.PropertyBags;
 using Policy.Plugin.Isa.Policy.Interfaces.Domain;
 using Policy.Plugin.Isa.Policy.Views.PolicyView;
 
-namespace Policy.Plugin.Isa.Policy.DataAccess
+namespace Policy.Plugin.Isa.Policy.DataAccess.InMemory
 {
     public class SinglePolicySnapshotMemoryStore : ISnapshotStore<PolicyView, IPolicyContext>
     {
