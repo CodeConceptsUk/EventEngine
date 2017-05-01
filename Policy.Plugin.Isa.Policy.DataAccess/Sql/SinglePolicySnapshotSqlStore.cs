@@ -53,6 +53,19 @@ namespace Policy.Plugin.Isa.Policy.DataAccess.Sql
             }
         }
 
+        public void ClearAllSnapshots()
+        {
+
+            using (var connection = new SqlConnection(ConnectionString))
+            {
+                connection.Open();
+                using (var command = new SqlCommand("InsertPolicyViewSnapshot", connection) { CommandType = CommandType.StoredProcedure })
+                {
+                    throw new NotImplementedException();
+                }
+            }
+        }
+
         private static string Serialize(Snapshot<PolicyView> value)
         {
             return JsonConvert.SerializeObject(value, JsonSerializerSettings);

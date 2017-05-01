@@ -16,5 +16,10 @@ namespace Policy.Plugin.Isa.Policy.DataAccess.NoSql
         {
             throw new NotImplementedException();
         }
+
+        public void ClearAllSnapshots()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

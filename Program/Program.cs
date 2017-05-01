@@ -8,6 +8,7 @@ using FrameworkExtensions.LinqExtensions;
 using log4net;
 using Microsoft.Practices.Unity;
 using Policy.Application.Interfaces;
+using Policy.Application.Interfaces.Repositories;
 using Policy.Plugin.Isa.Policy.Operations.BaseTypes;
 using Policy.Plugin.Isa.Policy.Operations.Commands;
 using Policy.Plugin.Isa.Policy.Operations.PropertyBags;
@@ -21,6 +22,12 @@ namespace Program
 {
     internal class Program
     {
+
+        //TODO: things we should do:
+        // 1. split PolicyView into several views - because it has too much detailed information ?
+        // 2. sql store for events
+        // 3. no sql stores
+
         private static void Main()
         {
             var log = LogManager.GetLogger(nameof(Program));
@@ -68,6 +75,9 @@ namespace Program
                     SummarisePolicy(policyViewss);
                     stopwatch.Start();
                 }
+
+                var snapshotStore = container.Resolve <ISnapshotStore<PolicyView>>();
+                snapshotStore.ClearAllSnapshots(); // reset them all so we must calculate from scratch!!!
 
                 var timer = new Stopwatch();
                 timer.Start();
