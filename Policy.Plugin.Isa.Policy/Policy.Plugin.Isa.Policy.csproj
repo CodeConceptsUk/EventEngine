@@ -62,6 +62,7 @@
     <Compile Include="Events\PremiumReceivedEvent.cs" />
     <Compile Include="Events\UnitsAddedToFundEvent.cs" />
     <Compile Include="Events\UnitsAllocatedEvent.cs" />
+    <Compile Include="Interfaces\DataAccess\IIsaPolicyEventStoreRepository.cs" />
     <Compile Include="Interfaces\DataAccess\ISequencingRepository.cs" />
     <Compile Include="Interfaces\DataAccess\IUnitPricingRepository.cs" />
     <Compile Include="Interfaces\Domain\IFund.cs" />

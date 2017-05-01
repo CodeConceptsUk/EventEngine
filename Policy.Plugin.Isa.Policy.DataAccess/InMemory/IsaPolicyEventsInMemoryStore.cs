@@ -4,12 +4,12 @@ using System.Linq;
 using System.Linq.Expressions;
 using FrameworkExtensions.LinqExtensions;
 using Policy.Application.Interfaces;
-using Policy.Application.Interfaces.Repositories;
 using Policy.Plugin.Isa.Policy.Events;
+using Policy.Plugin.Isa.Policy.Interfaces.DataAccess;
 
 namespace Policy.Plugin.Isa.Policy.DataAccess.InMemory
 {
-    public class PolicyContextEventStoreInMemoryStore : IEventStoreRepository<IsaPolicyEvent>
+    public class IsaPolicyEventsInMemoryStore : IIsaPolicyEventStoreRepository
     {
         private static readonly IList<IsaPolicyEvent> Events = new List<IsaPolicyEvent>();
 
@@ -18,6 +18,16 @@ namespace Policy.Plugin.Isa.Policy.DataAccess.InMemory
             var expression = @where.Compile();
             var events = Events.Where(t => expression(t)).Select(t => t.EventContextId);
             return events;
+        }
+
+        public Guid FindContextIds(string policyNumber)
+        {
+            return Events.OfType<PolicyCreatedEvent>().Single(e => e.PolicyNumber == policyNumber).EventContextId;
+        }
+
+        public IEnumerable<Guid> FindContextIds(int customerId)
+        {
+            return Events.OfType<PolicyCreatedEvent>().Where(e => e.CustomerId == customerId).Select(e=> e.EventContextId);
         }
 
         public IEnumerable<IsaPolicyEvent> Get(Guid eventContextId, Guid? eventId = null)

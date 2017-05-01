@@ -3,6 +3,7 @@ using System.Linq;
 using Policy.Application.Interfaces;
 using Policy.Application.Interfaces.Repositories;
 using Policy.Plugin.Isa.Policy.Events;
+using Policy.Plugin.Isa.Policy.Interfaces.DataAccess;
 using Policy.Plugin.Isa.Policy.Views.Queries;
 
 // ReSharper disable PossibleMultipleEnumeration
@@ -11,11 +12,11 @@ namespace Policy.Plugin.Isa.Policy.Views.Views.PolicyView.Queries
 {
     public class SinglePolicyQuery : ISinglePolicyQuery
     {
-        private readonly IEventStoreRepository<IsaPolicyEvent> _eventStore;
+        private readonly IIsaPolicyEventStoreRepository _eventStore;
         private readonly ISnapshotStore<Domain.PolicyView> _snapshotStoreStore;
         private readonly IEventPlayer<IsaPolicyEvent> _player;
 
-        public SinglePolicyQuery(IEventStoreRepository<IsaPolicyEvent> eventStore,
+        public SinglePolicyQuery(IIsaPolicyEventStoreRepository eventStore,
             ISnapshotStore<Domain.PolicyView> snapshotStore, IEventPlayer<IsaPolicyEvent> player)
         {
             _eventStore = eventStore;
