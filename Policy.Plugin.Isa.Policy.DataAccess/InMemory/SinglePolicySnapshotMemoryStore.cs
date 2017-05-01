@@ -6,7 +6,7 @@ using Newtonsoft.Json;
 using Policy.Application.Interfaces;
 using Policy.Application.Interfaces.Repositories;
 using Policy.Application.PropertyBags;
-using Policy.Plugin.Isa.Policy.Views.PolicyView.Domain;
+using Policy.Plugin.Isa.Policy.Views.Views.PolicyView.Domain;
 
 namespace Policy.Plugin.Isa.Policy.DataAccess.InMemory
 {

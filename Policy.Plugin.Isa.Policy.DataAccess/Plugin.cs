@@ -4,8 +4,7 @@ using Policy.Application.Interfaces.Repositories;
 using Policy.Plugin.Isa.Policy.DataAccess.InMemory;
 using Policy.Plugin.Isa.Policy.Events;
 using Policy.Plugin.Isa.Policy.Interfaces.DataAccess;
-using Policy.Plugin.Isa.Policy.Views.PolicyView;
-using Policy.Plugin.Isa.Policy.Views.PolicyView.Domain;
+using Policy.Plugin.Isa.Policy.Views.Views.PolicyView.Domain;
 
 namespace Policy.Plugin.Isa.Policy.DataAccess
 {

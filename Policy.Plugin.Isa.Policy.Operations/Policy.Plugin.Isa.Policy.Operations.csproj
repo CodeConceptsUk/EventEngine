@@ -33,15 +33,15 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="BaseTypes\IsaPolicyCommand.cs" />
+    <Compile Include="BaseTypes\IsaPolicyCommandHandler.cs" />
     <Compile Include="CommandHandlers\AddPolicyFundChargesHandler.cs" />
     <Compile Include="CommandHandlers\AddPremiumToFundHandler.cs" />
     <Compile Include="CommandHandlers\CreatePolicyHandler.cs" />
-    <Compile Include="CommandHandlers\IsaPolicyCommandHandler.cs" />
-    <Compile Include="CommandHandlers\RunPolicyUnitAllocationHandler.cs" />
+    <Compile Include="CommandHandlers\UnitAllocationHandler.cs" />
     <Compile Include="Commands\AddPolicyFundChargesCommand.cs" />
     <Compile Include="Commands\AddPremiumToFundCommand.cs" />
     <Compile Include="Commands\CreatePolicyCommand.cs" />
-    <Compile Include="Commands\IsaPolicyCommand.cs" />
     <Compile Include="Commands\UnitAllocationCommand.cs" />
     <Compile Include="Plugin.cs" />
     <Compile Include="PropertyBags\FundPremiumDetail.cs" />

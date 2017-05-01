@@ -40,6 +40,7 @@
     <Compile Include="Views\AggregateQueries\PolicyQuery.cs" />
     <Compile Include="Views\PolicyContextView\Domain\PolicyContextView.cs" />
     <Compile Include="Views\PolicyContextView\Queries\PolicyEventContextIdQuery.cs" />
+    <Compile Include="Views\PolicyView\Domain\Charge.cs" />
     <Compile Include="Views\PolicyView\Domain\Fund.cs" />
     <Compile Include="Views\PolicyView\Domain\FundAllocation.cs" />
     <Compile Include="Views\PolicyView\Domain\PolicyView.cs" />

@@ -1,7 +1,7 @@
 ﻿using Policy.Application.Interfaces;
 using Policy.Plugin.Isa.Policy.Events;
 
-namespace Policy.Plugin.Isa.Policy.Views.PolicyView.EventEvaluators
+namespace Policy.Plugin.Isa.Policy.Views.Views.PolicyView.EventEvaluators
 {
     public class PolicyCreatedEventEvaluator : IEventEvaluator<PolicyCreatedEvent, Domain.PolicyView>
     {

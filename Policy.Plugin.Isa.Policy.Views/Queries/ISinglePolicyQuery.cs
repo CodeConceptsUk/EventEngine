@@ -1,9 +1,8 @@
 ﻿using System;
 using Policy.Application.Interfaces;
-using Policy.Plugin.Isa.Policy.Views.PolicyView;
-using Policy.Plugin.Isa.Policy.Views.PolicyView.Domain;
+using Policy.Plugin.Isa.Policy.Views.Views.PolicyView.Domain;
 
-namespace Policy.Plugin.Isa.Policy.Interfaces.Queries
+namespace Policy.Plugin.Isa.Policy.Views.Queries
 {
     public interface ISinglePolicyQuery : IQuery
     {

@@ -4,7 +4,7 @@ using System.Linq;
 using Policy.Application.Interfaces;
 using Policy.Application.Interfaces.Repositories;
 using Policy.Plugin.Isa.Policy.Events;
-using Policy.Plugin.Isa.Policy.Interfaces.Queries;
+using Policy.Plugin.Isa.Policy.Views.Queries;
 
 namespace Policy.Plugin.Isa.Policy.Views.Views.PolicyContextView.Queries
 {

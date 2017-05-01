@@ -1,14 +1,14 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Policy.Application.Exceptions;
-using Policy.Application.Interfaces;
-using Policy.Plugin.Isa.Policy.Commands.Commands;
 using Policy.Plugin.Isa.Policy.Events;
-using Policy.Plugin.Isa.Policy.Interfaces.Queries;
+using Policy.Plugin.Isa.Policy.Operations.BaseTypes;
+using Policy.Plugin.Isa.Policy.Operations.Commands;
+using Policy.Plugin.Isa.Policy.Views.Queries;
 
 namespace Policy.Plugin.Isa.Policy.Operations.CommandHandlers
 {
-    public class AddPremiumHandler : ICommandHandler<AddPremiumCommand>
+    public class AddPremiumHandler : IsaPolicyCommandHandler<AddPremiumCommand>
     {
         private readonly IPolicyEventContextIdQuery _policyEventContextIdQuery;
 
@@ -17,19 +17,19 @@ namespace Policy.Plugin.Isa.Policy.Operations.CommandHandlers
             _policyEventContextIdQuery = policyEventContextIdQuery;
         }
 
-        public IEnumerable<IEvent> Execute(AddPremiumCommand command)
+        public override IEnumerable<IsaPolicyEvent> Execute(AddPremiumCommand command)
         {
             var eventContextId = _policyEventContextIdQuery.GeteventContextId(command.PolicyNumber);
             if (!eventContextId.HasValue)
                 throw new QueryException($"The policy {command.PolicyNumber} does not exist!");
 
-            return new IEvent[]
+            return new IsaPolicyEvent[]
             {
                 new AddPremiumEvent(
                     eventContextId.Value,
                     command.PremiumId,
                     command.PremiumDateTime,
-                    command.FundPremiumDetail.Select(t => new PremiumPartitionDetails { Amount =  t.Amount, FundId = t.FundId}).ToList())
+                    command.FundPremiumDetail.Select(t => new PremiumPartitionDetails { PartitionId = t.PartitionId, Amount =  t.Amount, FundId = t.FundId}).ToList())
             };
         }
     }

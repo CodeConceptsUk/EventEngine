@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Policy.Application.Interfaces;
 
-namespace Policy.Plugin.Isa.Policy.Interfaces.Queries
+namespace Policy.Plugin.Isa.Policy.Views.Queries
 {
     public interface IPolicyEventContextIdQuery : IQuery
     {

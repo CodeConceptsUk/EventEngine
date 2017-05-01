@@ -1,6 +1,7 @@
 ﻿using System;
+using Policy.Plugin.Isa.Policy.Operations.BaseTypes;
 
-namespace Policy.Plugin.Isa.Policy.Commands.Commands
+namespace Policy.Plugin.Isa.Policy.Operations.Commands
 {
     public class UnitAllocationCommand : IsaPolicyCommand
     {

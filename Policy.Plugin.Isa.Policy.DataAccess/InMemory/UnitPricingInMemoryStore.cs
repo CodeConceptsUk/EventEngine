@@ -9,8 +9,8 @@ namespace Policy.Plugin.Isa.Policy.DataAccess.InMemory
 
         public decimal Get(string fundId, DateTime dateOfAllocation, decimal value)
         {
-            var random = (decimal)Random.Next(1, 100) / 1000;
-            return random;
+            var fractionalValue = value / 1000m;
+            return fractionalValue;
         }
     }
 }

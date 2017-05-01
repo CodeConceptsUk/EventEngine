@@ -3,11 +3,11 @@ using System.Linq;
 using Policy.Application.Interfaces;
 using Policy.Application.Interfaces.Repositories;
 using Policy.Plugin.Isa.Policy.Events;
-using Policy.Plugin.Isa.Policy.Interfaces.Queries;
+using Policy.Plugin.Isa.Policy.Views.Queries;
 
 // ReSharper disable PossibleMultipleEnumeration
 
-namespace Policy.Plugin.Isa.Policy.Views.PolicyView.Queries
+namespace Policy.Plugin.Isa.Policy.Views.Views.PolicyView.Queries
 {
     public class SinglePolicyQuery : ISinglePolicyQuery
     {

@@ -1,12 +1,12 @@
 ﻿using System.Collections.Generic;
-using Policy.Application.Interfaces;
-using Policy.Plugin.Isa.Policy.Commands.Commands;
 using Policy.Plugin.Isa.Policy.Events;
 using Policy.Plugin.Isa.Policy.Interfaces.DataAccess;
+using Policy.Plugin.Isa.Policy.Operations.BaseTypes;
+using Policy.Plugin.Isa.Policy.Operations.Commands;
 
-namespace Policy.Plugin.Isa.Policy.Commands.CommandHandlers
+namespace Policy.Plugin.Isa.Policy.Operations.CommandHandlers
 {
-    public class CreatePolicyHandler : ICommandHandler<CreatePolicyCommand>
+    public class CreatePolicyHandler : IsaPolicyCommandHandler<CreatePolicyCommand>
     {
         private readonly ISequencingRepository _sequencingRepository;
 
@@ -15,7 +15,7 @@ namespace Policy.Plugin.Isa.Policy.Commands.CommandHandlers
             _sequencingRepository = sequencingRepository;
         }
 
-        public IEnumerable<IEvent> Execute(CreatePolicyCommand command)
+        public override IEnumerable<IsaPolicyEvent> Execute(CreatePolicyCommand command)
         {
             var policyNumber = _sequencingRepository.Get("IsaPolicy");
             var @event = new PolicyCreatedEvent(policyNumber, command.CustomerId);

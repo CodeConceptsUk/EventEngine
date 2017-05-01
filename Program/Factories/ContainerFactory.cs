@@ -1,9 +1,5 @@
 ﻿using Microsoft.Practices.Unity;
-using Policy.Application;
 using Policy.Application.Interfaces;
-using Policy.Application.Interfaces.Repositories;
-using Policy.Plugin.Isa.Policy.DataAccess;
-using Policy.Plugin.Isa.Policy.DataAccess.InMemory;
 
 namespace Program.Factories
 {
@@ -13,22 +9,19 @@ namespace Program.Factories
         {
             var container = new UnityContainer();
 
-            SetupPolicyPlugin(container);
-            SetupPolicyPluginDataAccess(container);
+            AddPlugin<Policy.Plugin.Isa.Policy.Plugin>(container);
+            AddPlugin<Policy.Plugin.Isa.Policy.DataAccess.Plugin>(container);
+            AddPlugin<Policy.Plugin.Isa.Policy.Operations.Plugin>(container);
+            AddPlugin<Policy.Plugin.Isa.Policy.Views.Plugin>(container);
 
             return container;
         }
 
-        private static void SetupPolicyPlugin(IUnityContainer container)
+        private static void AddPlugin<TPlugin>(IUnityContainer container)
+            where TPlugin : class, IContainer, new()
         {
-            var containerSetup = new Policy.Plugin.Isa.Policy.Plugin();
-            containerSetup.Setup(container);
-        }
-
-        private static void SetupPolicyPluginDataAccess(IUnityContainer container)
-        {
-            var containerSetup = new Plugin();
-            containerSetup.Setup(container);
+            var plugin = new TPlugin();
+            plugin.Setup(container);
         }
     }
 }

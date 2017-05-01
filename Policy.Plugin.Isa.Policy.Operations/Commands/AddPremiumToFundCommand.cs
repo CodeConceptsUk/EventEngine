@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using Policy.Plugin.Isa.Policy.Commands.PropertyBags;
+using Policy.Plugin.Isa.Policy.Operations.BaseTypes;
+using Policy.Plugin.Isa.Policy.Operations.PropertyBags;
 
-namespace Policy.Plugin.Isa.Policy.Commands.Commands
+namespace Policy.Plugin.Isa.Policy.Operations.Commands
 {
     public class AddPremiumCommand : IsaPolicyCommand
     {

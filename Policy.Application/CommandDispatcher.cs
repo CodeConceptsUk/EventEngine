@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using FrameworkExtensions.LinqExtensions;
@@ -29,30 +30,32 @@ namespace Policy.Application
         public void Apply(TCommand command)
         {
             var repository = _container.Resolve<IEventStoreRepository<TEvent>>(); // TODO: Add type for Event
-            var handlers = GetHandler(command).ToArray();
-            var events = new List<TEvent>();
-            // TODO: Should we allow more than one handler per command?
-            // TODO: Can one command run many actions to create events (for example create customer, create, email ...)
-            _logger.Debug($"Applying {command.GetType().Name} using {handlers.Count()} handlers");
-            handlers.ForEach(handler =>
+            var handler = GetHandler(command);
+
+            _logger.Debug($"Applying {command.GetType().Name} using {handler?.GetType()?.Name}");
+
+            // TODO: Pre (Can execute?)
+
+            var results = (IEnumerable<TEvent>) handler.Execute(command.AsDynamic());
+
+            if (results == null)
             {
-                _logger.Debug($"\tUsing handler {handler.GetType().Name}");
-                // TODO: Pre (Can execute?)
-                var results = handler.Execute(command.AsDynamic()) as IEnumerable;
-                events.AddRange(results.OfType<TEvent>());
-            });
-            _logger.Debug($"\tAdding {events.Count} event(s) to {repository.GetType().Name}");
+                throw new Exception($"Command {command.GetType().Name} returned null event list!");
+            }
+
             // TODO: Post (Can save?)
-            repository.Add(events);
+
+            _logger.Debug($"\tAdding {results.Count()} event(s) to {repository.GetType().Name}");
+            repository.Add(results);
         }
 
-        private IEnumerable<dynamic> GetHandler(ICommand command)
+        private dynamic GetHandler(ICommand command)
         {
             {
                 return _handlers.Where(t => t.GetType()
                     .GetInterfaces()
                     .Any(i => i.GetGenericArguments().Contains(command.GetType())))
-                    .Select(t => t.AsDynamic());
+                    .Select(t => t.AsDynamic()).Single();
             }
         }
     }

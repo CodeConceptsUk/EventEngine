@@ -25,5 +25,7 @@ namespace Policy.Plugin.Isa.Policy.Events
         public string FundId { get; set; }
 
         public decimal Amount { get; set; }
+
+        public Guid PartitionId { get; set; }
     }
 }

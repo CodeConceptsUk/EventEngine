@@ -1,4 +1,6 @@
-﻿namespace Policy.Plugin.Isa.Policy.Commands.Commands
+﻿using Policy.Plugin.Isa.Policy.Operations.BaseTypes;
+
+namespace Policy.Plugin.Isa.Policy.Operations.Commands
 {
     public class CreatePolicyCommand : IsaPolicyCommand
     {

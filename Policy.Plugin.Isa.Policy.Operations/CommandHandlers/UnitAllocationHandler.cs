@@ -1,17 +1,18 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using FrameworkExtensions.LinqExtensions;
 using Policy.Application.Exceptions;
-using Policy.Application.Interfaces;
-using Policy.Plugin.Isa.Policy.Commands.Commands;
 using Policy.Plugin.Isa.Policy.Events;
 using Policy.Plugin.Isa.Policy.Interfaces.DataAccess;
-using Policy.Plugin.Isa.Policy.Interfaces.Queries;
+using Policy.Plugin.Isa.Policy.Operations.BaseTypes;
+using Policy.Plugin.Isa.Policy.Operations.Commands;
+using Policy.Plugin.Isa.Policy.Views.Queries;
 
 // ReSharper disable SuspiciousTypeConversion.Global
 
 namespace Policy.Plugin.Isa.Policy.Operations.CommandHandlers
 {
-    public class UnitAllocationHandler : ICommandHandler<UnitAllocationCommand>
+    public class UnitAllocationHandler : IsaPolicyCommandHandler<UnitAllocationCommand>
     {
         private readonly IPolicyEventContextIdQuery _policyEventContextIdQuery;
         private readonly IPolicyQuery _policyQuery;
@@ -24,21 +25,23 @@ namespace Policy.Plugin.Isa.Policy.Operations.CommandHandlers
             _unitPricingRepository = unitPricingRepository;
         }
 
-        public IEnumerable<IEvent> Execute(UnitAllocationCommand command)
+        public override IEnumerable<IsaPolicyEvent> Execute(UnitAllocationCommand command)
         {
             var policy = _policyQuery.Read(command.PolicyNumber);
             var eventContextId = _policyEventContextIdQuery.GeteventContextId(command.PolicyNumber);
             if (!eventContextId.HasValue)
                 throw new QueryException($"The policy {command.PolicyNumber} does not exist!");
 
-            return policy.Premiums.Where(p => !p.IsAllocated).Select(p =>
+            var events = new List<IsaPolicyEvent>();
+            policy.Premiums.Where(p => !p.IsAllocated).ForEach(p =>
             {
-                return p.Partitions.Select(part =>
+                p.Partitions.ForEach(part =>
                 {
                     var units = _unitPricingRepository.Get(part.FundId, command.DateOfAllocation, part.Amount);
-                    return new UnitsAllocatedEvent(eventContextId.Value, part.FundId, units, part.Amount, command.DateOfAllocation);
+                    events.Add(new UnitsAllocatedEvent(eventContextId.Value, p.PremiumId, part.PortionId, part.FundId, units, command.DateOfAllocation));
                 });
-            }).OfType<IEvent>();
+            });
+            return events;
         }
     }
 }
