@@ -3,16 +3,16 @@ using Policy.Plugin.Isa.Policy.Operations.BaseTypes;
 
 namespace Policy.Plugin.Isa.Policy.Operations.Commands
 {
-    public class AddPolicyFundChargesCommand : IsaPolicyCommand
+    public class AllocateUnitsCommand : IsaPolicyCommand
     {
-        public AddPolicyFundChargesCommand(string policyNumber, DateTime chargeDate)
+        public AllocateUnitsCommand(string policyNumber, DateTime dateOfAllocation)
         {
             PolicyNumber = policyNumber;
-            ChargeDate = chargeDate;
+            DateOfAllocation = dateOfAllocation;
         }
 
         public string PolicyNumber { get; }
 
-        public DateTime ChargeDate { get; }
+        public DateTime DateOfAllocation { get; }
     }
 }

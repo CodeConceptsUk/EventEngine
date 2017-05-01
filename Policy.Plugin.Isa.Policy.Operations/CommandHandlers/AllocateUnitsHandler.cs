@@ -12,28 +12,28 @@ using Policy.Plugin.Isa.Policy.Views.Queries;
 
 namespace Policy.Plugin.Isa.Policy.Operations.CommandHandlers
 {
-    public class UnitAllocationHandler : IsaPolicyCommandHandler<UnitAllocationCommand>
+    public class AllocateUnitsHandler : IsaPolicyCommandHandler<AllocateUnitsCommand>
     {
         private readonly IPolicyEventContextIdQuery _policyEventContextIdQuery;
-        private readonly IPolicyQuery _policyQuery;
+        private readonly ISinglePolicyQuery _singlePolicyQuery;
         private readonly IUnitPricingRepository _unitPricingRepository;
 
-        public UnitAllocationHandler(IPolicyEventContextIdQuery policyEventContextIdQuery, IPolicyQuery policyQuery, IUnitPricingRepository unitPricingRepository)
+        public AllocateUnitsHandler(IPolicyEventContextIdQuery policyEventContextIdQuery, ISinglePolicyQuery singlePolicyQuery, IUnitPricingRepository unitPricingRepository)
         {
             _policyEventContextIdQuery = policyEventContextIdQuery;
-            _policyQuery = policyQuery;
+            _singlePolicyQuery = singlePolicyQuery;
             _unitPricingRepository = unitPricingRepository;
         }
 
-        public override IEnumerable<IsaPolicyEvent> Execute(UnitAllocationCommand command)
+        public override IEnumerable<IsaPolicyEvent> Execute(AllocateUnitsCommand command)
         {
-            var policy = _policyQuery.Read(command.PolicyNumber);
             var eventContextId = _policyEventContextIdQuery.GeteventContextId(command.PolicyNumber);
             if (!eventContextId.HasValue)
                 throw new QueryException($"The policy {command.PolicyNumber} does not exist!");
+            var policy = _singlePolicyQuery.Build(eventContextId.Value);
 
             var events = new List<IsaPolicyEvent>();
-            policy.Premiums.Where(p => !p.IsAllocated).ForEach(p =>
+            policy.Premiums.Where(p => !p.IsAllocated && p.IsReceived).ForEach(p =>
             {
                 p.Partitions.ForEach(part =>
                 {

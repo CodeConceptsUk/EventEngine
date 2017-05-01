@@ -35,23 +35,26 @@
   <ItemGroup>
     <Compile Include="BaseTypes\IsaPolicyCommand.cs" />
     <Compile Include="BaseTypes\IsaPolicyCommandHandler.cs" />
-    <Compile Include="CommandHandlers\AddPolicyFundChargesHandler.cs" />
+    <Compile Include="CommandHandlers\AddUnitsToFundHandler.cs" />
+    <Compile Include="CommandHandlers\CreateChargesHandler.cs" />
+    <Compile Include="CommandHandlers\AddPremiumAsReceivedHandler.cs" />
     <Compile Include="CommandHandlers\AddPremiumToFundHandler.cs" />
     <Compile Include="CommandHandlers\CreatePolicyHandler.cs" />
-    <Compile Include="CommandHandlers\UnitAllocationHandler.cs" />
-    <Compile Include="Commands\AddPolicyFundChargesCommand.cs" />
-    <Compile Include="Commands\AddPremiumToFundCommand.cs" />
+    <Compile Include="CommandHandlers\SetPremiumAsReceivedHandler.cs" />
+    <Compile Include="CommandHandlers\AllocateUnitsHandler.cs" />
+    <Compile Include="Commands\AddPremiumAsReceivedCommand.cs" />
+    <Compile Include="Commands\AddUnitsToFundCommand.cs" />
+    <Compile Include="Commands\CreateChargesCommand.cs" />
+    <Compile Include="Commands\AddPremiumCommand.cs" />
     <Compile Include="Commands\CreatePolicyCommand.cs" />
-    <Compile Include="Commands\UnitAllocationCommand.cs" />
+    <Compile Include="Commands\SetPremiumAsReceivedCommand.cs" />
+    <Compile Include="Commands\AllocateUnitsCommand.cs" />
     <Compile Include="Plugin.cs" />
     <Compile Include="PropertyBags\FundPremiumDetail.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
       <HintPath>..\packages\CommonServiceLocator.1.3\lib\portable-net4+sl5+netcore45+wpa81+wp8\Microsoft.Practices.ServiceLocation.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Practices.Unity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f">
-      <HintPath>..\packages\Unity.4.0.1\lib\net45\Microsoft.Practices.Unity.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Practices.Unity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f">
       <HintPath>..\packages\Unity.4.0.1\lib\net45\Microsoft.Practices.Unity.dll</HintPath>

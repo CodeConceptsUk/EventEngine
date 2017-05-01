@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using FrameworkExtensions.LinqExtensions;
 using Policy.Application.Exceptions;
@@ -9,25 +10,25 @@ using Policy.Plugin.Isa.Policy.Views.Queries;
 
 namespace Policy.Plugin.Isa.Policy.Operations.CommandHandlers
 {
-    public class AddPolicyFundChargesHandler : IsaPolicyCommandHandler<AddPolicyFundChargesCommand>
+    public class CreateChargesHandler : IsaPolicyCommandHandler<CreateChargesCommand>
     {
         private readonly IPolicyEventContextIdQuery _policyeventContextIdQuery;
-        private readonly IPolicyQuery _policyQuery;
+        private readonly ISinglePolicyQuery _singlePolicyQuery;
 
-        public AddPolicyFundChargesHandler(IPolicyEventContextIdQuery policyeventContextIdQuery, IPolicyQuery policyQuery)
+        public CreateChargesHandler(IPolicyEventContextIdQuery policyeventContextIdQuery, ISinglePolicyQuery singlePolicyQuery)
         {
             _policyeventContextIdQuery = policyeventContextIdQuery;
-            _policyQuery = policyQuery;
+            _singlePolicyQuery = singlePolicyQuery;
         }
         
-        public override IEnumerable<IsaPolicyEvent> Execute(AddPolicyFundChargesCommand command)
+        public override IEnumerable<IsaPolicyEvent> Execute(CreateChargesCommand command)
         {
             // Fund 1, 2 have charges
             var eventContextId =  _policyeventContextIdQuery.GeteventContextId(command.PolicyNumber);
             if (!eventContextId.HasValue)
                 throw new QueryException($"The policy {command.PolicyNumber} does not exist!");
 
-            var policy = _policyQuery.Read(command.PolicyNumber);
+            var policy = _singlePolicyQuery.Build(eventContextId.Value);
             var events = new List<IsaPolicyEvent>();
 
             policy.Funds.ForEach(fund =>
@@ -45,7 +46,8 @@ namespace Policy.Plugin.Isa.Policy.Operations.CommandHandlers
         private static decimal CalculateFundDeduction(decimal fund)
         {
             // 3% APR ish
-            return -(fund / 100m * 0.0025m);
+            // TODO: PRODUCT RULE
+            return -Math.Round(fund / 100m * 0.0025m, 6); 
         }
 
     }

@@ -59,6 +59,8 @@
     <Compile Include="Events\AddPremiumEvent.cs" />
     <Compile Include="Events\AppliedFundChargeEvent.cs" />
     <Compile Include="Events\PolicyCreatedEvent.cs" />
+    <Compile Include="Events\PremiumReceivedEvent.cs" />
+    <Compile Include="Events\UnitsAddedToFundEvent.cs" />
     <Compile Include="Events\UnitsAllocatedEvent.cs" />
     <Compile Include="Interfaces\DataAccess\ISequencingRepository.cs" />
     <Compile Include="Interfaces\DataAccess\IUnitPricingRepository.cs" />

@@ -11,5 +11,7 @@ namespace Policy.Plugin.Isa.Policy.Views.Views.PolicyView.Domain
         public decimal Total { get; set; }
 
         public bool IsAllocated { get; set; }
+
+        public bool IsReceived { get; set; }
     }
 }

@@ -44,7 +44,7 @@ namespace Program
 
 
                 Thread.Sleep(300);
-                var unitAllocationCommand = new UnitAllocationCommand("1", DateTime.Now);
+                var unitAllocationCommand = new AllocateUnitsCommand("1", DateTime.Now);
 
                 dispatcher.Apply(createCommand);
                 dispatcher.Apply(addPremiumCommand);
@@ -52,18 +52,19 @@ namespace Program
 
                 var stopwatch = new Stopwatch();
                 stopwatch.Start();
-                var day = -1000;
+                var day = -180;
                 var displayEvery = 100;
                 while (day < 0)
                 {
                     var date = DateTime.Now.AddDays(day);
                     if (day % 7 == 0) // add a new premium every 7 days
                     {
-                        dispatcher.Apply(new AddPremiumCommand("1", Guid.NewGuid().ToString(), date,
-                            CreateRandomPremiumDetails()));
+                        var premiumId = Guid.NewGuid().ToString();
+                        dispatcher.Apply(new AddPremiumCommand("1", premiumId, date,CreateRandomPremiumDetails()));
+                        dispatcher.Apply(new SetPremiumAsReceivedCommand("1", premiumId, date));
                     }
-                    dispatcher.Apply(new UnitAllocationCommand("1", date)); // alloate units daily
-                    dispatcher.Apply(new AddPolicyFundChargesCommand("1", date)); // make charges daily
+                    dispatcher.Apply(new AllocateUnitsCommand("1", date)); // alloate units daily
+                    dispatcher.Apply(new CreateChargesCommand("1", date)); // make charges daily
                     day++;
                     if (day % displayEvery != 0)
                         continue;
@@ -146,11 +147,11 @@ namespace Program
                 Console.WriteLine("NULL");
                 return;
             }
-            if (Debugger.IsAttached)
-            {
-                Debugger.Break();
-                return;
-            }
+            //if (Debugger.IsAttached)
+            //{
+            //    Debugger.Break();
+            //    return;
+            //}
             if (detailed)
             {
                 DetailedSummary(policy);
@@ -196,7 +197,7 @@ namespace Program
                 Console.WriteLine($"\tAllocations of {f.FundId}:");
                 f.Allocations.ForEach(a =>
                 {
-                    Console.WriteLine($"\t\t{a.PremiumPartition.Amount:0.00} was allocated to {a.Units:0.0000} units");
+                    Console.WriteLine($"\t\t{a.PremiumPartition.Amount:0.00} was allocated to {a.Units:0.00000000} units");
                 });
             });
         }
