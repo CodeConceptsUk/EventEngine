@@ -14,6 +14,4 @@ namespace FrameworkExtensions.LinqExtensions
         }
 
     }
-
-
 }
