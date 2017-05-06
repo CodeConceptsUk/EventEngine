@@ -20,11 +20,11 @@ namespace Policy.Plugin.Isa.Policy.Operations.CommandHandlers
             _policyeventContextIdQuery = policyeventContextIdQuery;
             _singlePolicyQuery = singlePolicyQuery;
         }
-        
+
         public override IEnumerable<IsaPolicyEvent> Execute(CreateChargesCommand command)
         {
             // Fund 1, 2 have charges
-            var eventContextId =  _policyeventContextIdQuery.GeteventContextId(command.PolicyNumber);
+            var eventContextId = _policyeventContextIdQuery.GeteventContextId(command.PolicyNumber);
             if (!eventContextId.HasValue)
                 throw new QueryException($"The policy {command.PolicyNumber} does not exist!");
 
@@ -33,11 +33,11 @@ namespace Policy.Plugin.Isa.Policy.Operations.CommandHandlers
 
             policy.Funds.ForEach(fund =>
             {
-                fund.Allocations.Where(allocation => allocation.Units>0).ForEach(allocation =>
-                {
-                    var deductedUnits = CalculateFundDeduction(allocation.Units);
-                    events.Add(new AppliedFundChargeEvent(eventContextId.Value, fund.FundId, allocation.PortionId, deductedUnits, command.ChargeDate));
-                });
+                fund.Allocations.Where(allocation => allocation.Units > 0).ForEach(allocation =>
+                  {
+                      var deductedUnits = CalculateFundDeduction(allocation.Units);
+                      events.Add(new AppliedFundChargeEvent(eventContextId.Value, fund.FundId, allocation.PortionId, deductedUnits, command.ChargeDate));
+                  });
             });
 
             return events;
@@ -47,7 +47,7 @@ namespace Policy.Plugin.Isa.Policy.Operations.CommandHandlers
         {
             // 3% APR ish
             // TODO: PRODUCT RULE
-            return -Math.Round(fund / 100m * 0.0025m, 6); 
+            return -Math.Round(fund / 100m * 0.0025m, 6);
         }
 
     }

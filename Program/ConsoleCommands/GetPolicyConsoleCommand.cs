@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using CliConsole;
 using FrameworkExtensions.LinqExtensions;
 using Policy.Plugin.Isa.Policy.Views.Queries;
@@ -59,14 +60,18 @@ namespace Program.ConsoleCommands
             try
             {
                 var policyViews = _policyQuery.Read(_customerId);
-                var data = new List<Tuple<string, string, string>>();
+                var data = new List<Tuple<string, string, string, decimal>>();
 
                 policyViews.ForEach(policyView =>
                 {
-                    data.Add(new Tuple<string, string, string>(policyView.PolicyNumber, policyView.CustomerId.ToString(), policyView.Funds.Count.ToString()));
+                    data.Add(new Tuple<string, string, string, decimal>(
+                        policyView.PolicyNumber, 
+                        policyView.CustomerId.ToString(), 
+                        policyView.Funds.Count.ToString(), 
+                        policyView.Premiums.Sum(t => t.Total)));
                 });
 
-                Console.WriteLine(data.ToStringTable(new[] {"Policy Number", "Customer ID", "Funds"}, t => t.Item1, t => t.Item2, t => t.Item3));
+                Console.WriteLine(data.ToStringTable(new[] {"Policy Number", "Customer ID", "Premiums", "Funds"}, t => t.Item1, t => t.Item2, t => t.Item3, t => t.Item4.ToString("C")));
             }
             catch (Exception e)
             {

@@ -61,6 +61,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ConsoleCommands\CreatePolicyConsoleCommand.cs" />
+    <Compile Include="ConsoleCommands\AddPremiumConsoleCommand.cs" />
     <Compile Include="ConsoleCommands\GetPolicyConsoleCommand.cs" />
     <Compile Include="ConsoleCommands\NowConsoleCommand.cs" />
     <Compile Include="ConsoleCommands\HelpConsoleCommand.cs" />
