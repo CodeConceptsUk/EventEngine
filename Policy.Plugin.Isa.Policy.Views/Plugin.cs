@@ -13,7 +13,7 @@ namespace Policy.Plugin.Isa.Policy.Views
             container.RegisterTypes(
                 AllClasses.FromLoadedAssemblies(),
                 WithMappings.FromMatchingInterface,
-                WithName.Default,
+                WithName.TypeName,
                 WithLifetime.ContainerControlled);
             RegisterNamedTypes<IEventEvaluator>(container);
 

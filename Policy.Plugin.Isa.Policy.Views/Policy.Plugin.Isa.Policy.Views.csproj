@@ -37,9 +37,19 @@
     <Compile Include="Queries\IPolicyEventContextIdQuery.cs" />
     <Compile Include="Queries\IPolicyQuery.cs" />
     <Compile Include="Queries\ISinglePolicyQuery.cs" />
+    <Compile Include="Queries\ITransactionQuery.cs" />
     <Compile Include="Views\AggregateQueries\PolicyQuery.cs" />
+    <Compile Include="Views\AggregateQueries\TransactionQuery.cs" />
     <Compile Include="Views\PolicyContextView\Domain\PolicyContextView.cs" />
     <Compile Include="Views\PolicyContextView\Queries\PolicyEventContextIdQuery.cs" />
+    <Compile Include="Views\PolicyTransactionsView\Domain\PolicyTransactionView.cs" />
+    <Compile Include="Views\PolicyTransactionsView\Domain\Transaction.cs" />
+    <Compile Include="Views\PolicyTransactionsView\EventEvaluators\AddPremiumEventEvaluator.cs" />
+    <Compile Include="Views\PolicyTransactionsView\EventEvaluators\AppliedFundChargeEventEvaluator.cs" />
+    <Compile Include="Views\PolicyTransactionsView\EventEvaluators\UnitsAddedToFundEventEvaluator.cs" />
+    <Compile Include="Views\PolicyTransactionsView\EventEvaluators\UnitsAllocatedEventEvaluator.cs" />
+    <Compile Include="Queries\ISinglePolicyTransactionQuery.cs" />
+    <Compile Include="Views\PolicyTransactionsView\Queries\SinglePolicyQuery.cs" />
     <Compile Include="Views\PolicyView\Domain\Charge.cs" />
     <Compile Include="Views\PolicyView\Domain\Fund.cs" />
     <Compile Include="Views\PolicyView\Domain\FundAllocation.cs" />
@@ -85,6 +95,7 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

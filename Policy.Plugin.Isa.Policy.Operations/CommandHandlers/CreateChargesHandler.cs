@@ -28,7 +28,7 @@ namespace Policy.Plugin.Isa.Policy.Operations.CommandHandlers
             if (!eventContextId.HasValue)
                 throw new QueryException($"The policy {command.PolicyNumber} does not exist!");
 
-            var policy = _singlePolicyQuery.Build(eventContextId.Value);
+            var policy = _singlePolicyQuery.Read(eventContextId.Value);
             var events = new List<IsaPolicyEvent>();
 
             policy.Funds.ForEach(fund =>

@@ -2,11 +2,25 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using FrameworkExtensions.LinqExtensions;
 
 namespace Program
 {
     public static class StringUtils
     {
+        public static string ToStringTable(this IDictionary<string, string> values)
+        {
+            var data = new List<Tuple<string, string>>();
+            values.Keys.ForEach(key =>
+            {
+                data.Add(new Tuple<string, string>(key, values[key]));
+            });
+
+            return data.ToStringTable(new[] {"Field", "Value"},
+                t => t.Item1,
+                t => t.Item2);
+        }
+
         public static string ToStringTable<T>(
             this IEnumerable<T> values,
             string[] columnHeaders,

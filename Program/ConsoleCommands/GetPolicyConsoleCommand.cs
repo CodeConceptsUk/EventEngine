@@ -5,6 +5,7 @@ using CliConsole;
 using FrameworkExtensions.LinqExtensions;
 using Policy.Plugin.Isa.Policy.Operations.Commands;
 using Policy.Plugin.Isa.Policy.Views.Queries;
+using Policy.Plugin.Isa.Policy.Views.Views.PolicyView.Domain;
 using Program.Extensions;
 
 namespace Program.ConsoleCommands
@@ -30,32 +31,46 @@ namespace Program.ConsoleCommands
             {
                 var policyView = _policyQuery.Read(_policyNumber);
 
-                var fixedSpace = "".ToFixedWidth(5);
-                _console.WriteLine($"{"PolicyNumber:".ToFixedWidth(30)}{policyView.PolicyNumber}{fixedSpace}{"CustomerId:".ToFixedWidth(15)}{policyView.CustomerId}");
-                _console.WriteLine($"{"Funds Used:".ToFixedWidth(30)}{policyView.Funds.Count}");
-
-                var data = new List<Tuple<string, decimal, decimal>>();
-
-
-                policyView.Funds.ForEach(fund =>
-                {
-
-                    data.Add(new Tuple<string, decimal, decimal>(
-                        fund.FundId,
-                        fund.TotalUnits,
-                        fund.TotalShadowUnits));
-                });
-
-                _console.WriteLine(data.ToStringTable(
-                    new[] { "FundId", "Total Units", "Shadow Units" },
-                    t => t.Item1,
-                    t => t.Item2,
-                    t => t.Item3));
+                DisplayBasicPolicyViewData(policyView);
+                DisplayFundData(policyView);
             }
             catch (Exception e)
             {
                 _console.WriteLine($"There was an error retrieving policy {_policyNumber}, {e.Message}");
             }
+        }
+
+        private void DisplayFundData(PolicyView policyView)
+        {
+            var data = new List<Tuple<string, decimal, decimal>>();
+            policyView.Funds.ForEach(fund =>
+            {
+                data.Add(new Tuple<string, decimal, decimal>(
+                    fund.FundId,
+                    fund.TotalUnits,
+                    fund.TotalShadowUnits));
+            });
+
+            _console.WriteLine(data.ToStringTable(
+                new[] {"FundId", "Total Units", "Shadow Units"},
+                t => t.Item1,
+                t => t.Item2,
+                t => t.Item3));
+        }
+
+        private void DisplayBasicPolicyViewData(PolicyView policyView)
+        {
+            var policyData = new Dictionary<string, string>
+            {
+                {"PolicyNumber", policyView.PolicyNumber},
+                {"CustomerId", policyView.CustomerId.ToString()},
+                {"Funds", policyView.Funds.Count.ToString()},
+                {"Premiums", policyView.Premiums.Sum(p => p.Total).ToString("C")},
+                {"Units", policyView.Funds.Sum(p => p.TotalUnits).ToString("0.000000")},
+                {"Shadow Units", policyView.Funds.Sum(p => p.TotalShadowUnits).ToString("0.000000")},
+            };
+
+            _console.WriteLine(policyData.ToStringTable());
         }
     }
 }

@@ -6,6 +6,6 @@ namespace Policy.Plugin.Isa.Policy.Views.Queries
 {
     public interface ISinglePolicyQuery : IQuery
     {
-        PolicyView Build(Guid contextId);
+        PolicyView Read(Guid contextId);
     }
 }
