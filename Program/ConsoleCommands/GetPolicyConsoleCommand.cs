@@ -3,10 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using CliConsole;
 using FrameworkExtensions.LinqExtensions;
-using Policy.Plugin.Isa.Policy.Operations.Commands;
 using Policy.Plugin.Isa.Policy.Views.Queries;
 using Policy.Plugin.Isa.Policy.Views.Views.PolicyView.Domain;
-using Program.Extensions;
 
 namespace Program.ConsoleCommands
 {

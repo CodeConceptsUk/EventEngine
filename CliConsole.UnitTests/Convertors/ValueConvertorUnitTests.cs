@@ -3,7 +3,7 @@ using CliConsole.Convertors;
 using CliConsole.Interfaces.Convertors;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace CliConsole.UnitTests
+namespace CliConsole.UnitTests.Convertors
 {
     [TestClass]
     public class ValueConvertorUnitTests
