@@ -104,7 +104,7 @@ namespace CliConsole
 
         private static string GetInputFromConsole(CommandArgument argument, IConsoleProxy console)
         {
-            console.Write($"{TabIndent}{argument.Name}: ");
+            console.Write($"{TabIndent}{argument.Name} ({argument.Description}): ");
             return console.ReadLine();
         }
 

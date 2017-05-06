@@ -6,12 +6,12 @@ using Program.Extensions;
 
 namespace Program.ConsoleCommands
 {
-    public class HelpCommand : InlineConsoleCommand
+    public class HelpConsoleCommand : InlineConsoleCommand
     {
         private readonly IUnityContainer _container;
         private readonly IConsoleProxy _console;
 
-        public HelpCommand(IUnityContainer container, IConsoleProxy console)
+        public HelpConsoleCommand(IUnityContainer container, IConsoleProxy console)
             : base("Help", "Displays help")
         {
             _container = container;

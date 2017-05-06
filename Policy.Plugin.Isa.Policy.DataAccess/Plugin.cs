@@ -13,7 +13,7 @@ namespace Policy.Plugin.Isa.Policy.DataAccess
     {
         public void Setup(IUnityContainer container)
         {
-            container.RegisterType<ISequencingRepository, SequencingInMemoryStore>();
+            container.RegisterType<ISequencingRepository, SequencingSqlStore>();
             container.RegisterType<IUnitPricingRepository, UnitPricingInMemoryStore>();
             container.RegisterType<ISnapshotStore<PolicyView>, SinglePolicySnapshotMemoryStore>();
             container.RegisterType<IEventStoreRepository<IsaPolicyEvent>, IsaPolicyEventsInSqlStore>();

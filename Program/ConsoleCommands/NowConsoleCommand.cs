@@ -5,11 +5,11 @@ using CliConsole.Interfaces;
 
 namespace Program.ConsoleCommands
 {
-    public class NowCommand : InlineConsoleCommand
+    public class NowConsoleCommand : InlineConsoleCommand
     {
         private readonly IConsoleProxy _console;
 
-        public NowCommand(IConsoleProxy console)
+        public NowConsoleCommand(IConsoleProxy console)
             : base("Now", "Gets the current date and time")
         {
             _console = console;

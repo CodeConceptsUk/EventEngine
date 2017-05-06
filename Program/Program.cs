@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Text;
 using System.Threading;
 using CliConsole.Interfaces;
 using FrameworkExtensions.LinqExtensions;
@@ -36,6 +37,7 @@ namespace Program
             var consoleCommands = container.GetConsoleCommands().ToList();
             var dispatcher = container.Resolve<IConsoleDispatcher>();
 
+            Console.OutputEncoding = Encoding.UTF8;
             Console.Write($"Cli> ");
             while ((command = Console.ReadLine()) != "exit")
             {

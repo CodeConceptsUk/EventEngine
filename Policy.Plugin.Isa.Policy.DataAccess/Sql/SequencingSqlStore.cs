@@ -5,19 +5,19 @@ using Policy.Plugin.Isa.Policy.Interfaces.DataAccess;
 
 namespace Policy.Plugin.Isa.Policy.DataAccess.Sql
 {
-   public class SeqencingSqlStore : ISequencingRepository
+   public class SequencingSqlStore : ISequencingRepository
     {
-        private static string ConnectionString { get; } = ConfigurationManager.ConnectionStrings["Seqencing"].ConnectionString;
+        private static string ConnectionString { get; } = ConfigurationManager.ConnectionStrings["Sequencing"].ConnectionString;
 
         public string Get(string type)
         {
             using (var connection = new SqlConnection(ConnectionString))
             {
                 connection.Open();
-                using (var command = new SqlCommand("GetNextSeqenece") {CommandType = CommandType.StoredProcedure})
+                using (var command = new SqlCommand("GetNextSequence", connection) {CommandType = CommandType.StoredProcedure})
                 {
                     command.Parameters.Add("@Type", SqlDbType.NVarChar, 255).Value = type;
-                    return (string)command.ExecuteScalar();
+                    return ((long)command.ExecuteScalar()).ToString();
                 }
             }
         }
