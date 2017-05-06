@@ -12,7 +12,7 @@ namespace Policy.Plugin.Isa.Policy.Views.Views.PolicyView.EventEvaluators
             var premium = view.Premiums.Single(p => p.PremiumId == @event.PremiumId);
             var partition = premium.Partitions.Single(p => p.PortionId == @event.PortionId);
 
-            var fund = view.Funds.FirstOrDefault(f => f.FundId == @event.FundId);
+            var fund = view.Funds.SingleOrDefault(f => f.FundId == @event.FundId);
             if (fund == null)
             {
                 fund = new Fund
