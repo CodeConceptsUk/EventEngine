@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading;
-using System.Xml.Schema;
+using CliConsole.Interfaces;
 using FrameworkExtensions.LinqExtensions;
 using log4net;
 using Microsoft.Practices.Unity;
@@ -14,6 +14,7 @@ using Policy.Plugin.Isa.Policy.Operations.Commands;
 using Policy.Plugin.Isa.Policy.Operations.PropertyBags;
 using Policy.Plugin.Isa.Policy.Views.Queries;
 using Policy.Plugin.Isa.Policy.Views.Views.PolicyView.Domain;
+using Program.Extensions;
 using Program.Factories;
 
 [assembly: log4net.Config.XmlConfigurator()]
@@ -29,6 +30,23 @@ namespace Program
         // 3. no sql stores
 
         private static void Main()
+        {
+            string command;
+            var container = new ContainerFactory().Create();
+            var consoleCommands = container.GetConsoleCommands().ToList();
+            var dispatcher = container.Resolve<IConsoleDispatcher>();
+
+            Console.Write($"Cli> ");
+            while ((command = Console.ReadLine()) != "exit")
+            {
+
+                var args = command.ParseArguments().ToArray();
+                dispatcher.DispatchCommand(consoleCommands, args);
+                Console.Write($"Cli> ");
+            }
+        }
+
+        private static void Main1()
         {
             var log = LogManager.GetLogger(nameof(Program));
             log.Debug("Logger Working");
@@ -60,7 +78,7 @@ namespace Program
                     if (day % 7 == 0) // add a new premium every 7 days
                     {
                         var premiumId = Guid.NewGuid().ToString();
-                        dispatcher.Apply(new AddPremiumCommand("1", premiumId, date,CreateRandomPremiumDetails()));
+                        dispatcher.Apply(new AddPremiumCommand("1", premiumId, date, CreateRandomPremiumDetails()));
                         dispatcher.Apply(new SetPremiumAsReceivedCommand("1", premiumId, date));
                     }
                     dispatcher.Apply(new AllocateUnitsCommand("1", date)); // alloate units daily
@@ -77,7 +95,7 @@ namespace Program
                     stopwatch.Start();
                 }
 
-                var snapshotStore = container.Resolve <ISnapshotStore<PolicyView>>();
+                var snapshotStore = container.Resolve<ISnapshotStore<PolicyView>>();
                 snapshotStore.ClearAllSnapshots(); // reset them all so we must calculate from scratch!!!
 
                 var timer = new Stopwatch();
@@ -113,7 +131,7 @@ namespace Program
                 _callIndex = 0;
                 AssertEquality(f.Allocations.Sum(a => a.Units), f.TotalUnits, $"{f.FundId} Unit Total Mismatch");
                 AssertEquality(f.Allocations.Sum(a => a.ShadowUnits), f.TotalShadowUnits, $"{f.FundId} Shadow Total Mismatch");
-                AssertEquality(0-f.Allocations.SelectMany(a => a.Charges).Sum(c => c.Units), f.TotalShadowUnits - f.TotalUnits, $"{f.FundId} Charge Total Vs Shadow Difference Mismatch");
+                AssertEquality(0 - f.Allocations.SelectMany(a => a.Charges).Sum(c => c.Units), f.TotalShadowUnits - f.TotalUnits, $"{f.FundId} Charge Total Vs Shadow Difference Mismatch");
             });
         }
 

@@ -9,16 +9,18 @@ namespace Program.Factories
         {
             var container = new UnityContainer();
 
+            container.RegisterInstance(container);
             AddPlugin<Policy.Plugin.Isa.Policy.Plugin>(container);
             AddPlugin<Policy.Plugin.Isa.Policy.DataAccess.Plugin>(container);
             AddPlugin<Policy.Plugin.Isa.Policy.Operations.Plugin>(container);
             AddPlugin<Policy.Plugin.Isa.Policy.Views.Plugin>(container);
+            AddPlugin<Plugin>(container);
 
             return container;
         }
 
         private static void AddPlugin<TPlugin>(IUnityContainer container)
-            where TPlugin : class, IContainer, new()
+                  where TPlugin : class, IContainer, new()
         {
             var plugin = new TPlugin();
             plugin.Setup(container);

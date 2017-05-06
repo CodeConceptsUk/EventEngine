@@ -17,6 +17,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Policy.Plugin.Isa.Policy.Op
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Policy.Plugin.Isa.Policy.Views", "Policy.Plugin.Isa.Policy.Views\Policy.Plugin.Isa.Policy.Views.csproj", "{F411399C-6A83-42F2-87EF-08ADF7DE1D9F}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{27530300-BC3C-492E-85D0-96F06563A20C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CliConsole.UnitTests", "CliConsole.UnitTests\CliConsole.UnitTests.csproj", "{B093B83C-7A67-4F29-95D4-0ADBAD84082E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CliConsole", "CliConsole\CliConsole.csproj", "{2165265F-4AFF-402A-A73A-D3C9F9A7E0AD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,8 +57,19 @@ Global
 		{F411399C-6A83-42F2-87EF-08ADF7DE1D9F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F411399C-6A83-42F2-87EF-08ADF7DE1D9F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F411399C-6A83-42F2-87EF-08ADF7DE1D9F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B093B83C-7A67-4F29-95D4-0ADBAD84082E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B093B83C-7A67-4F29-95D4-0ADBAD84082E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B093B83C-7A67-4F29-95D4-0ADBAD84082E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B093B83C-7A67-4F29-95D4-0ADBAD84082E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2165265F-4AFF-402A-A73A-D3C9F9A7E0AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2165265F-4AFF-402A-A73A-D3C9F9A7E0AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2165265F-4AFF-402A-A73A-D3C9F9A7E0AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2165265F-4AFF-402A-A73A-D3C9F9A7E0AD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{B093B83C-7A67-4F29-95D4-0ADBAD84082E} = {27530300-BC3C-492E-85D0-96F06563A20C}
 	EndGlobalSection
 EndGlobal

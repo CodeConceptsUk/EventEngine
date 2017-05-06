@@ -4,7 +4,6 @@ using Policy.Application;
 using Policy.Application.Interfaces;
 using Policy.Plugin.Isa.Policy.Events;
 using Policy.Plugin.Isa.Policy.Operations.BaseTypes;
-using Policy.Plugin.Isa.Policy.Operations.Commands;
 using IContainer = Policy.Application.Interfaces.IContainer;
 
 namespace Policy.Plugin.Isa.Policy.Operations
