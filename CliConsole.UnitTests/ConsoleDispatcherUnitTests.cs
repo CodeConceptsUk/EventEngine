@@ -1,12 +1,12 @@
 ﻿using System;
 using CliConsole.Interfaces;
 using CliConsole.Interfaces.Factories;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using NSubstitute;
 
 namespace CliConsole.UnitTests
 {
-    [TestClass]
+    [TestFixture]
     public class ConsoleDispatcherUnitTests
     {
         private ICommandInstanceFactory _instanceFactory;
@@ -14,8 +14,8 @@ namespace CliConsole.UnitTests
         private IConsoleProxy _consoleProxy;
         private IConsoleDispatcher _target;
 
-        [TestInitialize]
-        public void TestInitialize()
+        [SetUp]
+        public void SetUp()
         {
             _parser = Substitute.For<IConsoleParser>();
             _consoleProxy = Substitute.For<IConsoleProxy>();
@@ -23,7 +23,7 @@ namespace CliConsole.UnitTests
             _target = new ConsoleDispatcher(_instanceFactory, _parser, _consoleProxy);
         }
 
-        [TestMethod]
+        [Test]
         public void WhenIExecuteTheDispatcherWithOneMatchingCommandItIsRun()
         {
             var expectedCommandName = Guid.NewGuid().ToString();
@@ -42,7 +42,7 @@ namespace CliConsole.UnitTests
             _consoleProxy.Received(2).WriteLine(Arg.Is<string>(c => IsValidDebug(c, $"Executed {expectedCommandName}")));
         }
 
-        [TestMethod]
+        [Test]
         public void WhenIExecuteTheDispatcherWithMultipleMatchingCommandsTheyAreRun()
         {
             var expectedCommandName = Guid.NewGuid().ToString();
@@ -61,7 +61,7 @@ namespace CliConsole.UnitTests
             _consoleProxy.Received(4).WriteLine(Arg.Is<string>(c => IsValidDebug(c, $"Executed {expectedCommandName}")));
         }
 
-        [TestMethod]
+        [Test]
         public void WhenIExecuteTheDispatcherWithNoArgumentsNothingIsExecuted()
         {
             var commandName = Guid.NewGuid().ToString();

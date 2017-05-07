@@ -2,29 +2,29 @@
 using System.Linq;
 using CliConsole.Interfaces;
 using CliConsole.Interfaces.Convertors;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using NSubstitute;
 using NSubstitute.Core;
 // ReSharper disable UnusedVariable
 
 namespace CliConsole.UnitTests
 {
-    [TestClass]
+    [TestFixture]
     public class ConsoleParserUnitTests
     {
         private IValueConvertor _valueConvertor;
         private IConsoleParser _target;
         private IConsoleProxy _consoleProxy;
 
-        [TestInitialize]
-        public void TestInitialize()
+        [SetUp]
+        public void SetUp()
         {
             _valueConvertor = Substitute.For<IValueConvertor>();
             _consoleProxy = Substitute.For<IConsoleProxy>();
             _target = new ConsoleParser(_valueConvertor, _consoleProxy);
         }
 
-        [TestMethod]
+        [Test]
         public void WhenIParseTheCommandWithNoArgsThenAllMandatoryFieldsAreRequested()
         {
             const int expectedValue1 = 1;
@@ -53,7 +53,7 @@ namespace CliConsole.UnitTests
             _consoleProxy.Received(2).ReadLine();
         }
 
-        [TestMethod]
+        [Test]
         public void WhenIParseTheCommandWithNoArgsThenAllMandatoryFieldsAreRequestedButTheFirstArgumentIsRerequestedAsItCannotBeConverted()
         {
             const int expectedValue1 = 1;
@@ -83,7 +83,7 @@ namespace CliConsole.UnitTests
             _consoleProxy.Received(3).ReadLine();
         }
 
-        [TestMethod]
+        [Test]
         public void WhenIParseTheCommandWithAllMandatoryArgumentPassedNotOtherFieldsAreRequested()
         {
             const int expectedValue1 = 1;
@@ -115,7 +115,7 @@ namespace CliConsole.UnitTests
             _consoleProxy.Received(0).ReadLine();
         }
 
-        [TestMethod]
+        [Test]
         public void WhenIParseTheCommandWithNoArgsThenAllMandatoryFieldsAreRequestedWhenCtlCThenIExitTheCommand()
         {
             const int expectedValue1 = 1;

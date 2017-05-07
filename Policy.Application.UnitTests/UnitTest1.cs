@@ -11,7 +11,7 @@ namespace Policy.Application.UnitTests
         }
 
         [Test]
-        public void TestMethod1()
+        public void Test1()
         {
             Assert.Inconclusive("Not Yet Written");
         }

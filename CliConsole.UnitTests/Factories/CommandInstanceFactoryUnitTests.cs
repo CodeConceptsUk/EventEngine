@@ -2,27 +2,27 @@
 using CliConsole.Factories;
 using CliConsole.Interfaces;
 using CliConsole.Interfaces.Factories;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 // ReSharper disable UnassignedGetOnlyAutoProperty
 
 namespace CliConsole.UnitTests.Factories
 {
-    [TestClass]
+    [TestFixture]
     public class CommandInstanceFactoryUnitTests
     {
         private ICommandInstanceFactory _target;
 
-        [TestInitialize]
-        public void TestInitialize()
+        [SetUp]
+        public void SetUp()
         {
             _target = new CommandInstanceFactory();
         }
 
-        [TestMethod]
+        [Test]
         public void WhenICreateANewInstanceOfTheCommandItIsCreated()
         {
             var result = _target.Create(typeof(TestCommand));
-            Assert.IsInstanceOfType(result, typeof(ICommand));
+            Assert.IsInstanceOf<ICommand>(result);
         }
     }
 
