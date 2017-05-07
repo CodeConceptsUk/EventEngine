@@ -7,6 +7,7 @@ using FrameworkExtensions.ObjectExtensions;
 using log4net;
 using Microsoft.Practices.Unity;
 using Policy.Application.Interfaces;
+using Policy.Application.Interfaces.Factories;
 
 namespace Policy.Application
 {
@@ -14,11 +15,11 @@ namespace Policy.Application
         where TEvent : class, IEvent
     {
         private readonly IList<IEventEvaluator> _handlers = new List<IEventEvaluator>();
-        private ILog _logger;
+        private readonly ILog _logger;
 
-        public EventPlayer(IUnityContainer container)
+        public EventPlayer(IUnityContainer container, ILogFactory logFactory)
         {
-            _logger = LogManager.GetLogger(typeof(EventPlayer<TEvent>));
+            _logger = logFactory.GetLogger(typeof(EventPlayer<TEvent>));
             var handlers = container.ResolveAll(typeof(IEventEvaluator));
             handlers.ForEach(handler => _handlers.Add((IEventEvaluator)handler));
         }
@@ -26,10 +27,11 @@ namespace Policy.Application
         public TView Handle<TView>(IEnumerable<TEvent> events, TView view)
             where TView : class, IView
         {
-            _logger.Debug($"Evaluating {events.Count()} events against {view.GetType().Name}");
+            var eventArray = events.ToArray();
+            _logger.Debug($"Evaluating {eventArray.Length} events against {view.GetType().Name}");
             var stopwatch = new Stopwatch();
             stopwatch.Start();
-            events.ForEach(@event =>
+            eventArray.ForEach(@event =>
             {
                 var evaluators = GetEvaluator(@event.GetType(), typeof(TView));
                 evaluators.ForEach(evaluator =>
@@ -47,16 +49,16 @@ namespace Policy.Application
         {
             return _handlers
                 .Where(t => t.GetType()
-                .GetInterfaces()
-                .Any(i => IsCorrectHandler(i, @event, view)));
+                    .GetInterfaces()
+                    .Any(i => IsCorrectEvaluator(i, @event, view)));
         }
 
-        private static bool IsCorrectHandler(Type handlerInterface, Type eventType, Type viewType)
+        private static bool IsCorrectEvaluator(Type evaluatorInterface, Type eventType, Type viewType)
         {
-            if (!handlerInterface.IsGenericType || handlerInterface.GetGenericArguments().Length != 2)
+            if (!evaluatorInterface.IsGenericType || evaluatorInterface.GetGenericArguments().Length != 2)
                 return false;
 
-            var args = handlerInterface.GetGenericArguments();
+            var args = evaluatorInterface.GetGenericArguments();
             return args[0] == eventType &&
                    args[1] == viewType;
         }
