@@ -38,7 +38,10 @@ namespace Policy.Plugin.Isa.Policy.DataAccess.Sql
                     command.Parameters.Add("@CustomerId", SqlDbType.NVarChar, 255).Value = customerId;
                     using (var reader = command.ExecuteReader())
                     {
-                        contextIds.Add((Guid)reader[0]);
+                        while (reader.Read())
+                        {
+                            contextIds.Add((Guid) reader[0]);
+                        }
                     }
                 }
             }

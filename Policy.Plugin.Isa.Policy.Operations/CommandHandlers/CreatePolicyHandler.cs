@@ -17,7 +17,7 @@ namespace Policy.Plugin.Isa.Policy.Operations.CommandHandlers
 
         public override IEnumerable<IsaPolicyEvent> Execute(CreatePolicyCommand command)
         {
-            var policyNumber = _sequencingRepository.Get("IsaPolicy");
+            var policyNumber = _sequencingRepository.Get("IsaPolicyPolicyNumber");
             var @event = new PolicyCreatedEvent(policyNumber, command.CustomerId);
             return new[] { @event };
         }

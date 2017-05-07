@@ -15,7 +15,15 @@ namespace Policy.Plugin.Isa.Policy.Views.Views.PolicyView.EventEvaluators
                 PortionId = @event.PortionId,
                 ShadowUnits = @event.Units
             };
-            var fund = view.Funds.Single(f => f.FundId == @event.FundId);
+            var fund = view.Funds.SingleOrDefault(f => f.FundId == @event.FundId);
+            if (fund == null)
+            {
+                fund = new Fund
+                {
+                    FundId = @event.FundId
+                };
+                view.Funds.Add(fund);
+            }
             fund.Allocations.Add(allocation);
             fund.TotalUnits += @event.Units;
             fund.TotalShadowUnits += @event.Units;

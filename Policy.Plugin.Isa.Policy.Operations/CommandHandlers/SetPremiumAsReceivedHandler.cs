@@ -25,7 +25,7 @@ namespace Policy.Plugin.Isa.Policy.Operations.CommandHandlers
             var eventContextId = _policyEventContextIdQuery.GeteventContextId(command.PolicyNumber);
             if (!eventContextId.HasValue)
                 throw new QueryException($"The policy {command.PolicyNumber} does not exist!");
-            var policy = _singlePolicyQuery.Build(eventContextId.Value);
+            var policy = _singlePolicyQuery.Read(eventContextId.Value);
 
             var premium = policy.Premiums.Single(p => p.PremiumId == command.PremiumId);
             if (premium.IsAllocated)

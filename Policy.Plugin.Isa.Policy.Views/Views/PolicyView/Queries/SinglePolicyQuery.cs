@@ -24,7 +24,7 @@ namespace Policy.Plugin.Isa.Policy.Views.Views.PolicyView.Queries
             _player = player;
         }
 
-        public Domain.PolicyView Build(Guid contextId)
+        public Domain.PolicyView Read(Guid contextId)
         {
             var snapshot = _snapshotStoreStore.Get(contextId); //   snapshot => snapshot.)
 

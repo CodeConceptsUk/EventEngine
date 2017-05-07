@@ -47,6 +47,9 @@
     <Reference Include="Microsoft.Practices.Unity.RegistrationByConvention, Version=4.0.0.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f">
       <HintPath>..\packages\Unity.4.0.1\lib\net45\Microsoft.Practices.Unity.RegistrationByConvention.dll</HintPath>
     </Reference>
+    <Reference Include="NDesk.Options, Version=0.2.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\NDesk.Options.0.2.1\lib\NDesk.Options.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -57,15 +60,32 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ConsoleCommands\AddUnitsToFundConsoleCommand.cs" />
+    <Compile Include="ConsoleCommands\CreatePolicyConsoleCommand.cs" />
+    <Compile Include="ConsoleCommands\AddPremiumConsoleCommand.cs" />
+    <Compile Include="ConsoleCommands\GetCustomerPoliciesConsoleCommand.cs" />
+    <Compile Include="ConsoleCommands\GetPolicyTransactionsConsoleCommand.cs" />
+    <Compile Include="ConsoleCommands\GetPolicyConsoleCommand.cs" />
+    <Compile Include="ConsoleCommands\NowConsoleCommand.cs" />
+    <Compile Include="ConsoleCommands\HelpConsoleCommand.cs" />
+    <Compile Include="Extensions\ContainerExtensions.cs" />
+    <Compile Include="Extensions\StringExtensions.cs" />
+    <Compile Include="Factories\ContainerCommandInstanceFactory.cs" />
     <Compile Include="Factories\ContainerFactory.cs" />
+    <Compile Include="Plugin.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utils.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CliConsole\CliConsole.csproj">
+      <Project>{2165265f-4aff-402a-a73a-d3c9f9a7e0ad}</Project>
+      <Name>CliConsole</Name>
+    </ProjectReference>
     <ProjectReference Include="..\FrameworkExtensions\FrameworkExtensions.csproj">
       <Project>{21D128D0-4F13-4157-B454-00BEAF0A3DE3}</Project>
       <Name>FrameworkExtensions</Name>
