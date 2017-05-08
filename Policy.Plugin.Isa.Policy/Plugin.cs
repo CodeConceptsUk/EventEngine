@@ -1,4 +1,6 @@
-﻿using Microsoft.Practices.Unity;
+﻿using FrameworkExtensions.Factories;
+using FrameworkExtensions.Interfaces.Factories;
+using Microsoft.Practices.Unity;
 using Policy.Application;
 using Policy.Application.Factories;
 using Policy.Application.Interfaces;
@@ -21,6 +23,7 @@ namespace Policy.Plugin.Isa.Policy
                 WithLifetime.ContainerControlled);
             container.RegisterType<IEventPlayer<IsaPolicyEvent>, EventPlayer<IsaPolicyEvent>>();
             container.RegisterType<ILogFactory, LogFactory>();
+            container.RegisterType<IStopwatchFactory, StopwatchFactory>();
         }
     }
 }

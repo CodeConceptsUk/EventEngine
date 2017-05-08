@@ -33,8 +33,17 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Factories\StopwatchFactory.cs" />
+    <Compile Include="Interfaces\Factories\IStopwatchFactory.cs" />
+    <Compile Include="Interfaces\Utilities\IStopwatch.cs" />
     <Compile Include="LinqExtensions\ForEachExtensions.cs" />
     <Compile Include="ObjectExtensions\DynamicExtensions.cs" />
+    <Compile Include="Utilities\Stopwatch.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

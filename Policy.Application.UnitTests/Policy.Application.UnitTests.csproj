@@ -62,6 +62,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\FrameworkExtensions\FrameworkExtensions.csproj">
+      <Project>{21D128D0-4F13-4157-B454-00BEAF0A3DE3}</Project>
+      <Name>FrameworkExtensions</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Policy.Application\Policy.Application.csproj">
       <Project>{18373edd-6bd2-43d9-9aeb-b5c8668e5e9d}</Project>
       <Name>Policy.Application</Name>

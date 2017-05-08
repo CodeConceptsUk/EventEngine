@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using FrameworkExtensions.Interfaces.Factories;
 using FrameworkExtensions.LinqExtensions;
 using FrameworkExtensions.ObjectExtensions;
 using log4net;
@@ -14,14 +15,16 @@ namespace Policy.Application
     public class EventPlayer <TEvent>: IEventPlayer<TEvent>
         where TEvent : class, IEvent
     {
-        private readonly IList<IEventEvaluator> _handlers = new List<IEventEvaluator>();
+        private readonly IStopwatchFactory _stopwatchFactory;
+        private readonly List<IEventEvaluator> _handlers = new List<IEventEvaluator>();
         private readonly ILog _logger;
 
-        public EventPlayer(IUnityContainer container, ILogFactory logFactory)
+        public EventPlayer(IUnityContainer container, ILogFactory logFactory, IStopwatchFactory stopwatchFactory)
         {
+            _stopwatchFactory = stopwatchFactory;
             _logger = logFactory.GetLogger(typeof(EventPlayer<TEvent>));
-            var handlers = container.ResolveAll(typeof(IEventEvaluator));
-            handlers.ForEach(handler => _handlers.Add((IEventEvaluator)handler));
+            var handlers = container.ResolveAll(typeof(IEventEvaluator)).OfType<IEventEvaluator>().ToList();
+            _handlers.AddRange(handlers);
         }
 
         public TView Handle<TView>(IEnumerable<TEvent> events, TView view)
@@ -29,7 +32,7 @@ namespace Policy.Application
         {
             var eventArray = events.ToArray();
             _logger.Debug($"Evaluating {eventArray.Length} events against {view.GetType().Name}");
-            var stopwatch = new Stopwatch();
+            var stopwatch = _stopwatchFactory.Create();
             stopwatch.Start();
             eventArray.ForEach(@event =>
             {
