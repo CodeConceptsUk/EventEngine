@@ -19,6 +19,7 @@ namespace Policy.Plugin.Isa.Policy.Operations
                 WithName.Default,
                 WithLifetime.ContainerControlled);
             RegisterNamedTypes<ICommandHandler>(container);
+            RegisterNamedTypes<ICommand>(container);
             container.RegisterType<ICommandDispatcher<IsaPolicyCommand>, CommandDispatcher<IsaPolicyCommand, IsaPolicyEvent>>();
 
         }

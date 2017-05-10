@@ -52,6 +52,8 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -75,6 +77,12 @@
     <Compile Include="Plugin.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\CommandChannelClient.cs" />
+    <Compile Include="Services\ICommandChannelClientFactory.cs" />
+    <Compile Include="Services\Resolvers\CommandContractResolver.cs" />
+    <Compile Include="Services\Hosting\IServiceHosting.cs" />
+    <Compile Include="Services\RemoteClientService.cs" />
+    <Compile Include="Services\Hosting\ServiceHosting.cs" />
     <Compile Include="Utils.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -93,6 +101,10 @@
     <ProjectReference Include="..\Policy.Application\Policy.Application.csproj">
       <Project>{18373edd-6bd2-43d9-9aeb-b5c8668e5e9d}</Project>
       <Name>Policy.Application</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Policy.Contracts\Policy.Contracts.csproj">
+      <Project>{b033dae8-2d28-42a9-bfa1-6f3ab59c1040}</Project>
+      <Name>Policy.Contracts</Name>
     </ProjectReference>
     <ProjectReference Include="..\Policy.Plugin.Isa.Policy.DataAccess\Policy.Plugin.Isa.Policy.DataAccess.csproj">
       <Project>{6464b49c-b9ab-4919-ac2a-fef20598cb49}</Project>

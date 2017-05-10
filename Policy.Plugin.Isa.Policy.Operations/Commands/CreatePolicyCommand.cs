@@ -1,7 +1,9 @@
-﻿using Policy.Plugin.Isa.Policy.Operations.BaseTypes;
+﻿using System.Runtime.Serialization;
+using Policy.Plugin.Isa.Policy.Operations.BaseTypes;
 
 namespace Policy.Plugin.Isa.Policy.Operations.Commands
 {
+    [DataContract(Namespace = "http://codeconcepts.co.uk/commands")]
     public class CreatePolicyCommand : IsaPolicyCommand
     {
         public CreatePolicyCommand(int customerId)
@@ -9,6 +11,7 @@ namespace Policy.Plugin.Isa.Policy.Operations.Commands
             CustomerId = customerId;
         }
 
-        public int CustomerId { get; }
+        [DataMember]
+        public int CustomerId { get; set; }
     }
 }

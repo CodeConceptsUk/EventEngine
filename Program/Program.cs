@@ -17,6 +17,7 @@ using Policy.Plugin.Isa.Policy.Views.Queries;
 using Policy.Plugin.Isa.Policy.Views.Views.PolicyView.Domain;
 using Program.Extensions;
 using Program.Factories;
+using Program.Services;
 
 [assembly: log4net.Config.XmlConfigurator()]
 
@@ -32,19 +33,25 @@ namespace Program
 
         private static void Main()
         {
-            string command;
             var container = new ContainerFactory().Create();
             var consoleCommands = container.GetConsoleCommands().ToList();
             var dispatcher = container.Resolve<IConsoleDispatcher>();
 
-            Console.OutputEncoding = Encoding.UTF8;
-            Console.Write($"Cli> ");
-            while ((command = Console.ReadLine()) != "exit")
+            using (var service = container.Resolve<IServiceHosting>())
             {
+                service.Start();
 
-                var args = command.ParseArguments().ToArray();
-                dispatcher.DispatchCommand(consoleCommands, args);
+                Console.OutputEncoding = Encoding.UTF8;
                 Console.Write($"Cli> ");
+
+                string command;
+                while ((command = Console.ReadLine()) != "exit")
+                {
+
+                    var args = command.ParseArguments().ToArray();
+                    dispatcher.DispatchCommand(consoleCommands, args);
+                    Console.Write($"Cli> ");
+                }
             }
         }
 

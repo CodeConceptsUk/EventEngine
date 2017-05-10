@@ -7,7 +7,9 @@ using CliConsole.Interfaces.Factories;
 using FrameworkExtensions.LinqExtensions;
 using Microsoft.Practices.Unity;
 using Policy.Application.Interfaces;
+using Policy.Contracts.Services;
 using Program.Factories;
+using Program.Services;
 using ICommand = CliConsole.Interfaces.ICommand;
 
 namespace Program
@@ -21,6 +23,9 @@ namespace Program
             container.RegisterType<IConsoleParser, ConsoleParser>();
             container.RegisterType<IValueConvertor, ValueConvertor>();
             container.RegisterType<ICommandInstanceFactory, ContainerCommandInstanceFactory>();
+            container.RegisterType<IServiceHosting, ServiceHosting>();
+            container.RegisterType<IRemoteClientService, RemoteClientService>();
+            container.RegisterType<ICommandChannelClientFactory, CommandChannelClientFactory>();
             RegisterConsoleCommands(container);
         }
 

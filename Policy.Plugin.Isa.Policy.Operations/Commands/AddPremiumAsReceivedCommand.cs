@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 using Policy.Plugin.Isa.Policy.Operations.BaseTypes;
 using Policy.Plugin.Isa.Policy.Operations.PropertyBags;
 
 namespace Policy.Plugin.Isa.Policy.Operations.Commands
 {
+    [DataContract(Namespace = "http://codeconcepts.co.uk/commands")]
     public class AddPremiumAsReceivedCommand : IsaPolicyCommand
     {
         public AddPremiumAsReceivedCommand(string policyNumber, string premiumId, DateTime premiumDateTime, IEnumerable<FundPremiumDetail> fundPremiumDetail)
@@ -15,12 +17,16 @@ namespace Policy.Plugin.Isa.Policy.Operations.Commands
             FundPremiumDetail = fundPremiumDetail;
         }
 
-        public string PolicyNumber { get; }
+        [DataMember]
+        public string PolicyNumber { get; set; }
 
-        public string PremiumId { get; }
+        [DataMember]
+        public string PremiumId { get; set; }
 
-        public DateTime PremiumDateTime { get; }
+        [DataMember]
+        public DateTime PremiumDateTime { get; set; }
 
-        public IEnumerable<FundPremiumDetail> FundPremiumDetail { get; }
+        [DataMember]
+        public IEnumerable<FundPremiumDetail> FundPremiumDetail { get; set; }
     }
 }

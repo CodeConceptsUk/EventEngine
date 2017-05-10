@@ -1,26 +1,25 @@
 ﻿using CliConsole;
-using Policy.Application.Interfaces;
-using Policy.Plugin.Isa.Policy.Operations.BaseTypes;
 using Policy.Plugin.Isa.Policy.Operations.Commands;
+using Program.Services;
 
 namespace Program.ConsoleCommands
 {
     public class CreatePolicyConsoleCommand : InlineConsoleCommand
     {
-        private readonly ICommandDispatcher<IsaPolicyCommand> _dispatcher;
+        private readonly ICommandChannelClientFactory _commandChannelClientFactory;
         private int _customerId;
 
-        public CreatePolicyConsoleCommand(ICommandDispatcher<IsaPolicyCommand> dispatcher)
+        public CreatePolicyConsoleCommand(ICommandChannelClientFactory commandChannelClientFactory)
             : base("CreatePolicy", "Creates a new policy within the system")
         {
-            _dispatcher = dispatcher;
+            _commandChannelClientFactory = commandChannelClientFactory;
             HasRequiredOption<int>("customerId", "CustomerId that the policy will belong to:", p => _customerId = p);
         }
 
         protected override void Execute()
         {
-            var command = new CreatePolicyCommand(_customerId);
-            _dispatcher.Apply(command);
+            var client = _commandChannelClientFactory.Create();
+            client.Dispatch(new CreatePolicyCommand(_customerId));
         }
     }
 }
