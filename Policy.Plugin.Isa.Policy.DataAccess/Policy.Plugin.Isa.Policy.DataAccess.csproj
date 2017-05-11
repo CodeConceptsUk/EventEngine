@@ -60,7 +60,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="NoSql\SinglePolicySnapshotNoSqlStore.cs" />
-    <Compile Include="Plugin.cs" />
     <Compile Include="InMemory\IsaPolicyEventsInMemoryStore.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Sql\IsaPolicyEventsInSqlStore.cs" />

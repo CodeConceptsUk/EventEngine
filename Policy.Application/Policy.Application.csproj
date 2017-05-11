@@ -65,7 +65,6 @@
     <Compile Include="Interfaces\Factories\IEventPlayerFactory.cs" />
     <Compile Include="Factories\LogFactory.cs" />
     <Compile Include="Interfaces\Factories\ILogFactory.cs" />
-    <Compile Include="Interfaces\IContainer.cs" />
     <Compile Include="Interfaces\ICommand.cs" />
     <Compile Include="Interfaces\ICommandDispatcher.cs" />
     <Compile Include="Interfaces\ICommandHandler.cs" />

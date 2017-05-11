@@ -49,7 +49,6 @@
     <Compile Include="Commands\CreatePolicyCommand.cs" />
     <Compile Include="Commands\SetPremiumAsReceivedCommand.cs" />
     <Compile Include="Commands\AllocateUnitsCommand.cs" />
-    <Compile Include="Plugin.cs" />
     <Compile Include="PropertyBags\FundPremiumDetail.cs" />
   </ItemGroup>
   <ItemGroup>

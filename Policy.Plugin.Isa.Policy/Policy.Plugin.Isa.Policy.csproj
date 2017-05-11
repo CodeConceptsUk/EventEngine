@@ -66,7 +66,6 @@
     <Compile Include="Interfaces\DataAccess\ISequencingRepository.cs" />
     <Compile Include="Interfaces\DataAccess\IUnitPricingRepository.cs" />
     <Compile Include="Interfaces\Domain\IFund.cs" />
-    <Compile Include="Plugin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
