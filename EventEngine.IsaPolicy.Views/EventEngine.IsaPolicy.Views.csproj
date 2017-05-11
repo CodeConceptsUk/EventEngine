@@ -77,7 +77,11 @@
       <Project>{14808d5e-6d00-459a-98cb-53ac6b8ea4ae}</Project>
       <Name>EventEngine.IsaPolicy.Contracts</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Policy.Plugin.Isa.Policy\EventEngine.IsaPolicy.Events.csproj">
+    <ProjectReference Include="..\EventEngine.IsaPolicy.DataAccess\EventEngine.IsaPolicy.DataAccess.csproj">
+      <Project>{6464b49c-b9ab-4919-ac2a-fef20598cb49}</Project>
+      <Name>EventEngine.IsaPolicy.DataAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EventEngine.IsaPolicy.Events\EventEngine.IsaPolicy.Events.csproj">
       <Project>{ced460f4-690f-4561-94be-8a5dcd250a5a}</Project>
       <Name>EventEngine.IsaPolicy.Events</Name>
     </ProjectReference>
