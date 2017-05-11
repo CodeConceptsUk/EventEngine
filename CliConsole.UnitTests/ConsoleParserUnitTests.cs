@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using CliConsole.Interfaces;
 using CliConsole.Interfaces.Convertors;
 using NUnit.Framework;

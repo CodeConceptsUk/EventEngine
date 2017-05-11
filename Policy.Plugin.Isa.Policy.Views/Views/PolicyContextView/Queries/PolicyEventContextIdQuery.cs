@@ -1,9 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using Policy.Application.Interfaces;
-using Policy.Application.Interfaces.Repositories;
-using Policy.Plugin.Isa.Policy.Events;
 using Policy.Plugin.Isa.Policy.Interfaces.DataAccess;
 using Policy.Plugin.Isa.Policy.Views.Queries;
 

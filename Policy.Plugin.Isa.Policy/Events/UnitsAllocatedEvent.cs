@@ -1,5 +1,4 @@
 ﻿using System;
-using Policy.Application.Interfaces;
 
 namespace Policy.Plugin.Isa.Policy.Events
 {

@@ -6,7 +6,6 @@ using Policy.Application.Factories;
 using Policy.Application.Interfaces;
 using Policy.Application.Interfaces.Factories;
 using Policy.Plugin.Isa.Policy.Events;
-using Policy.Plugin.Isa.Policy.Interfaces.DataAccess;
 using IContainer = Policy.Application.Interfaces.IContainer;
 
 namespace Policy.Plugin.Isa.Policy

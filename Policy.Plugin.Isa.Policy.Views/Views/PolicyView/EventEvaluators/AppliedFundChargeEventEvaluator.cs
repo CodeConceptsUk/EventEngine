@@ -1,7 +1,6 @@
 ﻿using System.Linq;
 using Policy.Application.Interfaces;
 using Policy.Plugin.Isa.Policy.Events;
-using Policy.Plugin.Isa.Policy.Views.Views.PolicyView.Domain;
 
 namespace Policy.Plugin.Isa.Policy.Views.Views.PolicyView.EventEvaluators
 {
