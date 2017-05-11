@@ -46,14 +46,20 @@
     <Compile Include="BaseTypes\IsaPolicyCommand.cs" />
     <Compile Include="BaseTypes\IsaPolicyCommandHandler.cs" />
     <Compile Include="BaseTypes\IsaPolicyEvent.cs" />
+    <Compile Include="Commands\AddPremiumAsReceivedCommand.cs" />
+    <Compile Include="Commands\AddPremiumCommand.cs" />
+    <Compile Include="Commands\AddUnitsToFundCommand.cs" />
+    <Compile Include="Commands\AllocateUnitsCommand.cs" />
+    <Compile Include="Commands\CreateChargesCommand.cs" />
+    <Compile Include="Commands\CreatePolicyCommand.cs" />
+    <Compile Include="Commands\SetPremiumAsReceivedCommand.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PropertyBags\FundPremiumDetail.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Commands\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\EventEngine.Contracts\EventEngine.Contracts.csproj">
       <Project>{b033dae8-2d28-42a9-bfa1-6f3ab59c1040}</Project>
