@@ -1,8 +1,8 @@
-﻿using FrameworkExtensions.Interfaces.Factories;
-using FrameworkExtensions.Interfaces.Utilities;
-using FrameworkExtensions.Utilities;
+﻿using CodeConcepts.FrameworkExtensions.Interfaces.Factories;
+using CodeConcepts.FrameworkExtensions.Interfaces.Utilities;
+using CodeConcepts.FrameworkExtensions.Utilities;
 
-namespace FrameworkExtensions.Factories
+namespace CodeConcepts.FrameworkExtensions.Factories
 {
     public class StopwatchFactory : IStopwatchFactory
     {

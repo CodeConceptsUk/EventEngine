@@ -1,8 +1,9 @@
-﻿using Microsoft.Practices.Unity;
-using Policy.Contracts.Services;
-using Program.Factories;
+﻿using CodeConcepts.EventEngine.Contracts.Interfaces.Services;
+using CodeConcepts.EventEngine.Services.Hosting;
+using CodeConcepts.EventEngine.Shared.Runtime;
+using Microsoft.Practices.Unity;
 
-namespace Program.Services
+namespace CodeConcepts.EventEngine.Services
 {
     public class ServiceContainerFactory : ContainerFactory
     {

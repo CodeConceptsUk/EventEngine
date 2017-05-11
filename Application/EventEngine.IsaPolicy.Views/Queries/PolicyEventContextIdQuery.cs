@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
-using Policy.Plugin.Isa.Policy.Interfaces.DataAccess;
+using CodeConcepts.EventEngine.IsaPolicy.DataAccess.Interfaces;
 
-namespace Policy.Plugin.Isa.Policy.Views.Views.PolicyContextView.Queries
+namespace CodeConcepts.EventEngine.IsaPolicy.Views.Queries
 {
     public class PolicyEventContextIdQuery
     {

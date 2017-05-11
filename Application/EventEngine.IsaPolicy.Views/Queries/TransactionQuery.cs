@@ -1,7 +1,7 @@
-﻿using Policy.Plugin.Isa.Policy.Views.Queries;
-using Policy.Plugin.Isa.Policy.Views.Views.PolicyTransactionsView.Domain;
+﻿using CodeConcepts.EventEngine.IsaPolicy.Views.Queries.Interfaces;
+using CodeConcepts.EventEngine.IsaPolicy.Views.Views.PolicyTransactionsView.Domain;
 
-namespace Policy.Plugin.Isa.Policy.Views.Views.AggregateQueries
+namespace CodeConcepts.EventEngine.IsaPolicy.Views.Queries
 {
     public class TransactionQuery : ITransactionQuery
     {

@@ -2,11 +2,11 @@
 using System.Linq;
 using System.ServiceModel;
 using System.ServiceModel.Description;
-using EventEngine.Contracts.Resolvers;
+using CodeConcepts.EventEngine.Contracts.Interfaces.Services;
+using CodeConcepts.EventEngine.Contracts.Resolvers;
 using Microsoft.Practices.Unity;
-using Policy.Contracts.Services;
 
-namespace Program.Services
+namespace CodeConcepts.EventEngine.Services.Hosting
 {
     public class ServiceHosting : IServiceHosting
     {

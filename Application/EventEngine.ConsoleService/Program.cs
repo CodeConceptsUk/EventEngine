@@ -1,9 +1,10 @@
 ﻿using System;
+using CodeConcepts.EventEngine.Services;
+using CodeConcepts.EventEngine.Services.Hosting;
 using Microsoft.Practices.Unity;
-using Program.Services;
 
 [assembly: log4net.Config.XmlConfigurator]
-namespace Program
+namespace CodeConcepts.EventEngine.ConsoleService
 {
     internal class Program
     {

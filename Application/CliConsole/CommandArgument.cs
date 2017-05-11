@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CliConsole
+namespace CodeConcepts.CliConsole
 {
     public class CommandArgument<T> : CommandArgument
     {

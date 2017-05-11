@@ -1,15 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using FrameworkExtensions.LinqExtensions;
-using FrameworkExtensions.ObjectExtensions;
+using CodeConcepts.EventEngine.Application.Interfaces;
+using CodeConcepts.EventEngine.Application.Interfaces.Factories;
+using CodeConcepts.EventEngine.Application.Interfaces.Repositories;
+using CodeConcepts.EventEngine.Contracts.Interfaces;
+using CodeConcepts.FrameworkExtensions.LinqExtensions;
+using CodeConcepts.FrameworkExtensions.ObjectExtensions;
 using log4net;
 using Microsoft.Practices.Unity;
-using Policy.Application.Interfaces;
-using Policy.Application.Interfaces.Factories;
-using Policy.Application.Interfaces.Repositories;
 
-namespace Policy.Application
+namespace CodeConcepts.EventEngine.Application
 {
     public class CommandDispatcher<TCommand, TEvent> : ICommandDispatcher<TCommand>
         where TCommand : class, ICommand

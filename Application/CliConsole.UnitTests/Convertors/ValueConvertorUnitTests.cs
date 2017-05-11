@@ -1,9 +1,9 @@
 ﻿using System;
-using CliConsole.Convertors;
-using CliConsole.Interfaces.Convertors;
+using CodeConcepts.CliConsole.Convertors;
+using CodeConcepts.CliConsole.Interfaces.Convertors;
 using NUnit.Framework;
 
-namespace CliConsole.UnitTests.Convertors
+namespace CodeConcepts.CliConsole.UnitTests.Convertors
 {
     [TestFixture]
     public class ValueConvertorUnitTests

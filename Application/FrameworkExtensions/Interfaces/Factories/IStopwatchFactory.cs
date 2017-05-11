@@ -1,6 +1,6 @@
-﻿using FrameworkExtensions.Interfaces.Utilities;
+﻿using CodeConcepts.FrameworkExtensions.Interfaces.Utilities;
 
-namespace FrameworkExtensions.Interfaces.Factories
+namespace CodeConcepts.FrameworkExtensions.Interfaces.Factories
 {
     public interface IStopwatchFactory
     {

@@ -1,9 +1,10 @@
-﻿using FrameworkExtensions.Interfaces.Factories;
+﻿using CodeConcepts.EventEngine.Application.Interfaces;
+using CodeConcepts.EventEngine.Application.Interfaces.Factories;
+using CodeConcepts.EventEngine.Contracts.Interfaces;
+using CodeConcepts.FrameworkExtensions.Interfaces.Factories;
 using Microsoft.Practices.Unity;
-using Policy.Application.Interfaces;
-using Policy.Application.Interfaces.Factories;
 
-namespace Policy.Application.Factories
+namespace CodeConcepts.EventEngine.Application.Factories
 {
     public class EventPlayerFactory : IEventPlayerFactory
     {

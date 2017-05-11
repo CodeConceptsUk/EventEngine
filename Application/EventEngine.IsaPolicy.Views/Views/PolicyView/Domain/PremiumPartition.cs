@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Policy.Plugin.Isa.Policy.Views.Views.PolicyView.Domain
+namespace CodeConcepts.EventEngine.IsaPolicy.Views.Views.PolicyView.Domain
 {
     public class PremiumPartition
     {

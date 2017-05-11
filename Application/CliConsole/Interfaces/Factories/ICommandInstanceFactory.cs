@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CliConsole.Interfaces.Factories
+namespace CodeConcepts.CliConsole.Interfaces.Factories
 {
     public interface ICommandInstanceFactory
     {

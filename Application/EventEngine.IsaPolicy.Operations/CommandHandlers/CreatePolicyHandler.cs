@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
-using Policy.Plugin.Isa.Policy.Events;
-using Policy.Plugin.Isa.Policy.Interfaces.DataAccess;
-using Policy.Plugin.Isa.Policy.Operations.BaseTypes;
-using Policy.Plugin.Isa.Policy.Operations.Commands;
+using CodeConcepts.EventEngine.IsaPolicy.Contracts.BaseTypes;
+using CodeConcepts.EventEngine.IsaPolicy.Contracts.Commands;
+using CodeConcepts.EventEngine.IsaPolicy.DataAccess.Interfaces;
+using CodeConcepts.EventEngine.IsaPolicy.Events.Events;
 
-namespace Policy.Plugin.Isa.Policy.Operations.CommandHandlers
+namespace CodeConcepts.EventEngine.IsaPolicy.Operations.CommandHandlers
 {
     public class CreatePolicyHandler : IsaPolicyCommandHandler<CreatePolicyCommand>
     {

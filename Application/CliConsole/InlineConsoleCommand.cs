@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using CliConsole.Exceptions;
-using CliConsole.Interfaces;
+using CodeConcepts.CliConsole.Exceptions;
+using CodeConcepts.CliConsole.Interfaces;
 
-namespace CliConsole
+namespace CodeConcepts.CliConsole
 {
     public abstract class InlineConsoleCommand : ICommand
     {

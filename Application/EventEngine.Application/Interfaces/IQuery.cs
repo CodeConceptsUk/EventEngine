@@ -1,4 +1,4 @@
-﻿namespace Policy.Application.Interfaces
+﻿namespace CodeConcepts.EventEngine.Application.Interfaces
 {
     public interface IQuery 
     {

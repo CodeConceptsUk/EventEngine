@@ -1,4 +1,4 @@
-﻿namespace CliConsole.Exceptions
+﻿namespace CodeConcepts.CliConsole.Exceptions
 {
     public class ConsoleCommandConstructionException : ConsoleException
     {

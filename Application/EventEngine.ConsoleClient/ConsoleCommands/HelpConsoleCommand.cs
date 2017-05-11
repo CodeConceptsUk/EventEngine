@@ -1,7 +1,7 @@
-﻿using CliConsole;
-using CliConsole.Interfaces;
+﻿using CodeConcepts.CliConsole;
+using CodeConcepts.CliConsole.Interfaces;
 using CodeConcepts.EventEngine.ConsoleClient.Extensions;
-using FrameworkExtensions.LinqExtensions;
+using CodeConcepts.FrameworkExtensions.LinqExtensions;
 using Microsoft.Practices.Unity;
 
 namespace CodeConcepts.EventEngine.ConsoleClient.ConsoleCommands

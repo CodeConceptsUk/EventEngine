@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using FrameworkExtensions.LinqExtensions;
-using Policy.Application.Interfaces;
-using Policy.Plugin.Isa.Policy.Events;
-using Policy.Plugin.Isa.Policy.Interfaces.DataAccess;
+using CodeConcepts.EventEngine.Contracts.Interfaces;
+using CodeConcepts.EventEngine.IsaPolicy.Contracts.BaseTypes;
+using CodeConcepts.EventEngine.IsaPolicy.DataAccess.Interfaces;
+using CodeConcepts.EventEngine.IsaPolicy.Events.Events;
+using CodeConcepts.FrameworkExtensions.LinqExtensions;
 
-namespace Policy.Plugin.Isa.Policy.DataAccess.InMemory
+namespace CodeConcepts.EventEngine.IsaPolicy.DataAccess.InMemory
 {
     public class IsaPolicyEventsInMemoryStore : IIsaPolicyEventStoreRepository
     {

@@ -1,14 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using FrameworkExtensions.LinqExtensions;
-using Policy.Application.Exceptions;
-using Policy.Plugin.Isa.Policy.Events;
-using Policy.Plugin.Isa.Policy.Operations.BaseTypes;
-using Policy.Plugin.Isa.Policy.Operations.Commands;
-using Policy.Plugin.Isa.Policy.Views.Queries;
+using CodeConcepts.EventEngine.Application.Exceptions;
+using CodeConcepts.EventEngine.IsaPolicy.Contracts.BaseTypes;
+using CodeConcepts.EventEngine.IsaPolicy.Contracts.Commands;
+using CodeConcepts.EventEngine.IsaPolicy.Events.Events;
+using CodeConcepts.EventEngine.IsaPolicy.Views.Queries.Interfaces;
+using CodeConcepts.EventEngine.IsaPolicy.Views.Views.PolicyView.Domain;
+using CodeConcepts.FrameworkExtensions.LinqExtensions;
 
-namespace Policy.Plugin.Isa.Policy.Operations.CommandHandlers
+namespace CodeConcepts.EventEngine.IsaPolicy.Operations.CommandHandlers
 {
     public class CreateChargesHandler : IsaPolicyCommandHandler<CreateChargesCommand>
     {
@@ -33,7 +34,7 @@ namespace Policy.Plugin.Isa.Policy.Operations.CommandHandlers
 
             policy.Funds.ForEach(fund =>
             {
-                fund.Allocations.Where(allocation => allocation.Units > 0).ForEach(allocation =>
+                Enumerable.Where<FundAllocation>(fund.Allocations, allocation => allocation.Units > 0).ForEach(allocation =>
                   {
                       var deductedUnits = CalculateFundDeduction(allocation.Units);
                       events.Add(new AppliedFundChargeEvent(eventContextId.Value, fund.FundId, allocation.PortionId, deductedUnits, command.ChargeDate));

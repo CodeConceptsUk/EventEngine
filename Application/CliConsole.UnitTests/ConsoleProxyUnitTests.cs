@@ -1,9 +1,9 @@
 ﻿using System;
 using System.IO;
-using CliConsole.Interfaces;
+using CodeConcepts.CliConsole.Interfaces;
 using NUnit.Framework;
 
-namespace CliConsole.UnitTests
+namespace CodeConcepts.CliConsole.UnitTests
 {
     [TestFixture]
     public class ConsoleProxyUnitTests

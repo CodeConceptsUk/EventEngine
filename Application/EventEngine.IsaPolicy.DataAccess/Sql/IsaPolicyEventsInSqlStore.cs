@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
+using CodeConcepts.EventEngine.IsaPolicy.Contracts.BaseTypes;
+using CodeConcepts.EventEngine.IsaPolicy.DataAccess.Interfaces;
 using Newtonsoft.Json;
-using Policy.Plugin.Isa.Policy.Events;
-using Policy.Plugin.Isa.Policy.Interfaces.DataAccess;
 
-namespace Policy.Plugin.Isa.Policy.DataAccess.Sql
+namespace CodeConcepts.EventEngine.IsaPolicy.DataAccess.Sql
 {
     public class IsaPolicyEventsInSqlStore : IIsaPolicyEventStoreRepository
     {

@@ -2,14 +2,15 @@
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Linq;
+using CodeConcepts.EventEngine.Application.Interfaces;
+using CodeConcepts.EventEngine.Application.Interfaces.Repositories;
+using CodeConcepts.EventEngine.Application.PropertyBags;
+using CodeConcepts.EventEngine.Contracts.Interfaces;
+using CodeConcepts.EventEngine.IsaPolicy.Views.Views.PolicyTransactionsView.Domain;
+using CodeConcepts.EventEngine.IsaPolicy.Views.Views.PolicyView.Domain;
 using Newtonsoft.Json;
-using Policy.Application.Interfaces;
-using Policy.Application.Interfaces.Repositories;
-using Policy.Application.PropertyBags;
-using Policy.Plugin.Isa.Policy.Views.Views.PolicyTransactionsView.Domain;
-using Policy.Plugin.Isa.Policy.Views.Views.PolicyView.Domain;
 
-namespace Policy.Plugin.Isa.Policy.DataAccess.InMemory
+namespace CodeConcepts.EventEngine.IsaPolicy.Views.DataAccess.InMemory
 {
     public abstract class SnapshotMemoryStore<TView> : ISnapshotStore<TView>
         where TView : class, IView

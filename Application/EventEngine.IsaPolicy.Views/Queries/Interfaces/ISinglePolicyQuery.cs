@@ -1,8 +1,8 @@
 ﻿using System;
-using Policy.Application.Interfaces;
-using Policy.Plugin.Isa.Policy.Views.Views.PolicyView.Domain;
+using CodeConcepts.EventEngine.Application.Interfaces;
+using CodeConcepts.EventEngine.IsaPolicy.Views.Views.PolicyView.Domain;
 
-namespace Policy.Plugin.Isa.Policy.Views.Queries
+namespace CodeConcepts.EventEngine.IsaPolicy.Views.Queries.Interfaces
 {
     public interface ISinglePolicyQuery : IQuery
     {

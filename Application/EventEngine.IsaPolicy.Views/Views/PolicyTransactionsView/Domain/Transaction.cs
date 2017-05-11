@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Policy.Plugin.Isa.Policy.Views.Views.PolicyTransactionsView.Domain
+namespace CodeConcepts.EventEngine.IsaPolicy.Views.Views.PolicyTransactionsView.Domain
 {
     public class Transaction
     {

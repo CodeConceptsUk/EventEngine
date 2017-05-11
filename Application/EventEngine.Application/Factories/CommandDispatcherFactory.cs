@@ -1,8 +1,9 @@
-﻿using Microsoft.Practices.Unity;
-using Policy.Application.Interfaces;
-using Policy.Application.Interfaces.Factories;
+﻿using CodeConcepts.EventEngine.Application.Interfaces;
+using CodeConcepts.EventEngine.Application.Interfaces.Factories;
+using CodeConcepts.EventEngine.Contracts.Interfaces;
+using Microsoft.Practices.Unity;
 
-namespace Policy.Application.Factories
+namespace CodeConcepts.EventEngine.Application.Factories
 {
     public class CommandDispatcherFactory : ICommandDispatcherFactory
     {

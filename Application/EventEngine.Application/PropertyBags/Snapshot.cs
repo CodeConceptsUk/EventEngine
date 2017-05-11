@@ -1,6 +1,7 @@
-﻿using Policy.Application.Interfaces;
+﻿using CodeConcepts.EventEngine.Application.Interfaces;
+using CodeConcepts.EventEngine.Contracts.Interfaces;
 
-namespace Policy.Application.PropertyBags
+namespace CodeConcepts.EventEngine.Application.PropertyBags
 {
     public class Snapshot<TView> : ISnapshot<TView>
         where TView : class, IView

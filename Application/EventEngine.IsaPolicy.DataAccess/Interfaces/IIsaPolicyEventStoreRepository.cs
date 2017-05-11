@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using Policy.Application.Interfaces.Repositories;
-using Policy.Plugin.Isa.Policy.Events;
+using CodeConcepts.EventEngine.Application.Interfaces.Repositories;
+using CodeConcepts.EventEngine.IsaPolicy.Contracts.BaseTypes;
 
-namespace Policy.Plugin.Isa.Policy.Interfaces.DataAccess
+namespace CodeConcepts.EventEngine.IsaPolicy.DataAccess.Interfaces
 {
     public interface IIsaPolicyEventStoreRepository : IEventStoreRepository<IsaPolicyEvent>
     {

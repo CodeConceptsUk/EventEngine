@@ -1,4 +1,4 @@
-﻿namespace Policy.Application.Interfaces
+﻿namespace CodeConcepts.EventEngine.Contracts.Interfaces
 {
     public interface ICommand
     {

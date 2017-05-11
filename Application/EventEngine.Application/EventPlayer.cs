@@ -1,15 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using FrameworkExtensions.Interfaces.Factories;
-using FrameworkExtensions.LinqExtensions;
-using FrameworkExtensions.ObjectExtensions;
+using CodeConcepts.EventEngine.Application.Interfaces;
+using CodeConcepts.EventEngine.Application.Interfaces.Factories;
+using CodeConcepts.EventEngine.Contracts.Interfaces;
+using CodeConcepts.FrameworkExtensions.Interfaces.Factories;
+using CodeConcepts.FrameworkExtensions.LinqExtensions;
+using CodeConcepts.FrameworkExtensions.ObjectExtensions;
 using log4net;
 using Microsoft.Practices.Unity;
-using Policy.Application.Interfaces;
-using Policy.Application.Interfaces.Factories;
 
-namespace Policy.Application
+namespace CodeConcepts.EventEngine.Application
 {
     public class EventPlayer <TEvent>: IEventPlayer<TEvent>
         where TEvent : class, IEvent
@@ -38,7 +39,7 @@ namespace Policy.Application
                 var evaluators = GetEvaluator(@event.GetType(), typeof(TView));
                 evaluators.ForEach(evaluator =>
                 {
-                    evaluator.AsDynamic().Evaluate(view, @event.AsDynamic());
+                    DynamicExtensions.AsDynamic(evaluator).Evaluate(view, DynamicExtensions.AsDynamic(@event));
                 });
             });
             stopwatch.Stop();

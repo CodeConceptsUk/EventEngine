@@ -1,7 +1,7 @@
 ﻿using System;
 using log4net;
 
-namespace Policy.Application.Interfaces.Factories
+namespace CodeConcepts.EventEngine.Application.Interfaces.Factories
 {
     public interface ILogFactory
     {

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CliConsole.Exceptions
+namespace CodeConcepts.CliConsole.Exceptions
 {
     public class ConsoleException : Exception
     {

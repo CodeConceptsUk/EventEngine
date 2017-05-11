@@ -1,9 +1,8 @@
 ﻿using System.Collections.Generic;
-using Policy.Plugin.Isa.Policy.Events;
-using Policy.Plugin.Isa.Policy.Operations.BaseTypes;
-using Policy.Plugin.Isa.Policy.Operations.Commands;
+using CodeConcepts.EventEngine.IsaPolicy.Contracts.BaseTypes;
+using CodeConcepts.EventEngine.IsaPolicy.Contracts.Commands;
 
-namespace Policy.Plugin.Isa.Policy.Operations.CommandHandlers
+namespace CodeConcepts.EventEngine.IsaPolicy.Operations.CommandHandlers
 {
     public class AddPremiumAsReceivedHandler : IsaPolicyCommandHandler<AddPremiumAsReceivedCommand>
     {

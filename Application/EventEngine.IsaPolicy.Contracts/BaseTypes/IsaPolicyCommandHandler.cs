@@ -1,8 +1,7 @@
 ﻿using System.Collections.Generic;
-using Policy.Application.Interfaces;
-using Policy.Plugin.Isa.Policy.Events;
+using CodeConcepts.EventEngine.Contracts.Interfaces;
 
-namespace Policy.Plugin.Isa.Policy.Operations.BaseTypes
+namespace CodeConcepts.EventEngine.IsaPolicy.Contracts.BaseTypes
 {
     public abstract class IsaPolicyCommandHandler<TCommand> : ICommandHandler<TCommand, IsaPolicyEvent>
         where TCommand : IsaPolicyCommand

@@ -1,8 +1,8 @@
-﻿using MSStopwatch = System.Diagnostics.Stopwatch;
-using System;
-using FrameworkExtensions.Interfaces.Utilities;
+﻿using System;
+using CodeConcepts.FrameworkExtensions.Interfaces.Utilities;
+using MSStopwatch = System.Diagnostics.Stopwatch;
 
-namespace FrameworkExtensions.Utilities
+namespace CodeConcepts.FrameworkExtensions.Utilities
 {
     public class Stopwatch : IStopwatch
     {

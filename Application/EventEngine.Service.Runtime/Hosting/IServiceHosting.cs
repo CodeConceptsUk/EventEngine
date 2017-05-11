@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Program.Services
+namespace CodeConcepts.EventEngine.Services.Hosting
 {
     public interface IServiceHosting : IDisposable
     {

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace FrameworkExtensions.Interfaces.Utilities
+namespace CodeConcepts.FrameworkExtensions.Interfaces.Utilities
 {
     public interface IStopwatch
     {

@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace CliConsole.Interfaces
+namespace CodeConcepts.CliConsole.Interfaces
 {
     public interface ICommand
     {

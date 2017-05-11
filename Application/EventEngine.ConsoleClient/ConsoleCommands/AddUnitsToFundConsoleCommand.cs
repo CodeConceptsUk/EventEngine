@@ -1,12 +1,9 @@
 ﻿using System;
-using CliConsole;
-using CliConsole.Interfaces;
-using Policy.Application.Interfaces;
-using Policy.Plugin.Isa.Policy.Operations.BaseTypes;
-using Policy.Plugin.Isa.Policy.Operations.Commands;
-using Program.Services;
+using CodeConcepts.CliConsole;
+using CodeConcepts.EventEngine.ClientLibrary.Interfaces;
+using CodeConcepts.EventEngine.IsaPolicy.Contracts.Commands;
 
-namespace Program.ConsoleCommands
+namespace CodeConcepts.EventEngine.ConsoleClient.ConsoleCommands
 {
     public class AddUnitsToFundConsoleCommand : InlineConsoleCommand
     {

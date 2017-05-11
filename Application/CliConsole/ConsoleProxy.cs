@@ -1,7 +1,7 @@
 ﻿using System;
-using CliConsole.Interfaces;
+using CodeConcepts.CliConsole.Interfaces;
 
-namespace CliConsole
+namespace CodeConcepts.CliConsole
 {
     public class ConsoleProxy : IConsoleProxy
     {

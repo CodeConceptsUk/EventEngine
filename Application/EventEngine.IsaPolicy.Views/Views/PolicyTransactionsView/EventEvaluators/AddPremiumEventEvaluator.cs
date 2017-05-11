@@ -1,9 +1,9 @@
 using System.Linq;
-using Policy.Application.Interfaces;
-using Policy.Plugin.Isa.Policy.Events;
-using Policy.Plugin.Isa.Policy.Views.Views.PolicyTransactionsView.Domain;
+using CodeConcepts.EventEngine.Application.Interfaces;
+using CodeConcepts.EventEngine.IsaPolicy.Events.Events;
+using CodeConcepts.EventEngine.IsaPolicy.Views.Views.PolicyTransactionsView.Domain;
 
-namespace Policy.Plugin.Isa.Policy.Views.Views.PolicyTransactionsView.EventEvaluators
+namespace CodeConcepts.EventEngine.IsaPolicy.Views.Views.PolicyTransactionsView.EventEvaluators
 {
     public class AddPremiumEventEvaluator : IEventEvaluator<AddPremiumEvent, PolicyTransactionView>
     {

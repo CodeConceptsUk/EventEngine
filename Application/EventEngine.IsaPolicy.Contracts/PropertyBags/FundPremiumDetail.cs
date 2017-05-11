@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.Serialization;
 
-namespace Policy.Plugin.Isa.Policy.Operations.PropertyBags
+namespace CodeConcepts.EventEngine.IsaPolicy.Contracts.PropertyBags
 {
     [DataContract(Namespace = "http://codeconcepts.co.uk/commands")]
     public class FundPremiumDetail

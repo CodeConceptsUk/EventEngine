@@ -1,7 +1,7 @@
 ﻿using System;
-using Policy.Application.Interfaces;
+using CodeConcepts.EventEngine.Contracts.Interfaces;
 
-namespace Policy.Plugin.Isa.Policy.Events
+namespace CodeConcepts.EventEngine.IsaPolicy.Contracts.BaseTypes
 {
     public abstract class IsaPolicyEvent : IEvent
     {

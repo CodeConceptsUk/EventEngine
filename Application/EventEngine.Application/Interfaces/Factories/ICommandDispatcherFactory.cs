@@ -1,4 +1,6 @@
-﻿namespace Policy.Application.Interfaces.Factories
+﻿using CodeConcepts.EventEngine.Contracts.Interfaces;
+
+namespace CodeConcepts.EventEngine.Application.Interfaces.Factories
 {
     public interface ICommandDispatcherFactory
     {

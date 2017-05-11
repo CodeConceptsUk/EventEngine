@@ -1,11 +1,12 @@
 ﻿using System;
 using System.ServiceModel;
 using System.ServiceModel.Description;
-using EventEngine.Contracts.Resolvers;
+using CodeConcepts.EventEngine.ClientLibrary.Interfaces;
+using CodeConcepts.EventEngine.Contracts.Interfaces.Services;
+using CodeConcepts.EventEngine.Contracts.Resolvers;
 using Microsoft.Practices.Unity;
-using Policy.Contracts.Services;
 
-namespace Program.Services
+namespace CodeConcepts.EventEngine.ClientLibrary
 {
     public class CommandChannelClientFactory : ICommandChannelClientFactory, IDisposable
     {

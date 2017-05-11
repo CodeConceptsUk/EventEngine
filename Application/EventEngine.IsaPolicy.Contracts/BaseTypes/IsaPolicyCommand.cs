@@ -1,7 +1,7 @@
 ﻿using System.Runtime.Serialization;
-using Policy.Application.Interfaces;
+using CodeConcepts.EventEngine.Contracts.Interfaces;
 
-namespace Policy.Plugin.Isa.Policy.Operations.BaseTypes
+namespace CodeConcepts.EventEngine.IsaPolicy.Contracts.BaseTypes
 {
     [DataContract]
     public abstract class IsaPolicyCommand : ICommand

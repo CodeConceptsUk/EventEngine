@@ -1,7 +1,7 @@
 ﻿using System.Runtime.Serialization;
-using Policy.Plugin.Isa.Policy.Operations.BaseTypes;
+using CodeConcepts.EventEngine.IsaPolicy.Contracts.BaseTypes;
 
-namespace Policy.Plugin.Isa.Policy.Operations.Commands
+namespace CodeConcepts.EventEngine.IsaPolicy.Contracts.Commands
 {
     [DataContract(Namespace = "http://codeconcepts.co.uk/commands")]
     public class CreatePolicyCommand : IsaPolicyCommand

@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using Policy.Application.Interfaces;
+using CodeConcepts.EventEngine.Application.Interfaces;
 
-namespace Policy.Plugin.Isa.Policy.Views.Queries
+namespace CodeConcepts.EventEngine.IsaPolicy.Views.Queries.Interfaces
 {
     public interface IPolicyEventContextIdQuery : IQuery
     {

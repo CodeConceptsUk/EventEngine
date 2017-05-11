@@ -1,7 +1,7 @@
 using System;
-using Policy.Application.Interfaces;
+using CodeConcepts.EventEngine.Application.Interfaces;
 
-namespace Policy.Plugin.Isa.Policy.Views.Views.PolicyContextView.Domain
+namespace CodeConcepts.EventEngine.IsaPolicy.Views.Views.PolicyContextView.Domain
 {
     public class PolicyContextView : IView
     {

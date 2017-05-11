@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
-using Policy.Plugin.Isa.Policy.Operations.BaseTypes;
-using Policy.Plugin.Isa.Policy.Operations.PropertyBags;
+using CodeConcepts.EventEngine.IsaPolicy.Contracts.BaseTypes;
+using CodeConcepts.EventEngine.IsaPolicy.Contracts.PropertyBags;
 
-namespace Policy.Plugin.Isa.Policy.Operations.Commands
+namespace CodeConcepts.EventEngine.IsaPolicy.Contracts.Commands
 {
     [DataContract(Namespace = "http://codeconcepts.co.uk/commands")]
     public class AddPremiumCommand : IsaPolicyCommand

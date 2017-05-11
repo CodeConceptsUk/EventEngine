@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using CliConsole.Interfaces;
-using CliConsole.Interfaces.Convertors;
+using CodeConcepts.CliConsole.Interfaces;
+using CodeConcepts.CliConsole.Interfaces.Convertors;
 
-namespace CliConsole
+namespace CodeConcepts.CliConsole
 {
     public class ConsoleParser : IConsoleParser
     {

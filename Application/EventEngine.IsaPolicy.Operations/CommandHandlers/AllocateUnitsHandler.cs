@@ -1,16 +1,16 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using FrameworkExtensions.LinqExtensions;
-using Policy.Application.Exceptions;
-using Policy.Plugin.Isa.Policy.Events;
-using Policy.Plugin.Isa.Policy.Interfaces.DataAccess;
-using Policy.Plugin.Isa.Policy.Operations.BaseTypes;
-using Policy.Plugin.Isa.Policy.Operations.Commands;
-using Policy.Plugin.Isa.Policy.Views.Queries;
+using CodeConcepts.EventEngine.Application.Exceptions;
+using CodeConcepts.EventEngine.IsaPolicy.Contracts.BaseTypes;
+using CodeConcepts.EventEngine.IsaPolicy.Contracts.Commands;
+using CodeConcepts.EventEngine.IsaPolicy.DataAccess.Interfaces;
+using CodeConcepts.EventEngine.IsaPolicy.Events.Events;
+using CodeConcepts.EventEngine.IsaPolicy.Views.Queries.Interfaces;
+using CodeConcepts.FrameworkExtensions.LinqExtensions;
 
 // ReSharper disable SuspiciousTypeConversion.Global
 
-namespace Policy.Plugin.Isa.Policy.Operations.CommandHandlers
+namespace CodeConcepts.EventEngine.IsaPolicy.Operations.CommandHandlers
 {
     public class AllocateUnitsHandler : IsaPolicyCommandHandler<AllocateUnitsCommand>
     {

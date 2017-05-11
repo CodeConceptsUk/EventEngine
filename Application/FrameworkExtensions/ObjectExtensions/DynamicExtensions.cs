@@ -1,4 +1,4 @@
-﻿namespace FrameworkExtensions.ObjectExtensions
+﻿namespace CodeConcepts.FrameworkExtensions.ObjectExtensions
 {
     public static class DynamicExtensions
     {

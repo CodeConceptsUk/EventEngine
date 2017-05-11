@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Reflection;
+using CodeConcepts.EventEngine.Application.Interfaces.Factories;
 using log4net;
-using Policy.Application.Interfaces.Factories;
 
-namespace Policy.Application.Factories
+namespace CodeConcepts.EventEngine.Application.Factories
 {
     public class LogFactory : ILogFactory
     {

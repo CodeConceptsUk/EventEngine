@@ -1,15 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
-using FrameworkExtensions.Interfaces.Factories;
-using FrameworkExtensions.Interfaces.Utilities;
+using CodeConcepts.EventEngine.Application.Interfaces;
+using CodeConcepts.EventEngine.Application.Interfaces.Factories;
+using CodeConcepts.EventEngine.Contracts.Interfaces;
+using CodeConcepts.FrameworkExtensions.Interfaces.Factories;
+using CodeConcepts.FrameworkExtensions.Interfaces.Utilities;
 using log4net;
 using Microsoft.Practices.Unity;
 using NSubstitute;
 using NUnit.Framework;
-using Policy.Application.Interfaces;
-using Policy.Application.Interfaces.Factories;
 
-namespace Policy.Application.UnitTests
+namespace CodeConcepts.EventEngine.Application.UnitTests
 {
     [TestFixture]
     public class EventPlayerUnitTests

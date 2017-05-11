@@ -1,7 +1,7 @@
 ﻿using System;
-using CliConsole.Interfaces.Convertors;
+using CodeConcepts.CliConsole.Interfaces.Convertors;
 
-namespace CliConsole.Convertors
+namespace CodeConcepts.CliConsole.Convertors
 {
     public class ValueConvertor : IValueConvertor
     {

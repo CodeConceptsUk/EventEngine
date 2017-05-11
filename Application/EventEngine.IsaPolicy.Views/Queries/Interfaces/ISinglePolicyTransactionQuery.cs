@@ -1,7 +1,7 @@
 ﻿using System;
-using Policy.Plugin.Isa.Policy.Views.Views.PolicyTransactionsView.Domain;
+using CodeConcepts.EventEngine.IsaPolicy.Views.Views.PolicyTransactionsView.Domain;
 
-namespace Policy.Plugin.Isa.Policy.Views.Queries
+namespace CodeConcepts.EventEngine.IsaPolicy.Views.Queries.Interfaces
 {
     public interface ISinglePolicyTransactionQuery
     {

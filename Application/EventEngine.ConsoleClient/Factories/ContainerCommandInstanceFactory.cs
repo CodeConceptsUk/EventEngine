@@ -1,6 +1,6 @@
 ﻿using System;
-using CliConsole.Interfaces;
-using CliConsole.Interfaces.Factories;
+using CodeConcepts.CliConsole.Interfaces;
+using CodeConcepts.CliConsole.Interfaces.Factories;
 using Microsoft.Practices.Unity;
 
 namespace CodeConcepts.EventEngine.ConsoleClient.Factories

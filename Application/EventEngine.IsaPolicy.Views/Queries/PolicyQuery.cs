@@ -1,8 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Policy.Plugin.Isa.Policy.Views.Queries;
+using CodeConcepts.EventEngine.IsaPolicy.Views.Queries.Interfaces;
+using CodeConcepts.EventEngine.IsaPolicy.Views.Views.PolicyView.Domain;
 
-namespace Policy.Plugin.Isa.Policy.Views.Views.AggregateQueries
+namespace CodeConcepts.EventEngine.IsaPolicy.Views.Queries
 {
     public class PolicyQuery : IPolicyQuery
     {
@@ -15,7 +16,7 @@ namespace Policy.Plugin.Isa.Policy.Views.Views.AggregateQueries
             _singlePolicyQuery = singlePolicyQuery;
         }
 
-        public PolicyView.Domain.PolicyView Read(string policyNumber)
+        public PolicyView Read(string policyNumber)
         {
             var contextId = _policyEventContextIdQuery.GeteventContextId(policyNumber);
             return !contextId.HasValue
@@ -23,7 +24,7 @@ namespace Policy.Plugin.Isa.Policy.Views.Views.AggregateQueries
                 : _singlePolicyQuery.Read(contextId.Value);
         }
 
-        public IEnumerable<PolicyView.Domain.PolicyView> Read(int customerId)
+        public IEnumerable<PolicyView> Read(int customerId)
         {
             var contextIds = _policyEventContextIdQuery.GeteventContextId(customerId);
             return contextIds.Select(contextId => _singlePolicyQuery.Read(contextId));

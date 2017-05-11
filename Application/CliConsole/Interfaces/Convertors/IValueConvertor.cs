@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CliConsole.Interfaces.Convertors
+namespace CodeConcepts.CliConsole.Interfaces.Convertors
 {
     public interface IValueConvertor
     {

@@ -1,10 +1,10 @@
 ﻿using System;
-using CliConsole.Interfaces;
-using CliConsole.Interfaces.Factories;
-using NUnit.Framework;
+using CodeConcepts.CliConsole.Interfaces;
+using CodeConcepts.CliConsole.Interfaces.Factories;
 using NSubstitute;
+using NUnit.Framework;
 
-namespace CliConsole.UnitTests
+namespace CodeConcepts.CliConsole.UnitTests
 {
     [TestFixture]
     public class ConsoleDispatcherUnitTests

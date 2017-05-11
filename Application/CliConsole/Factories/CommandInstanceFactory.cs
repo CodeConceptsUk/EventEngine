@@ -1,8 +1,8 @@
 ﻿using System;
-using CliConsole.Interfaces;
-using CliConsole.Interfaces.Factories;
+using CodeConcepts.CliConsole.Interfaces;
+using CodeConcepts.CliConsole.Interfaces.Factories;
 
-namespace CliConsole.Factories
+namespace CodeConcepts.CliConsole.Factories
 {
     public class CommandInstanceFactory : ICommandInstanceFactory
     {

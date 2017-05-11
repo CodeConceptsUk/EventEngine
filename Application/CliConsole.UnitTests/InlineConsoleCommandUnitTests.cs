@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Linq;
-using CliConsole.Exceptions;
+using CodeConcepts.CliConsole.Exceptions;
 using NUnit.Framework;
 
-namespace CliConsole.UnitTests
+namespace CodeConcepts.CliConsole.UnitTests
 {
     [TestFixture]
     public class InlineConsoleCommandUnitTests

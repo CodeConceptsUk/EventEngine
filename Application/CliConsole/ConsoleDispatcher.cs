@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using CliConsole.Interfaces;
-using CliConsole.Interfaces.Factories;
+using CodeConcepts.CliConsole.Interfaces;
+using CodeConcepts.CliConsole.Interfaces.Factories;
 
-namespace CliConsole
+namespace CodeConcepts.CliConsole
 {
     public class ConsoleDispatcher : IConsoleDispatcher
     {

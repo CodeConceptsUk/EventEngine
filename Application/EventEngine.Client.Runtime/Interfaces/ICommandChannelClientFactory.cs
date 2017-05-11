@@ -1,6 +1,6 @@
-﻿using Policy.Contracts.Services;
+﻿using CodeConcepts.EventEngine.Contracts.Interfaces.Services;
 
-namespace Program.Services
+namespace CodeConcepts.EventEngine.ClientLibrary.Interfaces
 {
     public interface ICommandChannelClientFactory
     {

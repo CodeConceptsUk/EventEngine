@@ -1,10 +1,10 @@
 ﻿using System;
-using CliConsole;
-using Policy.Plugin.Isa.Policy.Operations.Commands;
-using Policy.Plugin.Isa.Policy.Operations.PropertyBags;
-using Program.Services;
+using CodeConcepts.CliConsole;
+using CodeConcepts.EventEngine.ClientLibrary.Interfaces;
+using CodeConcepts.EventEngine.IsaPolicy.Contracts.Commands;
+using CodeConcepts.EventEngine.IsaPolicy.Contracts.PropertyBags;
 
-namespace Program.ConsoleCommands
+namespace CodeConcepts.EventEngine.ConsoleClient.ConsoleCommands
 {
     public class AddPremiumConsoleCommand : InlineConsoleCommand
     {

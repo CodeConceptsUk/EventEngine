@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Policy.Application.Exceptions
+namespace CodeConcepts.EventEngine.Application.Exceptions
 {
     public class QueryException : Exception
     {

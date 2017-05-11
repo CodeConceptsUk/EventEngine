@@ -1,7 +1,8 @@
-﻿using Microsoft.Practices.Unity;
-using Program.Factories;
+﻿using CodeConcepts.EventEngine.ClientLibrary.Interfaces;
+using CodeConcepts.EventEngine.Shared.Runtime;
+using Microsoft.Practices.Unity;
 
-namespace Program.Services
+namespace CodeConcepts.EventEngine.ClientLibrary
 {
     public class ClientContainerFactory : ContainerFactory
     {

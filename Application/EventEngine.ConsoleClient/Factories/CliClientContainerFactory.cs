@@ -1,10 +1,10 @@
-﻿using CliConsole;
-using CliConsole.Convertors;
-using CliConsole.Interfaces;
-using CliConsole.Interfaces.Convertors;
-using CliConsole.Interfaces.Factories;
+﻿using CodeConcepts.CliConsole;
+using CodeConcepts.CliConsole.Convertors;
+using CodeConcepts.CliConsole.Interfaces;
+using CodeConcepts.CliConsole.Interfaces.Convertors;
+using CodeConcepts.CliConsole.Interfaces.Factories;
+using CodeConcepts.EventEngine.ClientLibrary;
 using Microsoft.Practices.Unity;
-using Program.Services;
 
 namespace CodeConcepts.EventEngine.ConsoleClient.Factories
 {

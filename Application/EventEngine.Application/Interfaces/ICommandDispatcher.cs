@@ -1,4 +1,6 @@
-﻿namespace Policy.Application.Interfaces
+﻿using CodeConcepts.EventEngine.Contracts.Interfaces;
+
+namespace CodeConcepts.EventEngine.Application.Interfaces
 {
     public interface ICommandDispatcher <in TCommand>
         where TCommand : class, ICommand

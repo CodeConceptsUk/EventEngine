@@ -1,11 +1,12 @@
 ﻿using System.Collections.Generic;
-using CliConsole.Factories;
-using CliConsole.Interfaces;
-using CliConsole.Interfaces.Factories;
+using CodeConcepts.CliConsole.Factories;
+using CodeConcepts.CliConsole.Interfaces;
+using CodeConcepts.CliConsole.Interfaces.Factories;
 using NUnit.Framework;
+
 // ReSharper disable UnassignedGetOnlyAutoProperty
 
-namespace CliConsole.UnitTests.Factories
+namespace CodeConcepts.CliConsole.UnitTests.Factories
 {
     [TestFixture]
     public class CommandInstanceFactoryUnitTests

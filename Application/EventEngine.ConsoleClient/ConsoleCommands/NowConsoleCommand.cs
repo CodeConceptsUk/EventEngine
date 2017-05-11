@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Globalization;
-using CliConsole;
-using CliConsole.Interfaces;
+using CodeConcepts.CliConsole;
+using CodeConcepts.CliConsole.Interfaces;
 
 namespace CodeConcepts.EventEngine.ConsoleClient.ConsoleCommands
 {

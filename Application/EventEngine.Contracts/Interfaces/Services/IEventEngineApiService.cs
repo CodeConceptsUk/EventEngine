@@ -1,7 +1,6 @@
 ﻿using System.ServiceModel;
-using Policy.Application.Interfaces;
 
-namespace Policy.Contracts.Services
+namespace CodeConcepts.EventEngine.Contracts.Interfaces.Services
 {
     [ServiceContract]
     public interface IEventEngineApiService

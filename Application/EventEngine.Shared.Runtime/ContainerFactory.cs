@@ -1,12 +1,13 @@
 ﻿using System.Linq;
-using FrameworkExtensions.Factories;
-using FrameworkExtensions.Interfaces.Factories;
+using CodeConcepts.EventEngine.Application.Factories;
+using CodeConcepts.EventEngine.Application.Interfaces;
+using CodeConcepts.EventEngine.Application.Interfaces.Factories;
+using CodeConcepts.EventEngine.Contracts.Interfaces;
+using CodeConcepts.FrameworkExtensions.Factories;
+using CodeConcepts.FrameworkExtensions.Interfaces.Factories;
 using Microsoft.Practices.Unity;
-using Policy.Application.Factories;
-using Policy.Application.Interfaces;
-using Policy.Application.Interfaces.Factories;
 
-namespace Program.Factories
+namespace CodeConcepts.EventEngine.Shared.Runtime
 {
     public abstract class ContainerFactory
     {

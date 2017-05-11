@@ -1,8 +1,8 @@
-using FrameworkExtensions.ObjectExtensions;
+using CodeConcepts.FrameworkExtensions.ObjectExtensions;
 using Microsoft.CSharp.RuntimeBinder;
 using NUnit.Framework;
 
-namespace FrameworkExtensions.UnitTests
+namespace CodeConcepts.FrameworkExtensions.UnitTests
 {
     [TestFixture]
     public class DynamicExtensionsUnitTests

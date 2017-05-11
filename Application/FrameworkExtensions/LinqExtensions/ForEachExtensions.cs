@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace FrameworkExtensions.LinqExtensions
+namespace CodeConcepts.FrameworkExtensions.LinqExtensions
 {
     public static class ForEachExtensions
     {

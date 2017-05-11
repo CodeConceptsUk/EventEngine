@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using Policy.Plugin.Isa.Policy.Views.Views.PolicyView.Domain;
+using CodeConcepts.EventEngine.IsaPolicy.Views.Views.PolicyView.Domain;
 
-namespace Policy.Plugin.Isa.Policy.Views.Queries
+namespace CodeConcepts.EventEngine.IsaPolicy.Views.Queries.Interfaces
 {
     public interface IPolicyQuery
     {

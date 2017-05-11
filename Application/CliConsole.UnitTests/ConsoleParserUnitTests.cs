@@ -1,12 +1,13 @@
 ﻿using System;
-using CliConsole.Interfaces;
-using CliConsole.Interfaces.Convertors;
-using NUnit.Framework;
+using CodeConcepts.CliConsole.Interfaces;
+using CodeConcepts.CliConsole.Interfaces.Convertors;
 using NSubstitute;
 using NSubstitute.Core;
+using NUnit.Framework;
+
 // ReSharper disable UnusedVariable
 
-namespace CliConsole.UnitTests
+namespace CodeConcepts.CliConsole.UnitTests
 {
     [TestFixture]
     public class ConsoleParserUnitTests

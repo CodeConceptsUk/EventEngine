@@ -1,7 +1,7 @@
 ﻿using System;
-using Policy.Plugin.Isa.Policy.Operations.BaseTypes;
+using CodeConcepts.EventEngine.IsaPolicy.Contracts.BaseTypes;
 
-namespace Policy.Plugin.Isa.Policy.Operations.Commands
+namespace CodeConcepts.EventEngine.IsaPolicy.Contracts.Commands
 {
     public class AddUnitsToFundCommand : IsaPolicyCommand
     {

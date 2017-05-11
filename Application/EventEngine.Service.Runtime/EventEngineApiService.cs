@@ -1,11 +1,12 @@
 ﻿using System;
 using System.ServiceModel;
-using FrameworkExtensions.ObjectExtensions;
+using CodeConcepts.EventEngine.Application.Interfaces;
+using CodeConcepts.EventEngine.Contracts.Interfaces;
+using CodeConcepts.EventEngine.Contracts.Interfaces.Services;
+using CodeConcepts.FrameworkExtensions.ObjectExtensions;
 using Microsoft.Practices.Unity;
-using Policy.Application.Interfaces;
-using Policy.Contracts.Services;
 
-namespace Program.Services
+namespace CodeConcepts.EventEngine.Services
 {
     [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single)]
     public class EventEngineApiService : IEventEngineApiService

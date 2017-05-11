@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using FrameworkExtensions.LinqExtensions;
+using CodeConcepts.FrameworkExtensions.LinqExtensions;
 using NUnit.Framework;
 
-namespace FrameworkExtensions.UnitTests
+namespace CodeConcepts.FrameworkExtensions.UnitTests
 {
     [TestFixture]
     public class ForEachExtensionsUnitTests

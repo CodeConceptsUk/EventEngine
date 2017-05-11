@@ -1,4 +1,4 @@
-﻿namespace CliConsole.Interfaces
+﻿namespace CodeConcepts.CliConsole.Interfaces
 {
     public interface IConsoleParser
     {

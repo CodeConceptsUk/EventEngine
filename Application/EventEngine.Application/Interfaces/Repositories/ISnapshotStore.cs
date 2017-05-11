@@ -1,6 +1,7 @@
 ﻿using System;
+using CodeConcepts.EventEngine.Contracts.Interfaces;
 
-namespace Policy.Application.Interfaces.Repositories
+namespace CodeConcepts.EventEngine.Application.Interfaces.Repositories
 {
     public interface ISnapshotStore<TView>
         where TView : class, IView

@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using FrameworkExtensions.LinqExtensions;
+using CodeConcepts.FrameworkExtensions.LinqExtensions;
 
-namespace Program
+namespace CodeConcepts.CliConsole
 {
     public static class StringUtils
     {

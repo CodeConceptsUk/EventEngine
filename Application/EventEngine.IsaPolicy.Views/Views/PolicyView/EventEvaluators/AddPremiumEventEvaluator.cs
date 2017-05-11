@@ -1,10 +1,10 @@
 using System.Linq;
+using CodeConcepts.EventEngine.Application.Interfaces;
+using CodeConcepts.EventEngine.IsaPolicy.Events.Events;
+using CodeConcepts.EventEngine.IsaPolicy.Views.Views.PolicyView.Domain;
 using Microsoft.Practices.ObjectBuilder2;
-using Policy.Application.Interfaces;
-using Policy.Plugin.Isa.Policy.Events;
-using Policy.Plugin.Isa.Policy.Views.Views.PolicyView.Domain;
 
-namespace Policy.Plugin.Isa.Policy.Views.Views.PolicyView.EventEvaluators
+namespace CodeConcepts.EventEngine.IsaPolicy.Views.Views.PolicyView.EventEvaluators
 {
     public class AddPremiumEventEvaluator : IEventEvaluator<AddPremiumEvent, Domain.PolicyView>
     {
