@@ -41,7 +41,7 @@ namespace Program.Factories
             //container.RegisterType<IIsaPolicyEventStoreRepository, IsaPolicyEventsInSqlStore>();
         }
 
-        private void RegisterNamedTypes<TType>(IUnityContainer container)
+        protected virtual void RegisterNamedTypes<TType>(IUnityContainer container)
         {
             var types = GetType().Assembly.GetTypes().Where(t => t.IsAbstract == false && typeof(TType).IsAssignableFrom(t)).ToList();
             types.ForEach(t =>

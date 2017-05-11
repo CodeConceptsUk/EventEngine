@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using Policy.Plugin.Isa.Policy.Interfaces.DataAccess;
-using Policy.Plugin.Isa.Policy.Views.Queries;
 
 namespace Policy.Plugin.Isa.Policy.Views.Views.PolicyContextView.Queries
 {

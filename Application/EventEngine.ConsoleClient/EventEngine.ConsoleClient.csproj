@@ -61,6 +61,7 @@
     <Compile Include="ConsoleCommands\NowConsoleCommand.cs" />
     <Compile Include="Extensions\ContainerExtensions.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
+    <Compile Include="Factories\CliClientContainerFactory.cs" />
     <Compile Include="Factories\ContainerCommandInstanceFactory.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
