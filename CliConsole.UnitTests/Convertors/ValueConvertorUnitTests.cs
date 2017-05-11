@@ -1,22 +1,22 @@
 ﻿using System;
 using CliConsole.Convertors;
 using CliConsole.Interfaces.Convertors;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace CliConsole.UnitTests.Convertors
 {
-    [TestClass]
+    [TestFixture]
     public class ValueConvertorUnitTests
     {
         private IValueConvertor _target;
 
-        [TestInitialize]
-        public void TestInitialize()
+        [SetUp]
+        public void SetUp()
         {
             _target = new ValueConvertor();
         }
 
-        [TestMethod]
+        [Test]
         public void WhenIConvertAStringToAnIntItIsConverted()
         {
             const int expectedValue = 12345;
@@ -28,7 +28,7 @@ namespace CliConsole.UnitTests.Convertors
             Assert.AreEqual(expectedValue, convertedValue);
         }
 
-        [TestMethod]
+        [Test]
         public void WhenIConvertAStringThatCannotBeToAnIntItIsNotConverted()
         {
             const int expectedValue = new int();
@@ -40,7 +40,7 @@ namespace CliConsole.UnitTests.Convertors
             Assert.AreEqual(expectedValue, convertedValue);
         }
 
-        [TestMethod]
+        [Test]
         public void WhenIConvertAStringToAnDoubleItIsConverted()
         {
             const double expectedValue = 12345;
@@ -52,7 +52,7 @@ namespace CliConsole.UnitTests.Convertors
             Assert.AreEqual(expectedValue, convertedValue);
         }
 
-        [TestMethod]
+        [Test]
         public void WhenIConvertAStringThatCannotBeToAnDoubleItIsNotConverted()
         {
             const double expectedValue = new double();
@@ -64,7 +64,7 @@ namespace CliConsole.UnitTests.Convertors
             Assert.AreEqual(expectedValue, convertedValue);
         }
 
-        [TestMethod]
+        [Test]
         public void WhenIConvertAStringToAnFloatItIsConverted()
         {
             const float expectedValue = 12345;
@@ -76,7 +76,7 @@ namespace CliConsole.UnitTests.Convertors
             Assert.AreEqual(expectedValue, convertedValue);
         }
 
-        [TestMethod]
+        [Test]
         public void WhenIConvertAStringThatCannotBeToAnFloatItIsNotConverted()
         {
             const float expectedValue = new float();
@@ -88,7 +88,7 @@ namespace CliConsole.UnitTests.Convertors
             Assert.AreEqual(expectedValue, convertedValue);
         }
 
-        [TestMethod]
+        [Test]
         public void WhenIConvertAStringToAnByteItIsConverted()
         {
             const byte expectedValue = 255;
@@ -100,7 +100,7 @@ namespace CliConsole.UnitTests.Convertors
             Assert.AreEqual(expectedValue, convertedValue);
         }
 
-        [TestMethod]
+        [Test]
         public void WhenIConvertAStringThatCannotBeToAnByteItIsNotConverted()
         {
             const byte expectedValue = new byte();
@@ -112,7 +112,7 @@ namespace CliConsole.UnitTests.Convertors
             Assert.AreEqual(expectedValue, convertedValue);
         }
 
-        [TestMethod]
+        [Test]
         public void WhenIConvertAStringToAnLongItIsConverted()
         {
             const long expectedValue = 255;
@@ -124,7 +124,7 @@ namespace CliConsole.UnitTests.Convertors
             Assert.AreEqual(expectedValue, convertedValue);
         }
 
-        [TestMethod]
+        [Test]
         public void WhenIConvertAStringThatCannotBeToAnLongItIsNotConverted()
         {
             const long expectedValue = new long();
@@ -136,7 +136,7 @@ namespace CliConsole.UnitTests.Convertors
             Assert.AreEqual(expectedValue, convertedValue);
         }
 
-        [TestMethod]
+        [Test]
         public void WhenIConvertAStringToAnDecimalItIsConverted()
         {
             const decimal expectedValue = 255;
@@ -148,7 +148,7 @@ namespace CliConsole.UnitTests.Convertors
             Assert.AreEqual(expectedValue, convertedValue);
         }
 
-        [TestMethod]
+        [Test]
         public void WhenIConvertAStringThatCannotBeToAnDecimaltIsNotConverted()
         {
             const decimal expectedValue = new decimal();
@@ -160,7 +160,7 @@ namespace CliConsole.UnitTests.Convertors
             Assert.AreEqual(expectedValue, convertedValue);
         }
 
-        [TestMethod]
+        [Test]
         public void WhenIConvertAStringToAnDateItIsConverted()
         {
             var expectedValue = new DateTime(2004, 2, 23, 14, 40, 23);
@@ -172,7 +172,7 @@ namespace CliConsole.UnitTests.Convertors
             Assert.AreEqual(expectedValue, convertedValue);
         }
 
-        [TestMethod]
+        [Test]
         public void WhenIConvertAStringToAnDateUkFormatItIsConverted()
         {
             var expectedValue = new DateTime(2004, 2, 23, 14, 40, 23);
@@ -184,7 +184,7 @@ namespace CliConsole.UnitTests.Convertors
             Assert.AreEqual(expectedValue, convertedValue);
         }
 
-        [TestMethod]
+        [Test]
         public void WhenIConvertAStringToAnDateUkFormatWithoutTimeItIsConverted()
         {
             var expectedValue = new DateTime(2004, 2, 23);
@@ -196,7 +196,7 @@ namespace CliConsole.UnitTests.Convertors
             Assert.AreEqual(expectedValue, convertedValue);
         }
 
-        [TestMethod]
+        [Test]
         public void WhenIConvertAStringThatCannotBeToAnDatetIsNotConverted()
         {
             var expectedValue = new DateTime();
@@ -208,7 +208,7 @@ namespace CliConsole.UnitTests.Convertors
             Assert.AreEqual(expectedValue, convertedValue);
         }
 
-        [TestMethod]
+        [Test]
         public void WhenIConvertAStringToAnTimeSpanItIsConverted()
         {
             var expectedValue = new TimeSpan(1, 4, 5, 6);
@@ -220,7 +220,7 @@ namespace CliConsole.UnitTests.Convertors
             Assert.AreEqual(expectedValue, convertedValue);
         }
 
-        [TestMethod]
+        [Test]
         public void WhenIConvertAStringToAnTimeSpanWithoutDaysItIsConverted()
         {
             var expectedValue = new TimeSpan(0, 1, 4, 5);
@@ -232,7 +232,7 @@ namespace CliConsole.UnitTests.Convertors
             Assert.AreEqual(expectedValue, convertedValue);
         }
 
-        [TestMethod]
+        [Test]
         public void WhenIConvertAStringThatCannotBeToATimeSpantIsNotConverted()
         {
             var expectedValue = new TimeSpan();

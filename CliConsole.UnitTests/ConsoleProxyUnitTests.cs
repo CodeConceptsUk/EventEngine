@@ -2,22 +2,22 @@
 using System.IO;
 using System.Text;
 using CliConsole.Interfaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace CliConsole.UnitTests
 {
-    [TestClass]
+    [TestFixture]
     public class ConsoleProxyUnitTests
     {
         private IConsoleProxy _target;
 
-        [TestInitialize]
-        public void TestInitialize()
+        [SetUp]
+        public void SetUp()
         {
             _target = new ConsoleProxy();
         }
 
-        [TestMethod]
+        [Test]
         public void WhenIWriteLineToTheConsoleItIsWritten()
         {
             var expectedOuput = Guid.NewGuid().ToString();
@@ -30,7 +30,7 @@ namespace CliConsole.UnitTests
             Assert.AreEqual($"{expectedOuput}\r\n", stringBuilder.ToString());
         }
 
-        [TestMethod]
+        [Test]
         public void WhenIWriteToTheConsoleItIsWritten()
         {
             var expectedOuput = Guid.NewGuid().ToString();
@@ -43,7 +43,7 @@ namespace CliConsole.UnitTests
             Assert.AreEqual($"{expectedOuput}", stringBuilder.ToString());
         }
 
-        [TestMethod]
+        [Test]
         public void WhenIReadFromTheConsoleItIsAccessible()
         {
             var expectedInput = Guid.NewGuid().ToString();

@@ -2,34 +2,39 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using FrameworkExtensions.Interfaces.Factories;
 using FrameworkExtensions.LinqExtensions;
 using FrameworkExtensions.ObjectExtensions;
 using log4net;
 using Microsoft.Practices.Unity;
 using Policy.Application.Interfaces;
+using Policy.Application.Interfaces.Factories;
 
 namespace Policy.Application
 {
     public class EventPlayer <TEvent>: IEventPlayer<TEvent>
         where TEvent : class, IEvent
     {
-        private readonly IList<IEventEvaluator> _handlers = new List<IEventEvaluator>();
-        private ILog _logger;
+        private readonly IStopwatchFactory _stopwatchFactory;
+        private readonly List<IEventEvaluator> _handlers = new List<IEventEvaluator>();
+        private readonly ILog _logger;
 
-        public EventPlayer(IUnityContainer container)
+        public EventPlayer(IUnityContainer container, ILogFactory logFactory, IStopwatchFactory stopwatchFactory)
         {
-            _logger = LogManager.GetLogger(typeof(EventPlayer<TEvent>));
-            var handlers = container.ResolveAll(typeof(IEventEvaluator));
-            handlers.ForEach(handler => _handlers.Add((IEventEvaluator)handler));
+            _stopwatchFactory = stopwatchFactory;
+            _logger = logFactory.GetLogger(typeof(EventPlayer<TEvent>));
+            var handlers = container.ResolveAll(typeof(IEventEvaluator)).OfType<IEventEvaluator>().ToList();
+            _handlers.AddRange(handlers);
         }
 
         public TView Handle<TView>(IEnumerable<TEvent> events, TView view)
             where TView : class, IView
         {
-            _logger.Debug($"Evaluating {events.Count()} events against {view.GetType().Name}");
-            var stopwatch = new Stopwatch();
+            var eventArray = events.ToArray();
+            _logger.Debug($"Evaluating {eventArray.Length} events against {view.GetType().Name}");
+            var stopwatch = _stopwatchFactory.Create();
             stopwatch.Start();
-            events.ForEach(@event =>
+            eventArray.ForEach(@event =>
             {
                 var evaluators = GetEvaluator(@event.GetType(), typeof(TView));
                 evaluators.ForEach(evaluator =>
@@ -47,16 +52,16 @@ namespace Policy.Application
         {
             return _handlers
                 .Where(t => t.GetType()
-                .GetInterfaces()
-                .Any(i => IsCorrectHandler(i, @event, view)));
+                    .GetInterfaces()
+                    .Any(i => IsCorrectEvaluator(i, @event, view)));
         }
 
-        private static bool IsCorrectHandler(Type handlerInterface, Type eventType, Type viewType)
+        private static bool IsCorrectEvaluator(Type evaluatorInterface, Type eventType, Type viewType)
         {
-            if (!handlerInterface.IsGenericType || handlerInterface.GetGenericArguments().Length != 2)
+            if (!evaluatorInterface.IsGenericType || evaluatorInterface.GetGenericArguments().Length != 2)
                 return false;
 
-            var args = handlerInterface.GetGenericArguments();
+            var args = evaluatorInterface.GetGenericArguments();
             return args[0] == eventType &&
                    args[1] == viewType;
         }

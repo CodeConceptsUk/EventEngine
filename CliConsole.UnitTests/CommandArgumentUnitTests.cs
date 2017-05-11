@@ -1,12 +1,12 @@
 ﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace CliConsole.UnitTests
 {
-    [TestClass]
+    [TestFixture]
     public class CommandArgumentUnitTests
     {
-        [TestMethod]
+        [Test]
         public void WhenICreateACommandArgumentItIsCreatedCorrectly()
         {
             const int expectedActionValue = 12345;
@@ -22,8 +22,8 @@ namespace CliConsole.UnitTests
             Assert.AreEqual(expectedArgumentDescription, target.Description);
             Assert.AreEqual(expectedIsRequired, target.IsRequired);
             Assert.AreEqual(expectedActionValue, actionValue);
-            Assert.IsInstanceOfType(target, typeof(CommandArgument<int>));
-            Assert.IsInstanceOfType(target, typeof(CommandArgument));
+            Assert.IsInstanceOf<CommandArgument<int>>(target);
+            Assert.IsInstanceOf<CommandArgument>(target);
         }
     }
 }

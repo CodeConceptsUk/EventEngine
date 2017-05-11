@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Linq;
 using CliConsole.Exceptions;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace CliConsole.UnitTests
 {
-    [TestClass]
+    [TestFixture]
     public class InlineConsoleCommandUnitTests
     {
-        [TestMethod]
+        [Test]
         public void WhenIConstructACliCommandWithANameAsNullThenAnExceptionIsThrown()
         {
             try
@@ -21,7 +21,7 @@ namespace CliConsole.UnitTests
             }
         }
 
-        [TestMethod]
+        [Test]
         public void WhenIConstructACliCommandWithoutANameThenAnExceptionIsThrown()
         {
             try
@@ -34,7 +34,7 @@ namespace CliConsole.UnitTests
             }
         }
 
-        [TestMethod]
+        [Test]
         public void WhenIConstructACliCommandWithANameThenItCanBeCreated()
         {
 
@@ -47,7 +47,7 @@ namespace CliConsole.UnitTests
             Assert.AreEqual(expectedDescription, target.Description);
         }
 
-        [TestMethod]
+        [Test]
         public void WhenIConstructACliCommandAndAddARequiredParametersTheyAreAdded()
         {
             var actionResult1 = 0;
@@ -80,7 +80,7 @@ namespace CliConsole.UnitTests
             Assert.IsTrue(argument2.IsRequired);
         }
 
-        [TestMethod]
+        [Test]
         public void WhenIConstructACliCommandAndAddAParametersTheyAreAdded()
         {
             var actionResult1 = 0;

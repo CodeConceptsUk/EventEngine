@@ -7,6 +7,7 @@ using FrameworkExtensions.ObjectExtensions;
 using log4net;
 using Microsoft.Practices.Unity;
 using Policy.Application.Interfaces;
+using Policy.Application.Interfaces.Factories;
 using Policy.Application.Interfaces.Repositories;
 
 namespace Policy.Application
@@ -19,9 +20,9 @@ namespace Policy.Application
         private readonly IList<ICommandHandler> _handlers = new List<ICommandHandler>();
         private readonly ILog _logger;
 
-        public CommandDispatcher(IUnityContainer container)
+        public CommandDispatcher(IUnityContainer container, ILogFactory logFactory)
         {
-            _logger = LogManager.GetLogger(typeof(CommandDispatcher<,>));
+            _logger = logFactory.GetLogger(typeof(CommandDispatcher<,>));
             var handlers = container.ResolveAll(typeof(ICommandHandler));
             handlers.ForEach(handler => _handlers.Add((ICommandHandler)handler));
             _container = container;
