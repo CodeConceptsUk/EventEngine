@@ -4,15 +4,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{CED460F4-690F-4561-94BE-8A5DCD250A5A}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Policy.Plugin.Isa.Policy</RootNamespace>
-    <AssemblyName>Policy.Plugin.Isa.Policy</AssemblyName>
+    <ProjectGuid>{FFA3169A-FD6E-4EC7-B46B-347339BFE346}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>ConsoleClient</RootNamespace>
+    <AssemblyName>ConsoleClient</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -22,6 +23,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -30,19 +32,16 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
-      <HintPath>..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+    <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\CommonServiceLocator.1.3\lib\portable-net4+sl5+netcore45+wpa81+wp8\Microsoft.Practices.ServiceLocation.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Practices.Unity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f">
+    <Reference Include="Microsoft.Practices.Unity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f, processorArchitecture=MSIL">
       <HintPath>..\packages\Unity.4.0.1\lib\net45\Microsoft.Practices.Unity.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Practices.Unity.Configuration, Version=4.0.0.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f">
+    <Reference Include="Microsoft.Practices.Unity.Configuration, Version=4.0.0.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f, processorArchitecture=MSIL">
       <HintPath>..\packages\Unity.4.0.1\lib\net45\Microsoft.Practices.Unity.Configuration.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Practices.Unity.RegistrationByConvention, Version=4.0.0.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f">
+    <Reference Include="Microsoft.Practices.Unity.RegistrationByConvention, Version=4.0.0.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f, processorArchitecture=MSIL">
       <HintPath>..\packages\Unity.4.0.1\lib\net45\Microsoft.Practices.Unity.RegistrationByConvention.dll</HintPath>
     </Reference>
     <Reference Include="System" />
@@ -55,37 +54,36 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Events\AddPremiumEvent.cs" />
-    <Compile Include="Events\AppliedFundChargeEvent.cs" />
-    <Compile Include="Events\PolicyCreatedEvent.cs" />
-    <Compile Include="Events\PremiumReceivedEvent.cs" />
-    <Compile Include="Events\UnitsAddedToFundEvent.cs" />
-    <Compile Include="Events\UnitsAllocatedEvent.cs" />
-    <Compile Include="Interfaces\DataAccess\IIsaPolicyEventStoreRepository.cs" />
-    <Compile Include="Interfaces\DataAccess\ISequencingRepository.cs" />
-    <Compile Include="Interfaces\DataAccess\IUnitPricingRepository.cs" />
+    <Compile Include="ConsoleCommands\HelpConsoleCommand.cs" />
+    <Compile Include="ConsoleCommands\NowConsoleCommand.cs" />
+    <Compile Include="Extensions\ContainerExtensions.cs" />
+    <Compile Include="Extensions\StringExtensions.cs" />
+    <Compile Include="Factories\ContainerCommandInstanceFactory.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\FrameworkExtensions\FrameworkExtensions.csproj">
-      <Project>{21D128D0-4F13-4157-B454-00BEAF0A3DE3}</Project>
-      <Name>FrameworkExtensions</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\IsaPolicy.Contracts\IsaPolicy.Contracts.csproj">
-      <Project>{14808d5e-6d00-459a-98cb-53ac6b8ea4ae}</Project>
-      <Name>IsaPolicy.Contracts</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Policy.Application\EventEngine.Application.csproj">
-      <Project>{18373edd-6bd2-43d9-9aeb-b5c8668e5e9d}</Project>
-      <Name>Policy.Application</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Policy.Contracts\EventEngine.Contracts.csproj">
-      <Project>{b033dae8-2d28-42a9-bfa1-6f3ab59c1040}</Project>
-      <Name>EventEngine.Contracts</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
+    <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CliConsole\CliConsole.csproj">
+      <Project>{2165265f-4aff-402a-a73a-d3c9f9a7e0ad}</Project>
+      <Name>CliConsole</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EventEngine.ClientLibrary\EventEngine.Client.Runtime.csproj">
+      <Project>{21a944ba-fdcd-4fa8-9dc1-dcba24da3db9}</Project>
+      <Name>EventEngine.Client.Runtime</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EventEngine.Shared.Runtime\EventEngine.Shared.Runtime.csproj">
+      <Project>{9C5273FB-4FD9-4ADE-9229-107CF1E665CE}</Project>
+      <Name>EventEngine.Shared.Runtime</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FrameworkExtensions\FrameworkExtensions.csproj">
+      <Project>{21d128d0-4f13-4157-b454-00beaf0a3de3}</Project>
+      <Name>FrameworkExtensions</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

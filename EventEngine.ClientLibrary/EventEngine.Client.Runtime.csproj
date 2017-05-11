@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{CED460F4-690F-4561-94BE-8A5DCD250A5A}</ProjectGuid>
+    <ProjectGuid>{21A944BA-FDCD-4FA8-9DC1-DCBA24DA3DB9}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Policy.Plugin.Isa.Policy</RootNamespace>
-    <AssemblyName>Policy.Plugin.Isa.Policy</AssemblyName>
+    <RootNamespace>EventEngine.ClientLibrary</RootNamespace>
+    <AssemblyName>EventEngine.ClientLibrary</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -30,23 +30,22 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
-      <HintPath>..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+    <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\CommonServiceLocator.1.3\lib\portable-net4+sl5+netcore45+wpa81+wp8\Microsoft.Practices.ServiceLocation.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Practices.Unity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f">
+    <Reference Include="Microsoft.Practices.Unity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f, processorArchitecture=MSIL">
       <HintPath>..\packages\Unity.4.0.1\lib\net45\Microsoft.Practices.Unity.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Practices.Unity.Configuration, Version=4.0.0.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f">
+    <Reference Include="Microsoft.Practices.Unity.Configuration, Version=4.0.0.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f, processorArchitecture=MSIL">
       <HintPath>..\packages\Unity.4.0.1\lib\net45\Microsoft.Practices.Unity.Configuration.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Practices.Unity.RegistrationByConvention, Version=4.0.0.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f">
+    <Reference Include="Microsoft.Practices.Unity.RegistrationByConvention, Version=4.0.0.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f, processorArchitecture=MSIL">
       <HintPath>..\packages\Unity.4.0.1\lib\net45\Microsoft.Practices.Unity.RegistrationByConvention.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -55,29 +54,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Events\AddPremiumEvent.cs" />
-    <Compile Include="Events\AppliedFundChargeEvent.cs" />
-    <Compile Include="Events\PolicyCreatedEvent.cs" />
-    <Compile Include="Events\PremiumReceivedEvent.cs" />
-    <Compile Include="Events\UnitsAddedToFundEvent.cs" />
-    <Compile Include="Events\UnitsAllocatedEvent.cs" />
-    <Compile Include="Interfaces\DataAccess\IIsaPolicyEventStoreRepository.cs" />
-    <Compile Include="Interfaces\DataAccess\ISequencingRepository.cs" />
-    <Compile Include="Interfaces\DataAccess\IUnitPricingRepository.cs" />
+    <Compile Include="ClientContainerFactory.cs" />
+    <Compile Include="CommandChannelClientFactory.cs" />
+    <Compile Include="Interfaces\ICommandChannelClientFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\FrameworkExtensions\FrameworkExtensions.csproj">
-      <Project>{21D128D0-4F13-4157-B454-00BEAF0A3DE3}</Project>
-      <Name>FrameworkExtensions</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\IsaPolicy.Contracts\IsaPolicy.Contracts.csproj">
-      <Project>{14808d5e-6d00-459a-98cb-53ac6b8ea4ae}</Project>
-      <Name>IsaPolicy.Contracts</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Policy.Application\EventEngine.Application.csproj">
-      <Project>{18373edd-6bd2-43d9-9aeb-b5c8668e5e9d}</Project>
-      <Name>Policy.Application</Name>
+    <ProjectReference Include="..\EventEngine.Shared.Runtime\EventEngine.Shared.Runtime.csproj">
+      <Project>{9c5273fb-4fd9-4ade-9229-107cf1e665ce}</Project>
+      <Name>EventEngine.Shared.Runtime</Name>
     </ProjectReference>
     <ProjectReference Include="..\Policy.Contracts\EventEngine.Contracts.csproj">
       <Project>{b033dae8-2d28-42a9-bfa1-6f3ab59c1040}</Project>

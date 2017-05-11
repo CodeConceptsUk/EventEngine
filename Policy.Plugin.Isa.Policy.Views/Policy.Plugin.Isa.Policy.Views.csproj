@@ -33,22 +33,23 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Queries\IPolicyEventContextIdQuery.cs" />
-    <Compile Include="Queries\IPolicyQuery.cs" />
-    <Compile Include="Queries\ISinglePolicyQuery.cs" />
-    <Compile Include="Queries\ITransactionQuery.cs" />
-    <Compile Include="Views\AggregateQueries\PolicyQuery.cs" />
-    <Compile Include="Views\AggregateQueries\TransactionQuery.cs" />
+    <Compile Include="Queries\Interfaces\IPolicyEventContextIdQuery.cs" />
+    <Compile Include="Queries\Interfaces\IPolicyQuery.cs" />
+    <Compile Include="Queries\Interfaces\ISinglePolicyQuery.cs" />
+    <Compile Include="Queries\Interfaces\ISinglePolicyTransactionQuery.cs" />
+    <Compile Include="Queries\Interfaces\ITransactionQuery.cs" />
+    <Compile Include="Queries\PolicyEventContextIdQuery.cs" />
+    <Compile Include="Queries\PolicyQuery.cs" />
+    <Compile Include="Queries\SinglePolicyQuery.cs" />
+    <Compile Include="Queries\SinglePolicyTransactionQuery.cs" />
+    <Compile Include="Queries\TransactionQuery.cs" />
     <Compile Include="Views\PolicyContextView\Domain\PolicyContextView.cs" />
-    <Compile Include="Views\PolicyContextView\Queries\PolicyEventContextIdQuery.cs" />
     <Compile Include="Views\PolicyTransactionsView\Domain\PolicyTransactionView.cs" />
     <Compile Include="Views\PolicyTransactionsView\Domain\Transaction.cs" />
     <Compile Include="Views\PolicyTransactionsView\EventEvaluators\AddPremiumEventEvaluator.cs" />
     <Compile Include="Views\PolicyTransactionsView\EventEvaluators\AppliedFundChargeEventEvaluator.cs" />
     <Compile Include="Views\PolicyTransactionsView\EventEvaluators\UnitsAddedToFundEventEvaluator.cs" />
     <Compile Include="Views\PolicyTransactionsView\EventEvaluators\UnitsAllocatedEventEvaluator.cs" />
-    <Compile Include="Queries\ISinglePolicyTransactionQuery.cs" />
-    <Compile Include="Views\PolicyTransactionsView\Queries\SinglePolicyQuery.cs" />
     <Compile Include="Views\PolicyView\Domain\Charge.cs" />
     <Compile Include="Views\PolicyView\Domain\Fund.cs" />
     <Compile Include="Views\PolicyView\Domain\FundAllocation.cs" />
@@ -61,16 +62,23 @@
     <Compile Include="Views\PolicyView\EventEvaluators\PremiumReceivedEventEvaluator.cs" />
     <Compile Include="Views\PolicyView\EventEvaluators\UnitsAddedToFundEventEvaluator.cs" />
     <Compile Include="Views\PolicyView\EventEvaluators\UnitsAllocatedEventEvaluator.cs" />
-    <Compile Include="Views\PolicyView\Queries\SinglePolicyQuery.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FrameworkExtensions\FrameworkExtensions.csproj">
       <Project>{21d128d0-4f13-4157-b454-00beaf0a3de3}</Project>
       <Name>FrameworkExtensions</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Policy.Application\Policy.Application.csproj">
+    <ProjectReference Include="..\IsaPolicy.Contracts\IsaPolicy.Contracts.csproj">
+      <Project>{14808d5e-6d00-459a-98cb-53ac6b8ea4ae}</Project>
+      <Name>IsaPolicy.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Policy.Application\EventEngine.Application.csproj">
       <Project>{18373edd-6bd2-43d9-9aeb-b5c8668e5e9d}</Project>
       <Name>Policy.Application</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Policy.Contracts\EventEngine.Contracts.csproj">
+      <Project>{B033DAE8-2D28-42A9-BFA1-6F3AB59C1040}</Project>
+      <Name>EventEngine.Contracts</Name>
     </ProjectReference>
     <ProjectReference Include="..\Policy.Plugin.Isa.Policy\Policy.Plugin.Isa.Policy.csproj">
       <Project>{ced460f4-690f-4561-94be-8a5dcd250a5a}</Project>
