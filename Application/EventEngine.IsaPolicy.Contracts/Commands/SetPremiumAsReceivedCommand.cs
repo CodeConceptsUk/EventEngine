@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Runtime.Serialization;
 using CodeConcepts.EventEngine.IsaPolicy.Contracts.BaseTypes;
 
 namespace CodeConcepts.EventEngine.IsaPolicy.Contracts.Commands
 {
+    [DataContract(Namespace = "http://codeconcepts.co.uk/commands/isapolicy")]
     public class SetPremiumAsReceivedCommand : IsaPolicyCommand
     {
         public SetPremiumAsReceivedCommand(string policyNumber, string premiumId, DateTime dateTimeReceived)
@@ -12,10 +14,13 @@ namespace CodeConcepts.EventEngine.IsaPolicy.Contracts.Commands
             DateTimeReceived = dateTimeReceived;
         }
 
+        [DataMember]
         public string PolicyNumber { get; }
 
+        [DataMember]
         public string PremiumId { get; }
 
+        [DataMember]
         public DateTime DateTimeReceived { get; }
     }
 }

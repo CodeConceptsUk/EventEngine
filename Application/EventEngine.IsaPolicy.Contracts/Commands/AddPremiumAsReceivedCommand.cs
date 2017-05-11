@@ -6,7 +6,7 @@ using CodeConcepts.EventEngine.IsaPolicy.Contracts.PropertyBags;
 
 namespace CodeConcepts.EventEngine.IsaPolicy.Contracts.Commands
 {
-    [DataContract(Namespace = "http://codeconcepts.co.uk/commands")]
+    [DataContract(Namespace = "http://codeconcepts.co.uk/commands/isapolicy")]
     public class AddPremiumAsReceivedCommand : IsaPolicyCommand
     {
         public AddPremiumAsReceivedCommand(string policyNumber, string premiumId, DateTime premiumDateTime, IEnumerable<FundPremiumDetail> fundPremiumDetail)

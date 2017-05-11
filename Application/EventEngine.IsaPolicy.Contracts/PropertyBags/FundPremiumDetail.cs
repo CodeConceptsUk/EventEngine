@@ -3,7 +3,7 @@ using System.Runtime.Serialization;
 
 namespace CodeConcepts.EventEngine.IsaPolicy.Contracts.PropertyBags
 {
-    [DataContract(Namespace = "http://codeconcepts.co.uk/commands")]
+    [DataContract(Namespace = "http://codeconcepts.co.uk/commands/isapolicy")]
     public class FundPremiumDetail
     {
         public FundPremiumDetail(Guid partitionId, string fundId, decimal amount)

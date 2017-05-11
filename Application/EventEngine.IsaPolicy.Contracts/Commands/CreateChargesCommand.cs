@@ -4,7 +4,7 @@ using CodeConcepts.EventEngine.IsaPolicy.Contracts.BaseTypes;
 
 namespace CodeConcepts.EventEngine.IsaPolicy.Contracts.Commands
 {
-    [DataContract]
+    [DataContract(Namespace = "http://codeconcepts.co.uk/commands/isapolicy")]
     public class CreateChargesCommand : IsaPolicyCommand
     {
         public CreateChargesCommand(string policyNumber, DateTime chargeDate)
