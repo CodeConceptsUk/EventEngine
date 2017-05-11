@@ -23,8 +23,8 @@ namespace Program.Factories
             RegisterNamedTypes<ICommandHandler>(container);
             RegisterNamedTypes<ICommand>(container);
             RegisterNamedTypes<IEventEvaluator>(container);
-
-            IsaSpecificStuff(container);
+            
+            SetupSpecificRegistrations(container);
             
             return container;
         }
