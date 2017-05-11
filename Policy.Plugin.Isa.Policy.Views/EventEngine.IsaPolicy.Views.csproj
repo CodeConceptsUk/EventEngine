@@ -69,13 +69,13 @@
       <Project>{18373edd-6bd2-43d9-9aeb-b5c8668e5e9d}</Project>
       <Name>EventEngine.Application</Name>
     </ProjectReference>
-    <ProjectReference Include="..\IsaPolicy.Contracts\EventEngine.IsaPolicy.Contracts.csproj">
-      <Project>{14808d5e-6d00-459a-98cb-53ac6b8ea4ae}</Project>
-      <Name>EventEngine.IsaPolicy.Contracts</Name>
-    </ProjectReference>
     <ProjectReference Include="..\EventEngine.Contracts\EventEngine.Contracts.csproj">
       <Project>{B033DAE8-2D28-42A9-BFA1-6F3AB59C1040}</Project>
       <Name>EventEngine.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EventEngine.IsaPolicy.Contracts\EventEngine.IsaPolicy.Contracts.csproj">
+      <Project>{14808d5e-6d00-459a-98cb-53ac6b8ea4ae}</Project>
+      <Name>EventEngine.IsaPolicy.Contracts</Name>
     </ProjectReference>
     <ProjectReference Include="..\Policy.Plugin.Isa.Policy\EventEngine.IsaPolicy.Events.csproj">
       <Project>{ced460f4-690f-4561-94be-8a5dcd250a5a}</Project>
