@@ -2,11 +2,11 @@
 using System.Linq;
 using System.Text;
 using CliConsole.Interfaces;
-using Program.Extensions;
+using CodeConcepts.EventEngine.ConsoleClient.Extensions;
+using CodeConcepts.EventEngine.ConsoleClient.Factories;
 using Microsoft.Practices.Unity;
-using Program.Factories;
 
-namespace ConsoleClient
+namespace CodeConcepts.EventEngine.ConsoleClient
 {
     public class Program
     {

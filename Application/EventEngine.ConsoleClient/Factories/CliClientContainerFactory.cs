@@ -6,7 +6,7 @@ using CliConsole.Interfaces.Factories;
 using Microsoft.Practices.Unity;
 using Program.Services;
 
-namespace Program.Factories
+namespace CodeConcepts.EventEngine.ConsoleClient.Factories
 {
     public class CliClientContainerFactory : ClientContainerFactory
     {

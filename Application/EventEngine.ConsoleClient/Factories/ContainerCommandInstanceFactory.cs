@@ -3,7 +3,7 @@ using CliConsole.Interfaces;
 using CliConsole.Interfaces.Factories;
 using Microsoft.Practices.Unity;
 
-namespace Program.Factories
+namespace CodeConcepts.EventEngine.ConsoleClient.Factories
 {
     public class ContainerCommandInstanceFactory : ICommandInstanceFactory
     {

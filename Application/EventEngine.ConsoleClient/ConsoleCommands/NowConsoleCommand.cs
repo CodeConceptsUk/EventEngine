@@ -3,7 +3,7 @@ using System.Globalization;
 using CliConsole;
 using CliConsole.Interfaces;
 
-namespace Program.ConsoleCommands
+namespace CodeConcepts.EventEngine.ConsoleClient.ConsoleCommands
 {
     public class NowConsoleCommand : InlineConsoleCommand
     {

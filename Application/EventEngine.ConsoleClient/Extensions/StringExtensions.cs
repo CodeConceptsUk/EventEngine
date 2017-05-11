@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Text;
 
-namespace Program.Extensions
+namespace CodeConcepts.EventEngine.ConsoleClient.Extensions
 {
     public static class StringExtensions
     {

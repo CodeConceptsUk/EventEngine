@@ -3,7 +3,7 @@ using System.Linq;
 using CliConsole.Interfaces;
 using Microsoft.Practices.Unity;
 
-namespace Program.Extensions
+namespace CodeConcepts.EventEngine.ConsoleClient.Extensions
 {
     internal static class ContainerExtensions
     {

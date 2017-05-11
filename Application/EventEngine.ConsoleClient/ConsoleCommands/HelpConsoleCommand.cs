@@ -1,10 +1,10 @@
 ﻿using CliConsole;
 using CliConsole.Interfaces;
+using CodeConcepts.EventEngine.ConsoleClient.Extensions;
 using FrameworkExtensions.LinqExtensions;
 using Microsoft.Practices.Unity;
-using Program.Extensions;
 
-namespace Program.ConsoleCommands
+namespace CodeConcepts.EventEngine.ConsoleClient.ConsoleCommands
 {
     public class HelpConsoleCommand : InlineConsoleCommand
     {

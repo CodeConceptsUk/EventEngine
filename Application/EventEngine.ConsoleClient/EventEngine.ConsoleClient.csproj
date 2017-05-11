@@ -57,6 +57,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ConsoleCommands\AddPremiumConsoleCommand.cs" />
+    <Compile Include="ConsoleCommands\AddUnitsToFundConsoleCommand.cs" />
+    <Compile Include="ConsoleCommands\CreatePolicyConsoleCommand.cs" />
     <Compile Include="ConsoleCommands\HelpConsoleCommand.cs" />
     <Compile Include="ConsoleCommands\NowConsoleCommand.cs" />
     <Compile Include="Extensions\ContainerExtensions.cs" />
@@ -78,6 +81,14 @@
     <ProjectReference Include="..\EventEngine.Client.Runtime\EventEngine.Client.Runtime.csproj">
       <Project>{21a944ba-fdcd-4fa8-9dc1-dcba24da3db9}</Project>
       <Name>EventEngine.Client.Runtime</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EventEngine.Contracts\EventEngine.Contracts.csproj">
+      <Project>{B033DAE8-2D28-42A9-BFA1-6F3AB59C1040}</Project>
+      <Name>EventEngine.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EventEngine.IsaPolicy.Contracts\EventEngine.IsaPolicy.Contracts.csproj">
+      <Project>{14808d5e-6d00-459a-98cb-53ac6b8ea4ae}</Project>
+      <Name>EventEngine.IsaPolicy.Contracts</Name>
     </ProjectReference>
     <ProjectReference Include="..\EventEngine.Shared.Runtime\EventEngine.Shared.Runtime.csproj">
       <Project>{9C5273FB-4FD9-4ADE-9229-107CF1E665CE}</Project>
