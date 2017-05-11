@@ -7,8 +7,8 @@
     <ProjectGuid>{B033DAE8-2D28-42A9-BFA1-6F3AB59C1040}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>EventEngine.Contracts</RootNamespace>
-    <AssemblyName>EventEngine.Contracts</AssemblyName>
+    <RootNamespace>CodeConcepts.EventEngine.Contracts</RootNamespace>
+    <AssemblyName>CodeConcepts.EventEngine.Contracts</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

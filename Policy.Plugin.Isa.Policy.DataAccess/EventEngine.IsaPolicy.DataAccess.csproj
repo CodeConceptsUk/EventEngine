@@ -7,8 +7,8 @@
     <ProjectGuid>{6464B49C-B9AB-4919-AC2A-FEF20598CB49}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Policy.Plugin.Isa.Policy.DataAccess</RootNamespace>
-    <AssemblyName>Policy.Plugin.Isa.Policy.DataAccess</AssemblyName>
+    <RootNamespace>CodeConcepts.EventEngine.IsaPolicy.DataAccess</RootNamespace>
+    <AssemblyName>CodeConcepts.EventEngine.IsaPolicy.DataAccess</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -78,21 +78,21 @@
       <Project>{21d128d0-4f13-4157-b454-00beaf0a3de3}</Project>
       <Name>FrameworkExtensions</Name>
     </ProjectReference>
-    <ProjectReference Include="..\IsaPolicy.Contracts\IsaPolicy.Contracts.csproj">
+    <ProjectReference Include="..\IsaPolicy.Contracts\EventEngine.IsaPolicy.Contracts.csproj">
       <Project>{14808d5e-6d00-459a-98cb-53ac6b8ea4ae}</Project>
-      <Name>IsaPolicy.Contracts</Name>
+      <Name>EventEngine.IsaPolicy.Contracts</Name>
     </ProjectReference>
     <ProjectReference Include="..\EventEngine.Contracts\EventEngine.Contracts.csproj">
       <Project>{b033dae8-2d28-42a9-bfa1-6f3ab59c1040}</Project>
       <Name>EventEngine.Contracts</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Policy.Plugin.Isa.Policy.Views\Policy.Plugin.Isa.Policy.Views.csproj">
+    <ProjectReference Include="..\Policy.Plugin.Isa.Policy.Views\EventEngine.IsaPolicy.Views.csproj">
       <Project>{f411399c-6a83-42f2-87ef-08adf7de1d9f}</Project>
-      <Name>Policy.Plugin.Isa.Policy.Views</Name>
+      <Name>EventEngine.IsaPolicy.Views</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Policy.Plugin.Isa.Policy\Policy.Plugin.Isa.Policy.csproj">
+    <ProjectReference Include="..\Policy.Plugin.Isa.Policy\EventEngine.IsaPolicy.Events.csproj">
       <Project>{ced460f4-690f-4561-94be-8a5dcd250a5a}</Project>
-      <Name>Policy.Plugin.Isa.Policy</Name>
+      <Name>EventEngine.IsaPolicy.Events</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

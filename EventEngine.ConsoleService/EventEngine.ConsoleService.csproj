@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{5E1295C3-3786-4403-A4FD-E7DE94FADD48}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>Program</RootNamespace>
-    <AssemblyName>Program</AssemblyName>
+    <RootNamespace>CodeConcepts.EventEngine.ConsoleService</RootNamespace>
+    <AssemblyName>EventEngine</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>

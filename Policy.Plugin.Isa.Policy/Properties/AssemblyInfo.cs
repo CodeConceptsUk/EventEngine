@@ -4,12 +4,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Plugin.Isa.Policy")]
+[assembly: AssemblyTitle("CodeConcepts.EventEngine.IsaPolicy.Events")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Plugin.Isa.Policy")]
-[assembly: AssemblyCopyright("Copyright ©  2017")]
+[assembly: AssemblyProduct("CodeConcepts.EventEngine.IsaPolicy.Events")]
+[assembly: AssemblyCopyright("Copyright © CodeConcepts 2017")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

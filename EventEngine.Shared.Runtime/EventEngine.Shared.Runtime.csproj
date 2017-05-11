@@ -7,8 +7,8 @@
     <ProjectGuid>{9C5273FB-4FD9-4ADE-9229-107CF1E665CE}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>EventEngine.Shared.Runtime</RootNamespace>
-    <AssemblyName>EventEngine.Shared.Runtime</AssemblyName>
+    <RootNamespace>CodeConcepts.EventEngine.Shared.Runtime</RootNamespace>
+    <AssemblyName>CodeConcepts.EventEngine.Shared.Runtime</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

@@ -7,8 +7,8 @@
     <ProjectGuid>{B093B83C-7A67-4F29-95D4-0ADBAD84082E}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CliConsole.UnitTests</RootNamespace>
-    <AssemblyName>CliConsole.UnitTests</AssemblyName>
+    <RootNamespace>CodeConcepts.CliConsole.UnitTests</RootNamespace>
+    <AssemblyName>CodeConcepts.CliConsole.UnitTests</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

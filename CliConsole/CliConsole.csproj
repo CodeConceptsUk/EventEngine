@@ -7,8 +7,8 @@
     <ProjectGuid>{2165265F-4AFF-402A-A73A-D3C9F9A7E0AD}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CliConsole</RootNamespace>
-    <AssemblyName>CliConsole</AssemblyName>
+    <RootNamespace>CodeConcepts.CliConsole</RootNamespace>
+    <AssemblyName>CodeConcepts.CliConsole</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

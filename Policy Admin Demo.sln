@@ -17,7 +17,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{6E2C1338
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventEngine.Contracts", "EventEngine.Contracts\EventEngine.Contracts.csproj", "{B033DAE8-2D28-42A9-BFA1-6F3AB59C1040}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IsaPolicy.Contracts", "IsaPolicy.Contracts\IsaPolicy.Contracts.csproj", "{14808D5E-6D00-459A-98CB-53AC6B8EA4AE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventEngine.IsaPolicy.Contracts", "IsaPolicy.Contracts\EventEngine.IsaPolicy.Contracts.csproj", "{14808D5E-6D00-459A-98CB-53AC6B8EA4AE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventEngine.Application", "EventEngine.Application\EventEngine.Application.csproj", "{18373EDD-6BD2-43D9-9AEB-B5C8668E5E9D}"
 EndProject
@@ -37,15 +37,15 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CliConsole", "CliConsole\Cl
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CliConsole.UnitTests", "CliConsole.UnitTests\CliConsole.UnitTests.csproj", "{B093B83C-7A67-4F29-95D4-0ADBAD84082E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Policy.Plugin.Isa.Policy", "Policy.Plugin.Isa.Policy\Policy.Plugin.Isa.Policy.csproj", "{CED460F4-690F-4561-94BE-8A5DCD250A5A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventEngine.IsaPolicy.Events", "Policy.Plugin.Isa.Policy\EventEngine.IsaPolicy.Events.csproj", "{CED460F4-690F-4561-94BE-8A5DCD250A5A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Policy.Plugin.Isa.Policy.DataAccess", "Policy.Plugin.Isa.Policy.DataAccess\Policy.Plugin.Isa.Policy.DataAccess.csproj", "{6464B49C-B9AB-4919-AC2A-FEF20598CB49}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventEngine.IsaPolicy.DataAccess", "Policy.Plugin.Isa.Policy.DataAccess\EventEngine.IsaPolicy.DataAccess.csproj", "{6464B49C-B9AB-4919-AC2A-FEF20598CB49}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Policy.Plugin.Isa.Policy.Operations", "Policy.Plugin.Isa.Policy.Operations\Policy.Plugin.Isa.Policy.Operations.csproj", "{48D68DF9-3F79-417D-821D-48F8053C8F49}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventEngine.IsaPolicy.Operations", "Policy.Plugin.Isa.Policy.Operations\EventEngine.IsaPolicy.Operations.csproj", "{48D68DF9-3F79-417D-821D-48F8053C8F49}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Policy.Plugin.Isa.Policy.Views", "Policy.Plugin.Isa.Policy.Views\Policy.Plugin.Isa.Policy.Views.csproj", "{F411399C-6A83-42F2-87EF-08ADF7DE1D9F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventEngine.IsaPolicy.Views", "Policy.Plugin.Isa.Policy.Views\EventEngine.IsaPolicy.Views.csproj", "{F411399C-6A83-42F2-87EF-08ADF7DE1D9F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleClient", "ConsoleClient\ConsoleClient.csproj", "{FFA3169A-FD6E-4EC7-B46B-347339BFE346}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventEngine.ConsoleClient", "ConsoleClient\EventEngine.ConsoleClient.csproj", "{FFA3169A-FD6E-4EC7-B46B-347339BFE346}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventEngine.ConsoleService", "EventEngine.ConsoleService\EventEngine.ConsoleService.csproj", "{5E1295C3-3786-4403-A4FD-E7DE94FADD48}"
 EndProject

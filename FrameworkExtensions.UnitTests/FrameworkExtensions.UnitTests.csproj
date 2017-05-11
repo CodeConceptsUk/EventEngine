@@ -7,8 +7,8 @@
     <ProjectGuid>{919A9DF9-DE5E-43EB-9DDF-CCEA4775E458}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>FrameworkExtensions.UnitTests</RootNamespace>
-    <AssemblyName>FrameworkExtensions.UnitTests</AssemblyName>
+    <RootNamespace>CodeConcepts.FrameworkExtensions.UnitTests</RootNamespace>
+    <AssemblyName>CodeConcepts.FrameworkExtensions.UnitTests</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

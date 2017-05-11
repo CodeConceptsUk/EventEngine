@@ -7,8 +7,8 @@
     <ProjectGuid>{21A944BA-FDCD-4FA8-9DC1-DCBA24DA3DB9}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>EventEngine.ClientLibrary</RootNamespace>
-    <AssemblyName>EventEngine.ClientLibrary</AssemblyName>
+    <RootNamespace>CodeConcepts.EventEngine.ClientLibrary</RootNamespace>
+    <AssemblyName>CodeConcepts.EventEngine.ClientLibrary</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

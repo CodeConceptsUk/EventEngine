@@ -7,8 +7,8 @@
     <ProjectGuid>{14808D5E-6D00-459A-98CB-53AC6B8EA4AE}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>IsaPolicy.Contracts</RootNamespace>
-    <AssemblyName>IsaPolicy.Contracts</AssemblyName>
+    <RootNamespace>CodeConcepts.EventEngine.IsaPolicy.Contracts</RootNamespace>
+    <AssemblyName>CodeConcepts.EventEngine.IsaPolicy.Contracts</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
