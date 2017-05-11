@@ -64,19 +64,15 @@
     <Compile Include="Views\PolicyView\EventEvaluators\UnitsAllocatedEventEvaluator.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\FrameworkExtensions\FrameworkExtensions.csproj">
-      <Project>{21d128d0-4f13-4157-b454-00beaf0a3de3}</Project>
-      <Name>FrameworkExtensions</Name>
+    <ProjectReference Include="..\EventEngine.Application\EventEngine.Application.csproj">
+      <Project>{18373edd-6bd2-43d9-9aeb-b5c8668e5e9d}</Project>
+      <Name>EventEngine.Application</Name>
     </ProjectReference>
     <ProjectReference Include="..\IsaPolicy.Contracts\IsaPolicy.Contracts.csproj">
       <Project>{14808d5e-6d00-459a-98cb-53ac6b8ea4ae}</Project>
       <Name>IsaPolicy.Contracts</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Policy.Application\EventEngine.Application.csproj">
-      <Project>{18373edd-6bd2-43d9-9aeb-b5c8668e5e9d}</Project>
-      <Name>Policy.Application</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Policy.Contracts\EventEngine.Contracts.csproj">
+    <ProjectReference Include="..\EventEngine.Contracts\EventEngine.Contracts.csproj">
       <Project>{B033DAE8-2D28-42A9-BFA1-6F3AB59C1040}</Project>
       <Name>EventEngine.Contracts</Name>
     </ProjectReference>

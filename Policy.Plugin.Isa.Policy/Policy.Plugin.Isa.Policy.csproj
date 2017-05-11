@@ -67,19 +67,15 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\FrameworkExtensions\FrameworkExtensions.csproj">
-      <Project>{21D128D0-4F13-4157-B454-00BEAF0A3DE3}</Project>
-      <Name>FrameworkExtensions</Name>
+    <ProjectReference Include="..\EventEngine.Application\EventEngine.Application.csproj">
+      <Project>{18373edd-6bd2-43d9-9aeb-b5c8668e5e9d}</Project>
+      <Name>EventEngine.Application</Name>
     </ProjectReference>
     <ProjectReference Include="..\IsaPolicy.Contracts\IsaPolicy.Contracts.csproj">
       <Project>{14808d5e-6d00-459a-98cb-53ac6b8ea4ae}</Project>
       <Name>IsaPolicy.Contracts</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Policy.Application\EventEngine.Application.csproj">
-      <Project>{18373edd-6bd2-43d9-9aeb-b5c8668e5e9d}</Project>
-      <Name>Policy.Application</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Policy.Contracts\EventEngine.Contracts.csproj">
+    <ProjectReference Include="..\EventEngine.Contracts\EventEngine.Contracts.csproj">
       <Project>{b033dae8-2d28-42a9-bfa1-6f3ab59c1040}</Project>
       <Name>EventEngine.Contracts</Name>
     </ProjectReference>

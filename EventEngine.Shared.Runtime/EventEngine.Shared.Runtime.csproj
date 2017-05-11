@@ -56,17 +56,17 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\FrameworkExtensions\FrameworkExtensions.csproj">
-      <Project>{21d128d0-4f13-4157-b454-00beaf0a3de3}</Project>
-      <Name>FrameworkExtensions</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Policy.Application\EventEngine.Application.csproj">
+    <ProjectReference Include="..\EventEngine.Application\EventEngine.Application.csproj">
       <Project>{18373edd-6bd2-43d9-9aeb-b5c8668e5e9d}</Project>
       <Name>EventEngine.Application</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Policy.Contracts\EventEngine.Contracts.csproj">
+    <ProjectReference Include="..\EventEngine.Contracts\EventEngine.Contracts.csproj">
       <Project>{b033dae8-2d28-42a9-bfa1-6f3ab59c1040}</Project>
       <Name>EventEngine.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FrameworkExtensions\FrameworkExtensions.csproj">
+      <Project>{21d128d0-4f13-4157-b454-00beaf0a3de3}</Project>
+      <Name>FrameworkExtensions</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

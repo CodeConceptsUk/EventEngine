@@ -71,7 +71,7 @@
       <Project>{2165265f-4aff-402a-a73a-d3c9f9a7e0ad}</Project>
       <Name>CliConsole</Name>
     </ProjectReference>
-    <ProjectReference Include="..\EventEngine.ClientLibrary\EventEngine.Client.Runtime.csproj">
+    <ProjectReference Include="..\EventEngine.Client.Runtime\EventEngine.Client.Runtime.csproj">
       <Project>{21a944ba-fdcd-4fa8-9dc1-dcba24da3db9}</Project>
       <Name>EventEngine.Client.Runtime</Name>
     </ProjectReference>
