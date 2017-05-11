@@ -14,7 +14,7 @@ using ICommand = CliConsole.Interfaces.ICommand;
 
 namespace Program
 {
-    public class Plugin : IContainer
+    public class DependencyInjectionConfiguration : IContainer
     {
         public void Setup(IUnityContainer container)
         {

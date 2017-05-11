@@ -59,6 +59,10 @@
     <Compile Include="CommandDispatcher.cs" />
     <Compile Include="EventPlayer.cs" />
     <Compile Include="Exceptions\QueryException.cs" />
+    <Compile Include="Factories\CommandDispatcherFactory.cs" />
+    <Compile Include="Factories\EventPlayerFactory.cs" />
+    <Compile Include="Interfaces\Factories\ICommandDispatcherFactory.cs" />
+    <Compile Include="Interfaces\Factories\IEventPlayerFactory.cs" />
     <Compile Include="Factories\LogFactory.cs" />
     <Compile Include="Interfaces\Factories\ILogFactory.cs" />
     <Compile Include="Interfaces\IContainer.cs" />

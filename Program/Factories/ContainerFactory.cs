@@ -14,7 +14,7 @@ namespace Program.Factories
             AddPlugin<Policy.Plugin.Isa.Policy.DataAccess.Plugin>(container);
             AddPlugin<Policy.Plugin.Isa.Policy.Operations.Plugin>(container);
             AddPlugin<Policy.Plugin.Isa.Policy.Views.Plugin>(container);
-            AddPlugin<Plugin>(container);
+            AddPlugin<DependencyInjectionConfiguration>(container);
 
             return container;
         }

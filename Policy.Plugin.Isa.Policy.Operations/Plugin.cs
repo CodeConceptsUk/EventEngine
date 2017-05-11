@@ -1,9 +1,8 @@
 ﻿using System.Linq;
 using Microsoft.Practices.Unity;
-using Policy.Application;
+using Policy.Application.Factories;
 using Policy.Application.Interfaces;
-using Policy.Plugin.Isa.Policy.Events;
-using Policy.Plugin.Isa.Policy.Operations.BaseTypes;
+using Policy.Application.Interfaces.Factories;
 using IContainer = Policy.Application.Interfaces.IContainer;
 
 namespace Policy.Plugin.Isa.Policy.Operations
@@ -20,7 +19,8 @@ namespace Policy.Plugin.Isa.Policy.Operations
                 WithLifetime.ContainerControlled);
             RegisterNamedTypes<ICommandHandler>(container);
             RegisterNamedTypes<ICommand>(container);
-            container.RegisterType<ICommandDispatcher<IsaPolicyCommand>, CommandDispatcher<IsaPolicyCommand, IsaPolicyEvent>>();
+            container.RegisterType<ICommandDispatcherFactory, CommandDispatcherFactory>();
+            container.RegisterType<IEventPlayerFactory, EventPlayerFactory>();
 
         }
 
