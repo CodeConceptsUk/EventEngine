@@ -1,9 +1,13 @@
-﻿using System;
+﻿using System.Linq;
+using System.Reflection;
 using System.ServiceModel;
 using CodeConcepts.EventEngine.Application.Interfaces;
+using CodeConcepts.EventEngine.Application.Interfaces.Factories;
 using CodeConcepts.EventEngine.Contracts.Interfaces;
 using CodeConcepts.EventEngine.Contracts.Interfaces.Services;
+using CodeConcepts.EventEngine.IsaPolicy.Contracts.BaseTypes;
 using CodeConcepts.FrameworkExtensions.ObjectExtensions;
+using log4net;
 using Microsoft.Practices.Unity;
 
 namespace CodeConcepts.EventEngine.Services
@@ -11,25 +15,30 @@ namespace CodeConcepts.EventEngine.Services
     [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single)]
     public class EventEngineApiService : IEventEngineApiService
     {
-        private readonly IUnityContainer _container;
+        private readonly ICommandDispatcherFactory _commandDispatcherFactory;
+        private readonly ILog _log;
 
-        public EventEngineApiService(IUnityContainer container)
+        public EventEngineApiService(ILogFactory logFactory, ICommandDispatcherFactory commandDispatcherFactory)
         {
-            _container = container;
+            _log = logFactory.GetLogger(GetType());
+            _commandDispatcherFactory = commandDispatcherFactory;
         }
 
         public void DispatchCommand(ICommand request)
         {
             var commandType = request.GetType();
-            var baseCommandType = commandType.BaseType;
+            var commandBaseType = commandType.BaseType;
 
-            var commandDispatcherType = typeof(ICommandDispatcher<>);
-            var genericCommandDispatch = commandDispatcherType.MakeGenericType(baseCommandType);
+            //TODO cheating: (remove the reference to IsaPolicy namespace too when fixing this)
+            var eventBaseType = typeof(IsaPolicyEvent);
 
-            var dispatcher = _container.Resolve(genericCommandDispatch).AsDynamic();
+            var commandDispatcherCreationMethodInfo = typeof(ICommandDispatcherFactory).GetMethods(BindingFlags.Public|BindingFlags.Instance).Single(m => m.Name == "Create");
+            var commandDispatcherInstanceCreationMethodInfo = commandDispatcherCreationMethodInfo.MakeGenericMethod(commandBaseType, eventBaseType);
+
+            _log.Info($"Executing Api Command: {request.GetType()}");
+
+            var dispatcher = commandDispatcherInstanceCreationMethodInfo.Invoke(_commandDispatcherFactory, new object[]{}).AsDynamic();
             dispatcher.Apply(request.AsDynamic());
-
-            Console.WriteLine("I got there, yay. Lying can you tell. FO!");
         }
     }
 }

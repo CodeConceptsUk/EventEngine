@@ -1,5 +1,4 @@
 ﻿using System;
-using CodeConcepts.EventEngine.Services;
 using CodeConcepts.EventEngine.Services.Hosting;
 using Microsoft.Practices.Unity;
 
@@ -10,7 +9,7 @@ namespace CodeConcepts.EventEngine.ConsoleService
     {
         private static void Main()
         {
-            var serviceContainerFactory = new ServiceContainerFactory();
+            var serviceContainerFactory = new ConsoleServiceContainerFactory();
             var container = serviceContainerFactory.Create();
             using (var service = container.Resolve<IServiceHosting>())
             {

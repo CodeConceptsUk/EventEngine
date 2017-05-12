@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using System.Reflection;
 using CodeConcepts.EventEngine.Application.Factories;
 using CodeConcepts.EventEngine.Application.Interfaces;
 using CodeConcepts.EventEngine.Application.Interfaces.Factories;
@@ -31,20 +32,15 @@ namespace CodeConcepts.EventEngine.Shared.Runtime
         }
 
         protected abstract void SetupSpecificRegistrations(IUnityContainer container);
-
-        private static void IsaSpecificStuff(UnityContainer container)
-        {
-            //container.RegisterType<ISequencingRepository, SequencingSqlStore>();
-            //container.RegisterType<IUnitPricingRepository, UnitPricingInMemoryStore>();
-            //container.RegisterType<ISnapshotStore<PolicyView>, SinglePolicySnapshotMemoryStore>();
-            //container.RegisterType<ISnapshotStore<PolicyTransactionView>, SinglePolicyTransactionSnapshotMemoryStore>();
-            //container.RegisterType<IEventStoreRepository<IsaPolicyEvent>, IsaPolicyEventsInSqlStore>();
-            //container.RegisterType<IIsaPolicyEventStoreRepository, IsaPolicyEventsInSqlStore>();
-        }
-
+        
         protected virtual void RegisterNamedTypes<TType>(IUnityContainer container)
         {
-            var types = GetType().Assembly.GetTypes().Where(t => t.IsAbstract == false && typeof(TType).IsAssignableFrom(t)).ToList();
+            RegisterNamedTypes<TType>(GetType().Assembly, container);
+        }
+
+        protected void RegisterNamedTypes<TType>(Assembly assembly, IUnityContainer container)
+        {
+            var types = assembly.GetTypes().Where(t => t.IsAbstract == false && typeof(TType).IsAssignableFrom(t)).ToList();
             types.ForEach(t =>
             {
                 container.RegisterType(typeof(TType), t, t.FullName, new ContainerControlledLifetimeManager());

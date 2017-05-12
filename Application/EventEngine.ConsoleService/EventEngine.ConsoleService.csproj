@@ -35,6 +35,7 @@
     <ApplicationIcon>1494561361_Database_3.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="ConsoleServiceContainerFactory.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -60,6 +61,30 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\EventEngine.Application\EventEngine.Application.csproj">
+      <Project>{18373EDD-6BD2-43D9-9AEB-B5C8668E5E9D}</Project>
+      <Name>EventEngine.Application</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EventEngine.Contracts\EventEngine.Contracts.csproj">
+      <Project>{B033DAE8-2D28-42A9-BFA1-6F3AB59C1040}</Project>
+      <Name>EventEngine.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EventEngine.IsaPolicy.Contracts\EventEngine.IsaPolicy.Contracts.csproj">
+      <Project>{14808D5E-6D00-459A-98CB-53AC6B8EA4AE}</Project>
+      <Name>EventEngine.IsaPolicy.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EventEngine.IsaPolicy.DataAccess\EventEngine.IsaPolicy.DataAccess.csproj">
+      <Project>{6464B49C-B9AB-4919-AC2A-FEF20598CB49}</Project>
+      <Name>EventEngine.IsaPolicy.DataAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EventEngine.IsaPolicy.Views.DataAccess\EventEngine.IsaPolicy.Views.DataAccess.csproj">
+      <Project>{DF583A0B-8586-49AA-99E6-8028DB2F35E3}</Project>
+      <Name>EventEngine.IsaPolicy.Views.DataAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EventEngine.IsaPolicy.Views\EventEngine.IsaPolicy.Views.csproj">
+      <Project>{F411399C-6A83-42F2-87EF-08ADF7DE1D9F}</Project>
+      <Name>EventEngine.IsaPolicy.Views</Name>
+    </ProjectReference>
     <ProjectReference Include="..\EventEngine.Service.Runtime\EventEngine.Service.Runtime.csproj">
       <Project>{a4e1a71d-cca3-47f0-994c-4856007a19fe}</Project>
       <Name>EventEngine.Service.Runtime</Name>
