@@ -4,7 +4,7 @@ using CodeConcepts.EventEngine.IsaPolicy.Contracts.CoreViews.PremiumsStatusView;
 
 namespace CodeConcepts.EventEngine.IsaPolicy.Contracts.Interfaces.CoreQueries
 {
-    public interface IPremiumStatusQuery : IQuery
+    public interface IPremiumsStatusQuery : IQuery
     {
         PremiumsStatusView Read(Guid contextId);
     }

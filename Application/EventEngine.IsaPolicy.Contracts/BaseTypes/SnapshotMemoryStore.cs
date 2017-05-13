@@ -5,22 +5,23 @@ using System.Linq;
 using CodeConcepts.EventEngine.Contracts.Interfaces;
 using CodeConcepts.EventEngine.Contracts.Interfaces.Repositories;
 using CodeConcepts.EventEngine.Contracts.PropertyBags;
+using Newtonsoft.Json;
 
 namespace CodeConcepts.EventEngine.IsaPolicy.Contracts.BaseTypes
 {
     public abstract class SnapshotMemoryStore<TView> : ISnapshotStore<TView>
         where TView : class, IView
     {
-        private static readonly Dictionary<Guid, OrderedDictionary> Store = new Dictionary<Guid, OrderedDictionary>();
+        private readonly Dictionary<Guid, OrderedDictionary> _store = new Dictionary<Guid, OrderedDictionary>();
 
-        private static readonly JsonSerializerSettings JsonSerializerSettings = new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.All };
+        private readonly JsonSerializerSettings _jsonSerializerSettings = new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.All };
 
         public ISnapshot<TView> Get(Guid contextId)
         {
-            if (!Store.ContainsKey(contextId))
+            if (!_store.ContainsKey(contextId))
                 return null;
 
-            var serializedView = Store[contextId].Values.OfType<string>().LastOrDefault();
+            var serializedView = _store[contextId].Values.OfType<string>().LastOrDefault();
             return serializedView == null
                 ? null
                 : Deserialize(serializedView);
@@ -29,40 +30,40 @@ namespace CodeConcepts.EventEngine.IsaPolicy.Contracts.BaseTypes
         public void Add(TView view, IEvent @event)
         {
             var contextId = @event.EventContextId;
-            if (!Store.ContainsKey(contextId))
-                Store[contextId] = new OrderedDictionary();
+            if (!_store.ContainsKey(contextId))
+                _store[contextId] = new OrderedDictionary();
 
             var snapshot = new Snapshot<TView>(@event, view);
             CrudeSizeTrimmer(contextId);
-            Store[contextId].Add(@event.EventId, Serialize(snapshot));
+            _store[contextId].Add(@event.EventId, Serialize(snapshot));
         }
 
-        private static void CrudeSizeTrimmer(Guid contextId)
+        private void CrudeSizeTrimmer(Guid contextId)
         {
             // clear out all old snapshots regularly.
-            if (Store[contextId].Count > 15)
+            if (_store[contextId].Count > 15)
             {
-                Store[contextId].Clear();
+                _store[contextId].Clear();
             }
         }
 
         public void ClearAllSnapshots()
         {
-            var keys = Store.Keys.ToArray();
+            var keys = _store.Keys.ToArray();
             foreach (var guid in keys)
             {
-                Store[guid].Clear();
+                _store[guid].Clear();
             }
         }
 
-        private static string Serialize(Snapshot<TView> value)
+        private string Serialize(Snapshot<TView> value)
         {
-            return JsonConvert.SerializeObject(value, JsonSerializerSettings);
+            return JsonConvert.SerializeObject(value, _jsonSerializerSettings);
         }
 
-        private static Snapshot<TView> Deserialize(string value)
+        private Snapshot<TView> Deserialize(string value)
         {
-            return JsonConvert.DeserializeObject<Snapshot<TView>>(value, JsonSerializerSettings);
+            return JsonConvert.DeserializeObject<Snapshot<TView>>(value, _jsonSerializerSettings);
         }
     }
 }

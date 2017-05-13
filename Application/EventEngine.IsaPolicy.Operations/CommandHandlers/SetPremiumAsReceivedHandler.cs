@@ -12,12 +12,12 @@ namespace CodeConcepts.EventEngine.IsaPolicy.Operations.CommandHandlers
     public class SetPremiumAsReceivedHandler : ICommandHandler<SetPremiumAsReceivedCommand, IsaPolicyEvent>
     {
         private readonly IPolicyEventContextIdQuery _policyEventContextIdQuery;
-        private readonly IPremiumStatusQuery _premiumStatusQuery;
+        private readonly IPremiumsStatusQuery _premiumsStatusQuery;
 
-        public SetPremiumAsReceivedHandler(IPolicyEventContextIdQuery policyEventContextIdQuery, IPremiumStatusQuery premiumStatusQuery)
+        public SetPremiumAsReceivedHandler(IPolicyEventContextIdQuery policyEventContextIdQuery, IPremiumsStatusQuery premiumsStatusQuery)
         {
             _policyEventContextIdQuery = policyEventContextIdQuery;
-            _premiumStatusQuery = premiumStatusQuery;
+            _premiumsStatusQuery = premiumsStatusQuery;
         }
 
         public IEnumerable<IsaPolicyEvent> Execute(SetPremiumAsReceivedCommand command)
@@ -25,7 +25,7 @@ namespace CodeConcepts.EventEngine.IsaPolicy.Operations.CommandHandlers
             var eventContextId = _policyEventContextIdQuery.GeteventContextId(command.PolicyNumber);
             if (!eventContextId.HasValue)
                 throw new QueryException($"The policy {command.PolicyNumber} does not exist!");
-            var premiumStatuses = _premiumStatusQuery.Read(eventContextId.Value);
+            var premiumStatuses = _premiumsStatusQuery.Read(eventContextId.Value);
 
             ValidatePremiumStatus(command.PremiumId, premiumStatuses);
 

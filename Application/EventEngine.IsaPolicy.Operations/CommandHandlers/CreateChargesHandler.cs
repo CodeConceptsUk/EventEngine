@@ -14,9 +14,9 @@ namespace CodeConcepts.EventEngine.IsaPolicy.Operations.CommandHandlers
     public class CreateChargesHandler : ICommandHandler<CreateChargesCommand, IsaPolicyEvent>
     {
         private readonly IPolicyEventContextIdQuery _policyeventContextIdQuery;
-        private readonly IPolicyFundBalanceQuery _singlePolicyQuery;
+        private readonly IPolicyFundUnitBalanceQuery _singlePolicyQuery;
 
-        public CreateChargesHandler(IPolicyEventContextIdQuery policyeventContextIdQuery, IPolicyFundBalanceQuery singlePolicyQuery)
+        public CreateChargesHandler(IPolicyEventContextIdQuery policyeventContextIdQuery, IPolicyFundUnitBalanceQuery singlePolicyQuery)
         {
             _policyeventContextIdQuery = policyeventContextIdQuery;
             _singlePolicyQuery = singlePolicyQuery;

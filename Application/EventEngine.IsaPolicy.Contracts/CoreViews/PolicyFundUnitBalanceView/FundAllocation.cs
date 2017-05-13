@@ -1,6 +1,6 @@
 using System;
 
-namespace CodeConcepts.EventEngine.IsaPolicy.Contracts.CoreViews.PolicyFundBalanceView
+namespace CodeConcepts.EventEngine.IsaPolicy.Contracts.CoreViews.PolicyFundUnitBalanceView
 {
     public class FundAllocation
     {

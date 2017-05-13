@@ -32,6 +32,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
@@ -39,6 +42,7 @@
   <ItemGroup>
     <Compile Include="BaseTypes\IsaPolicyCommand.cs" />
     <Compile Include="BaseTypes\IsaPolicyEvent.cs" />
+    <Compile Include="BaseTypes\PolicyIndexedQuery.cs" />
     <Compile Include="BaseTypes\SnapshotMemoryStore.cs" />
     <Compile Include="Commands\AddPremiumAsReceivedCommand.cs" />
     <Compile Include="Commands\AddPremiumCommand.cs" />
@@ -47,8 +51,8 @@
     <Compile Include="Commands\CreateChargesCommand.cs" />
     <Compile Include="Commands\CreatePolicyCommand.cs" />
     <Compile Include="Commands\SetPremiumAsReceivedCommand.cs" />
-    <Compile Include="CoreViews\PolicyFundBalanceView\FundAllocation.cs" />
-    <Compile Include="CoreViews\PolicyFundBalanceView\PolicyFundBalanceView.cs" />
+    <Compile Include="CoreViews\PolicyFundUnitBalanceView\FundAllocation.cs" />
+    <Compile Include="CoreViews\PolicyFundUnitBalanceView\PolicyFundUnitBalanceView.cs" />
     <Compile Include="Events\AddPremiumEvent.cs" />
     <Compile Include="Events\AppliedFundChargeEvent.cs" />
     <Compile Include="Events\PolicyCreatedEvent.cs" />
@@ -56,8 +60,8 @@
     <Compile Include="Events\UnitsAddedToFundEvent.cs" />
     <Compile Include="Events\UnitsAllocatedEvent.cs" />
     <Compile Include="Interfaces\CoreQueries\IPolicyEventContextIdQuery.cs" />
-    <Compile Include="Interfaces\CoreQueries\IPolicyFundBalanceQuery.cs" />
-    <Compile Include="Interfaces\CoreQueries\IPremiumStatusQuery.cs" />
+    <Compile Include="Interfaces\CoreQueries\IPolicyFundUnitBalanceQuery.cs" />
+    <Compile Include="Interfaces\CoreQueries\IPremiumsStatusQuery.cs" />
     <Compile Include="Interfaces\CoreQueries\IUnallocatedReceivedPremiumsQuery.cs" />
     <Compile Include="CoreViews\UnallocatedReceivedPremiumsView\PremiumPartition.cs" />
     <Compile Include="CoreViews\UnallocatedReceivedPremiumsView\UnallocatedReceivedPremiumsView.cs" />
@@ -70,6 +74,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
