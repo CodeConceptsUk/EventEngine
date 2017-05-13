@@ -51,7 +51,7 @@
     <Compile Include="Commands\CreateChargesCommand.cs" />
     <Compile Include="Commands\CreatePolicyCommand.cs" />
     <Compile Include="Commands\SetPremiumAsReceivedCommand.cs" />
-    <Compile Include="CoreViews\PolicyFundUnitBalanceView\FundAllocation.cs" />
+    <Compile Include="CoreViews\PolicyFundUnitBalanceView\FundAllocationBalance.cs" />
     <Compile Include="CoreViews\PolicyFundUnitBalanceView\PolicyFundUnitBalanceView.cs" />
     <Compile Include="Events\AddPremiumEvent.cs" />
     <Compile Include="Events\AppliedFundChargeEvent.cs" />

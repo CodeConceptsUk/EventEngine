@@ -1,30 +1,20 @@
 using CodeConcepts.EventEngine.Contracts.Interfaces;
+using CodeConcepts.EventEngine.IsaPolicy.Contracts.CoreViews.PolicyFundUnitBalanceView;
 using CodeConcepts.EventEngine.IsaPolicy.Contracts.Events;
 
-namespace CodeConcepts.EventEngine.IsaPolicy.Operations.CoreViewEventEvaluators.PolicyFundBalanceView
+namespace CodeConcepts.EventEngine.IsaPolicy.Operations.CoreViewEventEvaluators.PolicyFundUnitBalanceViewEventEvaluators
 {
-    public class UnitsAddedToFundEventEvaluator : IEventEvaluator<UnitsAddedToFundEvent, Domain.PolicyView>
+    public class UnitsAddedToFundEventEvaluator : IEventEvaluator<UnitsAddedToFundEvent, PolicyFundUnitBalanceView>
     {
-        public void Evaluate(Domain.PolicyView view, UnitsAddedToFundEvent @event)
+        public void Evaluate(PolicyFundUnitBalanceView view, UnitsAddedToFundEvent @event)
         {
-            var allocation = new FundAllocation
+            var allocation = new FundAllocationBalance
             {
-                Units = @event.Units,
+                UnitBalance = @event.Units,
                 PortionId = @event.PortionId,
-                ShadowUnits = @event.Units
+                FundId = @event.FundId
             };
-            var fund = view.Funds.SingleOrDefault(f => f.FundId == @event.FundId);
-            if (fund == null)
-            {
-                fund = new Fund
-                {
-                    FundId = @event.FundId
-                };
-                view.Funds.Add(fund);
-            }
-            fund.Allocations.Add(allocation);
-            fund.TotalUnits += @event.Units;
-            fund.TotalShadowUnits += @event.Units;
+            view.FundAllocations.Add(allocation);
         }
     }
 }

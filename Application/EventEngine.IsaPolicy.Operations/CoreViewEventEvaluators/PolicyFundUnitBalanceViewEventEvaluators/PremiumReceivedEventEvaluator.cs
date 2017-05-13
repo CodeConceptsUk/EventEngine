@@ -1,13 +1,13 @@
 ﻿using CodeConcepts.EventEngine.Contracts.Interfaces;
+using CodeConcepts.EventEngine.IsaPolicy.Contracts.CoreViews.PolicyFundUnitBalanceView;
 using CodeConcepts.EventEngine.IsaPolicy.Contracts.Events;
 
-namespace CodeConcepts.EventEngine.IsaPolicy.Operations.CoreViewEventEvaluators.PolicyFundBalanceView
+namespace CodeConcepts.EventEngine.IsaPolicy.Operations.CoreViewEventEvaluators.PolicyFundUnitBalanceViewEventEvaluators
 {
-    public class PremiumReceivedEventEvaluator : IEventEvaluator<PremiumReceivedEvent, Domain.PolicyView>
+    public class PremiumReceivedEventEvaluator : IEventEvaluator<PremiumReceivedEvent, PolicyFundUnitBalanceView>
     {
-        public void Evaluate(Domain.PolicyView view, PremiumReceivedEvent @event)
+        public void Evaluate(PolicyFundUnitBalanceView view, PremiumReceivedEvent @event)
         {
-            view.Premiums.Single(p => p.PremiumId == @event.PremiumId).IsReceived = true;
         }
     }
 }

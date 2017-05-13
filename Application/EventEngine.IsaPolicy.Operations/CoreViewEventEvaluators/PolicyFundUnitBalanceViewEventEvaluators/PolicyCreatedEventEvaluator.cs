@@ -1,14 +1,13 @@
 ﻿using CodeConcepts.EventEngine.Contracts.Interfaces;
+using CodeConcepts.EventEngine.IsaPolicy.Contracts.CoreViews.PolicyFundUnitBalanceView;
 using CodeConcepts.EventEngine.IsaPolicy.Contracts.Events;
 
-namespace CodeConcepts.EventEngine.IsaPolicy.Operations.CoreViewEventEvaluators.PolicyFundBalanceView
+namespace CodeConcepts.EventEngine.IsaPolicy.Operations.CoreViewEventEvaluators.PolicyFundUnitBalanceViewEventEvaluators
 {
-    public class PolicyCreatedEventEvaluator : IEventEvaluator<PolicyCreatedEvent, Domain.PolicyView>
+    public class PolicyCreatedEventEvaluator : IEventEvaluator<PolicyCreatedEvent, PolicyFundUnitBalanceView>
     {
-        public void Evaluate(Domain.PolicyView view, PolicyCreatedEvent @event)
+        public void Evaluate(PolicyFundUnitBalanceView view, PolicyCreatedEvent @event)
         {
-            view.PolicyNumber = @event.PolicyNumber;
-            view.CustomerId = @event.CustomerId;
         }
     }
 }

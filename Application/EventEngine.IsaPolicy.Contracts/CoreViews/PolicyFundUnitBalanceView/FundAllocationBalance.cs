@@ -2,7 +2,7 @@ using System;
 
 namespace CodeConcepts.EventEngine.IsaPolicy.Contracts.CoreViews.PolicyFundUnitBalanceView
 {
-    public class FundAllocation
+    public class FundAllocationBalance
     {
         public decimal UnitBalance { get; set; }
 

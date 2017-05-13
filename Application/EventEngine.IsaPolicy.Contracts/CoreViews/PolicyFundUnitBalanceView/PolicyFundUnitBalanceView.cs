@@ -5,8 +5,6 @@ namespace CodeConcepts.EventEngine.IsaPolicy.Contracts.CoreViews.PolicyFundUnitB
 {
     public class PolicyFundUnitBalanceView : IView
     {
-        public string PolicyNumber { get; set; }
-
-        public IList<FundAllocation> FundAllocations { get; set; } = new List<FundAllocation>();
+        public IList<FundAllocationBalance> FundAllocations { get; set; } = new List<FundAllocationBalance>();
     }
 }
