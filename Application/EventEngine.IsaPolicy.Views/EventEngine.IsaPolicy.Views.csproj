@@ -38,8 +38,9 @@
     <Compile Include="DataAccess\NoSql\SinglePolicySnapshotNoSqlStore.cs" />
     <Compile Include="DataAccess\Sql\SinglePolicySnapshotSqlStore.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Queries\PolicyQueryHandler.cs" />
-    <Compile Include="Queries\SinglePolicyFromContextQueryHandler.cs" />
+    <Compile Include="Queries\PoliciesForCustomerIdQueryHandler.cs" />
+    <Compile Include="Queries\PolicyForPolicyNumberQueryHandler.cs" />
+    <Compile Include="Queries\PolicyForContextQueryHandler.cs" />
     <Compile Include="Queries\SinglePolicyTransactionQuery.cs" />
     <Compile Include="Queries\TransactionQuery.cs" />
     <Compile Include="Views\PolicyTransactionsView\EventEvaluators\AddPremiumEventEvaluator.cs" />

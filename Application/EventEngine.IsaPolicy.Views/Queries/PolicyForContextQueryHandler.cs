@@ -10,13 +10,13 @@ using CodeConcepts.EventEngine.IsaPolicy.Views.Contracts.Views.PolicyView.Domain
 
 namespace CodeConcepts.EventEngine.IsaPolicy.Views.Queries
 {
-    public class SinglePolicyFromContextQueryHandler : IQueryHandler<GetSinglePolicyFromContextQuery, PolicyView> 
+    public class PolicyForContextQueryHandler : IQueryHandler<GetPolicyForContextIdQuery, PolicyView> 
     {
         private readonly IIsaPolicyEventStoreRepository _eventStore;
         private readonly ISnapshotStore<PolicyView> _snapshotStoreStore;
         private readonly IEventPlayer<IsaPolicyEvent> _player;
 
-        public SinglePolicyFromContextQueryHandler(IIsaPolicyEventStoreRepository eventStore,
+        public PolicyForContextQueryHandler(IIsaPolicyEventStoreRepository eventStore,
             ISnapshotStore<PolicyView> snapshotStore, IEventPlayer<IsaPolicyEvent> player)
         {
             _eventStore = eventStore;
@@ -24,9 +24,9 @@ namespace CodeConcepts.EventEngine.IsaPolicy.Views.Queries
             _player = player;
         }
 
-        public PolicyView Read(GetSinglePolicyFromContextQuery fromContextQuery)
+        public PolicyView Read(GetPolicyForContextIdQuery forContextIdQuery)
         {
-            var contextId = fromContextQuery.ContextId;
+            var contextId = forContextIdQuery.ContextId;
             var snapshot = _snapshotStoreStore.Get(contextId); //   snapshot => snapshot.)
 
             var events = _eventStore.Get(contextId, snapshot?.Event.EventId);

@@ -57,6 +57,7 @@
     <Compile Include="ConsoleCommands\AddPremiumConsoleCommand.cs" />
     <Compile Include="ConsoleCommands\AddUnitsToFundConsoleCommand.cs" />
     <Compile Include="ConsoleCommands\CreatePolicyConsoleCommand.cs" />
+    <Compile Include="ConsoleCommands\GetCustomerPoliciesConsoleCommand.cs" />
     <Compile Include="ConsoleCommands\HelpConsoleCommand.cs" />
     <Compile Include="ConsoleCommands\NowConsoleCommand.cs" />
     <Compile Include="Extensions\ContainerExtensions.cs" />

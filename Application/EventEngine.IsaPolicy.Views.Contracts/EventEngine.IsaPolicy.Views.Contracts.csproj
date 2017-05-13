@@ -42,13 +42,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Queries\GetPolicyQuery.cs" />
+    <Compile Include="Queries\GetPoliciesForCustomerIdQuery.cs" />
+    <Compile Include="Queries\GetPolicyForContextQuery.cs" />
+    <Compile Include="Queries\GetPolicyForPolicyNumberQuery.cs" />
     <Compile Include="Views\PolicyContextView\Domain\PolicyContextView.cs" />
     <Compile Include="Views\PolicyTransactionsView\Domain\PolicyTransactionView.cs" />
     <Compile Include="Views\PolicyTransactionsView\Domain\Transaction.cs" />
     <Compile Include="Views\PolicyView\Domain\Charge.cs" />
     <Compile Include="Views\PolicyView\Domain\Fund.cs" />
     <Compile Include="Views\PolicyView\Domain\FundAllocation.cs" />
+    <Compile Include="Views\PolicyView\Domain\PoliciesView.cs" />
     <Compile Include="Views\PolicyView\Domain\PolicyView.cs" />
     <Compile Include="Views\PolicyView\Domain\Premium.cs" />
     <Compile Include="Views\PolicyView\Domain\PremiumPartition.cs" />

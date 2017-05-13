@@ -7,7 +7,7 @@ namespace CodeConcepts.EventEngine.Contracts.Interfaces
     }
 
     public interface IQueryHandler<in TQuery, out TResult> : IQueryHandler
-        where TResult : class
+        where TResult : class, IView
         where TQuery : class, IQuery
     {
         TResult Read(TQuery query);

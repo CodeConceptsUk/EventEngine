@@ -39,7 +39,7 @@ namespace CodeConcepts.EventEngine.ConsoleClient.ConsoleCommands
 
             client.DispatchCommand(new CreatePolicyCommand(contextId, _customerId));
 
-            var policyView = client.DispatchQuery(new GetSinglePolicyFromContextQuery(contextId)) as PolicyView;
+            var policyView = client.DispatchQuery(new GetPolicyForContextIdQuery(contextId)) as PolicyView;
             _console.WriteLine($"Created new policy {policyView.PolicyNumber}");
         }
     }

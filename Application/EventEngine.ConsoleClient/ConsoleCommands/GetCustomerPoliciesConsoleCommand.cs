@@ -1,23 +1,24 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using CliConsole;
-using FrameworkExtensions.LinqExtensions;
-using Policy.Plugin.Isa.Policy.Views.Queries;
-using Policy.Plugin.Isa.Policy.Views.Views.PolicyView.Domain;
+using CodeConcepts.CliConsole;
+using CodeConcepts.EventEngine.ClientLibrary.Interfaces;
+using CodeConcepts.EventEngine.IsaPolicy.Views.Contracts.Queries;
+using CodeConcepts.EventEngine.IsaPolicy.Views.Contracts.Views.PolicyView.Domain;
+using CodeConcepts.FrameworkExtensions.LinqExtensions;
 
-namespace Program.ConsoleCommands
+namespace CodeConcepts.EventEngine.ConsoleClient.ConsoleCommands
 {
     public class GetCustomerPoliciesConsoleCommand : InlineConsoleCommand
     {
-        private readonly IPolicyQuery _policyQuery;
+        private readonly ICommandChannelClientFactory _commandChannelClientFactory;
         private readonly ConsoleProxy _console;
         private int _customerId;
 
-        public GetCustomerPoliciesConsoleCommand(IPolicyQuery policyQuery, ConsoleProxy console)
+        public GetCustomerPoliciesConsoleCommand(ICommandChannelClientFactory commandChannelClientFactory, ConsoleProxy console)
             : base("GetPolicies", "Get the status of a policy")
         {
-            _policyQuery = policyQuery;
+            _commandChannelClientFactory = commandChannelClientFactory;
             _console = console;
 
             HasRequiredOption<int>("CustomerId", "The customer id for the policies to retrieve", p => _customerId = p);
@@ -27,10 +28,12 @@ namespace Program.ConsoleCommands
         {
             try
             {
-                var policyViews = _policyQuery.Read(_customerId);
+                var client = _commandChannelClientFactory.Create();
+                var view = client.DispatchQuery(new GetPoliciesForCustomerIdQuery(_customerId)) as PoliciesView;
+                //var policyViews = _policyQuery.Read(_customerId);
                 var data = new List<Tuple<string, string, decimal, int, decimal>>();
 
-                policyViews.ForEach(policyView =>
+                view.Policies.ForEach(policyView =>
                 {
                     data.Add(new Tuple<string, string, decimal, int, decimal>(
                         policyView.PolicyNumber, 

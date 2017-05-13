@@ -42,7 +42,7 @@ namespace CodeConcepts.EventEngine.ConsoleService
             RegisterNamedTypes<ISnapshotStore>(Assembly.Load($"CodeConcepts.EventEngine.IsaPolicy.{nameof(IsaPolicy.Views)}"), container);
             RegisterAllInterfacesForNamedTypes<IQuery>(Assembly.Load("CodeConcepts.EventEngine.IsaPolicy.Views.Contracts"), container);
             RegisterAllInterfacesForNamedTypes<IQueryHandler>(Assembly.Load("CodeConcepts.EventEngine.IsaPolicy.Views"), container);
-            container.RegisterType<IQueryHandler<GetSinglePolicyFromContextQuery, PolicyView>, SinglePolicyFromContextQueryHandler>();
+            container.RegisterType<IQueryHandler<GetPolicyForContextIdQuery, PolicyView>, PolicyForContextQueryHandler>();
             container.RegisterType<ISnapshotStore<PolicyView>, SinglePolicySnapshotMemoryStore>();
         }
     }
