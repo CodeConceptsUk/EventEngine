@@ -1,6 +1,5 @@
 ﻿using System.Reflection;
 using CodeConcepts.EventEngine.Application;
-using CodeConcepts.EventEngine.Application.Interfaces;
 using CodeConcepts.EventEngine.Contracts.Interfaces;
 using CodeConcepts.EventEngine.Contracts.Interfaces.Repositories;
 using CodeConcepts.EventEngine.IsaPolicy.Contracts.BaseTypes;

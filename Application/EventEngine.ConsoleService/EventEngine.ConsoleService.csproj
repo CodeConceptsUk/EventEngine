@@ -61,13 +61,17 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\EventEngine.Api.Contracts\EventEngine.Api.Contracts.csproj">
+      <Project>{12e88a82-0c34-4970-af2e-e03cf1d47994}</Project>
+      <Name>EventEngine.Api.Contracts</Name>
+    </ProjectReference>
     <ProjectReference Include="..\EventEngine.Application\EventEngine.Application.csproj">
       <Project>{18373EDD-6BD2-43D9-9AEB-B5C8668E5E9D}</Project>
       <Name>EventEngine.Application</Name>
     </ProjectReference>
-    <ProjectReference Include="..\EventEngine.Contracts\EventEngine.Contracts.csproj">
+    <ProjectReference Include="..\EventEngine.Contracts\EventEngine.Api.Sdk.csproj">
       <Project>{B033DAE8-2D28-42A9-BFA1-6F3AB59C1040}</Project>
-      <Name>EventEngine.Contracts</Name>
+      <Name>EventEngine.Api.Sdk</Name>
     </ProjectReference>
     <ProjectReference Include="..\EventEngine.IsaPolicy.Contracts\EventEngine.IsaPolicy.Contracts.csproj">
       <Project>{14808D5E-6D00-459A-98CB-53AC6B8EA4AE}</Project>

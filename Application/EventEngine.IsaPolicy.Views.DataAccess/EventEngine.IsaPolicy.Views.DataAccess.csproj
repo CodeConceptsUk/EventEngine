@@ -48,13 +48,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\EventEngine.Application\EventEngine.Application.csproj">
-      <Project>{18373edd-6bd2-43d9-9aeb-b5c8668e5e9d}</Project>
-      <Name>EventEngine.Application</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\EventEngine.Contracts\EventEngine.Contracts.csproj">
+    <ProjectReference Include="..\EventEngine.Contracts\EventEngine.Api.Sdk.csproj">
       <Project>{b033dae8-2d28-42a9-bfa1-6f3ab59c1040}</Project>
-      <Name>EventEngine.Contracts</Name>
+      <Name>EventEngine.Api.Sdk</Name>
     </ProjectReference>
     <ProjectReference Include="..\EventEngine.IsaPolicy.Views\EventEngine.IsaPolicy.Views.csproj">
       <Project>{f411399c-6a83-42f2-87ef-08adf7de1d9f}</Project>

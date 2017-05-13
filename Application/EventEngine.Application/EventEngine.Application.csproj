@@ -55,7 +55,6 @@
     <Compile Include="CommandDispatcher.cs" />
     <Compile Include="EventEngineApiService.cs" />
     <Compile Include="EventPlayer.cs" />
-    <Compile Include="Exceptions\QueryException.cs" />
     <Compile Include="Factories\CommandDispatcherFactory.cs" />
     <Compile Include="Factories\EventPlayerFactory.cs" />
     <Compile Include="Hosting\IServiceHosting.cs" />
@@ -64,16 +63,17 @@
     <Compile Include="Interfaces\Factories\IEventPlayerFactory.cs" />
     <Compile Include="Factories\LogFactory.cs" />
     <Compile Include="Interfaces\Factories\ILogFactory.cs" />
-    <Compile Include="Interfaces\ICommandDispatcher.cs" />
-    <Compile Include="Interfaces\IEventPlayer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="PropertyBags\Snapshot.cs" />
     <Compile Include="ServiceContainerFactory.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\EventEngine.Contracts\EventEngine.Contracts.csproj">
+    <ProjectReference Include="..\EventEngine.Api.Contracts\EventEngine.Api.Contracts.csproj">
+      <Project>{12e88a82-0c34-4970-af2e-e03cf1d47994}</Project>
+      <Name>EventEngine.Api.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EventEngine.Contracts\EventEngine.Api.Sdk.csproj">
       <Project>{b033dae8-2d28-42a9-bfa1-6f3ab59c1040}</Project>
-      <Name>EventEngine.Contracts</Name>
+      <Name>EventEngine.Api.Sdk</Name>
     </ProjectReference>
     <ProjectReference Include="..\EventEngine.IsaPolicy.Contracts\EventEngine.IsaPolicy.Contracts.csproj">
       <Project>{14808d5e-6d00-459a-98cb-53ac6b8ea4ae}</Project>

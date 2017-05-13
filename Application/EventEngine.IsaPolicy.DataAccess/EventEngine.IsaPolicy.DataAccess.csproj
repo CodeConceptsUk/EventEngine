@@ -62,9 +62,9 @@
       <Project>{21d128d0-4f13-4157-b454-00beaf0a3de3}</Project>
       <Name>FrameworkExtensions</Name>
     </ProjectReference>
-    <ProjectReference Include="..\EventEngine.Contracts\EventEngine.Contracts.csproj">
+    <ProjectReference Include="..\EventEngine.Contracts\EventEngine.Api.Sdk.csproj">
       <Project>{b033dae8-2d28-42a9-bfa1-6f3ab59c1040}</Project>
-      <Name>EventEngine.Contracts</Name>
+      <Name>EventEngine.Api.Sdk</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

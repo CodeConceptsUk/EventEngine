@@ -54,9 +54,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\EventEngine.Contracts\EventEngine.Contracts.csproj">
-      <Project>{b033dae8-2d28-42a9-bfa1-6f3ab59c1040}</Project>
-      <Name>EventEngine.Contracts</Name>
+    <ProjectReference Include="..\EventEngine.Api.Contracts\EventEngine.Api.Contracts.csproj">
+      <Project>{12e88a82-0c34-4970-af2e-e03cf1d47994}</Project>
+      <Name>EventEngine.Api.Contracts</Name>
     </ProjectReference>
     <ProjectReference Include="..\EventEngine.Shared.Runtime\EventEngine.Shared.Runtime.csproj">
       <Project>{9c5273fb-4fd9-4ade-9229-107cf1e665ce}</Project>

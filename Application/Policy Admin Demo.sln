@@ -13,7 +13,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Libraries", "Libraries", "{
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{6E2C1338-9BE6-4899-8205-0D05B15C8FF0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventEngine.Contracts", "EventEngine.Contracts\EventEngine.Contracts.csproj", "{B033DAE8-2D28-42A9-BFA1-6F3AB59C1040}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventEngine.Api.Sdk", "EventEngine.Contracts\EventEngine.Api.Sdk.csproj", "{B033DAE8-2D28-42A9-BFA1-6F3AB59C1040}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventEngine.Application", "EventEngine.Application\EventEngine.Application.csproj", "{18373EDD-6BD2-43D9-9AEB-B5C8668E5E9D}"
 EndProject
@@ -45,9 +45,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventEngine.IsaPolicy.Views
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventEngine.IsaPolicy.Views.DataAccess", "EventEngine.IsaPolicy.Views.DataAccess\EventEngine.IsaPolicy.Views.DataAccess.csproj", "{DF583A0B-8586-49AA-99E6-8028DB2F35E3}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SDK", "SDK", "{01E05C10-85FD-4003-BA08-F903E23261B2}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Api", "Api", "{01E05C10-85FD-4003-BA08-F903E23261B2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventEngine.ConsoleClient", "EventEngine.ConsoleClient\EventEngine.ConsoleClient.csproj", "{FFA3169A-FD6E-4EC7-B46B-347339BFE346}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventEngine.Api.Contracts", "EventEngine.Api.Contracts\EventEngine.Api.Contracts.csproj", "{12E88A82-0C34-4970-AF2E-E03CF1D47994}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -123,6 +125,10 @@ Global
 		{FFA3169A-FD6E-4EC7-B46B-347339BFE346}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FFA3169A-FD6E-4EC7-B46B-347339BFE346}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FFA3169A-FD6E-4EC7-B46B-347339BFE346}.Release|Any CPU.Build.0 = Release|Any CPU
+		{12E88A82-0C34-4970-AF2E-E03CF1D47994}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{12E88A82-0C34-4970-AF2E-E03CF1D47994}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{12E88A82-0C34-4970-AF2E-E03CF1D47994}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{12E88A82-0C34-4970-AF2E-E03CF1D47994}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -145,5 +151,6 @@ Global
 		{48D68DF9-3F79-417D-821D-48F8053C8F49} = {EA018118-AF30-43B3-8BFA-8B1DF3A7FFAC}
 		{F411399C-6A83-42F2-87EF-08ADF7DE1D9F} = {EA018118-AF30-43B3-8BFA-8B1DF3A7FFAC}
 		{DF583A0B-8586-49AA-99E6-8028DB2F35E3} = {EA018118-AF30-43B3-8BFA-8B1DF3A7FFAC}
+		{12E88A82-0C34-4970-AF2E-E03CF1D47994} = {01E05C10-85FD-4003-BA08-F903E23261B2}
 	EndGlobalSection
 EndGlobal
