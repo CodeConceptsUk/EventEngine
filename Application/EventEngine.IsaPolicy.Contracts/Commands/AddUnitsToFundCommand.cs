@@ -16,15 +16,15 @@ namespace CodeConcepts.EventEngine.IsaPolicy.Contracts.Commands
         }
 
         [DataMember]
-        public string PolicyNumber { get; }
+        public string PolicyNumber { get; set; }
 
         [DataMember]
-        public string FundId { get; }
+        public string FundId { get; set; }
 
         [DataMember]
-        public decimal Units { get; }
+        public decimal Units { get; set; }
 
         [DataMember]
-        public DateTime DateTimeAdded { get; }
+        public DateTime DateTimeAdded { get; set; }
     }
 }

@@ -3,7 +3,7 @@
     public interface IConsoleProxy
     {
         string ReadLine();
-        void Write(string value);
-        void WriteLine(string value);
+        void Write(params object[] value);
+        void WriteLine(params object[] value);
     }
 }

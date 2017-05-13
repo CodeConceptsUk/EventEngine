@@ -6,10 +6,10 @@
 //{
 //    public class TransactionQuery : ITransactionQuery
 //    {
-//        private readonly IPolicyEventContextIdQuery _policyEventContextIdQuery;
+//        private readonly IGetEventContextIdForPolicyNumberQuery _policyEventContextIdQuery;
 //        private readonly ISinglePolicyTransactionQuery _singlePolicyTransactionQuery;
 
-//        public TransactionQuery(IPolicyEventContextIdQuery policyEventContextIdQuery, ISinglePolicyTransactionQuery singlePolicyTransactionQuery)
+//        public TransactionQuery(IGetEventContextIdForPolicyNumberQuery policyEventContextIdQuery, ISinglePolicyTransactionQuery singlePolicyTransactionQuery)
 //        {
 //            _policyEventContextIdQuery = policyEventContextIdQuery;
 //            _singlePolicyTransactionQuery = singlePolicyTransactionQuery;
@@ -17,7 +17,7 @@
 
 //        public PolicyTransactionView Read(string policyNumber)
 //        {
-//            var contextId = _policyEventContextIdQuery.GeteventContextId(policyNumber);
+//            var contextId = _policyEventContextIdQuery.GetEventContextIds(policyNumber);
 //            return !contextId.HasValue
 //                ? null
 //                : _singlePolicyTransactionQuery.Read(contextId.Value);

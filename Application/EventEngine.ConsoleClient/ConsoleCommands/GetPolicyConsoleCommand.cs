@@ -1,23 +1,25 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using CliConsole;
-using FrameworkExtensions.LinqExtensions;
-using Policy.Plugin.Isa.Policy.Views.Queries;
-using Policy.Plugin.Isa.Policy.Views.Views.PolicyView.Domain;
+using CodeConcepts.CliConsole;
+using CodeConcepts.EventEngine.ClientLibrary.Interfaces;
+using CodeConcepts.EventEngine.IsaPolicy.Views.Contracts.Queries;
+using CodeConcepts.EventEngine.IsaPolicy.Views.Contracts.Views.PolicyView.Domain;
+using CodeConcepts.FrameworkExtensions.LinqExtensions;
 
 namespace Program.ConsoleCommands
 {
     public class GetPolicyConsoleCommand : InlineConsoleCommand
     {
-        private readonly IPolicyQuery _policyQuery;
+        private readonly ICommandChannelClientFactory _commandChannelClientFactory;
         private readonly ConsoleProxy _console;
         private string _policyNumber;
 
-        public GetPolicyConsoleCommand(IPolicyQuery policyQuery, ConsoleProxy console)
+        public GetPolicyConsoleCommand(ICommandChannelClientFactory commandChannelClientFactory, ConsoleProxy console)
             : base("GetPolicy", "Get the status of a policy")
         {
-            _policyQuery = policyQuery;
+            _commandChannelClientFactory = commandChannelClientFactory;
             _console = console;
 
             HasRequiredOption<string>("PolicyNumber", "The policy number for the policy to retrieve", p => _policyNumber = p);
@@ -27,7 +29,8 @@ namespace Program.ConsoleCommands
         {
             try
             {
-                var policyView = _policyQuery.Read(_policyNumber);
+                var client = _commandChannelClientFactory.Create();
+                var policyView = client.DispatchQuery(new GetPolicyForPolicyNumberQuery(_policyNumber)) as PolicyView;
 
                 DisplayBasicPolicyViewData(policyView);
                 DisplayFundData(policyView);

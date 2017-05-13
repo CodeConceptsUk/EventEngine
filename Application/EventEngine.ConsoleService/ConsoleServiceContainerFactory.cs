@@ -4,10 +4,14 @@ using CodeConcepts.EventEngine.Application;
 using CodeConcepts.EventEngine.Contracts.Interfaces;
 using CodeConcepts.EventEngine.Contracts.Interfaces.Repositories;
 using CodeConcepts.EventEngine.IsaPolicy.Contracts.BaseTypes;
+using CodeConcepts.EventEngine.IsaPolicy.Contracts.CoreViews.PolicyFundUnitBalanceView;
+using CodeConcepts.EventEngine.IsaPolicy.Contracts.CoreViews.PremiumsStatusView;
+using CodeConcepts.EventEngine.IsaPolicy.Contracts.CoreViews.UnallocatedReceivedPremiumsView;
 using CodeConcepts.EventEngine.IsaPolicy.Contracts.Interfaces.CoreQueries;
 using CodeConcepts.EventEngine.IsaPolicy.Contracts.Interfaces.DataAccess;
 using CodeConcepts.EventEngine.IsaPolicy.Operations.CoreQueries;
 using CodeConcepts.EventEngine.IsaPolicy.Operations.DataAccess.InMemory;
+using CodeConcepts.EventEngine.IsaPolicy.Operations.DataAccess.InMemory.CoreViewSnapshots;
 using CodeConcepts.EventEngine.IsaPolicy.Operations.DataAccess.Sql;
 using CodeConcepts.EventEngine.IsaPolicy.Views.Contracts.Queries;
 using CodeConcepts.EventEngine.IsaPolicy.Views.Contracts.Views.PolicyView.Domain;
@@ -28,7 +32,9 @@ namespace CodeConcepts.EventEngine.ConsoleService
             container.RegisterType<IEventStoreRepository<IsaPolicyEvent>, IsaPolicyEventsInSqlStore>();
             container.RegisterType<IIsaPolicyEventStoreRepository, IsaPolicyEventsInSqlStore>();
             container.RegisterType<IEventPlayer<IsaPolicyEvent>, EventPlayer<IsaPolicyEvent>>();
-            container.RegisterType<IPolicyEventContextIdQuery, PolicyEventContextIdQuery>();
+
+            container.RegisterType<IGetEventContextIdForPolicyNumberQuery, GetEventContextIdForPolicyNumberQuery>();
+            
             //TODO snapshots need to be application lifetime
             RegisterNamedTypes<ICommand>(typeof(IsaPolicyEvent).Assembly, container);
             RegisterNamedTypes<IQuery>(Assembly.Load($"CodeConcepts.EventEngine.IsaPolicy.{nameof(IsaPolicy.Contracts)}"), container);
@@ -43,7 +49,13 @@ namespace CodeConcepts.EventEngine.ConsoleService
             RegisterAllInterfacesForNamedTypes<IQuery>(Assembly.Load("CodeConcepts.EventEngine.IsaPolicy.Views.Contracts"), container);
             RegisterAllInterfacesForNamedTypes<IQueryHandler>(Assembly.Load("CodeConcepts.EventEngine.IsaPolicy.Views"), container);
             container.RegisterType<IQueryHandler<GetPolicyForContextIdQuery, PolicyView>, PolicyForContextQueryHandler>();
+
+            //PolicyFundUnitBalanceView
+
             container.RegisterType<ISnapshotStore<PolicyView>, SinglePolicySnapshotMemoryStore>();
+            container.RegisterType<ISnapshotStore<PolicyFundUnitBalanceView>, PolicyFundBalanceSnapshotMemoryStore>();
+            container.RegisterType<ISnapshotStore<PremiumsStatusView>, PremiumsStatusSnapshotMemoryStore>();
+            container.RegisterType<ISnapshotStore<UnallocatedReceivedPremiumsView>, UnallocatedReceivedPremiumsSnapshotMemoryStore>();
         }
     }
 }

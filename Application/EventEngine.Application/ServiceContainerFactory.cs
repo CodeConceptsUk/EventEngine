@@ -13,6 +13,7 @@ namespace CodeConcepts.EventEngine.Application
     {
         protected override void SetupSpecificRegistrations(IUnityContainer container)
         {
+            RegisterByConvention(container);
             container.RegisterType<ILogFactory, LogFactory>();
             container.RegisterType<IStopwatchFactory, StopwatchFactory>();
             container.RegisterType<ICommandDispatcherFactory, CommandDispatcherFactory>();
@@ -20,6 +21,15 @@ namespace CodeConcepts.EventEngine.Application
             container.RegisterType<IEventPlayerFactory, EventPlayerFactory>();
             container.RegisterType<IServiceHosting, ServiceHosting>();
             container.RegisterType<IEventEngineApiService, EventEngineApiService>();
+        }
+
+        private static void RegisterByConvention(IUnityContainer container)
+        {
+            container.RegisterTypes(
+                AllClasses.FromLoadedAssemblies(),
+                WithMappings.FromMatchingInterface,
+                WithName.Default,
+                WithLifetime.ContainerControlled);
         }
     }
 }

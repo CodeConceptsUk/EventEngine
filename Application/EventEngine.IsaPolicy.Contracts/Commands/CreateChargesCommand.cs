@@ -14,9 +14,9 @@ namespace CodeConcepts.EventEngine.IsaPolicy.Contracts.Commands
         }
 
         [DataMember]
-        public string PolicyNumber { get; }
+        public string PolicyNumber { get; set; }
 
         [DataMember]
-        public DateTime ChargeDate { get; }
+        public DateTime ChargeDate { get; set; }
     }
 }

@@ -40,7 +40,8 @@
     <Compile Include="CommandHandlers\CreatePolicyHandler.cs" />
     <Compile Include="CommandHandlers\SetPremiumAsReceivedHandler.cs" />
     <Compile Include="CommandHandlers\AllocateUnitsHandler.cs" />
-    <Compile Include="CoreQueries\PolicyEventContextIdQuery.cs" />
+    <Compile Include="CoreQueries\GetEventContextIdForCustomerIdQuery.cs" />
+    <Compile Include="CoreQueries\GetEventContextIdForPolicyNumberQuery.cs" />
     <Compile Include="CoreQueries\PolicyFundUnitBalanceQuery.cs" />
     <Compile Include="CoreQueries\PremiumsStatusQuery.cs" />
     <Compile Include="CoreQueries\UnallocatedReceivedPremiumsQuery.cs" />

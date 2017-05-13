@@ -1,5 +1,6 @@
 ﻿using System;
 using CodeConcepts.CliConsole.Interfaces;
+using CodeConcepts.FrameworkExtensions.LinqExtensions;
 
 namespace CodeConcepts.CliConsole
 {
@@ -10,14 +11,21 @@ namespace CodeConcepts.CliConsole
             return Console.ReadLine();
         }
 
-        public void WriteLine(string value)
+        public void WriteLine(params object[] value)
         {
-            Console.WriteLine(value);
+            value.ForEach(c =>
+            {
+                Console.Write(c);
+            });
+            Console.Write(Environment.NewLine);
         }
 
-        public void Write(string value)
+        public void Write(params object[] value)
         {
-            Console.Write(value);
+            value.ForEach(c =>
+            {
+                Console.Write(c);
+            });
         }
     }
 }

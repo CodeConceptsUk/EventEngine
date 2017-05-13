@@ -15,12 +15,12 @@ namespace CodeConcepts.EventEngine.IsaPolicy.Contracts.Commands
         }
 
         [DataMember]
-        public string PolicyNumber { get; }
+        public string PolicyNumber { get; set; }
 
         [DataMember]
-        public string PremiumId { get; }
+        public string PremiumId { get; set; }
 
         [DataMember]
-        public DateTime DateTimeReceived { get; }
+        public DateTime DateTimeReceived { get; set; }
     }
 }

@@ -9,19 +9,19 @@ namespace CodeConcepts.EventEngine.IsaPolicy.Views.Queries
 {
     public class PoliciesForCustomerIdQueryHandler : IQueryHandler<GetPoliciesForCustomerIdQuery, PoliciesView>
     {
-        private readonly IPolicyEventContextIdQuery _policyEventContextIdQuery;
+        private readonly IGetEventContextIdForCustomerIdQuery _getEventContextIdForCustomerIdQuery;
         private readonly IQueryHandler<GetPolicyForContextIdQuery, PolicyView> _queryHandler;
 
-        public PoliciesForCustomerIdQueryHandler(IPolicyEventContextIdQuery policyEventContextIdQuery, IQueryHandler<GetPolicyForContextIdQuery, PolicyView> queryHandler)
+        public PoliciesForCustomerIdQueryHandler(IGetEventContextIdForCustomerIdQuery getEventContextIdForCustomerIdQuery, IQueryHandler<GetPolicyForContextIdQuery, PolicyView> queryHandler)
         {
-            _policyEventContextIdQuery = policyEventContextIdQuery;
+            _getEventContextIdForCustomerIdQuery = getEventContextIdForCustomerIdQuery;
             _queryHandler = queryHandler;
         }
 
         public PoliciesView Read(GetPoliciesForCustomerIdQuery forPolicyNumberQuery)
         {
             var customerId = forPolicyNumberQuery.CustomerId;
-            var contextIds = _policyEventContextIdQuery.GeteventContextId(customerId);
+            var contextIds = _getEventContextIdForCustomerIdQuery.GetEventContextIds(customerId);
             
             var policies = contextIds.Select(ctx => _queryHandler.Read(new GetPolicyForContextIdQuery(ctx)));
             return new PoliciesView { Policies = policies };

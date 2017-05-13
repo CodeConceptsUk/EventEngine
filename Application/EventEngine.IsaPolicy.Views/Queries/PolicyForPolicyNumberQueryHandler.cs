@@ -7,19 +7,19 @@ namespace CodeConcepts.EventEngine.IsaPolicy.Views.Queries
 {
     public class PolicyForPolicyNumberQueryHandler : IQueryHandler<GetPolicyForPolicyNumberQuery, PolicyView>
     {
-        private readonly IPolicyEventContextIdQuery _policyEventContextIdQuery;
+        private readonly IGetEventContextIdForPolicyNumberQuery _getEventContextIdForPolicyNumberQuery;
         private readonly IQueryHandler<GetPolicyForContextIdQuery, PolicyView> _queryHandler;
 
-        public PolicyForPolicyNumberQueryHandler(IPolicyEventContextIdQuery policyEventContextIdQuery, IQueryHandler<GetPolicyForContextIdQuery, PolicyView> queryHandler)
+        public PolicyForPolicyNumberQueryHandler(IGetEventContextIdForPolicyNumberQuery getEventContextIdForPolicyNumberQuery, IQueryHandler<GetPolicyForContextIdQuery, PolicyView> queryHandler)
         {
-            _policyEventContextIdQuery = policyEventContextIdQuery;
+            _getEventContextIdForPolicyNumberQuery = getEventContextIdForPolicyNumberQuery;
             _queryHandler = queryHandler;
         }
 
         public PolicyView Read(GetPolicyForPolicyNumberQuery forPolicyNumberQuery)
         {
             var policyNumber = forPolicyNumberQuery.PolicyNumber;
-            var contextId = _policyEventContextIdQuery.GeteventContextId(policyNumber);
+            var contextId = _getEventContextIdForPolicyNumberQuery.GetEventContextId(policyNumber);
             return !contextId.HasValue
                 ? null
                 : _queryHandler.Read(new GetPolicyForContextIdQuery(contextId.Value));
