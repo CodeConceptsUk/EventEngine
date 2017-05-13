@@ -29,7 +29,7 @@ namespace CodeConcepts.EventEngine.ConsoleService
             container.RegisterType<IEventPlayer<IsaPolicyEvent>, EventPlayer<IsaPolicyEvent>>();
 
             RegisterNamedTypes<ICommand>(typeof(IsaPolicyEvent).Assembly, container);
-            RegisterNamedTypes<ICommandHandler>(Assembly.Load("CodeConcepts.EventEngine.IsaPolicy.Operations"), container);
+            RegisterNamedTypes<ICommandHandler>(Assembly.Load($"CodeConcepts.EventEngine.IsaPolicy.{nameof(IsaPolicy.Operations)}"), container);
             RegisterNamedTypes<IEventEvaluator>(Assembly.Load("CodeConcepts.EventEngine.IsaPolicy.Views"), container);
             RegisterAllInterfacesForNamedTypes<IQuery>(Assembly.Load("CodeConcepts.EventEngine.IsaPolicy.Views"), container);
         }

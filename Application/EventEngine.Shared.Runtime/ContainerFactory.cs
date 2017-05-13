@@ -1,6 +1,5 @@
 ﻿using System.Linq;
 using System.Reflection;
-using Microsoft.Practices.ObjectBuilder2;
 using Microsoft.Practices.Unity;
 
 namespace CodeConcepts.EventEngine.Shared.Runtime
@@ -40,7 +39,7 @@ namespace CodeConcepts.EventEngine.Shared.Runtime
             
             types.ForEach(t =>
             {
-                t.GetInterfaces().ForEach(i =>
+                t.GetInterfaces().ToList().ForEach(i =>
                 {
                     if (i != typeof(TType))
                     {
