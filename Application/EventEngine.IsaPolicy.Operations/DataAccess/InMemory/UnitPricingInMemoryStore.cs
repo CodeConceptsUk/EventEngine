@@ -1,7 +1,7 @@
 ﻿using System;
-using CodeConcepts.EventEngine.IsaPolicy.DataAccess.Interfaces;
+using CodeConcepts.EventEngine.IsaPolicy.Contracts.Interfaces.DataAccess;
 
-namespace CodeConcepts.EventEngine.IsaPolicy.DataAccess.InMemory
+namespace CodeConcepts.EventEngine.IsaPolicy.Operations.DataAccess.InMemory
 {
     public class UnitPricingInMemoryStore : IUnitPricingRepository
     {

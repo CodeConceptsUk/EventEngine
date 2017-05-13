@@ -2,9 +2,9 @@
 using System.Linq;
 using System.ServiceModel;
 using System.ServiceModel.Description;
+using CodeConcepts.EventEngine.Api.Contracts.Resolvers;
+using CodeConcepts.EventEngine.Api.Contracts.Services;
 using CodeConcepts.EventEngine.Application.Interfaces.Factories;
-using CodeConcepts.EventEngine.Contracts.Interfaces.Services;
-using CodeConcepts.EventEngine.Contracts.Resolvers;
 using log4net;
 using Microsoft.Practices.Unity;
 

@@ -2,10 +2,9 @@ using System;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Xml;
-using CodeConcepts.EventEngine.Contracts.Interfaces;
 using Microsoft.Practices.Unity;
 
-namespace CodeConcepts.EventEngine.Contracts.Resolvers
+namespace CodeConcepts.EventEngine.Api.Contracts.Resolvers
 {
     public class CommandContractResolver : DataContractResolver
     {

@@ -2,7 +2,7 @@
 using CodeConcepts.CliConsole;
 using CodeConcepts.EventEngine.ClientLibrary.Interfaces;
 using CodeConcepts.EventEngine.IsaPolicy.Contracts.Commands;
-using CodeConcepts.EventEngine.IsaPolicy.Contracts.PropertyBags;
+using CodeConcepts.EventEngine.IsaPolicy.Contracts.Commands.PropertyBags;
 
 namespace CodeConcepts.EventEngine.ConsoleClient.ConsoleCommands
 {

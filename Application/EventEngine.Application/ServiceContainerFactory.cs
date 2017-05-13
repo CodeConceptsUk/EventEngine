@@ -1,7 +1,7 @@
-﻿using CodeConcepts.EventEngine.Application.Factories;
+﻿using CodeConcepts.EventEngine.Api.Contracts.Services;
+using CodeConcepts.EventEngine.Application.Factories;
 using CodeConcepts.EventEngine.Application.Hosting;
 using CodeConcepts.EventEngine.Application.Interfaces.Factories;
-using CodeConcepts.EventEngine.Contracts.Interfaces.Services;
 using CodeConcepts.EventEngine.Shared.Runtime;
 using CodeConcepts.FrameworkExtensions.Factories;
 using CodeConcepts.FrameworkExtensions.Interfaces.Factories;

@@ -1,9 +1,9 @@
 ﻿using System;
 using System.ServiceModel;
 using System.ServiceModel.Description;
+using CodeConcepts.EventEngine.Api.Contracts.Resolvers;
+using CodeConcepts.EventEngine.Api.Contracts.Services;
 using CodeConcepts.EventEngine.ClientLibrary.Interfaces;
-using CodeConcepts.EventEngine.Contracts.Interfaces.Services;
-using CodeConcepts.EventEngine.Contracts.Resolvers;
 using Microsoft.Practices.Unity;
 
 namespace CodeConcepts.EventEngine.ClientLibrary

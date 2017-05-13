@@ -1,6 +1,6 @@
 using System;
 
-namespace CodeConcepts.EventEngine.IsaPolicy.Views.Queries.Interfaces
+namespace CodeConcepts.EventEngine.IsaPolicy.Contracts.CoreViews.UnallocatedReceivedPremiumsView
 {
     public class PremiumPartition
     {

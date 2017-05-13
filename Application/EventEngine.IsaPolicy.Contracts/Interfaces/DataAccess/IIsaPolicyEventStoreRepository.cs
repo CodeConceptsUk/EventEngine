@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using CodeConcepts.EventEngine.Contracts.Interfaces.Repositories;
 using CodeConcepts.EventEngine.IsaPolicy.Contracts.BaseTypes;
 
-namespace CodeConcepts.EventEngine.IsaPolicy.DataAccess.Interfaces
+namespace CodeConcepts.EventEngine.IsaPolicy.Contracts.Interfaces.DataAccess
 {
     public interface IIsaPolicyEventStoreRepository : IEventStoreRepository<IsaPolicyEvent>
     {

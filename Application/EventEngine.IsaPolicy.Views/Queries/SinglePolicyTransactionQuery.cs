@@ -3,7 +3,7 @@ using System.Linq;
 using CodeConcepts.EventEngine.Contracts.Interfaces;
 using CodeConcepts.EventEngine.Contracts.Interfaces.Repositories;
 using CodeConcepts.EventEngine.IsaPolicy.Contracts.BaseTypes;
-using CodeConcepts.EventEngine.IsaPolicy.DataAccess.Interfaces;
+using CodeConcepts.EventEngine.IsaPolicy.Contracts.Interfaces.DataAccess;
 using CodeConcepts.EventEngine.IsaPolicy.Views.Queries.Interfaces;
 using CodeConcepts.EventEngine.IsaPolicy.Views.Views.PolicyTransactionsView.Domain;
 

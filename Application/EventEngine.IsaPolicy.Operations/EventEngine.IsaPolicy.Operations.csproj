@@ -41,13 +41,34 @@
     <Compile Include="CommandHandlers\SetPremiumAsReceivedHandler.cs" />
     <Compile Include="CommandHandlers\AllocateUnitsHandler.cs" />
     <Compile Include="CoreQueries\PolicyEventContextIdQuery.cs" />
-    <Compile Include="CoreQueries\SomethingSomethingQuery.cs" />
+    <Compile Include="CoreQueries\PendingPremiumQuery.cs" />
     <Compile Include="CoreQueries\UnallocatedReceivedPremiumsQuery.cs" />
+    <Compile Include="CoreViewEventEvaluators\PremiumStatusView\AddPremiumEventEvaluator.cs" />
+    <Compile Include="CoreViewEventEvaluators\PremiumStatusView\AppliedFundChargeEventEvaluator.cs" />
+    <Compile Include="CoreViewEventEvaluators\PremiumStatusView\PolicyCreatedEventEvaluator.cs" />
+    <Compile Include="CoreViewEventEvaluators\PremiumStatusView\PremiumReceivedEventEvaluator.cs" />
+    <Compile Include="CoreViewEventEvaluators\PremiumStatusView\UnitsAddedToFundEventEvaluator.cs" />
+    <Compile Include="CoreViewEventEvaluators\PremiumStatusView\UnitsAllocatedEventEvaluator.cs" />
+    <Compile Include="CoreViewEventEvaluators\UnallocatedReceivedPremiumsView\AddPremiumEventEvaluator.cs" />
+    <Compile Include="CoreViewEventEvaluators\UnallocatedReceivedPremiumsView\AppliedFundChargeEventEvaluator.cs" />
+    <Compile Include="CoreViewEventEvaluators\UnallocatedReceivedPremiumsView\PolicyCreatedEventEvaluator.cs" />
+    <Compile Include="CoreViewEventEvaluators\UnallocatedReceivedPremiumsView\PremiumReceivedEventEvaluator.cs" />
+    <Compile Include="CoreViewEventEvaluators\UnallocatedReceivedPremiumsView\UnitsAddedToFundEventEvaluator.cs" />
+    <Compile Include="CoreViewEventEvaluators\UnallocatedReceivedPremiumsView\UnitsAllocatedEventEvaluator.cs" />
+    <Compile Include="DataAccess\InMemory\CoreViewSnapshots\PremiumsStatusSnapshotMemoryStore.cs" />
+    <Compile Include="DataAccess\InMemory\CoreViewSnapshots\PolicyFundBalanceSnapshotMemoryStore.cs" />
+    <Compile Include="DataAccess\InMemory\CoreViewSnapshots\UnallocatedReceivedPremiumsSnapshotMemoryStore.cs" />
     <Compile Include="DataAccess\InMemory\IsaPolicyEventsInMemoryStore.cs" />
     <Compile Include="DataAccess\InMemory\SequencingInMemoryStore.cs" />
     <Compile Include="DataAccess\InMemory\UnitPricingInMemoryStore.cs" />
     <Compile Include="DataAccess\Sql\IsaPolicyEventsInSqlStore.cs" />
     <Compile Include="DataAccess\Sql\SequencingSqlStore.cs" />
+    <Compile Include="CoreViewEventEvaluators\PolicyFundBalanceView\AddPremiumEventEvaluator.cs" />
+    <Compile Include="CoreViewEventEvaluators\PolicyFundBalanceView\AppliedFundChargeEventEvaluator.cs" />
+    <Compile Include="CoreViewEventEvaluators\PolicyFundBalanceView\PolicyCreatedEventEvaluator.cs" />
+    <Compile Include="CoreViewEventEvaluators\PolicyFundBalanceView\PremiumReceivedEventEvaluator.cs" />
+    <Compile Include="CoreViewEventEvaluators\PolicyFundBalanceView\UnitsAddedToFundEventEvaluator.cs" />
+    <Compile Include="CoreViewEventEvaluators\PolicyFundBalanceView\UnitsAllocatedEventEvaluator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -79,9 +100,7 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="CoreViews\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

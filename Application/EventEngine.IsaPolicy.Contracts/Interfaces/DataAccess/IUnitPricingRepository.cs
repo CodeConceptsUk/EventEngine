@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CodeConcepts.EventEngine.IsaPolicy.DataAccess.Interfaces
+namespace CodeConcepts.EventEngine.IsaPolicy.Contracts.Interfaces.DataAccess
 {
     public interface IUnitPricingRepository
     {

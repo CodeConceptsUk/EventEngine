@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
-using CodeConcepts.EventEngine.IsaPolicy.DataAccess.Interfaces;
-using CodeConcepts.EventEngine.IsaPolicy.Views.Queries.Interfaces;
+using CodeConcepts.EventEngine.IsaPolicy.Contracts.Interfaces.CoreQueries;
+using CodeConcepts.EventEngine.IsaPolicy.Contracts.Interfaces.DataAccess;
 
-namespace CodeConcepts.EventEngine.IsaPolicy.Views.Queries
+namespace CodeConcepts.EventEngine.IsaPolicy.Operations.CoreQueries
 {
     public class PolicyEventContextIdQuery : IPolicyEventContextIdQuery
     {

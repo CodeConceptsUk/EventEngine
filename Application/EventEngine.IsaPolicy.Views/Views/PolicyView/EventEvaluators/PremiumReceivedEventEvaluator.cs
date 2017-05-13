@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 using CodeConcepts.EventEngine.Contracts.Interfaces;
-using CodeConcepts.EventEngine.IsaPolicy.Events.Events;
+using CodeConcepts.EventEngine.IsaPolicy.Contracts.Events;
 
 namespace CodeConcepts.EventEngine.IsaPolicy.Views.Views.PolicyView.EventEvaluators
 {

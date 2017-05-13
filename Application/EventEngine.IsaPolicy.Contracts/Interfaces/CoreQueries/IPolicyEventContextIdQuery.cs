@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using CodeConcepts.EventEngine.Contracts.Interfaces;
 
-namespace CodeConcepts.EventEngine.IsaPolicy.Views.Queries.Interfaces
+namespace CodeConcepts.EventEngine.IsaPolicy.Contracts.Interfaces.CoreQueries
 {
     public interface IPolicyEventContextIdQuery : IQuery
     {

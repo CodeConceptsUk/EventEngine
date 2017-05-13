@@ -4,11 +4,11 @@ using System.Linq;
 using System.Linq.Expressions;
 using CodeConcepts.EventEngine.Contracts.Interfaces;
 using CodeConcepts.EventEngine.IsaPolicy.Contracts.BaseTypes;
-using CodeConcepts.EventEngine.IsaPolicy.DataAccess.Interfaces;
-using CodeConcepts.EventEngine.IsaPolicy.Events.Events;
+using CodeConcepts.EventEngine.IsaPolicy.Contracts.Events;
+using CodeConcepts.EventEngine.IsaPolicy.Contracts.Interfaces.DataAccess;
 using CodeConcepts.FrameworkExtensions.LinqExtensions;
 
-namespace CodeConcepts.EventEngine.IsaPolicy.DataAccess.InMemory
+namespace CodeConcepts.EventEngine.IsaPolicy.Operations.DataAccess.InMemory
 {
     public class IsaPolicyEventsInMemoryStore : IIsaPolicyEventStoreRepository
     {

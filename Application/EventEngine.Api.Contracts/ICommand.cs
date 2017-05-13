@@ -1,4 +1,4 @@
-﻿namespace CodeConcepts.EventEngine.Contracts.Interfaces
+﻿namespace CodeConcepts.EventEngine.Api.Contracts
 {
     public interface ICommand
     {

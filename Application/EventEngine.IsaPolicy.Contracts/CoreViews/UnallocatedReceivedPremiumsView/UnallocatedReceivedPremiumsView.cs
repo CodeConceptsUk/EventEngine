@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using CodeConcepts.EventEngine.Contracts.Interfaces;
 
-namespace CodeConcepts.EventEngine.IsaPolicy.Views.Queries.Interfaces
+namespace CodeConcepts.EventEngine.IsaPolicy.Contracts.CoreViews.UnallocatedReceivedPremiumsView
 {
     public class UnallocatedReceivedPremiumsView : IView
     {

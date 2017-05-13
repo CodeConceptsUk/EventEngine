@@ -1,4 +1,5 @@
-﻿using CodeConcepts.EventEngine.Contracts.Interfaces;
+﻿using CodeConcepts.EventEngine.Api.Contracts;
+using CodeConcepts.EventEngine.Contracts.Interfaces;
 
 namespace CodeConcepts.EventEngine.Application.Interfaces.Factories
 {

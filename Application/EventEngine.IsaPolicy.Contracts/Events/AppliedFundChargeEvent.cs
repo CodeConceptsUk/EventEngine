@@ -1,7 +1,7 @@
 ﻿using System;
 using CodeConcepts.EventEngine.IsaPolicy.Contracts.BaseTypes;
 
-namespace CodeConcepts.EventEngine.IsaPolicy.Events.Events
+namespace CodeConcepts.EventEngine.IsaPolicy.Contracts.Events
 {
     public class AppliedFundChargeEvent : IsaPolicyEvent
     {

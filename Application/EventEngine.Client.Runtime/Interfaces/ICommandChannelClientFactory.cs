@@ -1,4 +1,4 @@
-﻿using CodeConcepts.EventEngine.Contracts.Interfaces.Services;
+﻿using CodeConcepts.EventEngine.Api.Contracts.Services;
 
 namespace CodeConcepts.EventEngine.ClientLibrary.Interfaces
 {

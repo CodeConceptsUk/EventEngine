@@ -4,9 +4,9 @@ using CodeConcepts.EventEngine.Contracts.Exceptions;
 using CodeConcepts.EventEngine.Contracts.Interfaces;
 using CodeConcepts.EventEngine.IsaPolicy.Contracts.BaseTypes;
 using CodeConcepts.EventEngine.IsaPolicy.Contracts.Commands;
-using CodeConcepts.EventEngine.IsaPolicy.DataAccess.Interfaces;
-using CodeConcepts.EventEngine.IsaPolicy.Events.Events;
-using CodeConcepts.EventEngine.IsaPolicy.Views.Queries.Interfaces;
+using CodeConcepts.EventEngine.IsaPolicy.Contracts.Events;
+using CodeConcepts.EventEngine.IsaPolicy.Contracts.Interfaces.CoreQueries;
+using CodeConcepts.EventEngine.IsaPolicy.Contracts.Interfaces.DataAccess;
 using CodeConcepts.FrameworkExtensions.LinqExtensions;
 
 // ReSharper disable SuspiciousTypeConversion.Global

@@ -1,4 +1,5 @@
-﻿using CodeConcepts.EventEngine.Application.Interfaces;
+﻿using CodeConcepts.EventEngine.Api.Contracts;
+using CodeConcepts.EventEngine.Application.Interfaces;
 using CodeConcepts.EventEngine.Application.Interfaces.Factories;
 using CodeConcepts.EventEngine.Contracts.Interfaces;
 using Microsoft.Practices.Unity;

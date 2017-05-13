@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
-using CodeConcepts.EventEngine.IsaPolicy.DataAccess.Interfaces;
+using CodeConcepts.EventEngine.IsaPolicy.Contracts.Interfaces.DataAccess;
 
 // ReSharper disable CollectionNeverUpdated.Local
 
-namespace CodeConcepts.EventEngine.IsaPolicy.DataAccess.InMemory
+namespace CodeConcepts.EventEngine.IsaPolicy.Operations.DataAccess.InMemory
 {
     public class SequencingInMemoryStore : ISequencingRepository
     {

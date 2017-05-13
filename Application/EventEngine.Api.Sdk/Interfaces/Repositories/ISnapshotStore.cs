@@ -2,7 +2,12 @@
 
 namespace CodeConcepts.EventEngine.Contracts.Interfaces.Repositories
 {
-    public interface ISnapshotStore<TView>
+    public interface ISnapshotStore
+    {
+        
+    }
+
+    public interface ISnapshotStore<TView> : ISnapshotStore
         where TView : class, IView
     {
         ISnapshot<TView> Get(Guid contextId);

@@ -1,9 +1,9 @@
 ﻿using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
-using CodeConcepts.EventEngine.IsaPolicy.DataAccess.Interfaces;
+using CodeConcepts.EventEngine.IsaPolicy.Contracts.Interfaces.DataAccess;
 
-namespace CodeConcepts.EventEngine.IsaPolicy.DataAccess.Sql
+namespace CodeConcepts.EventEngine.IsaPolicy.Operations.DataAccess.Sql
 {
    public class SequencingSqlStore : ISequencingRepository
     {

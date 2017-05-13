@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Runtime.Serialization;
 using CodeConcepts.EventEngine.IsaPolicy.Contracts.BaseTypes;
-using CodeConcepts.EventEngine.IsaPolicy.Contracts.PropertyBags;
+using CodeConcepts.EventEngine.IsaPolicy.Contracts.Commands.PropertyBags;
 
 namespace CodeConcepts.EventEngine.IsaPolicy.Contracts.Commands
 {
