@@ -55,6 +55,12 @@
     <Compile Include="CoreViewEventEvaluators\PremiumsStatusViewEventEvaluators\PremiumReceivedEventEvaluator.cs" />
     <Compile Include="CoreViewEventEvaluators\PremiumsStatusViewEventEvaluators\UnitsAddedToFundEventEvaluator.cs" />
     <Compile Include="CoreViewEventEvaluators\PremiumsStatusViewEventEvaluators\UnitsAllocatedEventEvaluator.cs" />
+    <Compile Include="CoreViewEventEvaluators\UnallocatedReceivedPremiumsViewEventEvaluators\AddPremiumEventEvaluator.cs" />
+    <Compile Include="CoreViewEventEvaluators\UnallocatedReceivedPremiumsViewEventEvaluators\AppliedFundChargeEventEvaluator.cs" />
+    <Compile Include="CoreViewEventEvaluators\UnallocatedReceivedPremiumsViewEventEvaluators\PolicyCreatedEventEvaluator.cs" />
+    <Compile Include="CoreViewEventEvaluators\UnallocatedReceivedPremiumsViewEventEvaluators\PremiumReceivedEventEvaluator.cs" />
+    <Compile Include="CoreViewEventEvaluators\UnallocatedReceivedPremiumsViewEventEvaluators\UnitsAddedToFundEventEvaluator.cs" />
+    <Compile Include="CoreViewEventEvaluators\UnallocatedReceivedPremiumsViewEventEvaluators\UnitsAllocatedEventEvaluator.cs" />
     <Compile Include="DataAccess\InMemory\CoreViewSnapshots\PremiumsStatusSnapshotMemoryStore.cs" />
     <Compile Include="DataAccess\InMemory\CoreViewSnapshots\PolicyFundBalanceSnapshotMemoryStore.cs" />
     <Compile Include="DataAccess\InMemory\CoreViewSnapshots\UnallocatedReceivedPremiumsSnapshotMemoryStore.cs" />
@@ -95,9 +101,7 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="CoreViewEventEvaluators\UnallocatedReceivedPremiumsViewEventEvaluators\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -37,6 +37,7 @@
     <Compile Include="Interfaces\Factories\IStopwatchFactory.cs" />
     <Compile Include="Interfaces\Utilities\IStopwatch.cs" />
     <Compile Include="LinqExtensions\ForEachExtensions.cs" />
+    <Compile Include="ListExtensions\ListExtensions.cs" />
     <Compile Include="ObjectExtensions\DynamicExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utilities\Stopwatch.cs" />

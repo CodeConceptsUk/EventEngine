@@ -1,14 +1,13 @@
 ﻿using CodeConcepts.EventEngine.Contracts.Interfaces;
+using CodeConcepts.EventEngine.IsaPolicy.Contracts.CoreViews.UnallocatedReceivedPremiumsView;
 using CodeConcepts.EventEngine.IsaPolicy.Contracts.Events;
 
-namespace CodeConcepts.EventEngine.IsaPolicy.Operations.CoreViewEventEvaluators.UnallocatedReceivedPremiumsView
+namespace CodeConcepts.EventEngine.IsaPolicy.Operations.CoreViewEventEvaluators.UnallocatedReceivedPremiumsViewEventEvaluators
 {
-    public class PolicyCreatedEventEvaluator : IEventEvaluator<PolicyCreatedEvent, Domain.PolicyView>
+    public class PolicyCreatedEventEvaluator : IEventEvaluator<PolicyCreatedEvent, UnallocatedReceivedPremiumsView>
     {
-        public void Evaluate(Domain.PolicyView view, PolicyCreatedEvent @event)
+        public void Evaluate(UnallocatedReceivedPremiumsView view, PolicyCreatedEvent @event)
         {
-            view.PolicyNumber = @event.PolicyNumber;
-            view.CustomerId = @event.CustomerId;
         }
     }
 }

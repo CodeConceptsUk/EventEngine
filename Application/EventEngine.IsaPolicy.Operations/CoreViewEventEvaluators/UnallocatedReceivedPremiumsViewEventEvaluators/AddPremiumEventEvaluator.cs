@@ -1,31 +1,22 @@
 using System.Linq;
 using CodeConcepts.EventEngine.Contracts.Interfaces;
+using CodeConcepts.EventEngine.IsaPolicy.Contracts.CoreViews.UnallocatedReceivedPremiumsView;
 using CodeConcepts.EventEngine.IsaPolicy.Contracts.Events;
+using CodeConcepts.FrameworkExtensions.ListExtensions;
 
-namespace CodeConcepts.EventEngine.IsaPolicy.Operations.CoreViewEventEvaluators.UnallocatedReceivedPremiumsView
+namespace CodeConcepts.EventEngine.IsaPolicy.Operations.CoreViewEventEvaluators.UnallocatedReceivedPremiumsViewEventEvaluators
 {
-    public class AddPremiumEventEvaluator : IEventEvaluator<AddPremiumEvent, Domain.PolicyView>
+    public class AddPremiumEventEvaluator : IEventEvaluator<AddPremiumEvent, UnallocatedReceivedPremiumsView>
     {
-        public void Evaluate(Domain.PolicyView view, AddPremiumEvent @event)
+        public void Evaluate(UnallocatedReceivedPremiumsView view, AddPremiumEvent @event)
         {
-            var premium = new Premium
+            view.PendingPartitions.AddAll(@event.PartitionDetails.Select(partition => new UnallocatedPremiumPartition
             {
-                PremiumId = @event.PremiumId,
-                Total = @event.PartitionDetails.Sum(p => p.Amount),
-                IsAllocated = false
-            };
-            view.Premiums.Add(premium);
-
-            @event.PartitionDetails.ForEach(p =>
-            {
-                var partition = new PremiumPartition
-                {
-                    FundId = p.FundId,
-                    Amount = p.Amount,
-                    PortionId = p.PartitionId
-                };
-                premium.Partitions.Add(partition);
-            });
+                FundId = partition.FundId,
+                Amount = partition.Amount,
+                PortionId = partition.PartitionId,
+                PremiumId = @event.PremiumId
+            }));
         }
     }
 }

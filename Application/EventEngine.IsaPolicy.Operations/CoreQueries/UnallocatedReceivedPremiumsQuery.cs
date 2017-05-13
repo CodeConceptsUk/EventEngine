@@ -16,6 +16,7 @@ namespace CodeConcepts.EventEngine.IsaPolicy.Operations.CoreQueries
             ISnapshotStore<UnallocatedReceivedPremiumsView> snapshotStore, IEventPlayer<IsaPolicyEvent> player)
             : base(eventStore, snapshotStore, player)
         {
+
         }
     }
 }

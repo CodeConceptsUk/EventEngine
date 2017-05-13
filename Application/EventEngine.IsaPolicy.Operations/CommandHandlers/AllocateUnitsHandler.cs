@@ -13,6 +13,7 @@ using CodeConcepts.FrameworkExtensions.LinqExtensions;
 
 namespace CodeConcepts.EventEngine.IsaPolicy.Operations.CommandHandlers
 {
+    //TODO create sub command that only allocates for single premium
     public class AllocateUnitsHandler : ICommandHandler<AllocateUnitsCommand, IsaPolicyEvent>
     {
         private readonly IPolicyEventContextIdQuery _policyEventContextIdQuery;
@@ -34,7 +35,7 @@ namespace CodeConcepts.EventEngine.IsaPolicy.Operations.CommandHandlers
             var policy = _unallocatedReceivedPremiumsQuery.Read(eventContextId.Value);
 
             var events = new List<IsaPolicyEvent>();
-            policy.PremiumPartitions.ForEach(part =>
+            policy.ReceivedPartitions.ForEach(part =>
             {
                 var units = _unitPricingRepository.Get(part.FundId, command.DateOfAllocation, part.Amount);
                 events.Add(new UnitsAllocatedEvent(eventContextId.Value, part.PremiumId, part.PortionId, part.FundId, units, command.DateOfAllocation));

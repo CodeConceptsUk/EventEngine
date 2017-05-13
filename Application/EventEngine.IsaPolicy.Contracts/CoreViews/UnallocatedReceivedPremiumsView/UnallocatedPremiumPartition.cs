@@ -2,7 +2,7 @@ using System;
 
 namespace CodeConcepts.EventEngine.IsaPolicy.Contracts.CoreViews.UnallocatedReceivedPremiumsView
 {
-    public class PremiumPartition
+    public class UnallocatedPremiumPartition
     {
         public string PremiumId { get; set; }
 

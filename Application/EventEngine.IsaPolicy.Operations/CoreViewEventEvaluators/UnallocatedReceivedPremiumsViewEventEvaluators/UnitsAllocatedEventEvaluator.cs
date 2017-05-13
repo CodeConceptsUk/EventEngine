@@ -1,34 +1,16 @@
+using System.Linq;
 using CodeConcepts.EventEngine.Contracts.Interfaces;
+using CodeConcepts.EventEngine.IsaPolicy.Contracts.CoreViews.UnallocatedReceivedPremiumsView;
 using CodeConcepts.EventEngine.IsaPolicy.Contracts.Events;
 
-namespace CodeConcepts.EventEngine.IsaPolicy.Operations.CoreViewEventEvaluators.UnallocatedReceivedPremiumsView
+namespace CodeConcepts.EventEngine.IsaPolicy.Operations.CoreViewEventEvaluators.UnallocatedReceivedPremiumsViewEventEvaluators
 {
-    public class UnitsAllocatedEventEvaluator : IEventEvaluator<UnitsAllocatedEvent, Domain.PolicyView>
+    public class UnitsAllocatedEventEvaluator : IEventEvaluator<UnitsAllocatedEvent, UnallocatedReceivedPremiumsView>
     {
-        public void Evaluate(Domain.PolicyView view, UnitsAllocatedEvent @event)
+        public void Evaluate(UnallocatedReceivedPremiumsView view, UnitsAllocatedEvent @event)
         {
-            var premium = view.Premiums.Single(p => p.PremiumId == @event.PremiumId);
-            var partition = premium.Partitions.Single(p => p.PortionId == @event.PortionId);
-
-            var fund = view.Funds.SingleOrDefault(f => f.FundId == @event.FundId);
-            if (fund == null)
-            {
-                fund = new Fund
-                {
-                    FundId = @event.FundId
-                };
-                view.Funds.Add(fund);
-            }
-            fund.Allocations.Add(new FundAllocation
-            {
-                PortionId = @event.PortionId,
-                PremiumPartition = partition,
-                Units = @event.Units,
-                ShadowUnits = @event.Units
-            });
-            fund.TotalUnits += @event.Units;
-            fund.TotalShadowUnits += @event.Units;
-            premium.IsAllocated = true;
+            var partition = view.ReceivedPartitions.Single(p => p.PremiumId == @event.PremiumId && p.PortionId == @event.PortionId);
+            view.ReceivedPartitions.Remove(partition);
         }
     }
 }

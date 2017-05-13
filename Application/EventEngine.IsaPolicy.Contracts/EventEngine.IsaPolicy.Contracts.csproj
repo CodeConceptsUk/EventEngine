@@ -63,7 +63,7 @@
     <Compile Include="Interfaces\CoreQueries\IPolicyFundUnitBalanceQuery.cs" />
     <Compile Include="Interfaces\CoreQueries\IPremiumsStatusQuery.cs" />
     <Compile Include="Interfaces\CoreQueries\IUnallocatedReceivedPremiumsQuery.cs" />
-    <Compile Include="CoreViews\UnallocatedReceivedPremiumsView\PremiumPartition.cs" />
+    <Compile Include="CoreViews\UnallocatedReceivedPremiumsView\UnallocatedPremiumPartition.cs" />
     <Compile Include="CoreViews\UnallocatedReceivedPremiumsView\UnallocatedReceivedPremiumsView.cs" />
     <Compile Include="CoreViews\PremiumsStatusView\PremiumsStatusView.cs" />
     <Compile Include="Interfaces\DataAccess\IIsaPolicyEventStoreRepository.cs" />

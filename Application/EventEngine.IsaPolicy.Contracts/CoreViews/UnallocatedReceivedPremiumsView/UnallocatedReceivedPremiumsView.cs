@@ -3,10 +3,11 @@ using CodeConcepts.EventEngine.Contracts.Interfaces;
 
 namespace CodeConcepts.EventEngine.IsaPolicy.Contracts.CoreViews.UnallocatedReceivedPremiumsView
 {
+    //TODO rename to UnallocatedPremiumPartitionsView?
     public class UnallocatedReceivedPremiumsView : IView
     {
-        public string PolicyNumber { get; set; }
+        public IList<UnallocatedPremiumPartition> ReceivedPartitions { get; set; } = new List<UnallocatedPremiumPartition>();
 
-        public IList<PremiumPartition> PremiumPartitions { get; set; } = new List<PremiumPartition>();
+        public IList<UnallocatedPremiumPartition> PendingPartitions { get; set; } = new List<UnallocatedPremiumPartition>();
     }
 }
