@@ -1,10 +1,11 @@
 ﻿using System.Collections.Generic;
+using CodeConcepts.EventEngine.Contracts.Interfaces;
 using CodeConcepts.EventEngine.IsaPolicy.Contracts.BaseTypes;
 using CodeConcepts.EventEngine.IsaPolicy.Contracts.Commands;
 
 namespace CodeConcepts.EventEngine.IsaPolicy.Operations.CommandHandlers
 {
-    public class AddPremiumAsReceivedHandler : IsaPolicyCommandHandler<AddPremiumAsReceivedCommand>
+    public class AddPremiumAsReceivedHandler : ICommandHandler<AddPremiumAsReceivedCommand, IsaPolicyEvent>
     {
         private readonly AddPremiumHandler _addPremiumHandler;
         private readonly SetPremiumAsReceivedHandler _setPremiumAsReceivedHandler;
@@ -15,7 +16,7 @@ namespace CodeConcepts.EventEngine.IsaPolicy.Operations.CommandHandlers
             _setPremiumAsReceivedHandler = setPremiumAsReceivedHandler;
         }
 
-        public override IEnumerable<IsaPolicyEvent> Execute(AddPremiumAsReceivedCommand command)
+        public IEnumerable<IsaPolicyEvent> Execute(AddPremiumAsReceivedCommand command)
         {
             var events = new List<IsaPolicyEvent>();
             AddPremium(command, events);

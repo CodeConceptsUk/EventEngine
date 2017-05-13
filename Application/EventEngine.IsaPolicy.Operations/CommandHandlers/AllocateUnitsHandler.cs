@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using CodeConcepts.EventEngine.Contracts.Exceptions;
+using CodeConcepts.EventEngine.Contracts.Interfaces;
 using CodeConcepts.EventEngine.IsaPolicy.Contracts.BaseTypes;
 using CodeConcepts.EventEngine.IsaPolicy.Contracts.Commands;
 using CodeConcepts.EventEngine.IsaPolicy.DataAccess.Interfaces;
@@ -12,7 +13,7 @@ using CodeConcepts.FrameworkExtensions.LinqExtensions;
 
 namespace CodeConcepts.EventEngine.IsaPolicy.Operations.CommandHandlers
 {
-    public class AllocateUnitsHandler : IsaPolicyCommandHandler<AllocateUnitsCommand>
+    public class AllocateUnitsHandler : ICommandHandler<AllocateUnitsCommand, IsaPolicyEvent>
     {
         private readonly IPolicyEventContextIdQuery _policyEventContextIdQuery;
         private readonly ISinglePolicyQuery _singlePolicyQuery;
@@ -25,7 +26,7 @@ namespace CodeConcepts.EventEngine.IsaPolicy.Operations.CommandHandlers
             _unitPricingRepository = unitPricingRepository;
         }
 
-        public override IEnumerable<IsaPolicyEvent> Execute(AllocateUnitsCommand command)
+        public IEnumerable<IsaPolicyEvent> Execute(AllocateUnitsCommand command)
         {
             var eventContextId = _policyEventContextIdQuery.GeteventContextId(command.PolicyNumber);
             if (!eventContextId.HasValue)

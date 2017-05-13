@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using CodeConcepts.EventEngine.Contracts.Exceptions;
+using CodeConcepts.EventEngine.Contracts.Interfaces;
 using CodeConcepts.EventEngine.IsaPolicy.Contracts.BaseTypes;
 using CodeConcepts.EventEngine.IsaPolicy.Contracts.Commands;
 using CodeConcepts.EventEngine.IsaPolicy.Events.Events;
@@ -8,7 +9,7 @@ using CodeConcepts.EventEngine.IsaPolicy.Views.Queries.Interfaces;
 
 namespace CodeConcepts.EventEngine.IsaPolicy.Operations.CommandHandlers
 {
-    public class AddPremiumHandler : IsaPolicyCommandHandler<AddPremiumCommand>
+    public class AddPremiumHandler : ICommandHandler<AddPremiumCommand, IsaPolicyEvent>
     {
         private readonly IPolicyEventContextIdQuery _policyEventContextIdQuery;
 
@@ -17,7 +18,7 @@ namespace CodeConcepts.EventEngine.IsaPolicy.Operations.CommandHandlers
             _policyEventContextIdQuery = policyEventContextIdQuery;
         }
 
-        public override IEnumerable<IsaPolicyEvent> Execute(AddPremiumCommand command)
+        public IEnumerable<IsaPolicyEvent> Execute(AddPremiumCommand command)
         {
             var eventContextId = _policyEventContextIdQuery.GeteventContextId(command.PolicyNumber);
             if (!eventContextId.HasValue)

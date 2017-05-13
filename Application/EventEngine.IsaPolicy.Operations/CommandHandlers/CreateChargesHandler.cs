@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using CodeConcepts.EventEngine.Contracts.Exceptions;
+using CodeConcepts.EventEngine.Contracts.Interfaces;
 using CodeConcepts.EventEngine.IsaPolicy.Contracts.BaseTypes;
 using CodeConcepts.EventEngine.IsaPolicy.Contracts.Commands;
 using CodeConcepts.EventEngine.IsaPolicy.Events.Events;
@@ -11,7 +12,7 @@ using CodeConcepts.FrameworkExtensions.LinqExtensions;
 
 namespace CodeConcepts.EventEngine.IsaPolicy.Operations.CommandHandlers
 {
-    public class CreateChargesHandler : IsaPolicyCommandHandler<CreateChargesCommand>
+    public class CreateChargesHandler : ICommandHandler<CreateChargesCommand, IsaPolicyEvent>
     {
         private readonly IPolicyEventContextIdQuery _policyeventContextIdQuery;
         private readonly ISinglePolicyQuery _singlePolicyQuery;
@@ -22,7 +23,7 @@ namespace CodeConcepts.EventEngine.IsaPolicy.Operations.CommandHandlers
             _singlePolicyQuery = singlePolicyQuery;
         }
 
-        public override IEnumerable<IsaPolicyEvent> Execute(CreateChargesCommand command)
+        public IEnumerable<IsaPolicyEvent> Execute(CreateChargesCommand command)
         {
             // Fund 1, 2 have charges
             var eventContextId = _policyeventContextIdQuery.GeteventContextId(command.PolicyNumber);

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using CodeConcepts.EventEngine.Contracts.Exceptions;
+using CodeConcepts.EventEngine.Contracts.Interfaces;
 using CodeConcepts.EventEngine.IsaPolicy.Contracts.BaseTypes;
 using CodeConcepts.EventEngine.IsaPolicy.Contracts.Commands;
 using CodeConcepts.EventEngine.IsaPolicy.Events.Events;
@@ -8,7 +9,7 @@ using CodeConcepts.EventEngine.IsaPolicy.Views.Queries.Interfaces;
 
 namespace CodeConcepts.EventEngine.IsaPolicy.Operations.CommandHandlers
 {
-    public class AddUnitsToFundHandler : IsaPolicyCommandHandler<AddUnitsToFundCommand>
+    public class AddUnitsToFundHandler : ICommandHandler<AddUnitsToFundCommand, IsaPolicyEvent>
     {
         private readonly IPolicyEventContextIdQuery _policyEventContextIdQuery;
 
@@ -17,7 +18,7 @@ namespace CodeConcepts.EventEngine.IsaPolicy.Operations.CommandHandlers
             _policyEventContextIdQuery = policyEventContextIdQuery;
         }
 
-        public override IEnumerable<IsaPolicyEvent> Execute(AddUnitsToFundCommand command)
+        public IEnumerable<IsaPolicyEvent> Execute(AddUnitsToFundCommand command)
         {
             var eventContextId = _policyEventContextIdQuery.GeteventContextId(command.PolicyNumber);
             if (!eventContextId.HasValue)

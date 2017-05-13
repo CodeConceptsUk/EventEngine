@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using CodeConcepts.EventEngine.Contracts.Interfaces;
 using CodeConcepts.EventEngine.IsaPolicy.Contracts.BaseTypes;
 using CodeConcepts.EventEngine.IsaPolicy.Contracts.Commands;
 using CodeConcepts.EventEngine.IsaPolicy.DataAccess.Interfaces;
@@ -6,7 +7,7 @@ using CodeConcepts.EventEngine.IsaPolicy.Events.Events;
 
 namespace CodeConcepts.EventEngine.IsaPolicy.Operations.CommandHandlers
 {
-    public class CreatePolicyHandler : IsaPolicyCommandHandler<CreatePolicyCommand>
+    public class CreatePolicyHandler : ICommandHandler<CreatePolicyCommand, IsaPolicyEvent>
     {
         private readonly ISequencingRepository _sequencingRepository;
 
@@ -15,7 +16,7 @@ namespace CodeConcepts.EventEngine.IsaPolicy.Operations.CommandHandlers
             _sequencingRepository = sequencingRepository;
         }
 
-        public override IEnumerable<IsaPolicyEvent> Execute(CreatePolicyCommand command)
+        public IEnumerable<IsaPolicyEvent> Execute(CreatePolicyCommand command)
         {
             var policyNumber = _sequencingRepository.Get("IsaPolicyPolicyNumber");
             var @event = new PolicyCreatedEvent(policyNumber, command.CustomerId);

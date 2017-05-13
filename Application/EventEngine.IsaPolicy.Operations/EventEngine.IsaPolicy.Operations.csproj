@@ -40,23 +40,29 @@
     <Compile Include="CommandHandlers\CreatePolicyHandler.cs" />
     <Compile Include="CommandHandlers\SetPremiumAsReceivedHandler.cs" />
     <Compile Include="CommandHandlers\AllocateUnitsHandler.cs" />
+    <Compile Include="DataAccess\InMemory\IsaPolicyEventsInMemoryStore.cs" />
+    <Compile Include="DataAccess\InMemory\SequencingInMemoryStore.cs" />
+    <Compile Include="DataAccess\InMemory\UnitPricingInMemoryStore.cs" />
+    <Compile Include="DataAccess\Sql\IsaPolicyEventsInSqlStore.cs" />
+    <Compile Include="DataAccess\Sql\SequencingSqlStore.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Data" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\EventEngine.Api.Contracts\EventEngine.Api.Contracts.csproj">
+      <Project>{12e88a82-0c34-4970-af2e-e03cf1d47994}</Project>
+      <Name>EventEngine.Api.Contracts</Name>
+    </ProjectReference>
     <ProjectReference Include="..\EventEngine.IsaPolicy.Contracts\EventEngine.IsaPolicy.Contracts.csproj">
       <Project>{14808d5e-6d00-459a-98cb-53ac6b8ea4ae}</Project>
       <Name>EventEngine.IsaPolicy.Contracts</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\EventEngine.IsaPolicy.DataAccess\EventEngine.IsaPolicy.DataAccess.csproj">
-      <Project>{6464b49c-b9ab-4919-ac2a-fef20598cb49}</Project>
-      <Name>EventEngine.IsaPolicy.DataAccess</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\EventEngine.IsaPolicy.Events\EventEngine.IsaPolicy.Events.csproj">
-      <Project>{ced460f4-690f-4561-94be-8a5dcd250a5a}</Project>
-      <Name>EventEngine.IsaPolicy.Events</Name>
     </ProjectReference>
     <ProjectReference Include="..\EventEngine.IsaPolicy.Views\EventEngine.IsaPolicy.Views.csproj">
       <Project>{f411399c-6a83-42f2-87ef-08adf7de1d9f}</Project>
@@ -70,6 +76,9 @@
       <Project>{b033dae8-2d28-42a9-bfa1-6f3ab59c1040}</Project>
       <Name>EventEngine.Api.Sdk</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

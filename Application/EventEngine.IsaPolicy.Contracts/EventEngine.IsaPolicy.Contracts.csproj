@@ -38,7 +38,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseTypes\IsaPolicyCommand.cs" />
-    <Compile Include="BaseTypes\IsaPolicyCommandHandler.cs" />
     <Compile Include="BaseTypes\IsaPolicyEvent.cs" />
     <Compile Include="Commands\AddPremiumAsReceivedCommand.cs" />
     <Compile Include="Commands\AddPremiumCommand.cs" />
@@ -47,8 +46,17 @@
     <Compile Include="Commands\CreateChargesCommand.cs" />
     <Compile Include="Commands\CreatePolicyCommand.cs" />
     <Compile Include="Commands\SetPremiumAsReceivedCommand.cs" />
+    <Compile Include="Events\AddPremiumEvent.cs" />
+    <Compile Include="Events\AppliedFundChargeEvent.cs" />
+    <Compile Include="Events\PolicyCreatedEvent.cs" />
+    <Compile Include="Events\PremiumReceivedEvent.cs" />
+    <Compile Include="Events\UnitsAddedToFundEvent.cs" />
+    <Compile Include="Events\UnitsAllocatedEvent.cs" />
+    <Compile Include="Interfaces\DataAccess\IIsaPolicyEventStoreRepository.cs" />
+    <Compile Include="Interfaces\DataAccess\ISequencingRepository.cs" />
+    <Compile Include="Interfaces\DataAccess\IUnitPricingRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="PropertyBags\FundPremiumDetail.cs" />
+    <Compile Include="Commands\PropertyBags\FundPremiumDetail.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
