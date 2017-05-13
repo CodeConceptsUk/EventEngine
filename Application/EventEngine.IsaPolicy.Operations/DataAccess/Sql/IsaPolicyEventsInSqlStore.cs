@@ -134,38 +134,3 @@ namespace CodeConcepts.EventEngine.IsaPolicy.Operations.DataAccess.Sql
         }
     }
 }
-
-//USE[PolicyAdminDemoDB]
-//GO
-///****** Object:  Table [dbo].[IsaPolicyEvents]    Script Date: 01/05/2017 21:50:30 ******/
-//SET ANSI_NULLS ON
-//GO
-//SET QUOTED_IDENTIFIER ON
-//GO
-//CREATE TABLE[dbo].[IsaPolicyEvents]
-//(
-
-//[SequenceId][bigint] IDENTITY(1,1) NOT NULL,
-
-//[EventContextId] [uniqueidentifier]
-//NOT NULL,
-
-//[EventId] [uniqueidentifier]
-//NOT NULL,
-
-//[EventType] [nvarchar] (255) NOT NULL,
-
-//[EventDateTime] [datetime]
-//NOT NULL,
-
-//[Data] [nvarchar] (max) NOT NULL,
-//[jsonCustomerId]  AS(json_value([Data],'$.CustomerId')),
-//[jsonPolicyNumber]  AS(json_value([Data],'$.PolicyNumber')),
-//CONSTRAINT[PK_SinglePolicyEventStore] PRIMARY KEY NONCLUSTERED
-//(
-//[EventId] ASC
-//)WITH(PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON[PRIMARY]
-//) ON[PRIMARY] TEXTIMAGE_ON[PRIMARY]
-//GO
-//ALTER TABLE[dbo].[IsaPolicyEvents] ADD CONSTRAINT[DF_SinglePolicyEventStore_EventDateTime]  DEFAULT(getdate()) FOR[EventDateTime]
-//GO

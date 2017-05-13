@@ -45,6 +45,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventEngine.ConsoleClient",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventEngine.Api.Contracts", "EventEngine.Api.Contracts\EventEngine.Api.Contracts.csproj", "{12E88A82-0C34-4970-AF2E-E03CF1D47994}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventEngine.DatabaseUpdater", "EventEngine.DatabaseUpdater\EventEngine.DatabaseUpdater.csproj", "{83305541-1868-454F-9CDC-AF9B3D21CA1C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -111,6 +113,10 @@ Global
 		{12E88A82-0C34-4970-AF2E-E03CF1D47994}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{12E88A82-0C34-4970-AF2E-E03CF1D47994}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{12E88A82-0C34-4970-AF2E-E03CF1D47994}.Release|Any CPU.Build.0 = Release|Any CPU
+		{83305541-1868-454F-9CDC-AF9B3D21CA1C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{83305541-1868-454F-9CDC-AF9B3D21CA1C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{83305541-1868-454F-9CDC-AF9B3D21CA1C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{83305541-1868-454F-9CDC-AF9B3D21CA1C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
