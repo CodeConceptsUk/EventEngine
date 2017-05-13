@@ -1,4 +1,4 @@
-using CodeConcepts.EventEngine.Application.Interfaces;
+using CodeConcepts.EventEngine.Contracts.Interfaces;
 using CodeConcepts.EventEngine.IsaPolicy.Events.Events;
 using CodeConcepts.EventEngine.IsaPolicy.Views.Views.PolicyTransactionsView.Domain;
 

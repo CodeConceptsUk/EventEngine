@@ -1,18 +1,15 @@
 ﻿using System.Reflection;
 using CodeConcepts.EventEngine.Application;
 using CodeConcepts.EventEngine.Application.Interfaces;
-using CodeConcepts.EventEngine.Application.Interfaces.Repositories;
 using CodeConcepts.EventEngine.Contracts.Interfaces;
+using CodeConcepts.EventEngine.Contracts.Interfaces.Repositories;
 using CodeConcepts.EventEngine.IsaPolicy.Contracts.BaseTypes;
 using CodeConcepts.EventEngine.IsaPolicy.DataAccess.InMemory;
 using CodeConcepts.EventEngine.IsaPolicy.DataAccess.Interfaces;
 using CodeConcepts.EventEngine.IsaPolicy.DataAccess.Sql;
 using CodeConcepts.EventEngine.IsaPolicy.Views.DataAccess.InMemory;
-using CodeConcepts.EventEngine.IsaPolicy.Views.Queries;
-using CodeConcepts.EventEngine.IsaPolicy.Views.Queries.Interfaces;
 using CodeConcepts.EventEngine.IsaPolicy.Views.Views.PolicyTransactionsView.Domain;
 using CodeConcepts.EventEngine.IsaPolicy.Views.Views.PolicyView.Domain;
-using CodeConcepts.EventEngine.Services;
 using Microsoft.Practices.Unity;
 
 namespace CodeConcepts.EventEngine.ConsoleService

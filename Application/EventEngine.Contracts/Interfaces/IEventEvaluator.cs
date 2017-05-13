@@ -1,6 +1,4 @@
-using CodeConcepts.EventEngine.Contracts.Interfaces;
-
-namespace CodeConcepts.EventEngine.Application.Interfaces
+namespace CodeConcepts.EventEngine.Contracts.Interfaces
 {
     public interface IEventEvaluator
     {

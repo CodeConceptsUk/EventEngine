@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using CodeConcepts.EventEngine.Application.Interfaces.Repositories;
+using CodeConcepts.EventEngine.Contracts.Interfaces.Repositories;
 using CodeConcepts.EventEngine.IsaPolicy.Contracts.BaseTypes;
 
 namespace CodeConcepts.EventEngine.IsaPolicy.DataAccess.Interfaces

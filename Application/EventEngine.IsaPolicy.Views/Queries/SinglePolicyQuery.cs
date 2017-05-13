@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 using CodeConcepts.EventEngine.Application.Interfaces;
-using CodeConcepts.EventEngine.Application.Interfaces.Repositories;
+using CodeConcepts.EventEngine.Contracts.Interfaces.Repositories;
 using CodeConcepts.EventEngine.IsaPolicy.Contracts.BaseTypes;
 using CodeConcepts.EventEngine.IsaPolicy.DataAccess.Interfaces;
 using CodeConcepts.EventEngine.IsaPolicy.Views.Queries.Interfaces;

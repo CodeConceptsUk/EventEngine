@@ -1,7 +1,6 @@
 ﻿using System;
-using CodeConcepts.EventEngine.Application.Interfaces;
-using CodeConcepts.EventEngine.Application.Interfaces.Repositories;
 using CodeConcepts.EventEngine.Contracts.Interfaces;
+using CodeConcepts.EventEngine.Contracts.Interfaces.Repositories;
 using CodeConcepts.EventEngine.IsaPolicy.Views.Views.PolicyView.Domain;
 
 namespace CodeConcepts.EventEngine.IsaPolicy.Views.DataAccess.NoSql

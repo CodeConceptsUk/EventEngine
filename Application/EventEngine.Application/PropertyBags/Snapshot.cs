@@ -1,5 +1,4 @@
-﻿using CodeConcepts.EventEngine.Application.Interfaces;
-using CodeConcepts.EventEngine.Contracts.Interfaces;
+﻿using CodeConcepts.EventEngine.Contracts.Interfaces;
 
 namespace CodeConcepts.EventEngine.Application.PropertyBags
 {

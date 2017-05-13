@@ -1,15 +1,7 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using System.Reflection;
-using CodeConcepts.EventEngine.Application.Factories;
-using CodeConcepts.EventEngine.Application.Interfaces;
-using CodeConcepts.EventEngine.Application.Interfaces.Factories;
-using CodeConcepts.EventEngine.Contracts.Interfaces;
-using CodeConcepts.FrameworkExtensions.Factories;
-using CodeConcepts.FrameworkExtensions.Interfaces.Factories;
 using Microsoft.Practices.ObjectBuilder2;
 using Microsoft.Practices.Unity;
-using ForEachExtensions = CodeConcepts.FrameworkExtensions.LinqExtensions.ForEachExtensions;
 
 namespace CodeConcepts.EventEngine.Shared.Runtime
 {
@@ -20,14 +12,6 @@ namespace CodeConcepts.EventEngine.Shared.Runtime
             var container = new UnityContainer();
 
             container.RegisterInstance(container);
-            container.RegisterType<ILogFactory, LogFactory>();
-            container.RegisterType<IStopwatchFactory, StopwatchFactory>();
-            container.RegisterType<ICommandDispatcherFactory, CommandDispatcherFactory>();
-            container.RegisterType<IEventPlayerFactory, EventPlayerFactory>();
-            
-            RegisterNamedTypes<ICommandHandler>(container);
-            RegisterNamedTypes<ICommand>(container);
-            RegisterNamedTypes<IEventEvaluator>(container);
             
             SetupSpecificRegistrations(container);
             

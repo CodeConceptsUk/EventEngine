@@ -1,5 +1,5 @@
 ﻿using System;
-using CodeConcepts.EventEngine.Services.Hosting;
+using CodeConcepts.EventEngine.Application.Hosting;
 using log4net;
 using Microsoft.Practices.Unity;
 

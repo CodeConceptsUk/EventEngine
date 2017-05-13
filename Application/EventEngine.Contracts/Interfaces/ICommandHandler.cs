@@ -2,7 +2,6 @@
 
 namespace CodeConcepts.EventEngine.Contracts.Interfaces
 {
-    //TODO not happy that this is exposed in this namespace
     public interface ICommandHandler
     {
     }

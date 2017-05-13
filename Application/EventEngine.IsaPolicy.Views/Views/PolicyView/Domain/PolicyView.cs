@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using CodeConcepts.EventEngine.Application.Interfaces;
+using CodeConcepts.EventEngine.Contracts.Interfaces;
 
 namespace CodeConcepts.EventEngine.IsaPolicy.Views.Views.PolicyView.Domain
 {

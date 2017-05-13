@@ -2,10 +2,9 @@ using System;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
-using CodeConcepts.EventEngine.Application.Interfaces;
-using CodeConcepts.EventEngine.Application.Interfaces.Repositories;
 using CodeConcepts.EventEngine.Application.PropertyBags;
 using CodeConcepts.EventEngine.Contracts.Interfaces;
+using CodeConcepts.EventEngine.Contracts.Interfaces.Repositories;
 using CodeConcepts.EventEngine.IsaPolicy.Views.Views.PolicyView.Domain;
 using Newtonsoft.Json;
 
