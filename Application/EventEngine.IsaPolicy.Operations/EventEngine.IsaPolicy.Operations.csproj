@@ -50,6 +50,11 @@
     <Compile Include="CoreViewEventEvaluators\PolicyFundUnitBalanceViewEventEvaluators\UnitsAddedToFundEventEvaluator.cs" />
     <Compile Include="CoreViewEventEvaluators\PolicyFundUnitBalanceViewEventEvaluators\UnitsAllocatedEventEvaluator.cs" />
     <Compile Include="CoreViewEventEvaluators\PremiumsStatusViewEventEvaluators\AddPremiumEventEvaluator.cs" />
+    <Compile Include="CoreViewEventEvaluators\PremiumsStatusViewEventEvaluators\AppliedFundChargeEventEvaluator.cs" />
+    <Compile Include="CoreViewEventEvaluators\PremiumsStatusViewEventEvaluators\PolicyCreatedEventEvaluator.cs" />
+    <Compile Include="CoreViewEventEvaluators\PremiumsStatusViewEventEvaluators\PremiumReceivedEventEvaluator.cs" />
+    <Compile Include="CoreViewEventEvaluators\PremiumsStatusViewEventEvaluators\UnitsAddedToFundEventEvaluator.cs" />
+    <Compile Include="CoreViewEventEvaluators\PremiumsStatusViewEventEvaluators\UnitsAllocatedEventEvaluator.cs" />
     <Compile Include="DataAccess\InMemory\CoreViewSnapshots\PremiumsStatusSnapshotMemoryStore.cs" />
     <Compile Include="DataAccess\InMemory\CoreViewSnapshots\PolicyFundBalanceSnapshotMemoryStore.cs" />
     <Compile Include="DataAccess\InMemory\CoreViewSnapshots\UnallocatedReceivedPremiumsSnapshotMemoryStore.cs" />

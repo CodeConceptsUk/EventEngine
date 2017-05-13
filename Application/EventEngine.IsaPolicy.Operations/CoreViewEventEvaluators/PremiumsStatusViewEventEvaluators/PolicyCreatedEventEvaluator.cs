@@ -1,14 +1,13 @@
 ﻿using CodeConcepts.EventEngine.Contracts.Interfaces;
+using CodeConcepts.EventEngine.IsaPolicy.Contracts.CoreViews.PremiumsStatusView;
 using CodeConcepts.EventEngine.IsaPolicy.Contracts.Events;
 
-namespace CodeConcepts.EventEngine.IsaPolicy.Operations.CoreViewEventEvaluators.PremiumStatusView
+namespace CodeConcepts.EventEngine.IsaPolicy.Operations.CoreViewEventEvaluators.PremiumsStatusViewEventEvaluators
 {
-    public class PolicyCreatedEventEvaluator : IEventEvaluator<PolicyCreatedEvent, Domain.PolicyView>
+    public class PolicyCreatedEventEvaluator : IEventEvaluator<PolicyCreatedEvent, PremiumsStatusView>
     {
-        public void Evaluate(Domain.PolicyView view, PolicyCreatedEvent @event)
+        public void Evaluate(PremiumsStatusView view, PolicyCreatedEvent @event)
         {
-            view.PolicyNumber = @event.PolicyNumber;
-            view.CustomerId = @event.CustomerId;
         }
     }
 }

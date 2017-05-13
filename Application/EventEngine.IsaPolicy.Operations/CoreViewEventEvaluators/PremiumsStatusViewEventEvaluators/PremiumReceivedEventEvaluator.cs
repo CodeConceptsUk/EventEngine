@@ -1,13 +1,16 @@
 ﻿using CodeConcepts.EventEngine.Contracts.Interfaces;
+using CodeConcepts.EventEngine.IsaPolicy.Contracts.CoreViews.PremiumsStatusView;
 using CodeConcepts.EventEngine.IsaPolicy.Contracts.Events;
 
-namespace CodeConcepts.EventEngine.IsaPolicy.Operations.CoreViewEventEvaluators.PremiumStatusView
+namespace CodeConcepts.EventEngine.IsaPolicy.Operations.CoreViewEventEvaluators.PremiumsStatusViewEventEvaluators
 {
-    public class PremiumReceivedEventEvaluator : IEventEvaluator<PremiumReceivedEvent, Domain.PolicyView>
+    public class PremiumReceivedEventEvaluator : IEventEvaluator<PremiumReceivedEvent, PremiumsStatusView>
     {
-        public void Evaluate(Domain.PolicyView view, PremiumReceivedEvent @event)
+        public void Evaluate(PremiumsStatusView view, PremiumReceivedEvent @event)
         {
-            view.Premiums.Single(p => p.PremiumId == @event.PremiumId).IsReceived = true;
+            var premiumId = @event.PremiumId;
+            view.PendingPremiumIds.Remove(premiumId);
+            view.ReceivedPremiumIds.Add(premiumId);
         }
     }
 }
