@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Reflection;
 using System.ServiceModel;
 using CodeConcepts.EventEngine.Application.Interfaces;
@@ -26,19 +27,27 @@ namespace CodeConcepts.EventEngine.Services
 
         public void DispatchCommand(ICommand request)
         {
-            var commandType = request.GetType();
-            var commandBaseType = commandType.BaseType;
+            try
+            {
+                var commandType = request.GetType();
+                var commandBaseType = commandType.BaseType;
 
-            //TODO cheating: (remove the reference to IsaPolicy namespace too when fixing this)
-            var eventBaseType = typeof(IsaPolicyEvent);
+                //TODO cheating: (remove the reference to IsaPolicy namespace too when fixing this - using plugin to fix)
+                var eventBaseType = typeof(IsaPolicyEvent);
 
-            var commandDispatcherCreationMethodInfo = typeof(ICommandDispatcherFactory).GetMethods(BindingFlags.Public|BindingFlags.Instance).Single(m => m.Name == "Create");
-            var commandDispatcherInstanceCreationMethodInfo = commandDispatcherCreationMethodInfo.MakeGenericMethod(commandBaseType, eventBaseType);
+                var commandDispatcherCreationMethodInfo = typeof(ICommandDispatcherFactory).GetMethods(BindingFlags.Public | BindingFlags.Instance).Single(m => m.Name == "Create");
+                var commandDispatcherInstanceCreationMethodInfo = commandDispatcherCreationMethodInfo.MakeGenericMethod(commandBaseType, eventBaseType);
 
-            _log.Info($"Executing Api Command: {request.GetType()}");
+                _log.Info($"Executing Api Command: {request.GetType()}");
 
-            var dispatcher = commandDispatcherInstanceCreationMethodInfo.Invoke(_commandDispatcherFactory, new object[]{}).AsDynamic();
-            dispatcher.Apply(request.AsDynamic());
+                var dispatcher = commandDispatcherInstanceCreationMethodInfo.Invoke(_commandDispatcherFactory, new object[] {}).AsDynamic();
+                dispatcher.Apply(request.AsDynamic());
+            }
+            catch (Exception exception)
+            {
+                _log.Error($"Failed to execute {request?.GetType()}", exception);
+                throw new FaultException(new FaultReason(exception.ToString()));
+            }
         }
     }
 }
