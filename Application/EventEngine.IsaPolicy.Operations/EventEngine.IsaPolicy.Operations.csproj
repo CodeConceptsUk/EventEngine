@@ -40,6 +40,9 @@
     <Compile Include="CommandHandlers\CreatePolicyHandler.cs" />
     <Compile Include="CommandHandlers\SetPremiumAsReceivedHandler.cs" />
     <Compile Include="CommandHandlers\AllocateUnitsHandler.cs" />
+    <Compile Include="CoreQueries\PolicyEventContextIdQuery.cs" />
+    <Compile Include="CoreQueries\SomethingSomethingQuery.cs" />
+    <Compile Include="CoreQueries\UnallocatedReceivedPremiumsQuery.cs" />
     <Compile Include="DataAccess\InMemory\IsaPolicyEventsInMemoryStore.cs" />
     <Compile Include="DataAccess\InMemory\SequencingInMemoryStore.cs" />
     <Compile Include="DataAccess\InMemory\UnitPricingInMemoryStore.cs" />
@@ -64,10 +67,6 @@
       <Project>{14808d5e-6d00-459a-98cb-53ac6b8ea4ae}</Project>
       <Name>EventEngine.IsaPolicy.Contracts</Name>
     </ProjectReference>
-    <ProjectReference Include="..\EventEngine.IsaPolicy.Views\EventEngine.IsaPolicy.Views.csproj">
-      <Project>{f411399c-6a83-42f2-87ef-08adf7de1d9f}</Project>
-      <Name>EventEngine.IsaPolicy.Views</Name>
-    </ProjectReference>
     <ProjectReference Include="..\FrameworkExtensions\FrameworkExtensions.csproj">
       <Project>{21d128d0-4f13-4157-b454-00beaf0a3de3}</Project>
       <Name>FrameworkExtensions</Name>
@@ -79,6 +78,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="CoreViews\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

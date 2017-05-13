@@ -9,5 +9,5 @@ namespace CodeConcepts.EventEngine.IsaPolicy.Views.Queries.Interfaces
         Guid? GeteventContextId(string policyNumber);
 
         IEnumerable<Guid> GeteventContextId(int clientId);
-    }
+    } //TODO refactor the name of property above
 }

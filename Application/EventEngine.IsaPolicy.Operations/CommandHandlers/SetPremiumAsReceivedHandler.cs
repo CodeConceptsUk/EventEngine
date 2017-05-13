@@ -13,12 +13,12 @@ namespace CodeConcepts.EventEngine.IsaPolicy.Operations.CommandHandlers
     public class SetPremiumAsReceivedHandler : ICommandHandler<SetPremiumAsReceivedCommand, IsaPolicyEvent>
     {
         private readonly IPolicyEventContextIdQuery _policyEventContextIdQuery;
-        private readonly ISinglePolicyQuery _singlePolicyQuery;
+        private readonly ISomethingSomethingQuery _somethingSomethingQuery;
 
-        public SetPremiumAsReceivedHandler(IPolicyEventContextIdQuery policyEventContextIdQuery, ISinglePolicyQuery singlePolicyQuery)
+        public SetPremiumAsReceivedHandler(IPolicyEventContextIdQuery policyEventContextIdQuery, ISomethingSomethingQuery somethingSomethingQuery)
         {
             _policyEventContextIdQuery = policyEventContextIdQuery;
-            _singlePolicyQuery = singlePolicyQuery;
+            _somethingSomethingQuery = somethingSomethingQuery;
         }
 
         public IEnumerable<IsaPolicyEvent> Execute(SetPremiumAsReceivedCommand command)
@@ -26,15 +26,11 @@ namespace CodeConcepts.EventEngine.IsaPolicy.Operations.CommandHandlers
             var eventContextId = _policyEventContextIdQuery.GeteventContextId(command.PolicyNumber);
             if (!eventContextId.HasValue)
                 throw new QueryException($"The policy {command.PolicyNumber} does not exist!");
-            var policy = _singlePolicyQuery.Read(eventContextId.Value);
+            var premium = _somethingSomethingQuery.Read(eventContextId.Value, command.PremiumId);
+            if(premium == null)
+                throw new QueryException("Premium was not found on policy!");
 
-            var premium = policy.Premiums.Single(p => p.PremiumId == command.PremiumId);
-            if (premium.IsAllocated)
-                throw new PolicyException($"Premium has already been allocated");
-            if (premium.IsReceived)
-                throw new PolicyException($"Premium has already been received");
-
-            return new[] { new PremiumReceivedEvent(eventContextId.Value, command.PremiumId, command.DateTimeReceived) };
+            return new[] { new PremiumReceivedEvent(eventContextId.Value, premium.PremiumId, command.DateTimeReceived) };
         }
     }
 }

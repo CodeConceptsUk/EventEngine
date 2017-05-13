@@ -16,13 +16,13 @@ namespace CodeConcepts.EventEngine.IsaPolicy.Operations.CommandHandlers
     public class AllocateUnitsHandler : ICommandHandler<AllocateUnitsCommand, IsaPolicyEvent>
     {
         private readonly IPolicyEventContextIdQuery _policyEventContextIdQuery;
-        private readonly ISinglePolicyQuery _singlePolicyQuery;
+        private readonly IUnallocatedReceivedPremiumsQuery _unallocatedReceivedPremiumsQuery;
         private readonly IUnitPricingRepository _unitPricingRepository;
 
-        public AllocateUnitsHandler(IPolicyEventContextIdQuery policyEventContextIdQuery, ISinglePolicyQuery singlePolicyQuery, IUnitPricingRepository unitPricingRepository)
+        public AllocateUnitsHandler(IPolicyEventContextIdQuery policyEventContextIdQuery, IUnallocatedReceivedPremiumsQuery unallocatedReceivedPremiumsQuery, IUnitPricingRepository unitPricingRepository)
         {
             _policyEventContextIdQuery = policyEventContextIdQuery;
-            _singlePolicyQuery = singlePolicyQuery;
+            _unallocatedReceivedPremiumsQuery = unallocatedReceivedPremiumsQuery;
             _unitPricingRepository = unitPricingRepository;
         }
 
@@ -31,16 +31,13 @@ namespace CodeConcepts.EventEngine.IsaPolicy.Operations.CommandHandlers
             var eventContextId = _policyEventContextIdQuery.GeteventContextId(command.PolicyNumber);
             if (!eventContextId.HasValue)
                 throw new QueryException($"The policy {command.PolicyNumber} does not exist!");
-            var policy = _singlePolicyQuery.Read(eventContextId.Value);
+            var policy = _unallocatedReceivedPremiumsQuery.Read(eventContextId.Value);
 
             var events = new List<IsaPolicyEvent>();
-            policy.Premiums.Where(p => !p.IsAllocated && p.IsReceived).ForEach(p =>
+            policy.PremiumPartitions.ForEach(part =>
             {
-                p.Partitions.ForEach(part =>
-                {
-                    var units = _unitPricingRepository.Get(part.FundId, command.DateOfAllocation, part.Amount);
-                    events.Add(new UnitsAllocatedEvent(eventContextId.Value, p.PremiumId, part.PortionId, part.FundId, units, command.DateOfAllocation));
-                });
+                var units = _unitPricingRepository.Get(part.FundId, command.DateOfAllocation, part.Amount);
+                events.Add(new UnitsAllocatedEvent(eventContextId.Value, part.PremiumId, part.PortionId, part.FundId, units, command.DateOfAllocation));
             });
             return events;
         }

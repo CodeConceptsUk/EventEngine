@@ -37,12 +37,10 @@
     <Compile Include="DataAccess\NoSql\SinglePolicySnapshotNoSqlStore.cs" />
     <Compile Include="DataAccess\Sql\SinglePolicySnapshotSqlStore.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Queries\Interfaces\IPolicyEventContextIdQuery.cs" />
     <Compile Include="Queries\Interfaces\IPolicyQuery.cs" />
     <Compile Include="Queries\Interfaces\ISinglePolicyQuery.cs" />
     <Compile Include="Queries\Interfaces\ISinglePolicyTransactionQuery.cs" />
     <Compile Include="Queries\Interfaces\ITransactionQuery.cs" />
-    <Compile Include="Queries\PolicyEventContextIdQuery.cs" />
     <Compile Include="Queries\PolicyQuery.cs" />
     <Compile Include="Queries\SinglePolicyQuery.cs" />
     <Compile Include="Queries\SinglePolicyTransactionQuery.cs" />
