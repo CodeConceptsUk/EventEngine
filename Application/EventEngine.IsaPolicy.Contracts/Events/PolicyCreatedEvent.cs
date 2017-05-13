@@ -5,8 +5,8 @@ namespace CodeConcepts.EventEngine.IsaPolicy.Contracts.Events
 {
     public class PolicyCreatedEvent : IsaPolicyEvent
     {
-        public PolicyCreatedEvent(string policyNumber, int customerId)
-            : base (Guid.NewGuid())
+        public PolicyCreatedEvent(Guid contextId, string policyNumber, int customerId)
+            : base (contextId)
         {
             PolicyNumber = policyNumber;
             CustomerId = customerId;
