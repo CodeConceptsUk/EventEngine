@@ -1,8 +1,9 @@
+using CodeConcepts.EventEngine.Application.Interfaces;
 using CodeConcepts.EventEngine.IsaPolicy.Views.Views.PolicyTransactionsView.Domain;
 
 namespace CodeConcepts.EventEngine.IsaPolicy.Views.Queries.Interfaces
 {
-    public interface ITransactionQuery
+    public interface ITransactionQuery : IQuery
     {
         PolicyTransactionView Read(string policyNumber);
     }

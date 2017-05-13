@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Reflection;
 using CodeConcepts.EventEngine.Application.Factories;
 using CodeConcepts.EventEngine.Application.Interfaces;
@@ -6,7 +7,9 @@ using CodeConcepts.EventEngine.Application.Interfaces.Factories;
 using CodeConcepts.EventEngine.Contracts.Interfaces;
 using CodeConcepts.FrameworkExtensions.Factories;
 using CodeConcepts.FrameworkExtensions.Interfaces.Factories;
+using Microsoft.Practices.ObjectBuilder2;
 using Microsoft.Practices.Unity;
+using ForEachExtensions = CodeConcepts.FrameworkExtensions.LinqExtensions.ForEachExtensions;
 
 namespace CodeConcepts.EventEngine.Shared.Runtime
 {
@@ -44,6 +47,22 @@ namespace CodeConcepts.EventEngine.Shared.Runtime
             types.ForEach(t =>
             {
                 container.RegisterType(typeof(TType), t, t.FullName, new ContainerControlledLifetimeManager());
+            });
+        }
+
+        protected void RegisterAllInterfacesForNamedTypes<TType>(Assembly assembly, IUnityContainer container)
+        {
+            var types = assembly.GetTypes().Where(t => t.IsAbstract == false && typeof(TType).IsAssignableFrom(t)).ToList();
+            
+            types.ForEach(t =>
+            {
+                t.GetInterfaces().ForEach(i =>
+                {
+                    if (i != typeof(TType))
+                    {
+                        container.RegisterType(i, t, new ContainerControlledLifetimeManager());
+                    }
+                });
             });
         }
     }

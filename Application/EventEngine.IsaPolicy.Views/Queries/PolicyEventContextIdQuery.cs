@@ -1,10 +1,11 @@
 using System;
 using System.Collections.Generic;
 using CodeConcepts.EventEngine.IsaPolicy.DataAccess.Interfaces;
+using CodeConcepts.EventEngine.IsaPolicy.Views.Queries.Interfaces;
 
 namespace CodeConcepts.EventEngine.IsaPolicy.Views.Queries
 {
-    public class PolicyEventContextIdQuery
+    public class PolicyEventContextIdQuery : IPolicyEventContextIdQuery
     {
         private readonly IIsaPolicyEventStoreRepository _eventStore;
 
