@@ -71,7 +71,7 @@
       <Project>{12e88a82-0c34-4970-af2e-e03cf1d47994}</Project>
       <Name>EventEngine.Api.Contracts</Name>
     </ProjectReference>
-    <ProjectReference Include="..\EventEngine.Contracts\EventEngine.Api.Sdk.csproj">
+    <ProjectReference Include="..\EventEngine.Api.Sdk\EventEngine.Api.Sdk.csproj">
       <Project>{b033dae8-2d28-42a9-bfa1-6f3ab59c1040}</Project>
       <Name>EventEngine.Api.Sdk</Name>
     </ProjectReference>

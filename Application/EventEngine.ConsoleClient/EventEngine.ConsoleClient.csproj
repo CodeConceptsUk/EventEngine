@@ -80,7 +80,7 @@
       <Project>{21a944ba-fdcd-4fa8-9dc1-dcba24da3db9}</Project>
       <Name>EventEngine.Client.Runtime</Name>
     </ProjectReference>
-    <ProjectReference Include="..\EventEngine.Contracts\EventEngine.Api.Sdk.csproj">
+    <ProjectReference Include="..\EventEngine.Api.Sdk\EventEngine.Api.Sdk.csproj">
       <Project>{B033DAE8-2D28-42A9-BFA1-6F3AB59C1040}</Project>
       <Name>EventEngine.Api.Sdk</Name>
     </ProjectReference>
