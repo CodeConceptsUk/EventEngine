@@ -16,6 +16,7 @@ namespace CodeConcepts.EventEngine.Application
             container.RegisterType<ILogFactory, LogFactory>();
             container.RegisterType<IStopwatchFactory, StopwatchFactory>();
             container.RegisterType<ICommandDispatcherFactory, CommandDispatcherFactory>();
+            container.RegisterType<IQueryDispatcherFactory, QueryDispatcherFactory>();
             container.RegisterType<IEventPlayerFactory, EventPlayerFactory>();
             container.RegisterType<IServiceHosting, ServiceHosting>();
             container.RegisterType<IEventEngineApiService, EventEngineApiService>();

@@ -54,9 +54,9 @@
     <Compile Include="Interfaces\IEvent.cs" />
     <Compile Include="Interfaces\IEventEvaluator.cs" />
     <Compile Include="Interfaces\IEventPlayer.cs" />
-    <Compile Include="Interfaces\IQuery.cs" />
+    <Compile Include="Interfaces\IQueryDispatcher.cs" />
+    <Compile Include="Interfaces\IQueryHandler.cs" />
     <Compile Include="Interfaces\ISnapshot.cs" />
-    <Compile Include="Interfaces\IView.cs" />
     <Compile Include="Interfaces\Repositories\IEventStoreRepository.cs" />
     <Compile Include="Interfaces\Repositories\ISnapshotStore.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

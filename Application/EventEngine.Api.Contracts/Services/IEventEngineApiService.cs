@@ -1,4 +1,5 @@
 ﻿using System.ServiceModel;
+using CodeConcepts.EventEngine.Contracts.Interfaces;
 
 namespace CodeConcepts.EventEngine.Api.Contracts.Services
 {
@@ -7,5 +8,8 @@ namespace CodeConcepts.EventEngine.Api.Contracts.Services
     {
         [OperationContract]
         void DispatchCommand(ICommand command);
+
+        [OperationContract]
+        IView DispatchQuery(IQuery query);
     }
 }

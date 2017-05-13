@@ -1,22 +1,24 @@
 ﻿using System;
 using CodeConcepts.CliConsole;
+using CodeConcepts.CliConsole.Interfaces;
 using CodeConcepts.EventEngine.ClientLibrary.Interfaces;
 using CodeConcepts.EventEngine.IsaPolicy.Contracts.Commands;
-using CodeConcepts.EventEngine.IsaPolicy.Contracts.Interfaces.DataAccess;
+using CodeConcepts.EventEngine.IsaPolicy.Views.Contracts.Queries;
+using CodeConcepts.EventEngine.IsaPolicy.Views.Contracts.Views.PolicyView.Domain;
 
 namespace CodeConcepts.EventEngine.ConsoleClient.ConsoleCommands
 {
     public class CreatePolicyConsoleCommand : InlineConsoleCommand
     {
         private readonly ICommandChannelClientFactory _commandChannelClientFactory;
-        private readonly ISequencingRepository _sequencingRepository;
+        private readonly IConsoleProxy _console;
         private int _customerId;
 
-        public CreatePolicyConsoleCommand(ICommandChannelClientFactory commandChannelClientFactory, ISequencingRepository sequencingRepository)
+        public CreatePolicyConsoleCommand(ICommandChannelClientFactory commandChannelClientFactory, IConsoleProxy console)
             : base("CreatePolicy", "Creates a new policy within the system")
         {
-            _sequencingRepository = sequencingRepository;
             _commandChannelClientFactory = commandChannelClientFactory;
+            _console = console;
             HasRequiredOption<int>("customerId", "CustomerId that the policy will belong to:", p => _customerId = p);
         }
 
@@ -32,9 +34,13 @@ namespace CodeConcepts.EventEngine.ConsoleClient.ConsoleCommands
             // the context id which would achieve the same result)
             // one other option I am considering is that perhaps the allocation of numbers is an api/service 
             // method provided by either the eventEngine itself or the isa plugin
-            var policyNumber = _sequencingRepository.Get("IsaPolicyPolicyNumber");
             var client = _commandChannelClientFactory.Create();
-            client.DispatchCommand(new CreatePolicyCommand(Guid.NewGuid() ,_customerId, policyNumber));
+            var contextId = Guid.NewGuid();
+
+            client.DispatchCommand(new CreatePolicyCommand(contextId, _customerId));
+
+            var policyView = client.DispatchQuery(new GetSinglePolicyFromContextQuery(contextId)) as PolicyView;
+            _console.WriteLine($"Created new policy {policyView.PolicyNumber}");
         }
     }
 }

@@ -5,7 +5,7 @@ using CodeConcepts.EventEngine.IsaPolicy.Contracts.Interfaces.DataAccess;
 
 namespace CodeConcepts.EventEngine.IsaPolicy.Operations.CoreQueries
 {
-    public class PolicyEventContextIdQuery : IPolicyEventContextIdQuery
+    public class PolicyEventContextIdQuery : IPolicyEventContextIdQuery //TODO: ISystemQuery ?
     {
         private readonly IIsaPolicyEventStoreRepository _eventStore;
 

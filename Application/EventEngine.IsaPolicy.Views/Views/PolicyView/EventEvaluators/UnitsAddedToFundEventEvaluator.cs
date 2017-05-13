@@ -1,13 +1,13 @@
 using System.Linq;
 using CodeConcepts.EventEngine.Contracts.Interfaces;
 using CodeConcepts.EventEngine.IsaPolicy.Contracts.Events;
-using CodeConcepts.EventEngine.IsaPolicy.Views.Views.PolicyView.Domain;
+using CodeConcepts.EventEngine.IsaPolicy.Views.Contracts.Views.PolicyView.Domain;
 
 namespace CodeConcepts.EventEngine.IsaPolicy.Views.Views.PolicyView.EventEvaluators
 {
-    public class UnitsAddedToFundEventEvaluator : IEventEvaluator<UnitsAddedToFundEvent, Domain.PolicyView>
+    public class UnitsAddedToFundEventEvaluator : IEventEvaluator<UnitsAddedToFundEvent, Contracts.Views.PolicyView.Domain.PolicyView>
     {
-        public void Evaluate(Domain.PolicyView view, UnitsAddedToFundEvent @event)
+        public void Evaluate(Contracts.Views.PolicyView.Domain.PolicyView view, UnitsAddedToFundEvent @event)
         {
             var allocation = new FundAllocation
             {

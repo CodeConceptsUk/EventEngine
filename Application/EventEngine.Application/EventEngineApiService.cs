@@ -16,12 +16,16 @@ namespace CodeConcepts.EventEngine.Application
     public class EventEngineApiService : IEventEngineApiService
     {
         private readonly ICommandDispatcherFactory _commandDispatcherFactory;
+        private readonly IQueryDispatcherFactory _queryDispatcherFactory;
         private readonly ILog _log;
 
-        public EventEngineApiService(ILogFactory logFactory, ICommandDispatcherFactory commandDispatcherFactory)
+        public EventEngineApiService(ILogFactory logFactory, 
+            ICommandDispatcherFactory commandDispatcherFactory,
+            IQueryDispatcherFactory queryDispatcherFactory)
         {
             _log = logFactory.GetLogger(GetType());
             _commandDispatcherFactory = commandDispatcherFactory;
+            _queryDispatcherFactory = queryDispatcherFactory;
         }
 
         public void DispatchCommand(ICommand request)
@@ -47,6 +51,15 @@ namespace CodeConcepts.EventEngine.Application
                 _log.Error($"Failed to execute {request?.GetType()}", exception);
                 throw new FaultException(new FaultReason(exception.ToString()));
             }
+        }
+
+        public IView DispatchQuery(IQuery request)
+        {
+            var queryDispatcherCreationMethodInfo = typeof(IQueryDispatcherFactory).GetMethods(BindingFlags.Public | BindingFlags.Instance).Single(m => m.Name == "Create");
+            var queryDispatcherInstanceCreationMethodInfo = queryDispatcherCreationMethodInfo.MakeGenericMethod(request.GetType());
+
+            var dispatcher = queryDispatcherInstanceCreationMethodInfo.Invoke(_queryDispatcherFactory, new object[] { }).AsDynamic();
+            return dispatcher.Read(request.AsDynamic());
         }
     }
 }

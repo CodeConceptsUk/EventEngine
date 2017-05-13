@@ -1,6 +1,6 @@
 ﻿using CodeConcepts.EventEngine.Contracts.Interfaces;
 using CodeConcepts.EventEngine.IsaPolicy.Contracts.Events;
-using CodeConcepts.EventEngine.IsaPolicy.Views.Views.PolicyTransactionsView.Domain;
+using CodeConcepts.EventEngine.IsaPolicy.Views.Contracts.Views.PolicyTransactionsView.Domain;
 
 namespace CodeConcepts.EventEngine.IsaPolicy.Views.Views.PolicyTransactionsView.EventEvaluators
 {

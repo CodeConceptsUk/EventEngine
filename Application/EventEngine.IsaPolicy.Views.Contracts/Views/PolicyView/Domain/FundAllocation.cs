@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace CodeConcepts.EventEngine.IsaPolicy.Views.Views.PolicyView.Domain
+namespace CodeConcepts.EventEngine.IsaPolicy.Views.Contracts.Views.PolicyView.Domain
 {
     public class FundAllocation
     {

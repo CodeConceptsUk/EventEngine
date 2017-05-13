@@ -1,9 +1,4 @@
-﻿using System;
-using CodeConcepts.EventEngine.Contracts.Interfaces;
-using CodeConcepts.EventEngine.Contracts.Interfaces.Repositories;
-using CodeConcepts.EventEngine.IsaPolicy.Views.Views.PolicyView.Domain;
-
-namespace CodeConcepts.EventEngine.IsaPolicy.Views.DataAccess.NoSql
+﻿namespace CodeConcepts.EventEngine.IsaPolicy.Views.DataAccess.NoSql
 {
     //public class SinglePolicySnapshotNoSqlStore : ISnapshotStore<PolicyView>
     //{

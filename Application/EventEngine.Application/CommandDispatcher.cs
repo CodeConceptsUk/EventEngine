@@ -16,28 +16,27 @@ namespace CodeConcepts.EventEngine.Application
         where TCommand : class, ICommand
         where TEvent : class, IEvent
     {
-        private readonly IUnityContainer _container;
         private readonly IList<ICommandHandler> _handlers = new List<ICommandHandler>();
         private readonly ILog _logger;
+        private IEventStoreRepository<TEvent> _repository;
 
         public CommandDispatcher(IUnityContainer container, ILogFactory logFactory)
         {
+            _repository = container.Resolve<IEventStoreRepository<TEvent>>();
             _logger = logFactory.GetLogger(typeof(CommandDispatcher<,>));
             var handlers = container.ResolveAll(typeof(ICommandHandler));
             handlers.ForEach(handler => _handlers.Add((ICommandHandler)handler));
-            _container = container;
         }
 
         public void Apply(TCommand command)
         {
-            var repository = _container.Resolve<IEventStoreRepository<TEvent>>();
             var handler = GetHandler(command);
 
             _logger.Debug($"Applying {command.GetType().Name} using {handler?.GetType()?.Name}");
 
             // TODO: Pre (Can execute?)
 
-            var results = (IEnumerable<TEvent>) handler.Execute(command.AsDynamic());
+            var results = (IEnumerable<TEvent>)handler.Execute(command.AsDynamic());
 
             if (results == null)
             {
@@ -46,8 +45,8 @@ namespace CodeConcepts.EventEngine.Application
 
             // TODO: Post (Can save?)
 
-            _logger.Debug($"\tAdding {results.Count()} event(s) to {repository.GetType().Name}");
-            repository.Add(results);
+            _logger.Debug($"\tAdding {results.Count()} event(s) to {_repository.GetType().Name}");
+            _repository.Add(results);
         }
 
         private dynamic GetHandler(ICommand command)

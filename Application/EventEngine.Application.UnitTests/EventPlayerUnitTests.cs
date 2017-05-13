@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using CodeConcepts.EventEngine.Application.Interfaces;
 using CodeConcepts.EventEngine.Application.Interfaces.Factories;
 using CodeConcepts.EventEngine.Contracts.Interfaces;
 using CodeConcepts.FrameworkExtensions.Interfaces.Factories;

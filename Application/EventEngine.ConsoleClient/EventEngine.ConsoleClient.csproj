@@ -48,7 +48,10 @@
       <HintPath>..\packages\Unity.4.0.1\lib\net45\Microsoft.Practices.Unity.RegistrationByConvention.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ConsoleCommands\AddPremiumConsoleCommand.cs" />
@@ -87,6 +90,10 @@
     <ProjectReference Include="..\EventEngine.IsaPolicy.Contracts\EventEngine.IsaPolicy.Contracts.csproj">
       <Project>{14808d5e-6d00-459a-98cb-53ac6b8ea4ae}</Project>
       <Name>EventEngine.IsaPolicy.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EventEngine.IsaPolicy.Views.Contracts\EventEngine.IsaPolicy.Views.Contracts.csproj">
+      <Project>{cb63282e-e43a-46a3-a228-4a98b0d7fbc7}</Project>
+      <Name>EventEngine.IsaPolicy.Views.Contracts</Name>
     </ProjectReference>
     <ProjectReference Include="..\EventEngine.Shared.Runtime\EventEngine.Shared.Runtime.csproj">
       <Project>{9C5273FB-4FD9-4ADE-9229-107CF1E665CE}</Project>

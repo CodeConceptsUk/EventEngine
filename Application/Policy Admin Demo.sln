@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26228.4
+VisualStudioVersion = 15.0.26228.9
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ISA", "ISA", "{EA018118-AF30-43B3-8BFA-8B1DF3A7FFAC}"
 EndProject
@@ -46,6 +46,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventEngine.Api.Contracts", "EventEngine.Api.Contracts\EventEngine.Api.Contracts.csproj", "{12E88A82-0C34-4970-AF2E-E03CF1D47994}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventEngine.DatabaseUpdater", "EventEngine.DatabaseUpdater\EventEngine.DatabaseUpdater.csproj", "{83305541-1868-454F-9CDC-AF9B3D21CA1C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventEngine.IsaPolicy.Views.Contracts", "EventEngine.IsaPolicy.Views.Contracts\EventEngine.IsaPolicy.Views.Contracts.csproj", "{CB63282E-E43A-46A3-A228-4A98B0D7FBC7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -117,6 +119,10 @@ Global
 		{83305541-1868-454F-9CDC-AF9B3D21CA1C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{83305541-1868-454F-9CDC-AF9B3D21CA1C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{83305541-1868-454F-9CDC-AF9B3D21CA1C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CB63282E-E43A-46A3-A228-4A98B0D7FBC7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CB63282E-E43A-46A3-A228-4A98B0D7FBC7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CB63282E-E43A-46A3-A228-4A98B0D7FBC7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CB63282E-E43A-46A3-A228-4A98B0D7FBC7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -137,5 +143,6 @@ Global
 		{48D68DF9-3F79-417D-821D-48F8053C8F49} = {EA018118-AF30-43B3-8BFA-8B1DF3A7FFAC}
 		{F411399C-6A83-42F2-87EF-08ADF7DE1D9F} = {EA018118-AF30-43B3-8BFA-8B1DF3A7FFAC}
 		{12E88A82-0C34-4970-AF2E-E03CF1D47994} = {01E05C10-85FD-4003-BA08-F903E23261B2}
+		{CB63282E-E43A-46A3-A228-4A98B0D7FBC7} = {EA018118-AF30-43B3-8BFA-8B1DF3A7FFAC}
 	EndGlobalSection
 EndGlobal

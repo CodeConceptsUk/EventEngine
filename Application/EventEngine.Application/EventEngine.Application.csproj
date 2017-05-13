@@ -57,6 +57,8 @@
     <Compile Include="EventPlayer.cs" />
     <Compile Include="Factories\CommandDispatcherFactory.cs" />
     <Compile Include="Factories\EventPlayerFactory.cs" />
+    <Compile Include="Interfaces\Factories\IQueryDispatcherFactory.cs" />
+    <Compile Include="Factories\QueryDispatcherFactory.cs" />
     <Compile Include="Hosting\IServiceHosting.cs" />
     <Compile Include="Hosting\ServiceHosting.cs" />
     <Compile Include="Interfaces\Factories\ICommandDispatcherFactory.cs" />
@@ -64,6 +66,7 @@
     <Compile Include="Factories\LogFactory.cs" />
     <Compile Include="Interfaces\Factories\ILogFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QueryDispatcher.cs" />
     <Compile Include="ServiceContainerFactory.cs" />
   </ItemGroup>
   <ItemGroup>

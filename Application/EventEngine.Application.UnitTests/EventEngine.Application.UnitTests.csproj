@@ -62,6 +62,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\EventEngine.Api.Contracts\EventEngine.Api.Contracts.csproj">
+      <Project>{12e88a82-0c34-4970-af2e-e03cf1d47994}</Project>
+      <Name>EventEngine.Api.Contracts</Name>
+    </ProjectReference>
     <ProjectReference Include="..\EventEngine.Application\EventEngine.Application.csproj">
       <Project>{18373edd-6bd2-43d9-9aeb-b5c8668e5e9d}</Project>
       <Name>EventEngine.Application</Name>

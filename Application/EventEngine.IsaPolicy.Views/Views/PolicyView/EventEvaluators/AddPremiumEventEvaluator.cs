@@ -1,14 +1,14 @@
 using System.Linq;
 using CodeConcepts.EventEngine.Contracts.Interfaces;
 using CodeConcepts.EventEngine.IsaPolicy.Contracts.Events;
-using CodeConcepts.EventEngine.IsaPolicy.Views.Views.PolicyView.Domain;
+using CodeConcepts.EventEngine.IsaPolicy.Views.Contracts.Views.PolicyView.Domain;
 using Microsoft.Practices.ObjectBuilder2;
 
 namespace CodeConcepts.EventEngine.IsaPolicy.Views.Views.PolicyView.EventEvaluators
 {
-    public class AddPremiumEventEvaluator : IEventEvaluator<AddPremiumEvent, Domain.PolicyView>
+    public class AddPremiumEventEvaluator : IEventEvaluator<AddPremiumEvent, Contracts.Views.PolicyView.Domain.PolicyView>
     {
-        public void Evaluate(Domain.PolicyView view, AddPremiumEvent @event)
+        public void Evaluate(Contracts.Views.PolicyView.Domain.PolicyView view, AddPremiumEvent @event)
         {
             var premium = new Premium
             {

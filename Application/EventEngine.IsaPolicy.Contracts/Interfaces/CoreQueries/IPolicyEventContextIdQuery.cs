@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using CodeConcepts.EventEngine.Contracts.Interfaces;
+using CodeConcepts.EventEngine.Api.Contracts;
 
 namespace CodeConcepts.EventEngine.IsaPolicy.Contracts.Interfaces.CoreQueries
 {
-    public interface IPolicyEventContextIdQuery : IQuery
+    public interface IPolicyEventContextIdQuery 
     {
         Guid? GeteventContextId(string policyNumber);
 

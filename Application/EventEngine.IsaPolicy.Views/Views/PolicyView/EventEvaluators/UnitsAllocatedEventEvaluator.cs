@@ -1,13 +1,13 @@
 using System.Linq;
 using CodeConcepts.EventEngine.Contracts.Interfaces;
 using CodeConcepts.EventEngine.IsaPolicy.Contracts.Events;
-using CodeConcepts.EventEngine.IsaPolicy.Views.Views.PolicyView.Domain;
+using CodeConcepts.EventEngine.IsaPolicy.Views.Contracts.Views.PolicyView.Domain;
 
 namespace CodeConcepts.EventEngine.IsaPolicy.Views.Views.PolicyView.EventEvaluators
 {
-    public class UnitsAllocatedEventEvaluator : IEventEvaluator<UnitsAllocatedEvent, Domain.PolicyView>
+    public class UnitsAllocatedEventEvaluator : IEventEvaluator<UnitsAllocatedEvent, Contracts.Views.PolicyView.Domain.PolicyView>
     {
-        public void Evaluate(Domain.PolicyView view, UnitsAllocatedEvent @event)
+        public void Evaluate(Contracts.Views.PolicyView.Domain.PolicyView view, UnitsAllocatedEvent @event)
         {
             var premium = view.Premiums.Single(p => p.PremiumId == @event.PremiumId);
             var partition = premium.Partitions.Single(p => p.PortionId == @event.PortionId);

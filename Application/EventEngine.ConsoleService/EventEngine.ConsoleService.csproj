@@ -81,6 +81,10 @@
       <Project>{48d68df9-3f79-417d-821d-48f8053c8f49}</Project>
       <Name>EventEngine.IsaPolicy.Operations</Name>
     </ProjectReference>
+    <ProjectReference Include="..\EventEngine.IsaPolicy.Views.Contracts\EventEngine.IsaPolicy.Views.Contracts.csproj">
+      <Project>{cb63282e-e43a-46a3-a228-4a98b0d7fbc7}</Project>
+      <Name>EventEngine.IsaPolicy.Views.Contracts</Name>
+    </ProjectReference>
     <ProjectReference Include="..\EventEngine.IsaPolicy.Views\EventEngine.IsaPolicy.Views.csproj">
       <Project>{F411399C-6A83-42F2-87EF-08ADF7DE1D9F}</Project>
       <Name>EventEngine.IsaPolicy.Views</Name>
@@ -92,6 +96,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="1494561361_Database_3.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

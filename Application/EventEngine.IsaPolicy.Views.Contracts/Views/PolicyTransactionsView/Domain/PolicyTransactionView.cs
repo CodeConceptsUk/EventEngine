@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using CodeConcepts.EventEngine.Contracts.Interfaces;
 
-namespace CodeConcepts.EventEngine.IsaPolicy.Views.Views.PolicyTransactionsView.Domain
+namespace CodeConcepts.EventEngine.IsaPolicy.Views.Contracts.Views.PolicyTransactionsView.Domain
 {
     public class PolicyTransactionView : IView
     {
