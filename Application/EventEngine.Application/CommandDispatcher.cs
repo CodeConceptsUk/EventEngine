@@ -30,7 +30,7 @@ namespace CodeConcepts.EventEngine.Application
 
         public void Apply(TCommand command)
         {
-            var repository = _container.Resolve<IEventStoreRepository<TEvent>>(); // TODO: Add type for Event
+            var repository = _container.Resolve<IEventStoreRepository<TEvent>>();
             var handler = GetHandler(command);
 
             _logger.Debug($"Applying {command.GetType().Name} using {handler?.GetType()?.Name}");
