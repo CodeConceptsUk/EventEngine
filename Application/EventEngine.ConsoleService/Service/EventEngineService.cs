@@ -1,4 +1,5 @@
-﻿using System.ServiceProcess;
+﻿using System;
+using System.ServiceProcess;
 using CodeConcepts.EventEngine.Application.Hosting;
 using log4net;
 using Microsoft.Practices.Unity;
@@ -22,9 +23,17 @@ namespace CodeConcepts.EventEngine.ConsoleService.Service
 
         protected override void OnStart(string[] args)
         {
-            _log.Info($"Starting Windows Service {GetType()}");
-            _service = _container.Resolve<IServiceHosting>();
-
+            try
+            {
+                _log.Info($"Starting Windows Service {GetType()}");
+                _service = _container.Resolve<IServiceHosting>();
+                _service.Start();
+            }
+            catch (Exception e)
+            {
+                _log.Error(e);
+                throw;
+            }
         }
 
         protected override void OnStop()
