@@ -1,5 +1,4 @@
 ﻿using CodeConcepts.EventEngine.Api.Contracts.Services;
-using CodeConcepts.EventEngine.Application.Factories;
 using CodeConcepts.EventEngine.Application.Hosting;
 using CodeConcepts.EventEngine.Application.Interfaces.Factories;
 using CodeConcepts.EventEngine.Contracts.Interfaces;
@@ -8,7 +7,7 @@ using CodeConcepts.FrameworkExtensions.Factories;
 using CodeConcepts.FrameworkExtensions.Interfaces.Factories;
 using SimpleInjector;
 
-namespace CodeConcepts.EventEngine.Application
+namespace CodeConcepts.EventEngine.Application.Factories
 {
     public class ServiceContainerFactory : ContainerFactory
     {

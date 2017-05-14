@@ -4,28 +4,26 @@ using System.Linq;
 using CodeConcepts.EventEngine.Api.Contracts;
 using CodeConcepts.EventEngine.Application.Interfaces.Factories;
 using CodeConcepts.EventEngine.Contracts.Interfaces;
-using CodeConcepts.EventEngine.Contracts.Interfaces.Repositories;
+using CodeConcepts.FrameworkExtensions.LinqExtensions;
 using CodeConcepts.FrameworkExtensions.ObjectExtensions;
 using log4net;
 
 namespace CodeConcepts.EventEngine.Application
 {
-    public class CommandDispatcher<TCommand, TEvent> : ICommandDispatcher<TCommand>
-        where TCommand : class, ICommand
-        where TEvent : class, IEvent
+    public class CommandDispatcher : ICommandDispatcher
     {
         private readonly IEnumerable<ICommandHandler> _handlers;
+        private readonly IEventRepositoryResolver _eventRepositoryResolver;
         private readonly ILog _logger;
-        private readonly IEventStoreRepository<TEvent> _repository;
 
-        public CommandDispatcher(IEnumerable<ICommandHandler> handlers, IEventStoreRepository<TEvent> repository, ILogFactory logFactory)
+        public CommandDispatcher(IEnumerable<ICommandHandler> handlers, ILogFactory logFactory, IEventRepositoryResolver eventRepositoryResolver)
         {
             _handlers = handlers;
-            _repository = repository;
-            _logger = logFactory.GetLogger(typeof(CommandDispatcher<,>));
+            _eventRepositoryResolver = eventRepositoryResolver;
+            _logger = logFactory.GetLogger(typeof(CommandDispatcher));
         }
 
-        public void Apply(TCommand command)
+        public void Apply(ICommand command)
         {
             var handler = GetHandler(command);
             var handlerType = handler.GetType();
@@ -48,24 +46,26 @@ namespace CodeConcepts.EventEngine.Application
 
             // TODO: Pre (Can execute?)
 
-            var results = (IEnumerable<TEvent>)handler.Execute(command.AsDynamic());
+            var results = (IEnumerable<IEvent>)handler.AsDynamic().Execute(command);
 
             if (results == null)
                 throw new Exception($"Command {command.GetType().Name} returned null event list!");
 
             // TODO: Post (Can save?)
 
-            _logger.Debug($"\tAdding {results.Count()} event(s) to {_repository.GetType().Name}");
-            _repository.Add(results);
+            var repository = _eventRepositoryResolver.Resolve(results.First().GetType());
+
+            _logger.Debug($"\tAdding {results.Count()} event(s) to {repository.GetType().Name}");
+            repository.Add(results);
         }
 
-        private dynamic GetHandler(ICommand command)
+        private ICommandHandler GetHandler(ICommand command)
         {
             {
-                return _handlers.Where(t => t.GetType()
-                    .GetInterfaces()
-                    .Any(i => i.GetGenericArguments().Contains(command.GetType())))
-                    .Select(t => t.AsDynamic()).Single();
+                return _handlers
+                    .Single(t => t.GetType()
+                                  .GetInterfaces()
+                                  .Any(i => i.GetGenericArguments().Contains(command.GetType())));
             }
         }
     }

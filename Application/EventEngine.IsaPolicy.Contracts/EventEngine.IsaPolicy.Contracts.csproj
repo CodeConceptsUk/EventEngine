@@ -43,9 +43,11 @@
     <Reference Include="System.Runtime.Serialization" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BaseTypes\EventContextIdIndexedQueryHandler.cs" />
     <Compile Include="BaseTypes\IsaPolicyCommand.cs" />
     <Compile Include="BaseTypes\IsaPolicyEvent.cs" />
-    <Compile Include="BaseTypes\EventContextIdIndexedQueryHandler.cs" />
+    <Compile Include="BaseTypes\IsaPolicyQuery.cs" />
+    <Compile Include="BaseTypes\IsaPolicyView.cs" />
     <Compile Include="BaseTypes\SnapshotMemoryStore.cs" />
     <Compile Include="Commands\AddPremiumAsReceivedCommand.cs" />
     <Compile Include="Commands\AddPremiumCommand.cs" />
@@ -81,6 +83,7 @@
     <Compile Include="Interfaces\DataAccess\IIsaPolicyEventStoreRepository.cs" />
     <Compile Include="Interfaces\DataAccess\ISequencingRepository.cs" />
     <Compile Include="Interfaces\DataAccess\IUnitPricingRepository.cs" />
+    <Compile Include="Interfaces\IEventContextIdQuery.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Commands\PropertyBags\FundPremiumDetail.cs" />
   </ItemGroup>

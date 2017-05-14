@@ -8,8 +8,7 @@ using log4net;
 
 namespace CodeConcepts.EventEngine.Application
 {
-    public class QueryDispatcher<TQuery> : IQueryDispatcher<TQuery>
-        where TQuery : class, IQuery
+    public class QueryDispatcher : IQueryDispatcher
     {
         private readonly IEnumerable<IQueryHandler> _handlers;
         private readonly ILog _logger;
@@ -17,10 +16,10 @@ namespace CodeConcepts.EventEngine.Application
         public QueryDispatcher(IEnumerable<IQueryHandler> handlers, ILogFactory logFactory)
         {
             _handlers = handlers;
-            _logger = logFactory.GetLogger(typeof(QueryDispatcher<>));
+            _logger = logFactory.GetLogger(typeof(QueryDispatcher));
         }
 
-        public IView Read(TQuery query)
+        public IView Read(IQuery query)
         {
             var handler = GetHandler(query);
 
@@ -30,7 +29,7 @@ namespace CodeConcepts.EventEngine.Application
             return results;
         }
 
-        private dynamic GetHandler(TQuery query)
+        private dynamic GetHandler(IQuery query)
         {
             {
                 return _handlers.Where(t => t.GetType()

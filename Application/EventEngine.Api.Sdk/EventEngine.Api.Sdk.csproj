@@ -51,6 +51,7 @@
     <Compile Include="Interfaces\ISnapshot.cs" />
     <Compile Include="Interfaces\Repositories\IEventStoreRepository.cs" />
     <Compile Include="Interfaces\Repositories\ISnapshotStore.cs" />
+    <Compile Include="PluginSupport\PluginBaseTypeAttribute.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PropertyBags\Snapshot.cs" />
   </ItemGroup>

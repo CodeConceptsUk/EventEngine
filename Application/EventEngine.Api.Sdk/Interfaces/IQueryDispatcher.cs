@@ -2,9 +2,8 @@
 
 namespace CodeConcepts.EventEngine.Contracts.Interfaces
 {
-    public interface IQueryDispatcher<in TQuery>
-        where TQuery : class, IQuery
+    public interface IQueryDispatcher
     {
-        IView Read(TQuery query);
+        IView Read(IQuery query);
     }
 }

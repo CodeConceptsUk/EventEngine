@@ -4,6 +4,7 @@ using System.Linq;
 using CodeConcepts.CliConsole;
 using CodeConcepts.EventEngine.ClientLibrary.Interfaces;
 using CodeConcepts.EventEngine.IsaPolicy.Views.Contracts.Queries;
+using CodeConcepts.EventEngine.IsaPolicy.Views.Contracts.Views.PoliciesView;
 using CodeConcepts.EventEngine.IsaPolicy.Views.Contracts.Views.PolicyView;
 using CodeConcepts.FrameworkExtensions.LinqExtensions;
 

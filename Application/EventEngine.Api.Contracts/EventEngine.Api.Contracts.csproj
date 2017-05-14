@@ -51,7 +51,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ICommand.cs" />
-    <Compile Include="IEventContextIdQuery.cs" />
     <Compile Include="IQuery.cs" />
     <Compile Include="ITypeResolver.cs" />
     <Compile Include="IView.cs" />

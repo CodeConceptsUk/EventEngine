@@ -1,9 +1,10 @@
 ﻿using System;
 using CodeConcepts.EventEngine.Api.Contracts;
+using CodeConcepts.EventEngine.IsaPolicy.Contracts.BaseTypes;
 
 namespace CodeConcepts.EventEngine.IsaPolicy.Contracts.CoreViews.EventContextId
 {
-    public class EventContextIdView : IView
+    public class EventContextIdView : IsaPolicyView
     {
         public EventContextIdView(Guid eventContextId)
         {

@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
-using CodeConcepts.EventEngine.Api.Contracts;
+using CodeConcepts.EventEngine.IsaPolicy.Contracts.BaseTypes;
 
 namespace CodeConcepts.EventEngine.IsaPolicy.Contracts.CoreViews.PremiumsStatus
 {
-    public class PremiumsStatusView : IView
+    public class PremiumsStatusView : IsaPolicyView
     {
         public IList<string> PendingPremiumIds { get; set; } = new List<string>();
 

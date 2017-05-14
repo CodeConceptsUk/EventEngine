@@ -3,6 +3,7 @@ using CodeConcepts.EventEngine.Contracts.Interfaces;
 using CodeConcepts.EventEngine.IsaPolicy.Contracts.CoreQueries;
 using CodeConcepts.EventEngine.IsaPolicy.Contracts.Interfaces.CoreQueryHandlers;
 using CodeConcepts.EventEngine.IsaPolicy.Views.Contracts.Queries;
+using CodeConcepts.EventEngine.IsaPolicy.Views.Contracts.Views.PoliciesView;
 using CodeConcepts.EventEngine.IsaPolicy.Views.Contracts.Views.PolicyView;
 
 namespace CodeConcepts.EventEngine.IsaPolicy.Views.QueryHandlers

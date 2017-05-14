@@ -2,9 +2,8 @@
 
 namespace CodeConcepts.EventEngine.Contracts.Interfaces
 {
-    public interface ICommandDispatcher <in TCommand>
-        where TCommand : class, ICommand
+    public interface ICommandDispatcher
     {
-        void Apply(TCommand command);
+        void Apply(ICommand command);
     }
 }

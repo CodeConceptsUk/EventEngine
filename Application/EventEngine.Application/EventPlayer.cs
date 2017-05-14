@@ -11,8 +11,7 @@ using log4net;
 
 namespace CodeConcepts.EventEngine.Application
 {
-    public class EventPlayer <TEvent>: IEventPlayer<TEvent>
-        where TEvent : class, IEvent
+    public class EventPlayer: IEventPlayer
     {
         private readonly IStopwatchFactory _stopwatchFactory;
         private readonly IEnumerable<IEventEvaluator> _handlers;
@@ -22,11 +21,12 @@ namespace CodeConcepts.EventEngine.Application
         {
             _handlers = handlers;
             _stopwatchFactory = stopwatchFactory;
-            _logger = logFactory.GetLogger(typeof(EventPlayer<TEvent>));
+            _logger = logFactory.GetLogger(typeof(EventPlayer));
         }
 
-        public TView Handle<TView>(IEnumerable<TEvent> events, TView view)
+        public TView Handle<TView, TEvent>(IEnumerable<TEvent> events, TView view)
             where TView : class, IView
+        where TEvent : class, IEvent
         {
             var eventArray = events.ToArray();
             _logger.Debug($"Evaluating {eventArray.Length} events against {view.GetType().Name}");

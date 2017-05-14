@@ -2,6 +2,7 @@
 using System.Reflection;
 using CodeConcepts.EventEngine.Api.Contracts;
 using CodeConcepts.EventEngine.Application;
+using CodeConcepts.EventEngine.Application.Factories;
 using CodeConcepts.EventEngine.Contracts.Interfaces;
 using CodeConcepts.EventEngine.Contracts.Interfaces.Repositories;
 using CodeConcepts.EventEngine.IsaPolicy.Contracts.Interfaces.DataAccess;

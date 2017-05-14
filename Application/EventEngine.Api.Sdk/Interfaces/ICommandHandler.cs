@@ -7,10 +7,10 @@ namespace CodeConcepts.EventEngine.Contracts.Interfaces
     {
     }
 
-    public interface ICommandHandler<in TCommand, out TEvent> : ICommandHandler
+    //TODO why is this generic?
+    public interface ICommandHandler<in TCommand> : ICommandHandler
         where TCommand : class, ICommand
-        where TEvent : class, IEvent
     {
-        IEnumerable<TEvent> Execute(TCommand command);
+        IEnumerable<IEvent> Execute(TCommand command);
     }
 }

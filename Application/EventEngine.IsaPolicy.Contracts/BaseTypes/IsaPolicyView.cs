@@ -4,8 +4,8 @@ using CodeConcepts.EventEngine.Contracts.PluginSupport;
 namespace CodeConcepts.EventEngine.IsaPolicy.Contracts.BaseTypes
 {
     [PluginBaseType]
-    public abstract class IsaPolicyCommand : ICommand
+    public abstract class IsaPolicyView : IView
     {
-        
+
     }
 }
