@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 namespace CodeConcepts.CliConsole.Interfaces
 {
-    public interface ICommand
+    public interface ICliCommand
     {
         string CommandName { get; }
         string Description { get; }

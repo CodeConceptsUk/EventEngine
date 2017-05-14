@@ -8,13 +8,13 @@ using CodeConcepts.EventEngine.IsaPolicy.Views.Contracts.Views.PolicyView;
 
 namespace CodeConcepts.EventEngine.ConsoleClient.ConsoleCommands
 {
-    public class CreatePolicyConsoleCommand : InlineConsoleCommand
+    public class CreatePolicyConsoleCliCommand : InlineConsoleCliCommand
     {
         private readonly ICommandChannelClientFactory _commandChannelClientFactory;
         private readonly IConsoleProxy _console;
         private string _customerId;
 
-        public CreatePolicyConsoleCommand(ICommandChannelClientFactory commandChannelClientFactory, IConsoleProxy console)
+        public CreatePolicyConsoleCliCommand(ICommandChannelClientFactory commandChannelClientFactory, IConsoleProxy console)
             : base("CreatePolicy", "Creates a new policy within the system")
         {
             _commandChannelClientFactory = commandChannelClientFactory;

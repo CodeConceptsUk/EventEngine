@@ -18,10 +18,10 @@ namespace CodeConcepts.CliConsole
             _console = console;
         }
 
-        public bool Parse(ICommand command, string[] args)
+        public bool Parse(ICliCommand cliCommand, string[] args)
         {
             var argsList = args.ToList();
-            var arguments = command.Arguments;
+            var arguments = cliCommand.Arguments;
 
             foreach (var argument in arguments)
             {
@@ -37,7 +37,7 @@ namespace CodeConcepts.CliConsole
                         inputValue = GetInputFromConsole(argument, _console);
                         if (ExitCommandRecieved(inputValue))
                         {
-                            _console.WriteLine($"Exiting command {command.CommandName}");
+                            _console.WriteLine($"Exiting command {cliCommand.CommandName}");
                             return false;
                         }
                     }

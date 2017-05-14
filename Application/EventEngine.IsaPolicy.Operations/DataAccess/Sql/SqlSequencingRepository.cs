@@ -5,7 +5,7 @@ using CodeConcepts.EventEngine.IsaPolicy.Contracts.Interfaces.DataAccess;
 
 namespace CodeConcepts.EventEngine.IsaPolicy.Operations.DataAccess.Sql
 {
-   public class SequencingSqlStore : ISequencingRepository
+   public class SqlSequencingRepository : ISequencingRepository
     {
         private static string ConnectionString { get; } = ConfigurationManager.ConnectionStrings["Sequencing"].ConnectionString;
 

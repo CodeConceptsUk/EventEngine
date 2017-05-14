@@ -1,4 +1,5 @@
-﻿using System.Reflection;
+﻿using System.Diagnostics;
+using System.Reflection;
 using SimpleInjector;
 
 namespace CodeConcepts.EventEngine.Shared.Runtime
@@ -11,25 +12,33 @@ namespace CodeConcepts.EventEngine.Shared.Runtime
             
             
             SetupSpecificRegistrations(container);
-            
+
+            container.ResolveUnregisteredType += Container_ResolveUnregisteredType;
+
             return container;
+        }
+
+        private static void Container_ResolveUnregisteredType(object sender, UnregisteredTypeEventArgs e)
+        {
+            if(Debugger.IsAttached)
+                Debugger.Break();
         }
 
         protected abstract void SetupSpecificRegistrations(Container container);
         
-        protected virtual void RegisterNamedTypes<TType>(Container container)
+        protected virtual void RegisterAllImplementorsOfType<TType>(Container container)
         {
-            container.Register(typeof(TType), new []{GetType().Assembly} );
+            container.RegisterCollection(typeof(TType), GetType().Assembly);
         }
 
-        protected void RegisterNamedTypes<TType>(Assembly assembly, Container container)
+        protected void RegisterAllImplementorsOfType<TType>(Container container, Assembly assembly)
         {
-            container.Register(typeof(TType), new[] { assembly });
+            container.RegisterCollection(typeof(TType), assembly);
         }
 
         protected void RegisterAllInterfacesForNamedTypes<TType>(Assembly assembly, Container container)
         {
-            RegisterNamedTypes<TType>(assembly, container);
+            RegisterAllImplementorsOfType<TType>(container, assembly);
         }
     }
 }

@@ -15,13 +15,12 @@ namespace CodeConcepts.EventEngine.Application.Hosting
         private ServiceHost _serviceHost;
         private readonly ILog _logger;
 
-        public ServiceHosting(Container container, ILogFactory logFactory)
+        public ServiceHosting(Container container, IEventEngineApiService serviceInstance, ILogFactory logFactory)
         {
             _logger = logFactory.GetLogger(typeof(ServiceHosting));
 
             var hostUrl = "http://localhost/Policy/RemoteClient";
-
-            var serviceInstance = container.Resolve<IEventEngineApiService>();
+            
             _logger.Info($"Configuring ServiceHost to listen at {hostUrl}");
             _serviceHost = new ServiceHost(serviceInstance, new Uri(hostUrl));
             
@@ -41,7 +40,7 @@ namespace CodeConcepts.EventEngine.Application.Hosting
             foreach (var operation in endpoint.Contract.Operations)
             {
                 var behaviour = operation.Behaviors.Find<DataContractSerializerOperationBehavior>();
-                behaviour.DataContractResolver = new CommandContractResolver(container);
+                behaviour.DataContractResolver = new EventEngineContractResolver(container);
             }
             _serviceHost.AddServiceEndpoint(endpoint);
             _serviceHost.AddServiceEndpoint(ServiceMetadataBehavior.MexContractName, MetadataExchangeBindings.CreateMexHttpBinding(), "mex");

@@ -8,13 +8,13 @@ using CodeConcepts.FrameworkExtensions.LinqExtensions;
 
 namespace CodeConcepts.EventEngine.ConsoleClient.ConsoleCommands
 {
-    public class GetPolicyTransactionsConsoleCommand : InlineConsoleCommand
+    public class GetPolicyTransactionsConsoleCliCommand : InlineConsoleCliCommand
     {
         private readonly ICommandChannelClientFactory _commandChannelClientFactory;
         private readonly ConsoleProxy _console;
         private string _policyNumber;
 
-        public GetPolicyTransactionsConsoleCommand(ICommandChannelClientFactory commandChannelClientFactory, ConsoleProxy console)
+        public GetPolicyTransactionsConsoleCliCommand(ICommandChannelClientFactory commandChannelClientFactory, ConsoleProxy console)
             : base("GetPolicyTransactions", "Get the transactions relating to a policy")
         {
             _commandChannelClientFactory = commandChannelClientFactory;

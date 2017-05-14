@@ -1,7 +1,6 @@
 ﻿using System;
 using CodeConcepts.EventEngine.Application.Hosting;
 using log4net;
-using Microsoft.Practices.Unity;
 
 namespace CodeConcepts.EventEngine.ConsoleService.Console
 {
@@ -19,7 +18,7 @@ namespace CodeConcepts.EventEngine.ConsoleService.Console
         {
             var serviceContainerFactory = new ConsoleServiceContainerFactory();
             var container = serviceContainerFactory.Create();
-            using (var service = container.Resolve<IServiceHosting>())
+            using (var service = container.GetInstance<IServiceHosting>())
             {
                 service.Start();
                 do

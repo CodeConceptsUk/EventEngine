@@ -21,7 +21,8 @@ namespace CodeConcepts.EventEngine.Application.Factories
         public IEventPlayer<TEventBase> Create<TEventBase>()
             where TEventBase : class, IEvent
         {
-            return new EventPlayer<TEventBase>(_unityContainer, _logFactory, _stopwatchFactory);
+            var handlers = _unityContainer.GetAllInstances<IEventEvaluator>();
+            return new EventPlayer<TEventBase>(handlers, _logFactory, _stopwatchFactory);
         }
     }
 }

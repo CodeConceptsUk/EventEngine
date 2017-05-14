@@ -1,6 +1,7 @@
 ﻿using CodeConcepts.EventEngine.Api.Contracts;
 using CodeConcepts.EventEngine.Application.Interfaces.Factories;
 using CodeConcepts.EventEngine.Contracts.Interfaces;
+using CodeConcepts.EventEngine.Contracts.Interfaces.Repositories;
 using SimpleInjector;
 
 namespace CodeConcepts.EventEngine.Application.Factories
@@ -20,7 +21,9 @@ namespace CodeConcepts.EventEngine.Application.Factories
             where TCommandBase : class, ICommand
             where TEventBase : class, IEvent
         {
-            return new CommandDispatcher<TCommandBase, TEventBase>(_unityContainer, _logFactory);
+            var repo = _unityContainer.GetInstance<IEventStoreRepository<TEventBase>>();
+            var commandHandlers = _unityContainer.GetAllInstances<ICommandHandler>();
+            return new CommandDispatcher<TCommandBase, TEventBase>(commandHandlers, repo, _logFactory);
         }
     }
 }

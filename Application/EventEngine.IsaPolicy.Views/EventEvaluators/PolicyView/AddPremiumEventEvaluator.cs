@@ -2,7 +2,7 @@ using System.Linq;
 using CodeConcepts.EventEngine.Contracts.Interfaces;
 using CodeConcepts.EventEngine.IsaPolicy.Contracts.Events;
 using CodeConcepts.EventEngine.IsaPolicy.Views.Contracts.Views.PolicyView;
-using Microsoft.Practices.ObjectBuilder2;
+using CodeConcepts.FrameworkExtensions.LinqExtensions;
 
 namespace CodeConcepts.EventEngine.IsaPolicy.Views.EventEvaluators.PolicyView
 {

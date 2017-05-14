@@ -6,9 +6,9 @@ namespace CodeConcepts.CliConsole.Factories
 {
     public class CommandInstanceFactory : ICommandInstanceFactory
     {
-        public ICommand Create(Type type)
+        public ICliCommand Create(Type type)
         {
-            return Activator.CreateInstance(type) as ICommand;
+            return Activator.CreateInstance(type) as ICliCommand;
         }
     }
 }

@@ -20,7 +20,7 @@ namespace CodeConcepts.CliConsole
             _console = console;
         }
 
-        public void DispatchCommand(IEnumerable<ICommand> commands, string[] args)
+        public void DispatchCommand(IEnumerable<ICliCommand> commands, string[] args)
         {
             if (args == null || args.Length == 0)
                 return;
@@ -32,23 +32,23 @@ namespace CodeConcepts.CliConsole
             }
         }
 
-        private void ParseCommandAndExecute(string[] args, IConsoleProxy console, ICommand command)
+        private void ParseCommandAndExecute(string[] args, IConsoleProxy console, ICliCommand cliCommand)
         {
-            var instance = _instanceFactory.Create(command.GetType());
+            var instance = _instanceFactory.Create(cliCommand.GetType());
             
             if (!_parser.Parse(instance, args))
                 return;
 
-            WriteExecutionInformationToConsole(console, command, instance);
+            WriteExecutionInformationToConsole(console, cliCommand, instance);
         }
 
-        private static void WriteExecutionInformationToConsole(IConsoleProxy console, ICommand command, ICommand instance)
+        private static void WriteExecutionInformationToConsole(IConsoleProxy console, ICliCommand cliCommand, ICliCommand instance)
         {
             var timer = new Stopwatch();
             timer.Start();
             instance.Run();
             timer.Stop();
-            console.WriteLine($"Executed {command.CommandName} in {timer.Elapsed.TotalSeconds:0.000000} seconds");
+            console.WriteLine($"Executed {cliCommand.CommandName} in {timer.Elapsed.TotalSeconds:0.000000} seconds");
             console.WriteLine(string.Empty);
         }
     }

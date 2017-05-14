@@ -2,6 +2,6 @@
 {
     public interface IConsoleParser
     {
-        bool Parse(ICommand command, string[] args);
+        bool Parse(ICliCommand cliCommand, string[] args);
     }
 }

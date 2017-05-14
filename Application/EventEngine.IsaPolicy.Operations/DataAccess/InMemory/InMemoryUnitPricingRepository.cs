@@ -3,7 +3,7 @@ using CodeConcepts.EventEngine.IsaPolicy.Contracts.Interfaces.DataAccess;
 
 namespace CodeConcepts.EventEngine.IsaPolicy.Operations.DataAccess.InMemory
 {
-    public class UnitPricingInMemoryStore : IUnitPricingRepository
+    public class InMemoryUnitPricingRepository : IUnitPricingRepository
     {
         private static readonly Random Random = new Random(13245532);
         

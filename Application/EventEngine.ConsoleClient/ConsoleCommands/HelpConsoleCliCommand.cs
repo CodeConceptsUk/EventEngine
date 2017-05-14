@@ -1,20 +1,20 @@
-﻿using CodeConcepts.CliConsole;
+﻿using System.Collections.Generic;
+using CodeConcepts.CliConsole;
 using CodeConcepts.CliConsole.Interfaces;
 using CodeConcepts.EventEngine.ConsoleClient.Extensions;
 using CodeConcepts.FrameworkExtensions.LinqExtensions;
-using SimpleInjector;
 
 namespace CodeConcepts.EventEngine.ConsoleClient.ConsoleCommands
 {
-    public class HelpConsoleCommand : InlineConsoleCommand
+    public class HelpConsoleCliCommand : InlineConsoleCliCommand
     {
-        private readonly Container _container;
+        private readonly IEnumerable<ICliCommand> _commands;
         private readonly IConsoleProxy _console;
 
-        public HelpConsoleCommand(Container container, IConsoleProxy console)
+        public HelpConsoleCliCommand(IEnumerable<ICliCommand> commands, IConsoleProxy console)
             : base("Help", "Displays help")
         {
-            _container = container;
+            _commands = commands;
             _console = console;
         }
 
@@ -23,8 +23,7 @@ namespace CodeConcepts.EventEngine.ConsoleClient.ConsoleCommands
             _console.WriteLine(new string('-', 80));
             _console.WriteLine($"{"Command name".ToFixedWidth(30)}Description");
             _console.WriteLine(new string('-', 80));
-            var consoleCommands = _container.GetConsoleCommands();
-            consoleCommands.ForEach(command =>
+            _commands.ForEach(command =>
             {
                 _console.WriteLine($"{command.CommandName.ToFixedWidth(30)}{command.Description}");
             });

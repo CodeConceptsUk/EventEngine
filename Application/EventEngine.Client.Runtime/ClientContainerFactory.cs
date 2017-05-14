@@ -8,7 +8,7 @@ namespace CodeConcepts.EventEngine.ClientLibrary
     {
         protected override void SetupSpecificRegistrations(Container container)
         {
-            container.RegisterType<ICommandChannelClientFactory, CommandChannelClientFactory>();
+            container.Register<ICommandChannelClientFactory, CommandChannelClientFactory>();
         }
     }
 }

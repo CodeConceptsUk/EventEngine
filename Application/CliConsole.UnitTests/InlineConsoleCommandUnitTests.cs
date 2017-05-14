@@ -13,7 +13,7 @@ namespace CodeConcepts.CliConsole.UnitTests
         {
             try
             {
-                var target = new TestInlineConsoleCommand(null, null);
+                var target = new TestInlineConsoleCliCommand(null, null);
                 Assert.Fail("This should not execute");
             }
             catch (ConsoleCommandConstructionException)
@@ -26,7 +26,7 @@ namespace CodeConcepts.CliConsole.UnitTests
         {
             try
             {
-                var target = new TestInlineConsoleCommand("  ", null);
+                var target = new TestInlineConsoleCliCommand("  ", null);
                 Assert.Fail("This should not execute");
             }
             catch (ConsoleCommandConstructionException)
@@ -41,7 +41,7 @@ namespace CodeConcepts.CliConsole.UnitTests
             var expectedCommandName = Guid.NewGuid().ToString();
             var expectedDescription = Guid.NewGuid().ToString();
 
-            var target = new TestInlineConsoleCommand(expectedCommandName, expectedDescription);
+            var target = new TestInlineConsoleCliCommand(expectedCommandName, expectedDescription);
 
             Assert.AreEqual(expectedCommandName, target.CommandName);
             Assert.AreEqual(expectedDescription, target.Description);
@@ -61,7 +61,7 @@ namespace CodeConcepts.CliConsole.UnitTests
             var expectedOptionDescription2 = Guid.NewGuid().ToString();
 
 
-            var target = new TestInlineConsoleCommand(Guid.NewGuid().ToString(), Guid.NewGuid().ToString());
+            var target = new TestInlineConsoleCliCommand(Guid.NewGuid().ToString(), Guid.NewGuid().ToString());
             target.HasRequiredOption<int>(expectedOptionName1, expectedOptionDescription1, p => actionResult1 = p);
             target.HasRequiredOption<int>(expectedOptionName2, expectedOptionDescription2, p => actionResult2 = p);
 
@@ -94,7 +94,7 @@ namespace CodeConcepts.CliConsole.UnitTests
             var expectedOptionDescription2 = Guid.NewGuid().ToString();
 
 
-            var target = new TestInlineConsoleCommand(Guid.NewGuid().ToString(), Guid.NewGuid().ToString());
+            var target = new TestInlineConsoleCliCommand(Guid.NewGuid().ToString(), Guid.NewGuid().ToString());
             target.HasOption<int>(expectedOptionName1, expectedOptionDescription1, p => actionResult1 = p);
             target.HasOption<int>(expectedOptionName2, expectedOptionDescription2, p => actionResult2 = p);
 
@@ -113,9 +113,9 @@ namespace CodeConcepts.CliConsole.UnitTests
             Assert.IsFalse(argument2.IsRequired);
         }
 
-        public class TestInlineConsoleCommand : InlineConsoleCommand
+        public class TestInlineConsoleCliCommand : InlineConsoleCliCommand
         {
-            public TestInlineConsoleCommand(string commandName, string description)
+            public TestInlineConsoleCliCommand(string commandName, string description)
                 : base(commandName, description)
             {
             }

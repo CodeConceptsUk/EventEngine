@@ -2,23 +2,24 @@
 using System.ServiceProcess;
 using CodeConcepts.EventEngine.Application.Hosting;
 using log4net;
-using Microsoft.Practices.Unity;
+using SimpleInjector;
 
 namespace CodeConcepts.EventEngine.ConsoleService.Service
 {
-    partial class EventEngineService : ServiceBase
+    internal partial class EventEngineService : ServiceBase
     {
-        private readonly IUnityContainer _container;
         private readonly ILog _log;
-        private IServiceHosting _service;
+        private readonly IServiceHosting _service;
+        private Container _container;
 
         public EventEngineService()
         {
+            var serviceContainerFactory = new ConsoleServiceContainerFactory();
+            _container = serviceContainerFactory.Create();
+            _service = _container.GetInstance<IServiceHosting>();
             InitializeComponent();
 
             _log = LogManager.GetLogger(typeof(EventEngineService));
-            var serviceContainerFactory = new ConsoleServiceContainerFactory();
-            _container = serviceContainerFactory.Create();
         }
 
         protected override void OnStart(string[] args)
@@ -26,7 +27,6 @@ namespace CodeConcepts.EventEngine.ConsoleService.Service
             try
             {
                 _log.Info($"Starting Windows Service {GetType()}");
-                _service = _container.Resolve<IServiceHosting>();
                 _service.Start();
             }
             catch (Exception e)

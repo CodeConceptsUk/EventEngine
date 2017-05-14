@@ -3,24 +3,21 @@ using System.Linq;
 using CodeConcepts.EventEngine.Api.Contracts;
 using CodeConcepts.EventEngine.Application.Interfaces.Factories;
 using CodeConcepts.EventEngine.Contracts.Interfaces;
-using CodeConcepts.FrameworkExtensions.LinqExtensions;
 using CodeConcepts.FrameworkExtensions.ObjectExtensions;
 using log4net;
-using SimpleInjector;
 
 namespace CodeConcepts.EventEngine.Application
 {
     public class QueryDispatcher<TQuery> : IQueryDispatcher<TQuery>
         where TQuery : class, IQuery
     {
-        private readonly IList<IQueryHandler> _handlers = new List<IQueryHandler>();
+        private readonly IEnumerable<IQueryHandler> _handlers;
         private readonly ILog _logger;
 
-        public QueryDispatcher(Container container, ILogFactory logFactory)
+        public QueryDispatcher(IEnumerable<IQueryHandler> handlers, ILogFactory logFactory)
         {
+            _handlers = handlers;
             _logger = logFactory.GetLogger(typeof(QueryDispatcher<>));
-            var handlers = container.ResolveAll(typeof(IQueryHandler));
-            handlers.ForEach(handler => _handlers.Add((IQueryHandler)handler));
         }
 
         public IView Read(TQuery query)

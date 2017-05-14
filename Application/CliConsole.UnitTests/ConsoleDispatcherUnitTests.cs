@@ -75,13 +75,13 @@ namespace CodeConcepts.CliConsole.UnitTests
             _parser.Parse(expectedInstanceCommand, args).Returns(true);
             _target.DispatchCommand(commands, args);
 
-            _parser.DidNotReceive().Parse(Arg.Any<ICommand>(), Arg.Any<string[]>());
+            _parser.DidNotReceive().Parse(Arg.Any<ICliCommand>(), Arg.Any<string[]>());
             _consoleProxy.DidNotReceive().WriteLine(Arg.Any<string>());
         }
 
-        private static ICommand CreateCliCommand(string commandName)
+        private static ICliCommand CreateCliCommand(string commandName)
         {
-            var command = Substitute.For<ICommand>();
+            var command = Substitute.For<ICliCommand>();
             command.CommandName.Returns(commandName);
             return command;
         }

@@ -14,9 +14,10 @@ namespace CodeConcepts.EventEngine.ConsoleClient.Factories
             _container = container;
         }
 
-        public ICommand Create(Type type)
+        public ICliCommand Create(Type type)
         {
-            return _container.Resolve(type, type.Name) as ICommand;
+            return null;
+           // return _container.Resolve(type, type.Name) as ICliCommand;
         }
     }
 }

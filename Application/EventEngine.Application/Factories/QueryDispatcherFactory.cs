@@ -7,19 +7,20 @@ namespace CodeConcepts.EventEngine.Application.Factories
 {
     public class QueryDispatcherFactory : IQueryDispatcherFactory
     {
-        private readonly Container _unityContainer;
+        private readonly Container _container;
         private readonly ILogFactory _logFactory;
 
-        public QueryDispatcherFactory(Container unityContainer, ILogFactory logFactory)
+        public QueryDispatcherFactory(Container container, ILogFactory logFactory)
         {
-            _unityContainer = unityContainer;
+            _container = container;
             _logFactory = logFactory;
         }
 
         public IQueryDispatcher<TQuery> Create<TQuery>() 
             where TQuery : class, IQuery
         {
-            return new QueryDispatcher<TQuery>(_unityContainer, _logFactory);
+            var handlers = _container.GetAllInstances<IQueryHandler>();
+            return new QueryDispatcher<TQuery>(handlers, _logFactory);
         }
     }
 }

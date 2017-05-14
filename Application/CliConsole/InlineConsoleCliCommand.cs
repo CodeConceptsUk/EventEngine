@@ -5,9 +5,9 @@ using CodeConcepts.CliConsole.Interfaces;
 
 namespace CodeConcepts.CliConsole
 {
-    public abstract class InlineConsoleCommand : ICommand
+    public abstract class InlineConsoleCliCommand : ICliCommand
     {
-        protected InlineConsoleCommand(string commandName, string description)
+        protected InlineConsoleCliCommand(string commandName, string description)
         {
             if (string.IsNullOrWhiteSpace(commandName))
                 throw new ConsoleCommandConstructionException();

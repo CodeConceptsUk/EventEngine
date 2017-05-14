@@ -36,7 +36,7 @@ namespace CodeConcepts.CliConsole.UnitTests
             var argument2 = new CommandArgument<string>(Guid.NewGuid().ToString(), Guid.NewGuid().ToString(), i => argument2Value = Guid.NewGuid().ToString());
             var argument3 = new CommandArgument<string>(Guid.NewGuid().ToString(), Guid.NewGuid().ToString(), i => argument3Value = i, true);
             var arguments = new CommandArgument[] { argument1, argument2, argument3 };
-            var command = Substitute.For<ICommand>();
+            var command = Substitute.For<ICliCommand>();
             var callCount = 0;
 
             command.Arguments.Returns(arguments);
@@ -65,7 +65,7 @@ namespace CodeConcepts.CliConsole.UnitTests
             var argument2 = new CommandArgument<string>(Guid.NewGuid().ToString(), Guid.NewGuid().ToString(), i => argument2Value = Guid.NewGuid().ToString());
             var argument3 = new CommandArgument<string>(Guid.NewGuid().ToString(), Guid.NewGuid().ToString(), i => argument3Value = i, true);
             var arguments = new CommandArgument[] { argument1, argument2, argument3 };
-            var command = Substitute.For<ICommand>();
+            var command = Substitute.For<ICliCommand>();
             var callCount = 0;
 
             command.Arguments.Returns(arguments);
@@ -96,7 +96,7 @@ namespace CodeConcepts.CliConsole.UnitTests
             var argument2 = new CommandArgument<string>(Guid.NewGuid().ToString(), Guid.NewGuid().ToString(), i => argument2Value = i);
             var argument3 = new CommandArgument<string>(Guid.NewGuid().ToString(), Guid.NewGuid().ToString(), i => argument3Value = i, true);
             var arguments = new CommandArgument[] { argument1, argument2, argument3 };
-            var command = Substitute.For<ICommand>();
+            var command = Substitute.For<ICliCommand>();
             var callCount = 0;
 
             command.Arguments.Returns(arguments);
@@ -127,7 +127,7 @@ namespace CodeConcepts.CliConsole.UnitTests
             var argument2 = new CommandArgument<string>(Guid.NewGuid().ToString(), Guid.NewGuid().ToString(), i => argument2Value = Guid.NewGuid().ToString());
             var argument3 = new CommandArgument<string>(Guid.NewGuid().ToString(), Guid.NewGuid().ToString(), i => argument3Value = i, true);
             var arguments = new CommandArgument[] { argument1, argument2, argument3 };
-            var command = Substitute.For<ICommand>();
+            var command = Substitute.For<ICliCommand>();
             var callCount = 0;
 
             command.Arguments.Returns(arguments);

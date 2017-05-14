@@ -9,13 +9,13 @@ using CodeConcepts.FrameworkExtensions.LinqExtensions;
 
 namespace CodeConcepts.EventEngine.ConsoleClient.ConsoleCommands
 {
-    public class GetPolicyConsoleCommand : InlineConsoleCommand
+    public class GetPolicyConsoleCliCommand : InlineConsoleCliCommand
     {
         private readonly ICommandChannelClientFactory _commandChannelClientFactory;
         private readonly ConsoleProxy _console;
         private string _policyNumber;
 
-        public GetPolicyConsoleCommand(ICommandChannelClientFactory commandChannelClientFactory, ConsoleProxy console)
+        public GetPolicyConsoleCliCommand(ICommandChannelClientFactory commandChannelClientFactory, ConsoleProxy console)
             : base("GetPolicy", "Get the status of a policy")
         {
             _commandChannelClientFactory = commandChannelClientFactory;

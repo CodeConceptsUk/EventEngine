@@ -1,9 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using CodeConcepts.CliConsole.Interfaces;
 using CodeConcepts.EventEngine.ConsoleClient.Extensions;
 using CodeConcepts.EventEngine.ConsoleClient.Factories;
-using SimpleInjector;
 
 namespace CodeConcepts.EventEngine.ConsoleClient
 {
@@ -12,37 +12,58 @@ namespace CodeConcepts.EventEngine.ConsoleClient
         public static void Main()
         {
             var container = new CliClientContainerFactory().Create();
-            var consoleCommands = container.GetConsoleCommands().ToList();
-            var dispatcher = container.Resolve<IConsoleDispatcher>();
-            var console = container.Resolve<IConsoleProxy>();
+            var cliLoop = container.GetInstance<ICliLoop>();
+            cliLoop.Run(WelcomeMessage);
+        }
 
-            WelcomeMessage(console);
-            console.Write($"Cli> ");
+        private static string WelcomeMessage => $"Cli integration for EventEngine.{Environment.NewLine}" +
+                                                $"Client version {typeof(Program).Assembly.GetName().Version}.{Environment.NewLine}" +
+                                                "Type 'Help' for commands list.";
+    }
+
+    //TODO move these into CliLibrary
+
+    public interface ICliLoop
+    {
+        void Run(string initialMessage);
+    }
+
+    public class CliLoop : ICliLoop
+    {
+        private readonly IEnumerable<ICliCommand> _commands;
+        private readonly IConsoleDispatcher _consoleDispatcher;
+        private readonly IConsoleProxy _consoleProxy;
+
+        public CliLoop(IEnumerable<ICliCommand> commands, IConsoleDispatcher consoleDispatcher, IConsoleProxy consoleProxy)
+        {
+            _commands = commands;
+            _consoleDispatcher = consoleDispatcher;
+            _consoleProxy = consoleProxy;
+        }
+
+        public void Run(string initialMessage)
+        {
+            _consoleProxy.WriteLine(initialMessage);
+            _consoleProxy.WriteLine();
 
             string command;
-            while ((command = console.ReadLine()) != "exit")
+            _consoleProxy.Write($"Cli> ");
+            while ((command = _consoleProxy.ReadLine()) != "exit")
             {
 
                 try
                 {
                     var args = command.ParseArguments().ToArray();
-                    dispatcher.DispatchCommand(consoleCommands, args);
+                    _consoleDispatcher.DispatchCommand(_commands, args);
                 }
                 catch (Exception exception)
                 {
-                    console.WriteLine(string.Empty);
-                    console.WriteLine(exception.ToString());
-                    console.WriteLine(string.Empty);
+                    _consoleProxy.WriteLine();
+                    _consoleProxy.WriteLine(exception);
+                    _consoleProxy.WriteLine();
                 }
-                console.Write($"Cli> ");
+                _consoleProxy.Write($"Cli> ");
             }
-        }
-
-        private static void WelcomeMessage(IConsoleProxy console)
-        {
-            console.WriteLine($"Cli integration for EventEngine.");
-            console.WriteLine($"Client version {typeof(Program).Assembly.GetName().Version}.\nType 'Help' for commands list.");
-            console.WriteLine();
         }
     }
 }

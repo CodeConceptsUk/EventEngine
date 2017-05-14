@@ -71,6 +71,10 @@
       <Project>{cb63282e-e43a-46a3-a228-4a98b0d7fbc7}</Project>
       <Name>EventEngine.IsaPolicy.Views.Contracts</Name>
     </ProjectReference>
+    <ProjectReference Include="..\FrameworkExtensions\FrameworkExtensions.csproj">
+      <Project>{21D128D0-4F13-4157-B454-00BEAF0A3DE3}</Project>
+      <Name>FrameworkExtensions</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">

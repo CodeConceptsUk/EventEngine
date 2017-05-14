@@ -2,6 +2,7 @@
 using CodeConcepts.EventEngine.Application.Factories;
 using CodeConcepts.EventEngine.Application.Hosting;
 using CodeConcepts.EventEngine.Application.Interfaces.Factories;
+using CodeConcepts.EventEngine.Contracts.Interfaces;
 using CodeConcepts.EventEngine.Shared.Runtime;
 using CodeConcepts.FrameworkExtensions.Factories;
 using CodeConcepts.FrameworkExtensions.Interfaces.Factories;
@@ -20,6 +21,8 @@ namespace CodeConcepts.EventEngine.Application
             container.Register<IEventPlayerFactory, EventPlayerFactory>();
             container.Register<IServiceHosting, ServiceHosting>();
             container.Register<IEventEngineApiService, EventEngineApiService>();
+
+            container.RegisterConditional(typeof(IEventPlayer<>), typeof(EventPlayer<>), c=> !c.Handled);
         }
     }
 }

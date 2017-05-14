@@ -4,6 +4,6 @@ namespace CodeConcepts.CliConsole.Interfaces.Factories
 {
     public interface ICommandInstanceFactory
     {
-        ICommand Create(Type type);
+        ICliCommand Create(Type type);
     }
 }

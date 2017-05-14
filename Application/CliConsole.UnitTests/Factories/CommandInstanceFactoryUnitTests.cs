@@ -22,12 +22,12 @@ namespace CodeConcepts.CliConsole.UnitTests.Factories
         [Test]
         public void WhenICreateANewInstanceOfTheCommandItIsCreated()
         {
-            var result = _target.Create(typeof(TestCommand));
-            Assert.IsInstanceOf<ICommand>(result);
+            var result = _target.Create(typeof(TestCliCommand));
+            Assert.IsInstanceOf<ICliCommand>(result);
         }
     }
 
-    public class TestCommand : ICommand
+    public class TestCliCommand : ICliCommand
     {
         public string CommandName { get; }
         public string Description { get; }

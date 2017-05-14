@@ -6,12 +6,12 @@ using SimpleInjector;
 
 namespace CodeConcepts.EventEngine.Api.Contracts.Resolvers
 {
-    public class CommandContractResolver : DataContractResolver
+    public class EventEngineContractResolver : DataContractResolver
     {
         private readonly Container _container;
         private readonly XmlDictionary _xmlDictionary = new XmlDictionary();
 
-        public CommandContractResolver(Container container)
+        public EventEngineContractResolver(Container container)
         {
             _container = container;
         }
@@ -33,10 +33,9 @@ namespace CodeConcepts.EventEngine.Api.Contracts.Resolvers
 
         public override Type ResolveName(string typeName, string typeNamespace, Type declaredType, DataContractResolver knownTypeResolver)
         {
-            var commandType = _container
-                .Registrations
-                .Where(t => t.RegisteredType == typeof(ICommand) || t.RegisteredType == typeof(IView) || t.RegisteredType == typeof(IQuery))
-                .Select(t => t.MappedToType)
+            var commandType = _container.GetCurrentRegistrations()
+                .Where(t => t.ServiceType == typeof(ICommand) || t.ServiceType == typeof(IView) || t.ServiceType == typeof(IQuery))
+                .Select(t => t.Registration.ImplementationType)
                 .SingleOrDefault(t => t.Namespace == typeNamespace && t.Name == typeName);
 
             return commandType ?? knownTypeResolver.ResolveName(typeName, typeNamespace, declaredType, knownTypeResolver);

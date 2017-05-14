@@ -16,7 +16,6 @@ namespace CodeConcepts.EventEngine.Application.UnitTests
     public class EventPlayerUnitTests
     {
         private IEventPlayer<IEvent> _target;
-        private Container _container;
         private ILogFactory _logFactory;
         private ILog _log;
         private IStopwatchFactory _stopwatchFactory;
@@ -29,8 +28,6 @@ namespace CodeConcepts.EventEngine.Application.UnitTests
             _logFactory.GetLogger(typeof(EventPlayer<IEvent>)).Returns(_log);
 
             _stopwatchFactory = Substitute.For<IStopwatchFactory>();
-
-            _container = Substitute.For<Container>();
         }
 
         public class Event1 : IEvent
@@ -92,10 +89,8 @@ namespace CodeConcepts.EventEngine.Application.UnitTests
             stopwatch.Elapsed.Returns(expectedElapsed);
 
             _stopwatchFactory.Create().Returns(stopwatch);
-
-            _container.ResolveAll(typeof(IEventEvaluator)).Returns(evaluators);
-
-            _target = new EventPlayer<IEvent>(_container, _logFactory, _stopwatchFactory);
+            
+            _target = new EventPlayer<IEvent>(evaluators, _logFactory, _stopwatchFactory);
             _target.Handle(events, view);
 
             Received.InOrder(() =>

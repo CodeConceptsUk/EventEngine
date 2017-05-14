@@ -29,7 +29,7 @@ namespace CodeConcepts.EventEngine.ClientLibrary
         {
             foreach (var operation in _channelFactory.Endpoint.Contract.Operations)
             {
-                operation.Behaviors.Find<DataContractSerializerOperationBehavior>().DataContractResolver = new CommandContractResolver(_container);
+                operation.Behaviors.Find<DataContractSerializerOperationBehavior>().DataContractResolver = new EventEngineContractResolver(_container);
             }
 
             return _channelFactory.CreateChannel();
