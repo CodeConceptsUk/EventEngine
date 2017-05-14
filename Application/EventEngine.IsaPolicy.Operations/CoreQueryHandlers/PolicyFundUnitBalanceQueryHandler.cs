@@ -8,11 +8,11 @@ using CodeConcepts.EventEngine.IsaPolicy.Contracts.Interfaces.DataAccess;
 
 namespace CodeConcepts.EventEngine.IsaPolicy.Operations.CoreQueryHandlers
 {
-    public class PolicyFundUnitBalanceQueryHandler : EventContextIdIndexedQueryHandler<GetPolicyFundUnitBalanceQuery, PolicyFundUnitBalanceView>, IPolicyFundUnitBalanceQueryHandler
+    public class PolicyFundUnitBalanceQueryHandler : EventContextIdIndexedQueryHandler<GetPolicyFundUnitBalanceQuery, PolicyFundAllocationUnitBalanceView>, IPolicyFundUnitBalanceQueryHandler
     {
         
         public PolicyFundUnitBalanceQueryHandler(IIsaPolicyEventStoreRepository eventStore,
-            ISnapshotStore<PolicyFundUnitBalanceView> snapshotStore, IEventPlayer<IsaPolicyEvent> player)
+            ISnapshotStore<PolicyFundAllocationUnitBalanceView> snapshotStore, IEventPlayer<IsaPolicyEvent> player)
             : base(eventStore, snapshotStore, player)
         {
             

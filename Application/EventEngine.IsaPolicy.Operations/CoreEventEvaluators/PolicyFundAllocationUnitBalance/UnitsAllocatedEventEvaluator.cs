@@ -4,15 +4,16 @@ using CodeConcepts.EventEngine.IsaPolicy.Contracts.Events;
 
 namespace CodeConcepts.EventEngine.IsaPolicy.Operations.CoreEventEvaluators.PolicyFundUnitBalance
 {
-    public class UnitsAllocatedEventEvaluator : IEventEvaluator<UnitsAllocatedEvent, PolicyFundUnitBalanceView>
+    public class UnitsAllocatedEventEvaluator : IEventEvaluator<UnitsAllocatedEvent, PolicyFundAllocationUnitBalanceView>
     {
-        public void Evaluate(PolicyFundUnitBalanceView view, UnitsAllocatedEvent @event)
+        public void Evaluate(PolicyFundAllocationUnitBalanceView andLatestChargeDateView, UnitsAllocatedEvent @event)
         {
-            view.FundAllocations.Add(new FundAllocationBalance()
+            andLatestChargeDateView.FundAllocations.Add(new FundAllocationUnitBalance
             {
                 PortionId = @event.PortionId,
                 UnitBalance = @event.Units,
-                FundId = @event.FundId
+                FundId = @event.FundId,
+                ChargesUpToDateOn = @event.AllocationDateTime
             });
         }
     }

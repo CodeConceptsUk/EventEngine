@@ -4,9 +4,9 @@ using CodeConcepts.EventEngine.IsaPolicy.Contracts.Events;
 
 namespace CodeConcepts.EventEngine.IsaPolicy.Operations.CoreEventEvaluators.PolicyFundUnitBalance
 {
-    public class AddPremiumEventEvaluator : IEventEvaluator<AddPremiumEvent, PolicyFundUnitBalanceView>
+    public class AddPremiumEventEvaluator : IEventEvaluator<AddPremiumEvent, PolicyFundAllocationUnitBalanceView>
     {
-        public void Evaluate(PolicyFundUnitBalanceView view, AddPremiumEvent @event)
+        public void Evaluate(PolicyFundAllocationUnitBalanceView andLatestChargeDateView, AddPremiumEvent @event)
         {
         }
     }

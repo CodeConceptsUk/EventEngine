@@ -4,7 +4,7 @@ using CodeConcepts.EventEngine.IsaPolicy.Contracts.CoreViews.PolicyFundUnitBalan
 
 namespace CodeConcepts.EventEngine.IsaPolicy.Contracts.Interfaces.CoreQueryHandlers
 {
-    public interface IPolicyFundUnitBalanceQueryHandler : IQueryHandler<GetPolicyFundUnitBalanceQuery, PolicyFundUnitBalanceView>
+    public interface IPolicyFundUnitBalanceQueryHandler : IQueryHandler<GetPolicyFundUnitBalanceQuery, PolicyFundAllocationUnitBalanceView>
     {
         
     }

@@ -28,6 +28,21 @@ namespace CodeConcepts.EventEngine.Application
         public void Apply(TCommand command)
         {
             var handler = GetHandler(command);
+            var handlerType = handler.GetType();
+
+            if (typeof(IAggregateCommandHandler).IsAssignableFrom(handlerType))
+            {
+                var results = (IEnumerable<ICommand>)handler.Execute(command.AsDynamic());
+                results.ForEach(ExecuteHandler);
+                return;
+            }
+
+            ExecuteHandler(command);
+        }
+
+        private void ExecuteHandler(ICommand command)
+        {
+            var handler = GetHandler(command);
 
             _logger.Debug($"Applying {command.GetType().Name} using {handler?.GetType()?.Name}");
 
@@ -36,9 +51,7 @@ namespace CodeConcepts.EventEngine.Application
             var results = (IEnumerable<TEvent>)handler.Execute(command.AsDynamic());
 
             if (results == null)
-            {
                 throw new Exception($"Command {command.GetType().Name} returned null event list!");
-            }
 
             // TODO: Post (Can save?)
 

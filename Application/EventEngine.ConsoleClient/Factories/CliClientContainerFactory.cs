@@ -7,7 +7,6 @@ using CodeConcepts.CliConsole.Interfaces.Convertors;
 using CodeConcepts.CliConsole.Interfaces.Factories;
 using CodeConcepts.EventEngine.Api.Contracts;
 using CodeConcepts.EventEngine.ClientLibrary;
-using CodeConcepts.EventEngine.Contracts.Interfaces;
 using SimpleInjector;
 
 namespace CodeConcepts.EventEngine.ConsoleClient.Factories

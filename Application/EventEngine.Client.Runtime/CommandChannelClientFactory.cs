@@ -17,7 +17,15 @@ namespace CodeConcepts.EventEngine.ClientLibrary
         public CommandChannelClientFactory(Container container)
         {
             _container = container;
-            _channelFactory = new ChannelFactory<IEventEngineApiService>(new BasicHttpBinding(), new EndpointAddress(_uri));
+            _channelFactory = new ChannelFactory<IEventEngineApiService>(CreateBinding(), new EndpointAddress(_uri));
+        }
+
+        private static WSHttpBinding CreateBinding()
+        {
+            return new WSHttpBinding
+            {
+                MaxReceivedMessageSize = int.MaxValue
+            };
         }
 
         public IEventEngineApiService Create()

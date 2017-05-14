@@ -53,6 +53,7 @@
     <Compile Include="ICommand.cs" />
     <Compile Include="IEventContextIdQuery.cs" />
     <Compile Include="IQuery.cs" />
+    <Compile Include="ITypeResolver.cs" />
     <Compile Include="IView.cs" />
     <Compile Include="Resolvers\EventEngineContractResolver.cs" />
     <Compile Include="Services\IEventEngineApiService.cs" />

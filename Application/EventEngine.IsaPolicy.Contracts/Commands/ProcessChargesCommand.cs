@@ -1,22 +1,17 @@
-﻿using System;
-using System.Runtime.Serialization;
+﻿using System.Runtime.Serialization;
 using CodeConcepts.EventEngine.IsaPolicy.Contracts.BaseTypes;
 
 namespace CodeConcepts.EventEngine.IsaPolicy.Contracts.Commands
 {
     [DataContract(Namespace = "http://codeconcepts.co.uk/commands/isapolicy")]
-    public class CreateChargesCommand : IsaPolicyCommand
+    public class ProcessChargesCommand : IsaPolicyCommand
     {
-        public CreateChargesCommand(string policyNumber, DateTime chargeDate)
+        public ProcessChargesCommand(string policyNumber)
         {
             PolicyNumber = policyNumber;
-            ChargeDate = chargeDate;
         }
 
         [DataMember]
         public string PolicyNumber { get; set; }
-
-        [DataMember]
-        public DateTime ChargeDate { get; set; }
     }
 }

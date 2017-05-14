@@ -3,8 +3,8 @@ using CodeConcepts.EventEngine.Api.Contracts;
 
 namespace CodeConcepts.EventEngine.IsaPolicy.Contracts.CoreViews.PolicyFundUnitBalance
 {
-    public class PolicyFundUnitBalanceView : IView
+    public class PolicyFundAllocationUnitBalanceView : IView
     {
-        public IList<FundAllocationBalance> FundAllocations { get; set; } = new List<FundAllocationBalance>();
+        public IList<FundAllocationUnitBalance> FundAllocations { get; set; } = new List<FundAllocationUnitBalance>();
     }
 }

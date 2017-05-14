@@ -5,7 +5,6 @@ using System.ServiceModel;
 using CodeConcepts.EventEngine.Api.Contracts;
 using CodeConcepts.EventEngine.Api.Contracts.Services;
 using CodeConcepts.EventEngine.Application.Interfaces.Factories;
-using CodeConcepts.EventEngine.Contracts.Interfaces;
 using CodeConcepts.EventEngine.IsaPolicy.Contracts.BaseTypes;
 using CodeConcepts.FrameworkExtensions.ObjectExtensions;
 using log4net;

@@ -42,7 +42,7 @@ namespace CodeConcepts.EventEngine.ConsoleClient.ConsoleCommands
                 _console.WriteLine(data.ToStringTable(
                     new[] { "Transaction Type", "Value", "Date/Time" },
                     t => t.Item1,
-                    t => t.Item2,
+                    t => t.Item2.ToString("0.000000000000000"),
                     t => t.Item3));
             }
             catch (Exception e)
