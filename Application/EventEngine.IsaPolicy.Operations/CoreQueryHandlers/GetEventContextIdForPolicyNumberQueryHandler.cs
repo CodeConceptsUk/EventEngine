@@ -1,11 +1,11 @@
-using CodeConcepts.EventEngine.Contracts.Interfaces;
 using CodeConcepts.EventEngine.IsaPolicy.Contracts.CoreQueries;
 using CodeConcepts.EventEngine.IsaPolicy.Contracts.CoreViews.EventContextId;
+using CodeConcepts.EventEngine.IsaPolicy.Contracts.Interfaces.CoreQueryHandlers;
 using CodeConcepts.EventEngine.IsaPolicy.Contracts.Interfaces.DataAccess;
 
 namespace CodeConcepts.EventEngine.IsaPolicy.Operations.CoreQueryHandlers
 {
-    public class GetEventContextIdForPolicyNumberQueryHandler : IQueryHandler<GetEventContextIdForPolicyNumberQuery, EventContextIdView>
+    public class GetEventContextIdForPolicyNumberQueryHandler : IGetEventContextIdForPolicyNumberQueryHandler
     {
         private readonly IIsaPolicyEventStoreRepository _eventStore;
 

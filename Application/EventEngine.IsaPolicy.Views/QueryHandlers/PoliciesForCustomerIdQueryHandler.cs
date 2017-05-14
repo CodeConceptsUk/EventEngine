@@ -1,7 +1,7 @@
 using System.Linq;
 using CodeConcepts.EventEngine.Contracts.Interfaces;
 using CodeConcepts.EventEngine.IsaPolicy.Contracts.CoreQueries;
-using CodeConcepts.EventEngine.IsaPolicy.Contracts.CoreViews.EventContextIds;
+using CodeConcepts.EventEngine.IsaPolicy.Contracts.Interfaces.CoreQueryHandlers;
 using CodeConcepts.EventEngine.IsaPolicy.Views.Contracts.Queries;
 using CodeConcepts.EventEngine.IsaPolicy.Views.Contracts.Views.PolicyView;
 
@@ -9,10 +9,10 @@ namespace CodeConcepts.EventEngine.IsaPolicy.Views.QueryHandlers
 {
     public class PoliciesForCustomerIdQueryHandler : IQueryHandler<GetPoliciesForCustomerIdQuery, PoliciesView>
     {
-        private readonly IQueryHandler<GetEventContextIdsForCustomerIdQuery, EventContextIdsView> _getEventContextIdForCustomerIdQuery;
+        private readonly IGetEventContextIdsForCustomerIdQueryHandler _getEventContextIdForCustomerIdQuery;
         private readonly IQueryHandler<GetPolicyForContextIdQuery, PolicyView> _queryHandler;
 
-        public PoliciesForCustomerIdQueryHandler(IQueryHandler<GetEventContextIdsForCustomerIdQuery, EventContextIdsView> getEventContextIdForCustomerIdQuery, IQueryHandler<GetPolicyForContextIdQuery, PolicyView> queryHandler)
+        public PoliciesForCustomerIdQueryHandler(IGetEventContextIdsForCustomerIdQueryHandler getEventContextIdForCustomerIdQuery, IQueryHandler<GetPolicyForContextIdQuery, PolicyView> queryHandler)
         {
             _getEventContextIdForCustomerIdQuery = getEventContextIdForCustomerIdQuery;
             _queryHandler = queryHandler;

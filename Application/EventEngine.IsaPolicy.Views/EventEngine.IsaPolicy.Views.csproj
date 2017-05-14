@@ -34,7 +34,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="DataAccess\InMemory\SinglePolicySnapshotMemoryStore.cs" />
-    <Compile Include="DataAccess\InMemory\SinglePolicyTransactionSnapshotMemoryStore.cs" />
+    <Compile Include="DataAccess\InMemory\PolicyTransactionSnapshotMemoryStore.cs" />
     <Compile Include="DataAccess\NoSql\SinglePolicySnapshotNoSqlStore.cs" />
     <Compile Include="DataAccess\Sql\SinglePolicySnapshotSqlStore.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
