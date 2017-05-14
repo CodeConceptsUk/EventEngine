@@ -6,6 +6,7 @@ using CodeConcepts.EventEngine.Contracts.Interfaces;
 using CodeConcepts.EventEngine.IsaPolicy.Contracts.BaseTypes;
 using CodeConcepts.EventEngine.IsaPolicy.Contracts.Commands;
 using CodeConcepts.EventEngine.IsaPolicy.Contracts.CoreQueries;
+using CodeConcepts.EventEngine.IsaPolicy.Contracts.CoreViews.EventContextId;
 using CodeConcepts.EventEngine.IsaPolicy.Contracts.Events;
 using CodeConcepts.EventEngine.IsaPolicy.Contracts.Interfaces.CoreQueryHandlers;
 using CodeConcepts.FrameworkExtensions.LinqExtensions;

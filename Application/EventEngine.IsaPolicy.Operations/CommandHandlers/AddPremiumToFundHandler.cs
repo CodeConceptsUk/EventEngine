@@ -5,16 +5,16 @@ using CodeConcepts.EventEngine.Contracts.Interfaces;
 using CodeConcepts.EventEngine.IsaPolicy.Contracts.BaseTypes;
 using CodeConcepts.EventEngine.IsaPolicy.Contracts.Commands;
 using CodeConcepts.EventEngine.IsaPolicy.Contracts.CoreQueries;
-using CodeConcepts.EventEngine.IsaPolicy.Contracts.CoreViews.EventContextId;
 using CodeConcepts.EventEngine.IsaPolicy.Contracts.Events;
+using CodeConcepts.EventEngine.IsaPolicy.Contracts.Interfaces.CoreQueryHandlers;
 
 namespace CodeConcepts.EventEngine.IsaPolicy.Operations.CommandHandlers
 {
     public class AddPremiumHandler : ICommandHandler<AddPremiumCommand, IsaPolicyEvent>
     {
-        private readonly IQueryHandler<GetEventContextIdForPolicyNumberQuery, EventContextIdView> _getEventContextIdForPolicyNumberViewQuery;
+        private readonly IGetEventContextIdForPolicyNumberQueryHandler _getEventContextIdForPolicyNumberViewQuery;
 
-        public AddPremiumHandler(IQueryHandler<GetEventContextIdForPolicyNumberQuery, EventContextIdView> getEventContextIdForPolicyNumberViewQuery)
+        public AddPremiumHandler(IGetEventContextIdForPolicyNumberQueryHandler getEventContextIdForPolicyNumberViewQuery)
         {
             _getEventContextIdForPolicyNumberViewQuery = getEventContextIdForPolicyNumberViewQuery;
         }

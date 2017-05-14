@@ -1,7 +1,7 @@
 ﻿using System;
-using CodeConcepts.EventEngine.Application.Hosting;
-using log4net;
-using Microsoft.Practices.Unity;
+using System.ServiceProcess;
+using CodeConcepts.EventEngine.ConsoleService.Console;
+using CodeConcepts.EventEngine.ConsoleService.Service;
 
 [assembly: log4net.Config.XmlConfigurator]
 namespace CodeConcepts.EventEngine.ConsoleService
@@ -10,14 +10,31 @@ namespace CodeConcepts.EventEngine.ConsoleService
     {
         private static void Main()
         {
-            LogManager.GetLogger(typeof(Program)).Info("Starting Console Service");
-            var serviceContainerFactory = new ConsoleServiceContainerFactory();
-            var container = serviceContainerFactory.Create();
-            using (var service = container.Resolve<IServiceHosting>())
+            if (Environment.UserInteractive)
             {
-                service.Start();
-                Console.ReadLine();
+                // Startup Console
+                StartupConsole();
             }
+            else
+            {
+                // Startup Service
+                StartupService();
+            }
+        }
+
+        private static void StartupService()
+        {
+            var servicesToRun = new ServiceBase[]
+            {
+                new EventEngineService()
+            };
+            ServiceBase.Run(servicesToRun);
+        }
+
+        private static void StartupConsole()
+        {
+            var consoleService = new EventEngineConsole();
+            consoleService.Run();
         }
     }
 }
