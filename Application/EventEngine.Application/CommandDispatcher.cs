@@ -18,7 +18,7 @@ namespace CodeConcepts.EventEngine.Application
     {
         private readonly IList<ICommandHandler> _handlers = new List<ICommandHandler>();
         private readonly ILog _logger;
-        private IEventStoreRepository<TEvent> _repository;
+        private readonly IEventStoreRepository<TEvent> _repository;
 
         public CommandDispatcher(IUnityContainer container, ILogFactory logFactory)
         {
@@ -31,6 +31,21 @@ namespace CodeConcepts.EventEngine.Application
         public void Apply(TCommand command)
         {
             var handler = GetHandler(command);
+            var handlerType = handler.GetType();
+
+            if (typeof(IAggregateCommandHandler).IsAssignableFrom(handlerType))
+            {
+                var results = (IEnumerable<ICommand>)handler.Execute(command.AsDynamic());
+                results.ForEach(ExecuteHandler);
+                return;
+            }
+
+            ExecuteHandler(command);
+        }
+
+        private void ExecuteHandler(ICommand command)
+        {
+            var handler = GetHandler(command);
 
             _logger.Debug($"Applying {command.GetType().Name} using {handler?.GetType()?.Name}");
 
@@ -39,9 +54,7 @@ namespace CodeConcepts.EventEngine.Application
             var results = (IEnumerable<TEvent>)handler.Execute(command.AsDynamic());
 
             if (results == null)
-            {
                 throw new Exception($"Command {command.GetType().Name} returned null event list!");
-            }
 
             // TODO: Post (Can save?)
 

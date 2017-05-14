@@ -36,7 +36,7 @@ namespace CodeConcepts.EventEngine.Application.Hosting
 
             var endpoint = new ServiceEndpoint(
                 ContractDescription.GetContract(typeof(IEventEngineApiService)),
-                new BasicHttpBinding(),
+                new WSHttpBinding(),
                 new EndpointAddress(new Uri(hostUrl)));
             foreach (var operation in endpoint.Contract.Operations)
             {

@@ -67,6 +67,7 @@
     <Compile Include="ConsoleCommands\GetPolicyTransactionsConsoleCommand.cs" />
     <Compile Include="ConsoleCommands\HelpConsoleCommand.cs" />
     <Compile Include="ConsoleCommands\NowConsoleCommand.cs" />
+    <Compile Include="ConsoleCommands\ProcessChargesConsoleCommand.cs" />
     <Compile Include="Extensions\ContainerExtensions.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Factories\CliClientContainerFactory.cs" />

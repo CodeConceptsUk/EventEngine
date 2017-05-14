@@ -6,7 +6,6 @@ using CodeConcepts.CliConsole.Interfaces.Convertors;
 using CodeConcepts.CliConsole.Interfaces.Factories;
 using CodeConcepts.EventEngine.Api.Contracts;
 using CodeConcepts.EventEngine.ClientLibrary;
-using CodeConcepts.EventEngine.Contracts.Interfaces;
 using Microsoft.Practices.Unity;
 using ICommand = CodeConcepts.CliConsole.Interfaces.ICommand;
 

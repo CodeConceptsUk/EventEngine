@@ -33,7 +33,7 @@ namespace CodeConcepts.EventEngine.ConsoleService
             container.RegisterType<IEventStoreRepository<IsaPolicyEvent>, IsaPolicyEventsInSqlStore>();
             container.RegisterType<IIsaPolicyEventStoreRepository, IsaPolicyEventsInSqlStore>();
             container.RegisterType<ISnapshotStore<PolicyView>, SinglePolicySnapshotMemoryStore>();
-            container.RegisterType<ISnapshotStore<PolicyFundUnitBalanceView>, PolicyFundBalanceSnapshotMemoryStore>();
+            container.RegisterType<ISnapshotStore<PolicyFundAllocationUnitBalanceView>, PolicyFundBalanceSnapshotMemoryStore>();
             container.RegisterType<ISnapshotStore<PremiumsStatusView>, PremiumsStatusSnapshotMemoryStore>();
             container.RegisterType<ISnapshotStore<UnallocatedReceivedPremiumsView>, UnallocatedReceivedPremiumsSnapshotMemoryStore>();
             container.RegisterType<ISnapshotStore<PolicyTransactionView>, PolicyTransactionSnapshotMemoryStore>();

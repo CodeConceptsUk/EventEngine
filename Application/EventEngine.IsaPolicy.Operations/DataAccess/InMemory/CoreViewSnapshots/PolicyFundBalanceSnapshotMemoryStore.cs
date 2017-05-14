@@ -3,7 +3,7 @@ using CodeConcepts.EventEngine.IsaPolicy.Contracts.CoreViews.PolicyFundUnitBalan
 
 namespace CodeConcepts.EventEngine.IsaPolicy.Operations.DataAccess.InMemory.CoreViewSnapshots
 {
-    public class PolicyFundBalanceSnapshotMemoryStore : SnapshotMemoryStore<PolicyFundUnitBalanceView>
+    public class PolicyFundBalanceSnapshotMemoryStore : SnapshotMemoryStore<PolicyFundAllocationUnitBalanceView>
     {
 
     }

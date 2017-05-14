@@ -29,7 +29,7 @@ namespace CodeConcepts.EventEngine.ConsoleClient.ConsoleCommands
                 _policyNumber,
                 Guid.NewGuid().ToString(),
                 DateTime.Now,
-                new[] {new FundPremiumDetail(Guid.NewGuid(), _fundId, _premiumAmount)});
+                new[] { new FundPremiumDetail(Guid.NewGuid(), _fundId, _premiumAmount) });
 
             var client = _commandChannelClientFactory.Create();
             client.DispatchCommand(addPremiumCommand);

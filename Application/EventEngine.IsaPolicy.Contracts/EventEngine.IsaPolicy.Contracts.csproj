@@ -48,9 +48,10 @@
     <Compile Include="Commands\AddPremiumCommand.cs" />
     <Compile Include="Commands\AddUnitsToFundCommand.cs" />
     <Compile Include="Commands\AllocateUnitsCommand.cs" />
-    <Compile Include="Commands\CreateChargesCommand.cs" />
+    <Compile Include="Commands\CreateChargeCommand.cs" />
     <Compile Include="Commands\CreatePolicyCommand.cs" />
     <Compile Include="Commands\SetPremiumAsReceivedCommand.cs" />
+    <Compile Include="Commands\ProcessChargesCommand.cs" />
     <Compile Include="CoreQueries\GetEventContextIdForPolicyNumberQuery.cs" />
     <Compile Include="CoreQueries\GetPolicyFundUnitBalanceQuery.cs" />
     <Compile Include="CoreQueries\GetPremiumsStatusQuery.cs" />
@@ -58,8 +59,8 @@
     <Compile Include="CoreQueries\GetEventContextIdsForCustomerIdQuery.cs" />
     <Compile Include="CoreViews\EventContextIds\EventContextIdsView.cs" />
     <Compile Include="CoreViews\EventContextId\EventContextIdView.cs" />
-    <Compile Include="CoreViews\PolicyFundUnitBalance\FundAllocationBalance.cs" />
-    <Compile Include="CoreViews\PolicyFundUnitBalance\PolicyFundUnitBalanceView.cs" />
+    <Compile Include="CoreViews\PolicyFundUnitBalance\FundAllocationUnitBalance.cs" />
+    <Compile Include="CoreViews\PolicyFundUnitBalance\PolicyFundAllocationUnitBalanceView.cs" />
     <Compile Include="Events\AddPremiumEvent.cs" />
     <Compile Include="Events\AppliedFundChargeEvent.cs" />
     <Compile Include="Events\PolicyCreatedEvent.cs" />
