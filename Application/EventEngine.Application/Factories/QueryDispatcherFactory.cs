@@ -1,16 +1,16 @@
 ﻿using CodeConcepts.EventEngine.Api.Contracts;
 using CodeConcepts.EventEngine.Application.Interfaces.Factories;
 using CodeConcepts.EventEngine.Contracts.Interfaces;
-using Microsoft.Practices.Unity;
+using SimpleInjector;
 
 namespace CodeConcepts.EventEngine.Application.Factories
 {
     public class QueryDispatcherFactory : IQueryDispatcherFactory
     {
-        private readonly IUnityContainer _unityContainer;
+        private readonly Container _unityContainer;
         private readonly ILogFactory _logFactory;
 
-        public QueryDispatcherFactory(IUnityContainer unityContainer, ILogFactory logFactory)
+        public QueryDispatcherFactory(Container unityContainer, ILogFactory logFactory)
         {
             _unityContainer = unityContainer;
             _logFactory = logFactory;

@@ -6,7 +6,7 @@ using CodeConcepts.EventEngine.Api.Contracts.Resolvers;
 using CodeConcepts.EventEngine.Api.Contracts.Services;
 using CodeConcepts.EventEngine.Application.Interfaces.Factories;
 using log4net;
-using Microsoft.Practices.Unity;
+using SimpleInjector;
 
 namespace CodeConcepts.EventEngine.Application.Hosting
 {
@@ -15,7 +15,7 @@ namespace CodeConcepts.EventEngine.Application.Hosting
         private ServiceHost _serviceHost;
         private readonly ILog _logger;
 
-        public ServiceHosting(IUnityContainer container, ILogFactory logFactory)
+        public ServiceHosting(Container container, ILogFactory logFactory)
         {
             _logger = logFactory.GetLogger(typeof(ServiceHosting));
 

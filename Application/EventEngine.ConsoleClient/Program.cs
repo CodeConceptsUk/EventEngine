@@ -3,7 +3,7 @@ using System.Linq;
 using CodeConcepts.CliConsole.Interfaces;
 using CodeConcepts.EventEngine.ConsoleClient.Extensions;
 using CodeConcepts.EventEngine.ConsoleClient.Factories;
-using Microsoft.Practices.Unity;
+using SimpleInjector;
 
 namespace CodeConcepts.EventEngine.ConsoleClient
 {

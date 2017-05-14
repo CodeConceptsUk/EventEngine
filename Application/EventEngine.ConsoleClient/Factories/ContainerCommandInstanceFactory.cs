@@ -1,15 +1,15 @@
 ﻿using System;
 using CodeConcepts.CliConsole.Interfaces;
 using CodeConcepts.CliConsole.Interfaces.Factories;
-using Microsoft.Practices.Unity;
+using SimpleInjector;
 
 namespace CodeConcepts.EventEngine.ConsoleClient.Factories
 {
     public class ContainerCommandInstanceFactory : ICommandInstanceFactory
     {
-        private readonly IUnityContainer _container;
+        private readonly Container _container;
 
-        public ContainerCommandInstanceFactory(IUnityContainer container)
+        public ContainerCommandInstanceFactory(Container container)
         {
             _container = container;
         }

@@ -2,16 +2,16 @@ using System;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Xml;
-using Microsoft.Practices.Unity;
+using SimpleInjector;
 
 namespace CodeConcepts.EventEngine.Api.Contracts.Resolvers
 {
     public class CommandContractResolver : DataContractResolver
     {
-        private readonly IUnityContainer _container;
+        private readonly Container _container;
         private readonly XmlDictionary _xmlDictionary = new XmlDictionary();
 
-        public CommandContractResolver(IUnityContainer container)
+        public CommandContractResolver(Container container)
         {
             _container = container;
         }

@@ -8,7 +8,6 @@ using CodeConcepts.FrameworkExtensions.Interfaces.Factories;
 using CodeConcepts.FrameworkExtensions.LinqExtensions;
 using CodeConcepts.FrameworkExtensions.ObjectExtensions;
 using log4net;
-using Microsoft.Practices.Unity;
 
 namespace CodeConcepts.EventEngine.Application
 {
@@ -16,15 +15,14 @@ namespace CodeConcepts.EventEngine.Application
         where TEvent : class, IEvent
     {
         private readonly IStopwatchFactory _stopwatchFactory;
-        private readonly List<IEventEvaluator> _handlers = new List<IEventEvaluator>();
+        private readonly IEnumerable<IEventEvaluator> _handlers;
         private readonly ILog _logger;
 
-        public EventPlayer(IUnityContainer container, ILogFactory logFactory, IStopwatchFactory stopwatchFactory)
+        public EventPlayer(IEnumerable<IEventEvaluator> handlers, ILogFactory logFactory, IStopwatchFactory stopwatchFactory)
         {
+            _handlers = handlers;
             _stopwatchFactory = stopwatchFactory;
             _logger = logFactory.GetLogger(typeof(EventPlayer<TEvent>));
-            var handlers = container.ResolveAll(typeof(IEventEvaluator)).OfType<IEventEvaluator>().ToList();
-            _handlers.AddRange(handlers);
         }
 
         public TView Handle<TView>(IEnumerable<TEvent> events, TView view)

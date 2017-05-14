@@ -4,17 +4,17 @@ using System.ServiceModel.Description;
 using CodeConcepts.EventEngine.Api.Contracts.Resolvers;
 using CodeConcepts.EventEngine.Api.Contracts.Services;
 using CodeConcepts.EventEngine.ClientLibrary.Interfaces;
-using Microsoft.Practices.Unity;
+using SimpleInjector;
 
 namespace CodeConcepts.EventEngine.ClientLibrary
 {
     public class CommandChannelClientFactory : ICommandChannelClientFactory, IDisposable
     {
-        private readonly IUnityContainer _container;
+        private readonly Container _container;
         private readonly Uri _uri = new Uri("http://localhost/Policy/RemoteClient");
         private ChannelFactory<IEventEngineApiService> _channelFactory;
 
-        public CommandChannelClientFactory(IUnityContainer container)
+        public CommandChannelClientFactory(Container container)
         {
             _container = container;
             _channelFactory = new ChannelFactory<IEventEngineApiService>(new BasicHttpBinding(), new EndpointAddress(_uri));

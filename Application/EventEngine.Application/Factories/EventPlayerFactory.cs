@@ -1,17 +1,17 @@
 ﻿using CodeConcepts.EventEngine.Application.Interfaces.Factories;
 using CodeConcepts.EventEngine.Contracts.Interfaces;
 using CodeConcepts.FrameworkExtensions.Interfaces.Factories;
-using Microsoft.Practices.Unity;
+using SimpleInjector;
 
 namespace CodeConcepts.EventEngine.Application.Factories
 {
     public class EventPlayerFactory : IEventPlayerFactory
     {
-        private readonly IUnityContainer _unityContainer;
+        private readonly Container _unityContainer;
         private readonly ILogFactory _logFactory;
         private readonly IStopwatchFactory _stopwatchFactory;
 
-        public EventPlayerFactory(IUnityContainer unityContainer, ILogFactory logFactory, IStopwatchFactory stopwatchFactory)
+        public EventPlayerFactory(Container unityContainer, ILogFactory logFactory, IStopwatchFactory stopwatchFactory)
         {
             _unityContainer = unityContainer;
             _logFactory = logFactory;

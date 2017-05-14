@@ -2,16 +2,16 @@
 using CodeConcepts.CliConsole.Interfaces;
 using CodeConcepts.EventEngine.ConsoleClient.Extensions;
 using CodeConcepts.FrameworkExtensions.LinqExtensions;
-using Microsoft.Practices.Unity;
+using SimpleInjector;
 
 namespace CodeConcepts.EventEngine.ConsoleClient.ConsoleCommands
 {
     public class HelpConsoleCommand : InlineConsoleCommand
     {
-        private readonly IUnityContainer _container;
+        private readonly Container _container;
         private readonly IConsoleProxy _console;
 
-        public HelpConsoleCommand(IUnityContainer container, IConsoleProxy console)
+        public HelpConsoleCommand(Container container, IConsoleProxy console)
             : base("Help", "Displays help")
         {
             _container = container;

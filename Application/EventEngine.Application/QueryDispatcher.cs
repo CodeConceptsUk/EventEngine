@@ -6,7 +6,7 @@ using CodeConcepts.EventEngine.Contracts.Interfaces;
 using CodeConcepts.FrameworkExtensions.LinqExtensions;
 using CodeConcepts.FrameworkExtensions.ObjectExtensions;
 using log4net;
-using Microsoft.Practices.Unity;
+using SimpleInjector;
 
 namespace CodeConcepts.EventEngine.Application
 {
@@ -16,7 +16,7 @@ namespace CodeConcepts.EventEngine.Application
         private readonly IList<IQueryHandler> _handlers = new List<IQueryHandler>();
         private readonly ILog _logger;
 
-        public QueryDispatcher(IUnityContainer container, ILogFactory logFactory)
+        public QueryDispatcher(Container container, ILogFactory logFactory)
         {
             _logger = logFactory.GetLogger(typeof(QueryDispatcher<>));
             var handlers = container.ResolveAll(typeof(IQueryHandler));

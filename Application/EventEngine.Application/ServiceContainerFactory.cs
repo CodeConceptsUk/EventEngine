@@ -5,31 +5,21 @@ using CodeConcepts.EventEngine.Application.Interfaces.Factories;
 using CodeConcepts.EventEngine.Shared.Runtime;
 using CodeConcepts.FrameworkExtensions.Factories;
 using CodeConcepts.FrameworkExtensions.Interfaces.Factories;
-using Microsoft.Practices.Unity;
+using SimpleInjector;
 
 namespace CodeConcepts.EventEngine.Application
 {
     public class ServiceContainerFactory : ContainerFactory
     {
-        protected override void SetupSpecificRegistrations(IUnityContainer container)
+        protected override void SetupSpecificRegistrations(Container container)
         {
-            RegisterByConvention(container);
-            container.RegisterType<ILogFactory, LogFactory>();
-            container.RegisterType<IStopwatchFactory, StopwatchFactory>();
-            container.RegisterType<ICommandDispatcherFactory, CommandDispatcherFactory>();
-            container.RegisterType<IQueryDispatcherFactory, QueryDispatcherFactory>();
-            container.RegisterType<IEventPlayerFactory, EventPlayerFactory>();
-            container.RegisterType<IServiceHosting, ServiceHosting>();
-            container.RegisterType<IEventEngineApiService, EventEngineApiService>();
-        }
-
-        private static void RegisterByConvention(IUnityContainer container)
-        {
-            container.RegisterTypes(
-                AllClasses.FromLoadedAssemblies(),
-                WithMappings.FromMatchingInterface,
-                WithName.Default,
-                WithLifetime.ContainerControlled);
+            container.Register<ILogFactory, LogFactory>();
+            container.Register<IStopwatchFactory, StopwatchFactory>();
+            container.Register<ICommandDispatcherFactory, CommandDispatcherFactory>();
+            container.Register<IQueryDispatcherFactory, QueryDispatcherFactory>();
+            container.Register<IEventPlayerFactory, EventPlayerFactory>();
+            container.Register<IServiceHosting, ServiceHosting>();
+            container.Register<IEventEngineApiService, EventEngineApiService>();
         }
     }
 }

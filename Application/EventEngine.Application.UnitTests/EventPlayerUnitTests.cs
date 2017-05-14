@@ -6,7 +6,7 @@ using CodeConcepts.EventEngine.Contracts.Interfaces;
 using CodeConcepts.FrameworkExtensions.Interfaces.Factories;
 using CodeConcepts.FrameworkExtensions.Interfaces.Utilities;
 using log4net;
-using Microsoft.Practices.Unity;
+using SimpleInjector;
 using NSubstitute;
 using NUnit.Framework;
 
@@ -16,7 +16,7 @@ namespace CodeConcepts.EventEngine.Application.UnitTests
     public class EventPlayerUnitTests
     {
         private IEventPlayer<IEvent> _target;
-        private IUnityContainer _container;
+        private Container _container;
         private ILogFactory _logFactory;
         private ILog _log;
         private IStopwatchFactory _stopwatchFactory;
@@ -30,7 +30,7 @@ namespace CodeConcepts.EventEngine.Application.UnitTests
 
             _stopwatchFactory = Substitute.For<IStopwatchFactory>();
 
-            _container = Substitute.For<IUnityContainer>();
+            _container = Substitute.For<Container>();
         }
 
         public class Event1 : IEvent

@@ -5,10 +5,8 @@ using CodeConcepts.EventEngine.Api.Contracts;
 using CodeConcepts.EventEngine.Application.Interfaces.Factories;
 using CodeConcepts.EventEngine.Contracts.Interfaces;
 using CodeConcepts.EventEngine.Contracts.Interfaces.Repositories;
-using CodeConcepts.FrameworkExtensions.LinqExtensions;
 using CodeConcepts.FrameworkExtensions.ObjectExtensions;
 using log4net;
-using Microsoft.Practices.Unity;
 
 namespace CodeConcepts.EventEngine.Application
 {
@@ -16,16 +14,15 @@ namespace CodeConcepts.EventEngine.Application
         where TCommand : class, ICommand
         where TEvent : class, IEvent
     {
-        private readonly IList<ICommandHandler> _handlers = new List<ICommandHandler>();
+        private readonly IEnumerable<ICommandHandler> _handlers;
         private readonly ILog _logger;
-        private IEventStoreRepository<TEvent> _repository;
+        private readonly IEventStoreRepository<TEvent> _repository;
 
-        public CommandDispatcher(IUnityContainer container, ILogFactory logFactory)
+        public CommandDispatcher(IEnumerable<ICommandHandler> handlers, IEventStoreRepository<TEvent> repository, ILogFactory logFactory)
         {
-            _repository = container.Resolve<IEventStoreRepository<TEvent>>();
+            _handlers = handlers;
+            _repository = repository;
             _logger = logFactory.GetLogger(typeof(CommandDispatcher<,>));
-            var handlers = container.ResolveAll(typeof(ICommandHandler));
-            handlers.ForEach(handler => _handlers.Add((ICommandHandler)handler));
         }
 
         public void Apply(TCommand command)

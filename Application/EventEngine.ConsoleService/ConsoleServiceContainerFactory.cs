@@ -13,26 +13,26 @@ using CodeConcepts.EventEngine.IsaPolicy.Operations.DataAccess.InMemory.CoreView
 using CodeConcepts.EventEngine.IsaPolicy.Operations.DataAccess.Sql;
 using CodeConcepts.EventEngine.IsaPolicy.Views.Contracts.Views.PolicyView;
 using CodeConcepts.EventEngine.IsaPolicy.Views.DataAccess.InMemory;
-using Microsoft.Practices.Unity;
+using SimpleInjector;
 
 namespace CodeConcepts.EventEngine.ConsoleService
 {
     public class ConsoleServiceContainerFactory : ServiceContainerFactory
     {
         //TODO - this is less than ideal - get plugin system
-        protected override void SetupSpecificRegistrations(IUnityContainer container)
+        protected override void SetupSpecificRegistrations(Container container)
         {
             base.SetupSpecificRegistrations(container);
-            container.RegisterType<ISequencingRepository, SequencingSqlStore>();
-            container.RegisterType<IUnitPricingRepository, UnitPricingInMemoryStore>();
-            container.RegisterType<IEventPlayer<IsaPolicyEvent>, EventPlayer<IsaPolicyEvent>>();
+            container.Register<ISequencingRepository, SequencingSqlStore>();
+            container.Register<IUnitPricingRepository, UnitPricingInMemoryStore>();
+            container.Register<IEventPlayer<IsaPolicyEvent>, EventPlayer<IsaPolicyEvent>>();
             
-            container.RegisterType<IEventStoreRepository<IsaPolicyEvent>, IsaPolicyEventsInSqlStore>();
-            container.RegisterType<IIsaPolicyEventStoreRepository, IsaPolicyEventsInSqlStore>();
-            container.RegisterType<ISnapshotStore<PolicyView>, SinglePolicySnapshotMemoryStore>();
-            container.RegisterType<ISnapshotStore<PolicyFundUnitBalanceView>, PolicyFundBalanceSnapshotMemoryStore>();
-            container.RegisterType<ISnapshotStore<PremiumsStatusView>, PremiumsStatusSnapshotMemoryStore>();
-            container.RegisterType<ISnapshotStore<UnallocatedReceivedPremiumsView>, UnallocatedReceivedPremiumsSnapshotMemoryStore>();
+            container.Register<IEventStoreRepository<IsaPolicyEvent>, IsaPolicyEventsInSqlStore>();
+            container.Register<IIsaPolicyEventStoreRepository, IsaPolicyEventsInSqlStore>();
+            container.Register<ISnapshotStore<PolicyView>, SinglePolicySnapshotMemoryStore>();
+            container.Register<ISnapshotStore<PolicyFundUnitBalanceView>, PolicyFundBalanceSnapshotMemoryStore>();
+            container.Register<ISnapshotStore<PremiumsStatusView>, PremiumsStatusSnapshotMemoryStore>();
+            container.Register<ISnapshotStore<UnallocatedReceivedPremiumsView>, UnallocatedReceivedPremiumsSnapshotMemoryStore>();
             //TODO snapshots need to be application lifetime
 
             RegisterNamedTypes<ICommand>(typeof(IsaPolicyEvent).Assembly, container);

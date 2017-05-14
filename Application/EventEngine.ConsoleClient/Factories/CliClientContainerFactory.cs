@@ -7,14 +7,14 @@ using CodeConcepts.CliConsole.Interfaces.Factories;
 using CodeConcepts.EventEngine.Api.Contracts;
 using CodeConcepts.EventEngine.ClientLibrary;
 using CodeConcepts.EventEngine.Contracts.Interfaces;
-using Microsoft.Practices.Unity;
+using SimpleInjector;
 using ICommand = CodeConcepts.CliConsole.Interfaces.ICommand;
 
 namespace CodeConcepts.EventEngine.ConsoleClient.Factories
 {
     public class CliClientContainerFactory : ClientContainerFactory
     {
-        protected override void SetupSpecificRegistrations(IUnityContainer container)
+        protected override void SetupSpecificRegistrations(Container container)
         {
             base.SetupSpecificRegistrations(container);
             

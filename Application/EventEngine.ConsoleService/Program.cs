@@ -1,7 +1,7 @@
 ﻿using System;
 using CodeConcepts.EventEngine.Application.Hosting;
 using log4net;
-using Microsoft.Practices.Unity;
+using SimpleInjector;
 
 [assembly: log4net.Config.XmlConfigurator]
 namespace CodeConcepts.EventEngine.ConsoleService
