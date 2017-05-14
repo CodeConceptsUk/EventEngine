@@ -1,14 +1,13 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using CodeConcepts.CliConsole;
 using CodeConcepts.EventEngine.ClientLibrary.Interfaces;
 using CodeConcepts.EventEngine.IsaPolicy.Views.Contracts.Queries;
-using CodeConcepts.EventEngine.IsaPolicy.Views.Contracts.Views.PolicyView.Domain;
+using CodeConcepts.EventEngine.IsaPolicy.Views.Contracts.Views.PolicyView;
 using CodeConcepts.FrameworkExtensions.LinqExtensions;
 
-namespace Program.ConsoleCommands
+namespace CodeConcepts.EventEngine.ConsoleClient.ConsoleCommands
 {
     public class GetPolicyConsoleCommand : InlineConsoleCommand
     {

@@ -60,6 +60,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ICommand.cs" />
+    <Compile Include="IEventContextIdQuery.cs" />
     <Compile Include="IQuery.cs" />
     <Compile Include="IView.cs" />
     <Compile Include="Resolvers\CommandContractResolver.cs" />

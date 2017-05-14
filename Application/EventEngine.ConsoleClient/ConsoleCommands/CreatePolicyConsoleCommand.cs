@@ -4,7 +4,7 @@ using CodeConcepts.CliConsole.Interfaces;
 using CodeConcepts.EventEngine.ClientLibrary.Interfaces;
 using CodeConcepts.EventEngine.IsaPolicy.Contracts.Commands;
 using CodeConcepts.EventEngine.IsaPolicy.Views.Contracts.Queries;
-using CodeConcepts.EventEngine.IsaPolicy.Views.Contracts.Views.PolicyView.Domain;
+using CodeConcepts.EventEngine.IsaPolicy.Views.Contracts.Views.PolicyView;
 
 namespace CodeConcepts.EventEngine.ConsoleClient.ConsoleCommands
 {
@@ -12,14 +12,14 @@ namespace CodeConcepts.EventEngine.ConsoleClient.ConsoleCommands
     {
         private readonly ICommandChannelClientFactory _commandChannelClientFactory;
         private readonly IConsoleProxy _console;
-        private int _customerId;
+        private string _customerId;
 
         public CreatePolicyConsoleCommand(ICommandChannelClientFactory commandChannelClientFactory, IConsoleProxy console)
             : base("CreatePolicy", "Creates a new policy within the system")
         {
             _commandChannelClientFactory = commandChannelClientFactory;
             _console = console;
-            HasRequiredOption<int>("customerId", "CustomerId that the policy will belong to:", p => _customerId = p);
+            HasRequiredOption<string>("customerId", "CustomerId that the policy will belong to:", p => _customerId = p);
         }
 
         protected override void Execute()

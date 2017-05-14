@@ -1,21 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
-using CliConsole;
-using FrameworkExtensions.LinqExtensions;
-using Policy.Plugin.Isa.Policy.Views.Queries;
+using CodeConcepts.CliConsole;
+using CodeConcepts.EventEngine.ClientLibrary.Interfaces;
+using CodeConcepts.EventEngine.IsaPolicy.Views.Contracts.Queries;
+using CodeConcepts.EventEngine.IsaPolicy.Views.Contracts.Views.PolicyTransactionsView;
+using CodeConcepts.FrameworkExtensions.LinqExtensions;
 
-namespace Program.ConsoleCommands
+namespace CodeConcepts.EventEngine.ConsoleClient.ConsoleCommands
 {
     public class GetPolicyTransactionsConsoleCommand : InlineConsoleCommand
     {
-        private readonly ITransactionQuery _transactionQuery;
+        private readonly ICommandChannelClientFactory _commandChannelClientFactory;
         private readonly ConsoleProxy _console;
         private string _policyNumber;
 
-        public GetPolicyTransactionsConsoleCommand(ITransactionQuery transactionQuery, ConsoleProxy console)
+        public GetPolicyTransactionsConsoleCommand(ICommandChannelClientFactory commandChannelClientFactory, ConsoleProxy console)
             : base("GetPolicyTransactions", "Get the transactions relating to a policy")
         {
-            _transactionQuery = transactionQuery;
+            _commandChannelClientFactory = commandChannelClientFactory;
             _console = console;
 
             HasRequiredOption<string>("PolicyNumber", "The policy number for the policy to retrieve", p => _policyNumber = p);
@@ -25,7 +27,8 @@ namespace Program.ConsoleCommands
         {
             try
             {
-                var transactionView = _transactionQuery.Read(_policyNumber);
+                var client = _commandChannelClientFactory.Create();
+                var transactionView = client.DispatchQuery(new GetPolicyTransactionsForPolicyNumberQuery(_policyNumber)) as PolicyTransactionView;
                 var data = new List<Tuple<string, decimal, DateTime>>();
 
                 transactionView.Transactions.ForEach(transaction =>

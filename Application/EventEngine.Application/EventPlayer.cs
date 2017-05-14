@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using CodeConcepts.EventEngine.Api.Contracts;
 using CodeConcepts.EventEngine.Application.Interfaces.Factories;
 using CodeConcepts.EventEngine.Contracts.Interfaces;
 using CodeConcepts.FrameworkExtensions.Interfaces.Factories;
@@ -38,7 +39,7 @@ namespace CodeConcepts.EventEngine.Application
                 var evaluators = GetEvaluator(@event.GetType(), typeof(TView));
                 evaluators.ForEach(evaluator =>
                 {
-                    DynamicExtensions.AsDynamic(evaluator).Evaluate(view, DynamicExtensions.AsDynamic(@event));
+                    evaluator.AsDynamic().Evaluate(view, @event.AsDynamic());
                 });
             });
             stopwatch.Stop();

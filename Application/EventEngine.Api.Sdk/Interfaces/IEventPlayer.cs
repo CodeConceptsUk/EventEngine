@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using CodeConcepts.EventEngine.Api.Contracts;
 
 namespace CodeConcepts.EventEngine.Contracts.Interfaces
 {

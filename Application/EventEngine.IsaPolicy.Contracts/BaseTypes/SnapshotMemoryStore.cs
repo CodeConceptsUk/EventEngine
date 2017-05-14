@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Linq;
+using CodeConcepts.EventEngine.Api.Contracts;
 using CodeConcepts.EventEngine.Contracts.Interfaces;
 using CodeConcepts.EventEngine.Contracts.Interfaces.Repositories;
 using CodeConcepts.EventEngine.Contracts.PropertyBags;

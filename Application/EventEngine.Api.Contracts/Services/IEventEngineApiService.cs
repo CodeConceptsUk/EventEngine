@@ -1,5 +1,4 @@
 ﻿using System.ServiceModel;
-using CodeConcepts.EventEngine.Contracts.Interfaces;
 
 namespace CodeConcepts.EventEngine.Api.Contracts.Services
 {

@@ -4,23 +4,24 @@ using CodeConcepts.EventEngine.Contracts.Exceptions;
 using CodeConcepts.EventEngine.Contracts.Interfaces;
 using CodeConcepts.EventEngine.IsaPolicy.Contracts.BaseTypes;
 using CodeConcepts.EventEngine.IsaPolicy.Contracts.Commands;
+using CodeConcepts.EventEngine.IsaPolicy.Contracts.CoreQueries;
+using CodeConcepts.EventEngine.IsaPolicy.Contracts.CoreViews.EventContextId;
 using CodeConcepts.EventEngine.IsaPolicy.Contracts.Events;
-using CodeConcepts.EventEngine.IsaPolicy.Contracts.Interfaces.CoreQueries;
 
 namespace CodeConcepts.EventEngine.IsaPolicy.Operations.CommandHandlers
 {
     public class AddPremiumHandler : ICommandHandler<AddPremiumCommand, IsaPolicyEvent>
     {
-        private readonly IGetEventContextIdForPolicyNumberQuery _getEventContextIdForPolicyNumberQuery;
+        private readonly IQueryHandler<GetEventContextIdForPolicyNumberQuery, EventContextIdView> _getEventContextIdForPolicyNumberViewQuery;
 
-        public AddPremiumHandler(IGetEventContextIdForPolicyNumberQuery getEventContextIdForPolicyNumberQuery)
+        public AddPremiumHandler(IQueryHandler<GetEventContextIdForPolicyNumberQuery, EventContextIdView> getEventContextIdForPolicyNumberViewQuery)
         {
-            _getEventContextIdForPolicyNumberQuery = getEventContextIdForPolicyNumberQuery;
+            _getEventContextIdForPolicyNumberViewQuery = getEventContextIdForPolicyNumberViewQuery;
         }
 
         public IEnumerable<IsaPolicyEvent> Execute(AddPremiumCommand command)
         {
-            var eventContextId = _getEventContextIdForPolicyNumberQuery.GetEventContextId(command.PolicyNumber);
+            var eventContextId = _getEventContextIdForPolicyNumberViewQuery.Read(new GetEventContextIdForPolicyNumberQuery(command.PolicyNumber))?.EventContextId;
             if (!eventContextId.HasValue)
                 throw new QueryException($"The policy {command.PolicyNumber} does not exist!");
 

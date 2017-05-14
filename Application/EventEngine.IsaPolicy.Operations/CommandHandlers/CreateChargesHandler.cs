@@ -5,31 +5,33 @@ using CodeConcepts.EventEngine.Contracts.Exceptions;
 using CodeConcepts.EventEngine.Contracts.Interfaces;
 using CodeConcepts.EventEngine.IsaPolicy.Contracts.BaseTypes;
 using CodeConcepts.EventEngine.IsaPolicy.Contracts.Commands;
+using CodeConcepts.EventEngine.IsaPolicy.Contracts.CoreQueries;
 using CodeConcepts.EventEngine.IsaPolicy.Contracts.Events;
-using CodeConcepts.EventEngine.IsaPolicy.Contracts.Interfaces.CoreQueries;
+using CodeConcepts.EventEngine.IsaPolicy.Contracts.Interfaces.CoreQueryHandlers;
 using CodeConcepts.FrameworkExtensions.LinqExtensions;
 
 namespace CodeConcepts.EventEngine.IsaPolicy.Operations.CommandHandlers
 {
     public class CreateChargesHandler : ICommandHandler<CreateChargesCommand, IsaPolicyEvent>
     {
-        private readonly IGetEventContextIdForPolicyNumberQuery _policyeventContextIdQuery;
-        private readonly IPolicyFundUnitBalanceQuery _policyFundUnitBalanceQuery;
+        private readonly IGetEventContextIdForPolicyNumberQueryHandler _getEventContextIdForPolicyNumberQueryHandler;
+        private readonly IPolicyFundUnitBalanceQueryHandler _policyFundUnitBalanceQueryHandler;
 
-        public CreateChargesHandler(IGetEventContextIdForPolicyNumberQuery policyeventContextIdQuery, IPolicyFundUnitBalanceQuery policyFundUnitBalanceQuery)
+        public CreateChargesHandler(IGetEventContextIdForPolicyNumberQueryHandler getEventContextIdForPolicyNumberQueryHandler, 
+                                    IPolicyFundUnitBalanceQueryHandler policyFundUnitBalanceQueryHandler)
         {
-            _policyeventContextIdQuery = policyeventContextIdQuery;
-            _policyFundUnitBalanceQuery = policyFundUnitBalanceQuery;
+            _getEventContextIdForPolicyNumberQueryHandler = getEventContextIdForPolicyNumberQueryHandler;
+            _policyFundUnitBalanceQueryHandler = policyFundUnitBalanceQueryHandler;
         }
 
         public IEnumerable<IsaPolicyEvent> Execute(CreateChargesCommand command)
         {
             // Fund 1, 2 have charges
-            var eventContextId = _policyeventContextIdQuery.GetEventContextId(command.PolicyNumber);
+            var eventContextId = _getEventContextIdForPolicyNumberQueryHandler.Read(new GetEventContextIdForPolicyNumberQuery(command.PolicyNumber))?.EventContextId;
             if (!eventContextId.HasValue)
                 throw new QueryException($"The policy {command.PolicyNumber} does not exist!");
 
-            var policy = _policyFundUnitBalanceQuery.Read(eventContextId.Value);
+            var policy = _policyFundUnitBalanceQueryHandler.Read(new GetPolicyFundUnitBalanceQuery(eventContextId.Value));
             var events = new List<IsaPolicyEvent>();
 
             policy.FundAllocations.Where(allocation => allocation.UnitBalance > 0).ForEach(allocation =>

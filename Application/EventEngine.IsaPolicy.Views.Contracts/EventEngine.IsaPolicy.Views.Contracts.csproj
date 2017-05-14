@@ -45,16 +45,18 @@
     <Compile Include="Queries\GetPoliciesForCustomerIdQuery.cs" />
     <Compile Include="Queries\GetPolicyForContextQuery.cs" />
     <Compile Include="Queries\GetPolicyForPolicyNumberQuery.cs" />
-    <Compile Include="Views\PolicyContextView\Domain\PolicyContextView.cs" />
-    <Compile Include="Views\PolicyTransactionsView\Domain\PolicyTransactionView.cs" />
-    <Compile Include="Views\PolicyTransactionsView\Domain\Transaction.cs" />
-    <Compile Include="Views\PolicyView\Domain\Charge.cs" />
-    <Compile Include="Views\PolicyView\Domain\Fund.cs" />
-    <Compile Include="Views\PolicyView\Domain\FundAllocation.cs" />
-    <Compile Include="Views\PolicyView\Domain\PoliciesView.cs" />
-    <Compile Include="Views\PolicyView\Domain\PolicyView.cs" />
-    <Compile Include="Views\PolicyView\Domain\Premium.cs" />
-    <Compile Include="Views\PolicyView\Domain\PremiumPartition.cs" />
+    <Compile Include="Queries\GetPolicyTransactionsForEventContextIdQuery.cs" />
+    <Compile Include="Queries\GetPolicyTransactionsForPolicyNumberQuery.cs" />
+    <Compile Include="Views\PolicyContextView\PolicyContextView.cs" />
+    <Compile Include="Views\PolicyTransactionsView\PolicyTransactionView.cs" />
+    <Compile Include="Views\PolicyTransactionsView\Transaction.cs" />
+    <Compile Include="Views\PolicyView\Charge.cs" />
+    <Compile Include="Views\PolicyView\Fund.cs" />
+    <Compile Include="Views\PolicyView\FundAllocation.cs" />
+    <Compile Include="Views\PolicyView\PoliciesView.cs" />
+    <Compile Include="Views\PolicyView\PolicyView.cs" />
+    <Compile Include="Views\PolicyView\Premium.cs" />
+    <Compile Include="Views\PolicyView\PremiumPartition.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\EventEngine.Api.Contracts\EventEngine.Api.Contracts.csproj">

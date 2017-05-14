@@ -21,12 +21,12 @@ namespace CodeConcepts.EventEngine.IsaPolicy.Operations.DataAccess.InMemory
             return events;
         }
 
-        public Guid FindContextIds(string policyNumber)
+        public Guid? FindContextId(string policyNumber)
         {
-            return Events.OfType<PolicyCreatedEvent>().Single(e => e.PolicyNumber == policyNumber).EventContextId;
+            return Events.OfType<PolicyCreatedEvent>().FirstOrDefault(e => e.PolicyNumber == policyNumber)?.EventContextId;
         }
 
-        public IEnumerable<Guid> FindContextIds(int customerId)
+        public IEnumerable<Guid> FindContextIds(string customerId)
         {
             return Events.OfType<PolicyCreatedEvent>().Where(e => e.CustomerId == customerId).Select(e=> e.EventContextId);
         }

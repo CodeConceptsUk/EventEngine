@@ -1,4 +1,5 @@
 ﻿using System;
+using CodeConcepts.EventEngine.Api.Contracts;
 
 namespace CodeConcepts.EventEngine.Contracts.Interfaces.Repositories
 {

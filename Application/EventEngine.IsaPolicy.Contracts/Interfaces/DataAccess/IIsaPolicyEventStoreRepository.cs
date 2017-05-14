@@ -7,9 +7,9 @@ namespace CodeConcepts.EventEngine.IsaPolicy.Contracts.Interfaces.DataAccess
 {
     public interface IIsaPolicyEventStoreRepository : IEventStoreRepository<IsaPolicyEvent>
     {
-        Guid FindContextIds(string policyNumber);
+        Guid? FindContextId(string policyNumber);
 
-        IEnumerable<Guid> FindContextIds(int customerId);
+        IEnumerable<Guid> FindContextIds(string customerId);
 
         IEnumerable<IsaPolicyEvent> Get(Guid eventContextId, Guid? afterEventId = null);
     }

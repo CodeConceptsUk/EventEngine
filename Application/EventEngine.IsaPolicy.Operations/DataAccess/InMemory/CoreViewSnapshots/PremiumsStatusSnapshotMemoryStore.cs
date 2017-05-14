@@ -1,5 +1,5 @@
 ﻿using CodeConcepts.EventEngine.IsaPolicy.Contracts.BaseTypes;
-using CodeConcepts.EventEngine.IsaPolicy.Contracts.CoreViews.PremiumsStatusView;
+using CodeConcepts.EventEngine.IsaPolicy.Contracts.CoreViews.PremiumsStatus;
 
 namespace CodeConcepts.EventEngine.IsaPolicy.Operations.DataAccess.InMemory.CoreViewSnapshots
 {

@@ -4,7 +4,7 @@ using System.Linq;
 using CodeConcepts.CliConsole;
 using CodeConcepts.EventEngine.ClientLibrary.Interfaces;
 using CodeConcepts.EventEngine.IsaPolicy.Views.Contracts.Queries;
-using CodeConcepts.EventEngine.IsaPolicy.Views.Contracts.Views.PolicyView.Domain;
+using CodeConcepts.EventEngine.IsaPolicy.Views.Contracts.Views.PolicyView;
 using CodeConcepts.FrameworkExtensions.LinqExtensions;
 
 namespace CodeConcepts.EventEngine.ConsoleClient.ConsoleCommands
@@ -13,7 +13,7 @@ namespace CodeConcepts.EventEngine.ConsoleClient.ConsoleCommands
     {
         private readonly ICommandChannelClientFactory _commandChannelClientFactory;
         private readonly ConsoleProxy _console;
-        private int _customerId;
+        private string _customerId;
 
         public GetCustomerPoliciesConsoleCommand(ICommandChannelClientFactory commandChannelClientFactory, ConsoleProxy console)
             : base("GetPolicies", "Get the status of a policy")
@@ -21,7 +21,7 @@ namespace CodeConcepts.EventEngine.ConsoleClient.ConsoleCommands
             _commandChannelClientFactory = commandChannelClientFactory;
             _console = console;
 
-            HasRequiredOption<int>("CustomerId", "The customer id for the policies to retrieve", p => _customerId = p);
+            HasRequiredOption<string>("CustomerId", "The customer id for the policies to retrieve", p => _customerId = p);
         }
 
         protected override void Execute()

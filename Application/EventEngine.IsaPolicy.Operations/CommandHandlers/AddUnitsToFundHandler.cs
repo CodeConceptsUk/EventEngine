@@ -4,23 +4,24 @@ using CodeConcepts.EventEngine.Contracts.Exceptions;
 using CodeConcepts.EventEngine.Contracts.Interfaces;
 using CodeConcepts.EventEngine.IsaPolicy.Contracts.BaseTypes;
 using CodeConcepts.EventEngine.IsaPolicy.Contracts.Commands;
+using CodeConcepts.EventEngine.IsaPolicy.Contracts.CoreQueries;
 using CodeConcepts.EventEngine.IsaPolicy.Contracts.Events;
-using CodeConcepts.EventEngine.IsaPolicy.Contracts.Interfaces.CoreQueries;
+using CodeConcepts.EventEngine.IsaPolicy.Contracts.Interfaces.CoreQueryHandlers;
 
 namespace CodeConcepts.EventEngine.IsaPolicy.Operations.CommandHandlers
 {
     public class AddUnitsToFundHandler : ICommandHandler<AddUnitsToFundCommand, IsaPolicyEvent>
     {
-        private readonly IGetEventContextIdForPolicyNumberQuery _getEventContextIdForPolicyNumberQuery;
+        private readonly IGetEventContextIdForPolicyNumberQueryHandler _getEventContextIdForPolicyNumberQueryHandler;
 
-        public AddUnitsToFundHandler(IGetEventContextIdForPolicyNumberQuery getEventContextIdForPolicyNumberQuery)
+        public AddUnitsToFundHandler(IGetEventContextIdForPolicyNumberQueryHandler getEventContextIdForPolicyNumberQueryHandler)
         {
-            _getEventContextIdForPolicyNumberQuery = getEventContextIdForPolicyNumberQuery;
+            _getEventContextIdForPolicyNumberQueryHandler = getEventContextIdForPolicyNumberQueryHandler;
         }
 
         public IEnumerable<IsaPolicyEvent> Execute(AddUnitsToFundCommand command)
         {
-            var eventContextId = _getEventContextIdForPolicyNumberQuery.GetEventContextId(command.PolicyNumber);
+            var eventContextId = _getEventContextIdForPolicyNumberQueryHandler.Read(new GetEventContextIdForPolicyNumberQuery(command.PolicyNumber))?.EventContextId;
             if (!eventContextId.HasValue)
                 throw new QueryException($"The policy {command.PolicyNumber} does not exist!");
 

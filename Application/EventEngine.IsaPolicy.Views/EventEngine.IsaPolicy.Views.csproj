@@ -38,21 +38,21 @@
     <Compile Include="DataAccess\NoSql\SinglePolicySnapshotNoSqlStore.cs" />
     <Compile Include="DataAccess\Sql\SinglePolicySnapshotSqlStore.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Queries\PoliciesForCustomerIdQueryHandler.cs" />
-    <Compile Include="Queries\PolicyForPolicyNumberQueryHandler.cs" />
-    <Compile Include="Queries\PolicyForContextQueryHandler.cs" />
-    <Compile Include="Queries\SinglePolicyTransactionQuery.cs" />
-    <Compile Include="Queries\TransactionQuery.cs" />
-    <Compile Include="Views\PolicyTransactionsView\EventEvaluators\AddPremiumEventEvaluator.cs" />
-    <Compile Include="Views\PolicyTransactionsView\EventEvaluators\AppliedFundChargeEventEvaluator.cs" />
-    <Compile Include="Views\PolicyTransactionsView\EventEvaluators\UnitsAddedToFundEventEvaluator.cs" />
-    <Compile Include="Views\PolicyTransactionsView\EventEvaluators\UnitsAllocatedEventEvaluator.cs" />
-    <Compile Include="Views\PolicyView\EventEvaluators\AddPremiumEventEvaluator.cs" />
-    <Compile Include="Views\PolicyView\EventEvaluators\AppliedFundChargeEventEvaluator.cs" />
-    <Compile Include="Views\PolicyView\EventEvaluators\PolicyCreatedEventEvaluator.cs" />
-    <Compile Include="Views\PolicyView\EventEvaluators\PremiumReceivedEventEvaluator.cs" />
-    <Compile Include="Views\PolicyView\EventEvaluators\UnitsAddedToFundEventEvaluator.cs" />
-    <Compile Include="Views\PolicyView\EventEvaluators\UnitsAllocatedEventEvaluator.cs" />
+    <Compile Include="QueryHandlers\PoliciesForCustomerIdQueryHandler.cs" />
+    <Compile Include="QueryHandlers\PolicyForPolicyNumberQueryHandler.cs" />
+    <Compile Include="QueryHandlers\PolicyForContextQueryHandler.cs" />
+    <Compile Include="QueryHandlers\PolicyTransactionsForEventContextIdQueryHandler.cs" />
+    <Compile Include="QueryHandlers\PolicyTransactionsForPolicyNumberQueryHandler.cs" />
+    <Compile Include="EventEvaluators\PolicyTransactionsView\AddPremiumEventEvaluator.cs" />
+    <Compile Include="EventEvaluators\PolicyTransactionsView\AppliedFundChargeEventEvaluator.cs" />
+    <Compile Include="EventEvaluators\PolicyTransactionsView\UnitsAddedToFundEventEvaluator.cs" />
+    <Compile Include="EventEvaluators\PolicyTransactionsView\UnitsAllocatedEventEvaluator.cs" />
+    <Compile Include="EventEvaluators\PolicyView\AddPremiumEventEvaluator.cs" />
+    <Compile Include="EventEvaluators\PolicyView\AppliedFundChargeEventEvaluator.cs" />
+    <Compile Include="EventEvaluators\PolicyView\PolicyCreatedEventEvaluator.cs" />
+    <Compile Include="EventEvaluators\PolicyView\PremiumReceivedEventEvaluator.cs" />
+    <Compile Include="EventEvaluators\PolicyView\UnitsAddedToFundEventEvaluator.cs" />
+    <Compile Include="EventEvaluators\PolicyView\UnitsAllocatedEventEvaluator.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\EventEngine.Api.Contracts\EventEngine.Api.Contracts.csproj">

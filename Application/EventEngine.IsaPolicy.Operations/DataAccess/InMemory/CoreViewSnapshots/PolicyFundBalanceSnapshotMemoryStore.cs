@@ -1,5 +1,5 @@
 ﻿using CodeConcepts.EventEngine.IsaPolicy.Contracts.BaseTypes;
-using CodeConcepts.EventEngine.IsaPolicy.Contracts.CoreViews.PolicyFundUnitBalanceView;
+using CodeConcepts.EventEngine.IsaPolicy.Contracts.CoreViews.PolicyFundUnitBalance;
 
 namespace CodeConcepts.EventEngine.IsaPolicy.Operations.DataAccess.InMemory.CoreViewSnapshots
 {

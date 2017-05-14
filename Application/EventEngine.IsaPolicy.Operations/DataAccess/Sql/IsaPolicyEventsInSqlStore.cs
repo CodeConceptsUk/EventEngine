@@ -14,7 +14,7 @@ namespace CodeConcepts.EventEngine.IsaPolicy.Operations.DataAccess.Sql
         private static string ConnectionString { get; } = ConfigurationManager.ConnectionStrings["IsaPolicyEventStore"].ConnectionString;
         private static readonly JsonSerializerSettings JsonSerializerSettings = new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.All };
 
-        public Guid FindContextIds(string policyNumber)
+        public Guid? FindContextId(string policyNumber)
         {
             using (var connection = new SqlConnection(ConnectionString))
             {
@@ -22,12 +22,12 @@ namespace CodeConcepts.EventEngine.IsaPolicy.Operations.DataAccess.Sql
                 using (var command = new SqlCommand("select [EventContextId] from [IsaPolicyEvents] where jsonPolicyNumber = @PolicyNumber", connection))
                 {
                     command.Parameters.Add("@PolicyNumber", SqlDbType.NVarChar, 255).Value = policyNumber;
-                    return (Guid)command.ExecuteScalar();
+                    return (Guid?)command.ExecuteScalar();
                 }
             }
         }
 
-        public IEnumerable<Guid> FindContextIds(int customerId)
+        public IEnumerable<Guid> FindContextIds(string customerId)
         {
             var contextIds = new List<Guid>();
             using (var connection = new SqlConnection(ConnectionString))
