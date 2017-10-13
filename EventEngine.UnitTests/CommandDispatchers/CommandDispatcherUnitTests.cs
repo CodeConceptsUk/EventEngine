@@ -38,7 +38,7 @@ namespace EventEngine.UnitTests.CommandDispatchers
 
             _target.Dispatch(new NameCommand { Name = expectedName });
 
-            _repository.Received().Add(Arg.Is<IEnumerable<IEvent>>(events => events.OfType<NameEvent>().Count(@event => @event.Name.Equals(expectedName)) == 1));
+            _repository.Received().Add(Arg.Is<IEnumerable<IEvent>>(events => events.OfType<SetNameEvent>().Count(@event => @event.Name.Equals(expectedName)) == 1));
         }
 
         [Test]
@@ -50,7 +50,7 @@ namespace EventEngine.UnitTests.CommandDispatchers
 
             _target.Dispatch(new NameCommand { Name = expectedName });
 
-            _repository.Received(1).Add(Arg.Is<IEnumerable<IEvent>>(events => events.OfType<NameEvent>().Count(@event => @event.Name.Equals(expectedName)) == 2));
+            _repository.Received(1).Add(Arg.Is<IEnumerable<IEvent>>(events => events.OfType<SetNameEvent>().Count(@event => @event.Name.Equals(expectedName)) == 2));
         }
 
         [Test]

@@ -44,15 +44,18 @@
     <Compile Include="Exceptions\EventEngineException.cs" />
     <Compile Include="Exceptions\EventEngineMissingCommandHandlerException.cs" />
     <Compile Include="Factories\CommandDispatcherFactory.cs" />
+    <Compile Include="Factories\EventPlayerFactory.cs" />
     <Compile Include="Interfaces\Commands\ICommandHandler.cs" />
-    <Compile Include="Interfaces\Events\IEventHandler.cs" />
     <Compile Include="Interfaces\Commands\ICommand.cs" />
     <Compile Include="Interfaces\Commands\ICommandDispatcher.cs" />
     <Compile Include="Interfaces\Events\IEvent.cs" />
+    <Compile Include="Interfaces\Events\IEventEvaluator.cs" />
     <Compile Include="Interfaces\Events\IEventPlayer.cs" />
     <Compile Include="Interfaces\Factories\ICommandDispatcherFactory.cs" />
+    <Compile Include="Interfaces\Factories\IEventPlayerFactory.cs" />
     <Compile Include="Interfaces\IView.cs" />
     <Compile Include="Interfaces\Repositories\IEventStore.cs" />
+    <Compile Include="Players\EventPlayer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />

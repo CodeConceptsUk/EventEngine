@@ -10,7 +10,7 @@ namespace EventEngine.UnitTests.CommandHandlers
     {
         public IEnumerable<IEvent> Execute(NameCommand command)
         {
-            return new[] { new NameEvent { Name = command.Name } };
+            return new[] { new SetNameEvent { Name = command.Name } };
         }
     }
 }

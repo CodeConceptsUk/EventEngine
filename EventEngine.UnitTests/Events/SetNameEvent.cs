@@ -2,7 +2,7 @@
 
 namespace EventEngine.UnitTests.Events
 {
-    public class NameEvent : IEvent
+    public class SetNameEvent : IEvent
     {
         public string Name { get; set; }
     }

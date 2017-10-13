@@ -36,11 +36,12 @@ namespace EventEngine.Application.Dispatchers
             _eventStore.Add(events);
         }
 
-        public IEnumerable<ICommandHandler> GetHandlers(Type command)
+        public ICommandHandler[] GetHandlers(Type command)
         {
             return _commandHandlers.Where(t => t.GetType()
                 .GetInterfaces()
-                .Any(i => i.GetGenericArguments().Contains(command)));
+                .Any(i => i.GetGenericArguments().Contains(command)))
+                .ToArray();
         }
     }
 }

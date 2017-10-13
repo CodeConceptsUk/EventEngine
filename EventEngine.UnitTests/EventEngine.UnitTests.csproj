@@ -50,11 +50,16 @@
     <Compile Include="Commands\NameCommand.cs" />
     <Compile Include="CommandHandlers\NameCommandHandler.cs" />
     <Compile Include="Commands\NoHandlerCommand.cs" />
-    <Compile Include="Events\NameEvent.cs" />
+    <Compile Include="EventHandlers\SetDateOfBirthEventHandler.cs" />
+    <Compile Include="EventHandlers\SetNameEventHandler.cs" />
+    <Compile Include="Events\SetDateOfBirthEvent.cs" />
+    <Compile Include="Events\SetNameEvent.cs" />
     <Compile Include="Commands\SplitNameCommand.cs" />
     <Compile Include="Exceptions\EventEngineExceptionUnitTests.cs" />
     <Compile Include="Exceptions\EventEngineMissingCommandHandlerExceptionUnitTests.cs" />
+    <Compile Include="Players\EventPlayerUnitTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StateObject.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
