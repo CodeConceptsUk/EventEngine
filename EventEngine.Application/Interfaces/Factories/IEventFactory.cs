@@ -5,6 +5,7 @@ namespace EventEngine.Application.Interfaces.Factories
 {
     public interface IEventFactory
     {
-        IEvent Create(Guid contextId, IEventData eventData);
+        IEvent Create<TEventData>(Guid contextId, TEventData eventData)
+            where TEventData : IEventData;
     }
 }
