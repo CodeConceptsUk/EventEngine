@@ -6,10 +6,4 @@ namespace EventEngine.Application.Interfaces.Services
     {
         string Serialize(IEventData eventData);
     }
-
-    public interface IEventDataDeserializationService
-    {
-        TEventData Serialize<TEventData>(string eventData)
-            where TEventData : IEventData;
-    }
 }

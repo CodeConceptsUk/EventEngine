@@ -42,9 +42,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AbstractEventEvaluator.cs" />
+    <Compile Include="Attributes\EventNameAttribute.cs" />
+    <Compile Include="Attributes\MaximumVersionAttribute.cs" />
     <Compile Include="Dispatchers\CommandDispatcher.cs" />
     <Compile Include="Attributes\MinimumVersionAttribute.cs" />
     <Compile Include="Attributes\VersionAttribute.cs" />
+    <Compile Include="Exceptions\EventDeclarationException.cs" />
     <Compile Include="Exceptions\EventEngineException.cs" />
     <Compile Include="Exceptions\EventEngineMissingCommandHandlerException.cs" />
     <Compile Include="Factories\CommandDispatcherFactory.cs" />
@@ -65,11 +68,14 @@
     <Compile Include="Interfaces\Repositories\IEventStore.cs" />
     <Compile Include="Interfaces\Events\IEventType.cs" />
     <Compile Include="Interfaces\Factories\IEventTypeFactory.cs" />
-    <Compile Include="Interfaces\Services\IEventDataSerializeService.cs" />
+    <Compile Include="Interfaces\Services\IEventDataDeserializationService.cs" />
+    <Compile Include="Interfaces\Services\IEventDataSerializationService.cs" />
     <Compile Include="Interfaces\Services\IEventTypeService.cs" />
     <Compile Include="Players\EventPlayer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PropertyBags\Event.cs" />
+    <Compile Include="PropertyBags\EventType.cs" />
+    <Compile Include="Services\EventTypeService.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -58,12 +58,15 @@
     <Compile Include="Events\SetDateOfBirthEvent.cs" />
     <Compile Include="Events\SetNameEvent.cs" />
     <Compile Include="Commands\SplitNameCommand.cs" />
+    <Compile Include="Exceptions\EventDeclarationExceptionUnitTests.cs" />
     <Compile Include="Exceptions\EventEngineExceptionUnitTests.cs" />
     <Compile Include="Exceptions\EventEngineMissingCommandHandlerExceptionUnitTests.cs" />
     <Compile Include="Players\EventPlayerUnitTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PropertyBags\EventTypeUnitTests.cs" />
     <Compile Include="PropertyBags\EventUnitTests.cs" />
     <Compile Include="StateObject.cs" />
+    <Compile Include="Services\EventTypeServiceUnitTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

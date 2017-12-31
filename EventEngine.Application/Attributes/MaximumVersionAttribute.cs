@@ -3,9 +3,9 @@
 namespace EventEngine.Application.Attributes
 {
     [AttributeUsage(AttributeTargets.Class)]
-    public class MinimumVersionAttribute : Attribute
+    public class MaximumVersionAttribute : Attribute
     {
-        public MinimumVersionAttribute(int major = 0, int minor = 0, int build = 0, int revision = 0)
+        public MaximumVersionAttribute(int major = 0, int minor = 0, int build = 0, int revision = 0)
         {
             Version = new Version(major, minor, build, revision);
         }
