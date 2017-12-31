@@ -11,13 +11,4 @@ namespace EventEngine.UnitTests.Events
     {
         public DateTime DateOfBirth { get; set; }
     }
-
-    [EventName("SetDateOfBirthEvent")]
-    [Version(2)]
-    public class SetDateOfBirth2Event : IEventData
-    {
-        public DateTime DateOfBirth { get; set; }
-
-        public int HourOfBirth { get; set; }
-    }
 }
