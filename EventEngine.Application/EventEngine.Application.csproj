@@ -41,6 +41,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Dispatchers\CommandDispatcher.cs" />
+    <Compile Include="Dispatchers\MinimumVersionAttribute.cs" />
+    <Compile Include="Dispatchers\VersionAttribute.cs" />
     <Compile Include="Exceptions\EventEngineException.cs" />
     <Compile Include="Exceptions\EventEngineMissingCommandHandlerException.cs" />
     <Compile Include="Factories\CommandDispatcherFactory.cs" />
@@ -49,17 +51,24 @@
     <Compile Include="Interfaces\Commands\ICommand.cs" />
     <Compile Include="Interfaces\Commands\ICommandDispatcher.cs" />
     <Compile Include="Interfaces\Events\IEvent.cs" />
+    <Compile Include="Interfaces\Events\IEventData.cs" />
     <Compile Include="Interfaces\Events\IEventEvaluator.cs" />
     <Compile Include="Interfaces\Events\IEventPlayer.cs" />
     <Compile Include="Interfaces\Factories\ICommandDispatcherFactory.cs" />
     <Compile Include="Interfaces\Factories\IEventPlayerFactory.cs" />
     <Compile Include="Interfaces\IView.cs" />
     <Compile Include="Interfaces\Repositories\IEventStore.cs" />
+    <Compile Include="Interfaces\Events\IEventType.cs" />
+    <Compile Include="Interfaces\Factories\IEventTypeFactory.cs" />
     <Compile Include="Players\EventPlayer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PropertyBags\Event.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Definitions.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Attributes\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

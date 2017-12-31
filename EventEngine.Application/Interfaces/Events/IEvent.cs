@@ -1,7 +1,22 @@
-﻿namespace EventEngine.Application.Interfaces.Events
+﻿using System;
+using EventEngine.Application.Interfaces.Repositories;
+
+namespace EventEngine.Application.Interfaces.Events
 {
     public interface IEvent
     {
-        // TODO: Add ContextId, EventDateTime, EventType, *EventData* (One concreate of event)
+        Guid ContextId { get; }
+
+        DateTime EventDateTime { get; }
+
+        IEventType EventType { get; }
+
+        IEventData EventData { get; }
+    }
+
+    public interface IEvent <out TEventData> : IEvent
+        where TEventData : IEventData
+    {
+        new TEventData EventData { get; }
     }
 }

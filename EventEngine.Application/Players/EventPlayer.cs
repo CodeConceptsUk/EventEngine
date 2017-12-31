@@ -23,11 +23,12 @@ namespace EventEngine.Application.Players
         {
             foreach (var @event in events)
             {
-                var eventEvaluators = GetEvaluators(@event.GetType(), typeof(TView));
+                var eventType = @event.EventData.GetType();
+                var eventEvaluators = GetEvaluators(eventType, typeof(TView));
                 foreach (var eventEvaluator in eventEvaluators)
                 {
-                    var evaluateMethodInfo = eventEvaluator.GetType().GetMethod(nameof(IEventEvaluator<IEvent, TView>.Evaluate));
-                    evaluateMethodInfo.Invoke(eventEvaluator, new object[] { view, @event });
+                    var evaluateMethodInfo = eventEvaluator.GetType().GetMethod(nameof(IEventEvaluator<IEventData, TView>.Evaluate));
+                    evaluateMethodInfo.Invoke(eventEvaluator, new object[] { view, (dynamic)@event });
                 }
             }
             return view;

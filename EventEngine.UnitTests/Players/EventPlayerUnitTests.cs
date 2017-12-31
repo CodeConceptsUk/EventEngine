@@ -2,8 +2,10 @@
 using EventEngine.Application.Factories;
 using EventEngine.Application.Interfaces.Events;
 using EventEngine.Application.Interfaces.Factories;
+using EventEngine.Application.PropertyBags;
 using EventEngine.UnitTests.EventHandlers;
 using EventEngine.UnitTests.Events;
+using NSubstitute;
 using NUnit.Framework;
 
 namespace EventEngine.UnitTests.Players
@@ -12,6 +14,7 @@ namespace EventEngine.UnitTests.Players
     {
         private IEventPlayerFactory _factory;
         private IEventPlayer _target;
+        private readonly Guid _contextId = Guid.NewGuid();
 
         [SetUp]
         public void SetUp()
@@ -25,7 +28,9 @@ namespace EventEngine.UnitTests.Players
         {
             var expectedName = Guid.NewGuid().ToString();
             var state = new StateObject();
-            var events = new[] { new SetNameEvent { Name = expectedName } };
+            var event1 = CreateEvent(new SetNameEvent { Name = expectedName });
+            var events = new[] { event1 };
+
             _target.Evaluate(events, state);
 
             Assert.AreEqual(expectedName, state.Name);
@@ -37,11 +42,20 @@ namespace EventEngine.UnitTests.Players
             var expectedName = Guid.NewGuid().ToString();
             var expectedDateOfBirth = DateTime.Now.Date;
             var state = new StateObject();
-            var events = new IEvent[] { new SetNameEvent { Name = expectedName }, new SetDateOfBirthEvent { DateOfBirth = expectedDateOfBirth } };
+            var event1 = CreateEvent(new SetNameEvent { Name = expectedName });
+            var event2 = CreateEvent(new SetDateOfBirthEvent { DateOfBirth = expectedDateOfBirth });
+
+            var events = new[] { event1, event2 };
             _target.Evaluate(events, state);
 
             Assert.AreEqual(expectedName, state.Name);
             Assert.AreEqual(expectedDateOfBirth, state.DateOfBirth);
+        }
+
+        private IEvent CreateEvent<TEventData>(TEventData eventData)
+            where TEventData : IEventData
+        {
+            return new Event<TEventData>(_contextId, null, eventData, DateTime.Now);
         }
     }
 }
