@@ -71,9 +71,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PropertyBags\Event.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Content Include="Definitions.txt" />
-  </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
