@@ -1,11 +1,11 @@
 ﻿using System;
 
-namespace EventEngine.Application.Dispatchers
+namespace EventEngine.Application.Attributes
 {
     [AttributeUsage(AttributeTargets.Class)]
-    public class MinimumVersionAttribute : Attribute
+    public class VersionAttribute : Attribute
     {
-        public MinimumVersionAttribute(int major = 0, int minor = 0, int build = 0, int revision = 0)
+        public VersionAttribute(int major = 0, int minor = 0, int build = 0, int revision = 0)
         {
             Version = new Version(major, minor, build, revision);
         }

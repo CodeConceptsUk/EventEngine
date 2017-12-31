@@ -1,15 +1,16 @@
-﻿using EventEngine.Application.Dispatchers;
+﻿using EventEngine.Application;
+using EventEngine.Application.Attributes;
 using EventEngine.Application.Interfaces.Events;
 using EventEngine.UnitTests.Events;
 
 namespace EventEngine.UnitTests.EventHandlers
 {
-    [MinimumVersion(1)]
-    public class SetNameEventHandler : IEventEvaluator<SetNameEvent, StateObject>
+    [EventName("SetNameEvent")]
+    public class SetNameEventHandler : AbstractEventEvaluator<SetNameEvent, StateObject>
     {
-        public void Evaluate(StateObject view, IEvent<SetNameEvent> @event)
+        public override void Evaluate(StateObject view, IEvent @event, SetNameEvent eventData)
         {
-            view.Name = @event.EventData.Name;
+            view.Name = eventData.Name;
         }
     }
 

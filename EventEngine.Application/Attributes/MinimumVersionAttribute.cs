@@ -1,0 +1,37 @@
+﻿using System;
+
+namespace EventEngine.Application.Attributes
+{
+    [AttributeUsage(AttributeTargets.Class)]
+    public class MinimumVersionAttribute : Attribute
+    {
+        public MinimumVersionAttribute(int major = 0, int minor = 0, int build = 0, int revision = 0)
+        {
+            Version = new Version(major, minor, build, revision);
+        }
+
+        public Version Version { get; }
+    }
+
+    [AttributeUsage(AttributeTargets.Class)]
+    public class MaximumVersionAttribute : Attribute
+    {
+        public MaximumVersionAttribute(int major = 0, int minor = 0, int build = 0, int revision = 0)
+        {
+            Version = new Version(major, minor, build, revision);
+        }
+
+        public Version Version { get; }
+    }
+
+    [AttributeUsage(AttributeTargets.Class)]
+    public class EventNameAttribute : Attribute
+    {
+        public EventNameAttribute(string name)
+        {
+            Name = name;
+        }
+
+        public string Name { get; }
+    }
+}

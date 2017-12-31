@@ -41,9 +41,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AbstractEventEvaluator.cs" />
     <Compile Include="Dispatchers\CommandDispatcher.cs" />
-    <Compile Include="Dispatchers\MinimumVersionAttribute.cs" />
-    <Compile Include="Dispatchers\VersionAttribute.cs" />
+    <Compile Include="Attributes\MinimumVersionAttribute.cs" />
+    <Compile Include="Attributes\VersionAttribute.cs" />
     <Compile Include="Exceptions\EventEngineException.cs" />
     <Compile Include="Exceptions\EventEngineMissingCommandHandlerException.cs" />
     <Compile Include="Factories\CommandDispatcherFactory.cs" />
@@ -56,6 +57,7 @@
     <Compile Include="Interfaces\Events\IEventEvaluator.cs" />
     <Compile Include="Interfaces\Events\IEventPlayer.cs" />
     <Compile Include="Interfaces\Factories\ICommandDispatcherFactory.cs" />
+    <Compile Include="Interfaces\Factories\IEventFactory.cs" />
     <Compile Include="Interfaces\Factories\IEventPlayerFactory.cs" />
     <Compile Include="Interfaces\IView.cs" />
     <Compile Include="Interfaces\Repositories\IEventStore.cs" />
@@ -68,8 +70,6 @@
   <ItemGroup>
     <Content Include="Definitions.txt" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Attributes\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

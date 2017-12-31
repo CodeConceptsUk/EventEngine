@@ -4,10 +4,9 @@ using EventEngine.Application.Interfaces.Repositories;
 
 namespace EventEngine.Application.PropertyBags
 {
-    public class Event<TEventData> : IEvent<TEventData> 
-        where TEventData : IEventData
+    public class Event : IEvent 
     {
-        public Event(Guid contextId, IEventType eventType, TEventData eventData, DateTime eventDateTime)
+        internal Event(Guid contextId, IEventType eventType, string eventData, DateTime eventDateTime)
         {
             ContextId = contextId;
             EventType = eventType;
@@ -21,8 +20,6 @@ namespace EventEngine.Application.PropertyBags
 
         public IEventType EventType { get; }
 
-        public TEventData EventData { get; }
-
-        IEventData IEvent.EventData => EventData;
+        public string EventData { get; }
     }
 }

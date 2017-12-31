@@ -11,13 +11,11 @@ namespace EventEngine.UnitTests.CommandHandlers
 {
     public class NameCommandHandler : ICommandHandler<NameCommand>
     {
+        public static IEvent Event = Substitute.For<IEvent>();
+
         public IEnumerable<IEvent> Execute(NameCommand command)
         {
-            var eventType = Substitute.For<IEventType>();
-            var eventData = new SetNameEvent { Name = command.Name };
-            eventType.Type.Returns(GetType().FullName);
-
-            return new[] { new Event<SetNameEvent>(Guid.NewGuid(), eventType, eventData, DateTime.Now) };
+            return new[] { Event };
         }
     }
 }

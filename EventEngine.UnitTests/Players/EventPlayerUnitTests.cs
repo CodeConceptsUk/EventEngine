@@ -55,7 +55,10 @@ namespace EventEngine.UnitTests.Players
         private IEvent CreateEvent<TEventData>(TEventData eventData)
             where TEventData : IEventData
         {
-            return new Event<TEventData>(_contextId, null, eventData, DateTime.Now);
+            var @event = Substitute.For<IEvent>();
+            @event.ContextId.Returns(_contextId);
+            @event.EventDateTime.Returns(DateTime.Now);
+            return @event;
         }
     }
 }

@@ -1,13 +1,19 @@
-﻿namespace EventEngine.Application.Interfaces.Events
+﻿using System;
+
+namespace EventEngine.Application.Interfaces.Events
 {
     public interface IEventEvaluator
     {
-    }
+        string Name { get; }
 
-    public interface IEventEvaluator<in TEvent, in TView> : IEventEvaluator
-        where TEvent : class, IEvent
-        where TView : class, IView
+        Version MinimumVersion { get; }
+
+        Version MaximumVersion { get; }
+    }
+        
+    public interface IEventEvaluator<in TView> : IEventEvaluator
+     where TView : class, IView
     {
-        void Evaluate(TView view, TEvent @event);
+        void EvaluateGenericEvent(TView view, IEvent @event);
     }
 }

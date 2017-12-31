@@ -11,12 +11,6 @@ namespace EventEngine.Application.Interfaces.Events
 
         IEventType EventType { get; }
 
-        IEventData EventData { get; }
-    }
-
-    public interface IEvent <out TEventData> : IEvent
-        where TEventData : IEventData
-    {
-        new TEventData EventData { get; }
+        string EventData { get; }
     }
 }
