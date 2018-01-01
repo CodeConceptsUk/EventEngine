@@ -1,19 +1,18 @@
 ﻿using System;
 using EventEngine.Application.Attributes;
-using EventEngine.Application.Dispatchers;
 using NUnit.Framework;
 
 namespace EventEngine.UnitTests.Attributes
 {
     [TestFixture]
-    public class MinimumVersionAttributeUnitTests
+    public class MaximumVersionAttributeUnitTests
     {
         [Test]
-        public void WhenCreateAMinimumVersionAttributeItIsCreated()
+        public void WhenCreateAMaximumVersionAttributeItIsCreated()
         {
             var expectedVersion = new Version(1, 2, 3, 4);
 
-            var target = new MinimumVersionAttribute(expectedVersion.Major, expectedVersion.Minor,
+            var target = new MaximumVersionAttribute(expectedVersion.Major, expectedVersion.Minor,
                 expectedVersion.Build, expectedVersion.Revision);
 
             Assert.AreEqual(expectedVersion, target.Version);
@@ -22,7 +21,7 @@ namespace EventEngine.UnitTests.Attributes
         [Test]
         public void AssertThatTheAttributeTargetsCorrectly()
         {
-            var attributeUsage = (AttributeUsageAttribute)typeof(MinimumVersionAttribute).GetCustomAttributes(typeof(AttributeUsageAttribute), true)[0];
+            var attributeUsage = (AttributeUsageAttribute)typeof(MaximumVersionAttribute).GetCustomAttributes(typeof(AttributeUsageAttribute), true)[0];
 
             Assert.AreEqual(AttributeTargets.Class, attributeUsage.ValidOn);
             Assert.IsTrue(attributeUsage.Inherited);

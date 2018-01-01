@@ -47,6 +47,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Attributes\EventNameAttributeUnitTests.cs" />
+    <Compile Include="Attributes\MaximumVersionAttributeUnitTests.cs" />
     <Compile Include="Attributes\MinimumVersionAttributeUnitTests.cs" />
     <Compile Include="Attributes\VersionAttributeUnitTests.cs" />
     <Compile Include="CommandDispatchers\CommandDispatcherUnitTests.cs" />
