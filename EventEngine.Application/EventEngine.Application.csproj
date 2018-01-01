@@ -68,7 +68,6 @@
     <Compile Include="Interfaces\Providers\IDateTimeProvider.cs" />
     <Compile Include="Interfaces\Repositories\IEventStore.cs" />
     <Compile Include="Interfaces\Events\IEventType.cs" />
-    <Compile Include="Interfaces\Factories\IEventTypeFactory.cs" />
     <Compile Include="Interfaces\Services\ICommandHandlerFilteringService.cs" />
     <Compile Include="Interfaces\Services\IEventDataDeserializationService.cs" />
     <Compile Include="Interfaces\Services\IEventDataSerializationService.cs" />
