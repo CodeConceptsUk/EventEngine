@@ -29,7 +29,7 @@ namespace EventEngine.Application.Services
                 var viewTypes = eventEvaluator
                     .GetType()
                     .GetInterfaces()
-                    .Where(t => t.IsGenericType && t.GetGenericTypeDefinition() == typeof(IEventEvaluator<>))
+                    .Where(t => t.IsGenericType && t.GetGenericTypeDefinition() == typeof(IEventEvaluator<,>))
                     .Select(t => t.GetGenericArguments()[0]).ToArray();
 
                 foreach (var viewType in viewTypes)

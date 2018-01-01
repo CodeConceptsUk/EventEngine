@@ -7,7 +7,7 @@ using EventEngine.Application.Interfaces.Services;
 
 namespace EventEngine.Application
 {
-    public abstract class AbstractEventEvaluator<TEventData, TView> : IEventEvaluator<TView>
+    public abstract class AbstractEventEvaluator<TEventData, TView> : IEventEvaluator<TView, TEventData>
         where TEventData : IEventData
         where TView : class, IView
     {

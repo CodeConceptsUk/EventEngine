@@ -1,8 +1,7 @@
-﻿using EventEngine.Application.Factories;
-using EventEngine.Application.Interfaces;
+﻿using EventEngine.Application.Interfaces;
 using EventEngine.Application.Interfaces.Events;
-using EventEngine.Application.Interfaces.Factories;
 using EventEngine.Application.Interfaces.Services;
+using EventEngine.Application.Players;
 using NSubstitute;
 using NUnit.Framework;
 
@@ -11,29 +10,27 @@ namespace EventEngine.UnitTests.Players
     public class EventPlayerUnitTests
     {
         private IEventEvaluatorFilteringService _eventEvaluatorFilteringService;
-        private IEventPlayerFactory _factory;
         private IEventPlayer _target;
+        private IEventDataDeserializationService _eventDataDeserializationService;
 
         [SetUp]
         public void SetUp()
         {
             _eventEvaluatorFilteringService = Substitute.For<IEventEvaluatorFilteringService>();
-            _factory = new EventPlayerFactory(_eventEvaluatorFilteringService);
+            _eventDataDeserializationService = Substitute.For<IEventDataDeserializationService>();
+            _target = new EventPlayer(_eventEvaluatorFilteringService, _eventDataDeserializationService);
         }
 
         [Test]
         public void WhenIRunMultipleEventsOnTheEventPlayerTheyAreEvaluated()
         {
-            var eventEvaluators = new[] {Substitute.For<IEventEvaluator>()};
-            _target = _factory.Create(eventEvaluators);
-
             var eventType1 = Substitute.For<IEventType>();
             var eventType2 = Substitute.For<IEventType>();
             var eventType3 = Substitute.For<IEventType>();
 
-            var evaluator1 = Substitute.For<IEventEvaluator<IView>>();
-            var evaluator2 = Substitute.For<IEventEvaluator<IView>>();
-            var evaluator3 = Substitute.For<IEventEvaluator<IView>>();
+            var evaluator1 = Substitute.For<IEventEvaluator<IView, IEventData>>();
+            var evaluator2 = Substitute.For<IEventEvaluator<IView, IEventData>>();
+            var evaluator3 = Substitute.For<IEventEvaluator<IView, IEventData>>();
 
             var events = new[]
             {

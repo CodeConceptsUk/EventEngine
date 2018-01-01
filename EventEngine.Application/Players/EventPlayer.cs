@@ -5,15 +5,16 @@ using EventEngine.Application.Interfaces.Services;
 
 namespace EventEngine.Application.Players
 {
-    internal class EventPlayer : IEventPlayer
+    public class EventPlayer : IEventPlayer
     {
         private readonly IEventEvaluatorFilteringService _eventEvaluatorFilteringService;
-        private readonly IEventEvaluator[] _eventEvaluators;
+        private readonly IEventDataDeserializationService _eventDataDeserializationService;
 
-        internal EventPlayer(IEventEvaluatorFilteringService eventEvaluatorFilteringService, IEventEvaluator[] eventEvaluators)
+        public EventPlayer(IEventEvaluatorFilteringService eventEvaluatorFilteringService,
+            IEventDataDeserializationService eventDataDeserializationService)
         {
             _eventEvaluatorFilteringService = eventEvaluatorFilteringService;
-            _eventEvaluators = eventEvaluators;
+            _eventDataDeserializationService = eventDataDeserializationService;
         }
 
         public void Play<TView>(IEnumerable<IEvent> events, TView view)
@@ -23,7 +24,7 @@ namespace EventEngine.Application.Players
             {
                 var eventEvaluators = _eventEvaluatorFilteringService.Filter<TView>(@event.EventType);
                 foreach (var eventEvaluator in eventEvaluators)
-                    ((IEventEvaluator<TView>) eventEvaluator).EvaluateGenericEvent(view, @event);
+                    ((dynamic)eventEvaluator).EvaluateGenericEvent(view, @event);
             }
         }
     }

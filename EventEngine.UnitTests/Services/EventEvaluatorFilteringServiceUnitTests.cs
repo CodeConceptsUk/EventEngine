@@ -28,7 +28,7 @@ namespace EventEngine.UnitTests.Services
         private IEventEvaluator CreateEventEvaluatorSubstitute(bool interfaceMatches, bool nameMatches,
             string minimumVersionCondition, string maximumVersionCondition, string expectedEventName, Version expectedVersion)
         {
-            var eventEvaluator = interfaceMatches ? (IEventEvaluator)Substitute.For<IEventEvaluator<TestView>>() : Substitute.For<IEventEvaluator<SomeOtherView>>();
+            var eventEvaluator = interfaceMatches ? (IEventEvaluator)Substitute.For<IEventEvaluator<TestView, IEventData>>() : Substitute.For<IEventEvaluator<SomeOtherView, IEventData>>();
             Version minimumVersion = null;
             Version maximumVersion = null;
             var eventName = nameMatches ? expectedEventName : Guid.NewGuid().ToString();
@@ -105,7 +105,7 @@ namespace EventEngine.UnitTests.Services
                 _target.Register(expectedEvaluator);
             }
 
-            _target.Register(Substitute.For<IEventEvaluator<SomeOtherView>>());
+            _target.Register(Substitute.For<IEventEvaluator<SomeOtherView, IEventData>>());
 
             var matchingEvaluators = _target.Filter<TestView>(eventType);
 
