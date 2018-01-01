@@ -1,10 +1,9 @@
-﻿using EventEngine.Application.Interfaces.Events;
+﻿using System;
 
 namespace EventEngine.Application.Interfaces.Services
 {
     public interface IEventDataDeserializationService
     {
-        TEventData Deserialize<TEventData>(string eventData)
-            where TEventData : IEventData;
+        object Deserialize(Type eventDataType, string eventData);
     }
 }

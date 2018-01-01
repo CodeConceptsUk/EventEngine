@@ -10,7 +10,6 @@ namespace EventEngine.Application.Interfaces.Events
         where TView : class, IView
         where TEventData : IEventData
     {
-        void EvaluateGenericEvent(TView view, IEvent @event);
         void Evaluate(TView view, IEvent @event, TEventData eventData);
     }
 }

@@ -8,13 +8,9 @@ namespace EventEngine.ExampleApplication.EventHandlers
 {
     [EventName("SetDateOfBirthEvent")]
     [MaximumVersion(1)]
-    public class SetDateOfBirthEventHandler : AbstractEventEvaluator<SetDateOfBirthEventData, ExampleView>
+    public class SetDateOfBirthEventHandler : IEventEvaluator<ExampleView, SetDateOfBirthEventData>
     {
-        public SetDateOfBirthEventHandler(IEventDataDeserializationService eventDataDeserializationService) : base(eventDataDeserializationService)
-        {
-        }
-
-        public override void Evaluate(ExampleView view, IEvent @event, SetDateOfBirthEventData eventData)
+        public void Evaluate(ExampleView view, IEvent @event, SetDateOfBirthEventData eventData)
         {
             view.DateOfBirth = eventData.DateOfBirth;
         }

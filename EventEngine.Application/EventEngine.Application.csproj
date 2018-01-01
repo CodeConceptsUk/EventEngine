@@ -40,7 +40,6 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AbstractEventEvaluator.cs" />
     <Compile Include="Attributes\EventNameAttribute.cs" />
     <Compile Include="Attributes\MaximumVersionAttribute.cs" />
     <Compile Include="Dispatchers\CommandDispatcher.cs" />

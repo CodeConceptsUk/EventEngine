@@ -7,13 +7,9 @@ using EventEngine.ExampleApplication.Events;
 namespace EventEngine.ExampleApplication.EventHandlers
 {
     [EventName("SetName")]
-    public class SetNameEventHandler : AbstractEventEvaluator<SetNameEventData, ExampleView>
+    public class SetNameEventHandler : IEventEvaluator<ExampleView, SetNameEventData>
     {
-        public SetNameEventHandler(IEventDataDeserializationService eventDataDeserializationService) : base(eventDataDeserializationService)
-        {
-        }
-
-        public override void Evaluate(ExampleView view, IEvent @event, SetNameEventData eventData)
+        public void Evaluate(ExampleView view, IEvent @event, SetNameEventData eventData)
         {
             view.Name = eventData.Name;
         }

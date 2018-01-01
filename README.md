@@ -12,3 +12,6 @@ CodeConcepts EventEngine is a library to provide an implementation of event sour
 |Event Type				| Type of an event and version it is associated with
 |View Query				| Uses matching events to create a View
 |View					| A representation of event data
++=======================+==========================================================
+
+When creating events you should make any property that is a non-nullable type into a nullable type to guarantee that data within that event when evaluating is what is expected and not a default. 

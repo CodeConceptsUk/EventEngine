@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using EventEngine.Application.Interfaces;
 using EventEngine.Application.Interfaces.Events;
 using EventEngine.Application.Interfaces.Services;
@@ -24,8 +25,30 @@ namespace EventEngine.Application.Players
             {
                 var eventEvaluators = _eventEvaluatorFilteringService.Filter<TView>(@event.EventType);
                 foreach (var eventEvaluator in eventEvaluators)
-                    ((dynamic)eventEvaluator).EvaluateGenericEvent(view, @event);
+                {
+                    EvaluateEvent(eventEvaluator, view, @event);
+                }
             }
         }
+
+        private void EvaluateEvent<TView>(IEventEvaluator eventEvaluator, TView view, IEvent @event)
+            where TView : class, IView
+        {
+            var eventDataTypes = eventEvaluator
+                .GetType()
+                .GetInterfaces()
+                .Where(t => t.IsGenericType &&
+                            t.GetGenericTypeDefinition() == typeof(IEventEvaluator<,>) &&
+                            t.GetGenericArguments()[0] == typeof(TView))
+                .Select(t => t.GetGenericArguments()[1]).ToArray();
+
+            foreach (var eventDataType in eventDataTypes)
+            {
+                var eventData = _eventDataDeserializationService.Deserialize(eventDataType, @event.EventData);
+                ((dynamic) eventEvaluator).Evaluate(view, @event, (dynamic)eventData);
+            }
+        }
+
+        
     }
 }

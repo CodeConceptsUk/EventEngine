@@ -1,4 +1,5 @@
-﻿using EventEngine.Application.Interfaces;
+﻿using System;
+using EventEngine.Application.Interfaces;
 using EventEngine.Application.Interfaces.Events;
 using EventEngine.Application.Interfaces.Services;
 using EventEngine.Application.Players;
@@ -24,36 +25,43 @@ namespace EventEngine.UnitTests.Players
         [Test]
         public void WhenIRunMultipleEventsOnTheEventPlayerTheyAreEvaluated()
         {
-            var eventType1 = Substitute.For<IEventType>();
-            var eventType2 = Substitute.For<IEventType>();
-            var eventType3 = Substitute.For<IEventType>();
-
             var evaluator1 = Substitute.For<IEventEvaluator<IView, IEventData>>();
             var evaluator2 = Substitute.For<IEventEvaluator<IView, IEventData>>();
             var evaluator3 = Substitute.For<IEventEvaluator<IView, IEventData>>();
+            var eventData1 = Substitute.For<IEventData>();
+            var eventData2 = Substitute.For<IEventData>();
+            var eventData3 = Substitute.For<IEventData>();
 
             var events = new[]
             {
-                Substitute.For<IEvent>(),
-                Substitute.For<IEvent>(),
-                Substitute.For<IEvent>()
+                CreateEvent(Guid.NewGuid().ToString()),
+                CreateEvent(Guid.NewGuid().ToString()),
+                CreateEvent(Guid.NewGuid().ToString()),
             };
 
-            events[0].EventType.Returns(eventType1);
-            events[1].EventType.Returns(eventType2);
-            events[2].EventType.Returns(eventType3);
-
-            _eventEvaluatorFilteringService.Filter<IView>(eventType1).Returns(new IEventEvaluator[] {evaluator1});
-            _eventEvaluatorFilteringService.Filter<IView>(eventType2).Returns(new IEventEvaluator[] {evaluator2});
-            _eventEvaluatorFilteringService.Filter<IView>(eventType3).Returns(new IEventEvaluator[] {evaluator3});
+            _eventDataDeserializationService.Deserialize(typeof(IEventData), events[0].EventData).Returns(eventData1);
+            _eventDataDeserializationService.Deserialize(typeof(IEventData), events[1].EventData).Returns(eventData2);
+            _eventDataDeserializationService.Deserialize(typeof(IEventData), events[2].EventData).Returns(eventData3);
+            _eventEvaluatorFilteringService.Filter<IView>(events[0].EventType).Returns(new IEventEvaluator[] {evaluator1});
+            _eventEvaluatorFilteringService.Filter<IView>(events[1].EventType).Returns(new IEventEvaluator[] {evaluator2});
+            _eventEvaluatorFilteringService.Filter<IView>(events[2].EventType).Returns(new IEventEvaluator[] {evaluator3});
 
             var view = Substitute.For<IView>();
 
             _target.Play(events, view);
 
-            evaluator1.Received().EvaluateGenericEvent(view, events[0]);
-            evaluator2.Received().EvaluateGenericEvent(view, events[1]);
-            evaluator3.Received().EvaluateGenericEvent(view, events[2]);
+            evaluator1.Received().Evaluate(view, events[0], eventData1);
+            evaluator2.Received().Evaluate(view, events[1], eventData2);
+            evaluator3.Received().Evaluate(view, events[2], eventData3);
+        }
+
+        private static IEvent CreateEvent(string eventData)
+        {
+            var @event = Substitute.For<IEvent>();
+            var eventType = Substitute.For<IEventType>();
+            @event.EventData.Returns(eventData);
+            @event.EventType.Returns(eventType);
+            return @event;
         }
     }
 }
