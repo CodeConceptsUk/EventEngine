@@ -2,11 +2,11 @@ using System;
 using EventEngine.Application.Attributes;
 using EventEngine.Application.Interfaces.Events;
 
-namespace EventEngine.UnitTests.Events
+namespace EventEngine.ExampleApplication.Events
 {
-    [EventName("SetDateOfBirthEvent")]
+    [EventName("SetDateOfBirth")]
     [Version(2)]
-    public class SetDateOfBirth2Event : IEventData
+    public class SetDateOfBirthEventDataV2 : IEventData
     {
         public DateTime DateOfBirth { get; set; }
 

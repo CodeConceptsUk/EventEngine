@@ -1,14 +1,19 @@
 ﻿using EventEngine.Application;
 using EventEngine.Application.Attributes;
 using EventEngine.Application.Interfaces.Events;
-using EventEngine.UnitTests.Events;
+using EventEngine.Application.Interfaces.Services;
+using EventEngine.ExampleApplication.Events;
 
-namespace EventEngine.UnitTests.EventHandlers
+namespace EventEngine.ExampleApplication.EventHandlers
 {
-    [EventName("SetNameEvent")]
-    public class SetNameEventHandler : AbstractEventEvaluator<SetNameEvent, StateObject>
+    [EventName("SetName")]
+    public class SetNameEventHandler : AbstractEventEvaluator<SetNameEventData, ExampleView>
     {
-        public override void Evaluate(StateObject view, IEvent @event, SetNameEvent eventData)
+        public SetNameEventHandler(IEventDataDeserializationService eventDataDeserializationService) : base(eventDataDeserializationService)
+        {
+        }
+
+        public override void Evaluate(ExampleView view, IEvent @event, SetNameEventData eventData)
         {
             view.Name = eventData.Name;
         }

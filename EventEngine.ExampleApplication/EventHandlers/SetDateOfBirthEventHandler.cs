@@ -1,17 +1,20 @@
-﻿using System;
-using System.Linq;
+﻿using EventEngine.Application;
 using EventEngine.Application.Attributes;
-using EventEngine.Application;
 using EventEngine.Application.Interfaces.Events;
-using EventEngine.UnitTests.Events;
+using EventEngine.Application.Interfaces.Services;
+using EventEngine.ExampleApplication.Events;
 
-namespace EventEngine.UnitTests.EventHandlers
+namespace EventEngine.ExampleApplication.EventHandlers
 {
     [EventName("SetDateOfBirthEvent")]
-    [MinimumVersion(1)]
-    public class SetDateOfBirthEventHandler : AbstractEventEvaluator<SetDateOfBirthEvent, StateObject>
+    [MaximumVersion(1)]
+    public class SetDateOfBirthEventHandler : AbstractEventEvaluator<SetDateOfBirthEventData, ExampleView>
     {
-        public override void Evaluate(StateObject view, IEvent @event, SetDateOfBirthEvent eventData)
+        public SetDateOfBirthEventHandler(IEventDataDeserializationService eventDataDeserializationService) : base(eventDataDeserializationService)
+        {
+        }
+
+        public override void Evaluate(ExampleView view, IEvent @event, SetDateOfBirthEventData eventData)
         {
             view.DateOfBirth = eventData.DateOfBirth;
         }

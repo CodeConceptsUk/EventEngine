@@ -1,12 +1,14 @@
 ﻿using System;
 using EventEngine.Application.Interfaces;
 
-namespace EventEngine.UnitTests
+namespace EventEngine.ExampleApplication
 {
-    public class StateObject : IView
+    public class ExampleView : IView
     {
         public string Name { get; set; }
 
         public DateTime? DateOfBirth { get; set; }
+
+        public int? HourOfBirth { get; set; }
     }
 }
