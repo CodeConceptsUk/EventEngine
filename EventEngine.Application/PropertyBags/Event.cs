@@ -1,6 +1,5 @@
 ﻿using System;
 using EventEngine.Application.Interfaces.Events;
-using EventEngine.Application.Interfaces.Repositories;
 
 namespace EventEngine.Application.PropertyBags
 {

@@ -3,6 +3,7 @@ using System.Linq;
 using EventEngine.Application.Attributes;
 using EventEngine.Application.Interfaces;
 using EventEngine.Application.Interfaces.Events;
+using EventEngine.Application.Interfaces.Services;
 
 namespace EventEngine.Application
 {

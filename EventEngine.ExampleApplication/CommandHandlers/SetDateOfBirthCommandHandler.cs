@@ -7,18 +7,18 @@ using EventEngine.ExampleApplication.Events;
 
 namespace EventEngine.ExampleApplication.CommandHandlers
 {
-    public class SetNameCommandHandler : ICommandHandler<SetNameCommand>
+    public class SetDateOfBirthCommandHandler : ICommandHandler<SetDateOfBirthCommand>
     {
         private readonly IEventFactory _eventFactory;
 
-        public SetNameCommandHandler(IEventFactory eventFactory)
+        public SetDateOfBirthCommandHandler(IEventFactory eventFactory)
         {
             _eventFactory = eventFactory;
         }
 
-        public IEnumerable<IEvent> Execute(SetNameCommand command)
+        public IEnumerable<IEvent> Execute(SetDateOfBirthCommand command)
         {
-            var setNameEventData = new SetNameEventData { Name = command.Name };
+            var setNameEventData = new SetDateOfBirthEventData { DateOfBirth = command.DateOfBirth };
             var @event = _eventFactory.Create(command.ContextId, setNameEventData);
             return new[] { @event };
         }

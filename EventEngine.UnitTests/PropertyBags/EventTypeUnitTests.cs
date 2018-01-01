@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Linq;
 using EventEngine.Application.Interfaces.Events;
 using EventEngine.Application.PropertyBags;
-using NSubstitute;
 using NUnit.Framework;
 
 namespace EventEngine.UnitTests.PropertyBags

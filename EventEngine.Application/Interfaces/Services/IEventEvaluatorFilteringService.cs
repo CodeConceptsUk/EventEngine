@@ -1,5 +1,4 @@
-﻿using System;
-using EventEngine.Application.Interfaces.Events;
+﻿using EventEngine.Application.Interfaces.Events;
 
 namespace EventEngine.Application.Interfaces.Services
 {
