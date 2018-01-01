@@ -7,14 +7,14 @@ using EventEngine.Application.Interfaces.Services;
 
 namespace EventEngine.Application.Services
 {
-    public class EventEvaluatorFilteringService : IEventEvaluatorFilteringService
+    public class EventEvaluatorRegistry : IEventEvaluatorRegistry
     {
         private readonly IEventEvaluatorAttributeService _eventEvaluatorAttributeService;
 
         private readonly IList<(string Name, Version MinimumVersion, Version MaximumVersion, Type ViewType, IEventEvaluator Evaluator)>
             _registeredEvaluators;
 
-        public EventEvaluatorFilteringService(IEventEvaluatorAttributeService eventEvaluatorAttributeService)
+        public EventEvaluatorRegistry(IEventEvaluatorAttributeService eventEvaluatorAttributeService)
         {
             _eventEvaluatorAttributeService = eventEvaluatorAttributeService;
             _registeredEvaluators = new List<(string Name, Version MinimumVersion, Version MaximumVersion, Type ViewType, IEventEvaluator Evaluator)>();

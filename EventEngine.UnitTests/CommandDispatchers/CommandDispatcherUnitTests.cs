@@ -1,10 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using EventEngine.Application.Dispatchers;
 using EventEngine.Application.Exceptions;
-using EventEngine.Application.Factories;
 using EventEngine.Application.Interfaces.Commands;
 using EventEngine.Application.Interfaces.Events;
-using EventEngine.Application.Interfaces.Factories;
 using EventEngine.Application.Interfaces.Repositories;
 using EventEngine.Application.Interfaces.Services;
 using NSubstitute;
@@ -14,20 +13,19 @@ namespace EventEngine.UnitTests.CommandDispatchers
 {
     [TestFixture]
     public class CommandDispatcherUnitTests
-    {
+    {        
+        private IEventStore _repository;
+        private ICommandDispatcher _target;
+        private ICommandHandlerRegistry _commandHandlerRegistry;
+
         [SetUp]
         public void SetUp()
         {
             _repository = Substitute.For<IEventStore>();
-            _commandHandlerFilteringService = Substitute.For<ICommandHandlerFilteringService>();
-            _factory = new CommandDispatcherFactory(_repository, _commandHandlerFilteringService);
+            _commandHandlerRegistry = Substitute.For<ICommandHandlerRegistry>();
+            _target = new CommandDispatcher(_repository, _commandHandlerRegistry);
         }
-
-        private ICommandDispatcherFactory _factory;
-        private IEventStore _repository;
-        private ICommandDispatcher _target;
-        private ICommandHandlerFilteringService _commandHandlerFilteringService;
-
+        
         private bool ValidateEventList(List<IEvent> expectedEvents, IEvent[] events)
         {
             var i = 0;
@@ -42,12 +40,10 @@ namespace EventEngine.UnitTests.CommandDispatchers
         public void WhenIExecuteACommandItIsDispatchedToItsHandler()
         {
             var commandHandler = Substitute.For<ICommandHandler<TestCommand>>();
-            var inputCommandHandlerList = new ICommandHandler[] {Substitute.For<ICommandHandler<TestCommand>>()};
             var actualCommandHandlerList = new ICommandHandler[] {commandHandler};
             var expectedEvents = new List<IEvent> {Substitute.For<IEvent>(), Substitute.For<IEvent>()};
-            _target = _factory.Create(inputCommandHandlerList);
 
-            _commandHandlerFilteringService.Filter(inputCommandHandlerList, typeof(TestCommand)).Returns(actualCommandHandlerList);
+            _commandHandlerRegistry.Filter(typeof(TestCommand)).Returns(actualCommandHandlerList);
 
             var command = new TestCommand();
 
@@ -63,12 +59,10 @@ namespace EventEngine.UnitTests.CommandDispatchers
         {
             var commandHandler1 = Substitute.For<ICommandHandler<TestCommand>>();
             var commandHandler2 = Substitute.For<ICommandHandler<TestCommand>>();
-            var inputCommandHandlerList = new ICommandHandler[] {Substitute.For<ICommandHandler<TestCommand>>()};
-            var actualCommandHandlerList = new ICommandHandler[] {commandHandler1, commandHandler2};
+             var actualCommandHandlerList = new ICommandHandler[] {commandHandler1, commandHandler2};
             var expectedEvents = new List<IEvent> {Substitute.For<IEvent>(), Substitute.For<IEvent>()};
-            _target = _factory.Create(inputCommandHandlerList);
-
-            _commandHandlerFilteringService.Filter(inputCommandHandlerList, typeof(TestCommand)).Returns(actualCommandHandlerList);
+         
+            _commandHandlerRegistry.Filter(typeof(TestCommand)).Returns(actualCommandHandlerList);
 
             var command = new TestCommand();
 
@@ -83,7 +77,6 @@ namespace EventEngine.UnitTests.CommandDispatchers
         [Test]
         public void WhenIExecuteACommandWithNoHandlerAnExceptionIsThrown()
         {
-            _target = _factory.Create(new ICommandHandler[] { });
             var expectedCommand = new TestCommand();
 
             try

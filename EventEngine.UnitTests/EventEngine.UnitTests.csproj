@@ -57,10 +57,10 @@
     <Compile Include="PropertyBags\EventTypeUnitTests.cs" />
     <Compile Include="PropertyBags\EventUnitTests.cs" />
     <Compile Include="Providers\DateTimeProviderUnitTests.cs" />
-    <Compile Include="Services\CommandHandlerFilteringServiceUnitTests.cs" />
+    <Compile Include="Services\CommandHandlerRegistryUnitTests.cs" />
     <Compile Include="Services\EventDataDeserializationService.cs" />
     <Compile Include="Services\EventEvaluatorAttributeServiceUnitTests.cs" />
-    <Compile Include="Services\EventEvaluatorFilteringServiceUnitTests.cs" />
+    <Compile Include="Services\EventEvaluatorRegistryUnitTests.cs" />
     <Compile Include="Services\EventTypeServiceUnitTests.cs" />
   </ItemGroup>
   <ItemGroup>

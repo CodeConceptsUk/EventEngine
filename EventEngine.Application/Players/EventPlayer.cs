@@ -8,13 +8,13 @@ namespace EventEngine.Application.Players
 {
     public class EventPlayer : IEventPlayer
     {
-        private readonly IEventEvaluatorFilteringService _eventEvaluatorFilteringService;
+        private readonly IEventEvaluatorRegistry _eventEvaluatorRegistry;
         private readonly IEventDataDeserializationService _eventDataDeserializationService;
 
-        public EventPlayer(IEventEvaluatorFilteringService eventEvaluatorFilteringService,
+        public EventPlayer(IEventEvaluatorRegistry eventEvaluatorRegistry,
             IEventDataDeserializationService eventDataDeserializationService)
         {
-            _eventEvaluatorFilteringService = eventEvaluatorFilteringService;
+            _eventEvaluatorRegistry = eventEvaluatorRegistry;
             _eventDataDeserializationService = eventDataDeserializationService;
         }
 
@@ -23,7 +23,7 @@ namespace EventEngine.Application.Players
         {
             foreach (var @event in events)
             {
-                var eventEvaluators = _eventEvaluatorFilteringService.Filter<TView>(@event.EventType);
+                var eventEvaluators = _eventEvaluatorRegistry.Filter<TView>(@event.EventType);
                 foreach (var eventEvaluator in eventEvaluators)
                 {
                     EvaluateEvent(eventEvaluator, view, @event);

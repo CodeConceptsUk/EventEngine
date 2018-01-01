@@ -10,16 +10,16 @@ namespace EventEngine.UnitTests.Players
 {
     public class EventPlayerUnitTests
     {
-        private IEventEvaluatorFilteringService _eventEvaluatorFilteringService;
+        private IEventEvaluatorRegistry _eventEvaluatorRegistry;
         private IEventPlayer _target;
         private IEventDataDeserializationService _eventDataDeserializationService;
 
         [SetUp]
         public void SetUp()
         {
-            _eventEvaluatorFilteringService = Substitute.For<IEventEvaluatorFilteringService>();
+            _eventEvaluatorRegistry = Substitute.For<IEventEvaluatorRegistry>();
             _eventDataDeserializationService = Substitute.For<IEventDataDeserializationService>();
-            _target = new EventPlayer(_eventEvaluatorFilteringService, _eventDataDeserializationService);
+            _target = new EventPlayer(_eventEvaluatorRegistry, _eventDataDeserializationService);
         }
 
         [Test]
@@ -42,9 +42,9 @@ namespace EventEngine.UnitTests.Players
             _eventDataDeserializationService.Deserialize(typeof(IEventData), events[0].EventData).Returns(eventData1);
             _eventDataDeserializationService.Deserialize(typeof(IEventData), events[1].EventData).Returns(eventData2);
             _eventDataDeserializationService.Deserialize(typeof(IEventData), events[2].EventData).Returns(eventData3);
-            _eventEvaluatorFilteringService.Filter<IView>(events[0].EventType).Returns(new IEventEvaluator[] {evaluator1});
-            _eventEvaluatorFilteringService.Filter<IView>(events[1].EventType).Returns(new IEventEvaluator[] {evaluator2});
-            _eventEvaluatorFilteringService.Filter<IView>(events[2].EventType).Returns(new IEventEvaluator[] {evaluator3});
+            _eventEvaluatorRegistry.Filter<IView>(events[0].EventType).Returns(new IEventEvaluator[] {evaluator1});
+            _eventEvaluatorRegistry.Filter<IView>(events[1].EventType).Returns(new IEventEvaluator[] {evaluator2});
+            _eventEvaluatorRegistry.Filter<IView>(events[2].EventType).Returns(new IEventEvaluator[] {evaluator3});
 
             var view = Substitute.For<IView>();
 

@@ -6,7 +6,7 @@ using EventEngine.ExampleApplication.Events;
 
 namespace EventEngine.ExampleApplication.EventHandlers
 {
-    [EventName("SetDateOfBirthEvent")]
+    [EventName("SetDateOfBirth")]
     [MaximumVersion(1)]
     public class SetDateOfBirthEventHandler : IEventEvaluator<ExampleView, SetDateOfBirthEventData>
     {

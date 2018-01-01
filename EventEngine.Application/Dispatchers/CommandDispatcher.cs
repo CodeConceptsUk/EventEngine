@@ -8,24 +8,22 @@ using EventEngine.Application.Interfaces.Services;
 
 namespace EventEngine.Application.Dispatchers
 {
-    internal class CommandDispatcher : ICommandDispatcher
+    public class CommandDispatcher : ICommandDispatcher
     {
-        private readonly ICommandHandlerFilteringService _commandHandlerFilteringService;
-        private readonly ICommandHandler[] _commandHandlers;
+        private readonly ICommandHandlerRegistry _commandHandlerRegistry;
         private readonly IEventStore _eventStore;
 
-        internal CommandDispatcher(IEventStore eventStore, ICommandHandlerFilteringService commandHandlerFilteringService, params ICommandHandler[] commandHandlers)
+        public CommandDispatcher(IEventStore eventStore, ICommandHandlerRegistry commandHandlerRegistry)
         {
             _eventStore = eventStore;
-            _commandHandlerFilteringService = commandHandlerFilteringService;
-            _commandHandlers = commandHandlers;
+            _commandHandlerRegistry = commandHandlerRegistry;
         }
 
         public void Dispatch<TCommand>(TCommand command)
             where TCommand : ICommand
         {
             var events = new List<IEvent>();
-            var handlers = _commandHandlerFilteringService.Filter(_commandHandlers, command.GetType());
+            var handlers = _commandHandlerRegistry.Filter(command.GetType());
 
             if (!handlers.Any())
                 throw new EventEngineMissingCommandHandlerException(command);

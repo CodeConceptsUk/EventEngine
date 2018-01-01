@@ -48,11 +48,10 @@
     <Compile Include="Interfaces\Services\IEventEvaluatorAttributeService.cs" />
     <Compile Include="Providers\DateTimeProvider.cs" />
     <Compile Include="Services\EventDataSerializationService.cs" />
-    <Compile Include="Services\CommandHandlerFilteringService.cs" />
+    <Compile Include="Services\CommandHandlerRegistry.cs" />
     <Compile Include="Exceptions\EventDeclarationException.cs" />
     <Compile Include="Exceptions\EventEngineException.cs" />
     <Compile Include="Exceptions\EventEngineMissingCommandHandlerException.cs" />
-    <Compile Include="Factories\CommandDispatcherFactory.cs" />
     <Compile Include="Factories\EventFactory.cs" />
     <Compile Include="Interfaces\Commands\ICommandHandler.cs" />
     <Compile Include="Interfaces\Commands\ICommand.cs" />
@@ -61,16 +60,15 @@
     <Compile Include="Interfaces\Events\IEventData.cs" />
     <Compile Include="Interfaces\Events\IEventEvaluator.cs" />
     <Compile Include="Interfaces\Events\IEventPlayer.cs" />
-    <Compile Include="Interfaces\Factories\ICommandDispatcherFactory.cs" />
     <Compile Include="Interfaces\Factories\IEventFactory.cs" />
     <Compile Include="Interfaces\IView.cs" />
     <Compile Include="Interfaces\Providers\IDateTimeProvider.cs" />
     <Compile Include="Interfaces\Repositories\IEventStore.cs" />
     <Compile Include="Interfaces\Events\IEventType.cs" />
-    <Compile Include="Interfaces\Services\ICommandHandlerFilteringService.cs" />
+    <Compile Include="Interfaces\Services\ICommandHandlerRegistry.cs" />
     <Compile Include="Interfaces\Services\IEventDataDeserializationService.cs" />
     <Compile Include="Interfaces\Services\IEventDataSerializationService.cs" />
-    <Compile Include="Interfaces\Services\IEventEvaluatorFilteringService.cs" />
+    <Compile Include="Interfaces\Services\IEventEvaluatorRegistry.cs" />
     <Compile Include="Interfaces\Services\IEventTypeService.cs" />
     <Compile Include="Players\EventPlayer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -78,7 +76,7 @@
     <Compile Include="PropertyBags\EventType.cs" />
     <Compile Include="Services\EventDataDeserializationService.cs" />
     <Compile Include="Services\EventEvaluatorAttributeService.cs" />
-    <Compile Include="Services\EventEvaluatorFilteringService.cs" />
+    <Compile Include="Services\EventEvaluatorRegistry.cs" />
     <Compile Include="Services\EventTypeService.cs" />
   </ItemGroup>
   <ItemGroup>

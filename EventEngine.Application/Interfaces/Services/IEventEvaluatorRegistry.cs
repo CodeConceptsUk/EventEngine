@@ -2,7 +2,7 @@
 
 namespace EventEngine.Application.Interfaces.Services
 {
-    public interface IEventEvaluatorFilteringService
+    public interface IEventEvaluatorRegistry
     {
         IEventEvaluator[] Filter<TView>(IEventType eventType)
             where TView : class, IView;

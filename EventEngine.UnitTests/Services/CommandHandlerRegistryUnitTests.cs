@@ -10,16 +10,18 @@ using NUnit.Framework;
 namespace EventEngine.UnitTests.Services
 {
     [TestFixture]
-    public class CommandHandlerFilteringServiceUnitTests
+    public class CommandHandlerRegistryUnitTests
     {
         [SetUp]
         public void SetUp()
         {
-            _commandHandlerList = new ICommandHandler[] {new CommandACommandHandler(), new CommandACommandHandler2(), new CommandBCommandHandler()};
-            _target = new CommandHandlerFilteringService();
+            _commandHandlerList = new ICommandHandler[] {new CommandACommandHandler(),
+                new CommandACommandHandler2(), new CommandBCommandHandler()};
+            _target = new CommandHandlerRegistry();
+            _target.Register(_commandHandlerList);
         }
 
-        private ICommandHandlerFilteringService _target;
+        private ICommandHandlerRegistry _target;
         private ICommandHandler[] _commandHandlerList;
 
         public class CommandA : ICommand
@@ -61,7 +63,7 @@ namespace EventEngine.UnitTests.Services
         [Test]
         public void WhenThereAreMultipleHandlersForACommandTheyAreAllReturned()
         {
-            var handlers = _target.Filter(_commandHandlerList, typeof(CommandA));
+            var handlers = _target.Filter(typeof(CommandA));
 
             Assert.AreEqual(2, handlers.Length);
             Assert.IsNotNull(handlers.SingleOrDefault(h => h.GetType() == typeof(CommandACommandHandler)));
@@ -71,7 +73,7 @@ namespace EventEngine.UnitTests.Services
         [Test]
         public void WhenThereAreNoHandlersForACommandAnEmptyArrayIsReturned()
         {
-            var handlers = _target.Filter(_commandHandlerList, typeof(CommandC));
+            var handlers = _target.Filter(typeof(CommandC));
 
             Assert.AreEqual(0, handlers.Length);
         }
@@ -79,7 +81,7 @@ namespace EventEngine.UnitTests.Services
         [Test]
         public void WhenThereIsJustOneHandlerForACommandItIsReturned()
         {
-            var handlers = _target.Filter(_commandHandlerList, typeof(CommandB));
+            var handlers = _target.Filter(typeof(CommandB));
 
             Assert.AreEqual(1, handlers.Length);
             Assert.IsNotNull(handlers.SingleOrDefault(h => h.GetType() == typeof(CommandBCommandHandler)));

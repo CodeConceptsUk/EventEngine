@@ -11,16 +11,16 @@ using NUnit.Framework;
 namespace EventEngine.UnitTests.Services
 {
     [TestFixture]
-    public class EventEvaluatorFilteringServiceUnitTests
+    public class EventEvaluatorRegistryUnitTests
     {
-        private IEventEvaluatorFilteringService _target;
+        private IEventEvaluatorRegistry _target;
         private IEventEvaluatorAttributeService _eventEvaluatorAttributeService;
 
         [SetUp]
         public void SetUp()
         {
             _eventEvaluatorAttributeService = Substitute.For<IEventEvaluatorAttributeService>();
-            _target = new EventEvaluatorFilteringService(_eventEvaluatorAttributeService);
+            _target = new EventEvaluatorRegistry(_eventEvaluatorAttributeService);
             _eventEvaluatorAttributeService.Get(Arg.Any<Type>())
                 .Returns((Guid.NewGuid().ToString(), new Version(0, 0), (Version)null));
         }

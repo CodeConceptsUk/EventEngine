@@ -8,6 +8,6 @@ namespace EventEngine.Application.Interfaces.Repositories
     {
         void Add(IEnumerable<IEvent> events);
 
-        IEnumerable<IEvent> Get(Guid? contextId = null, DateTime? from = null, IEventType[] eventType = null);
+        IEnumerable<IEvent> Get(Guid? contextId = null, DateTime? from = null, IEventType[] eventTypes = null);
     }
 }
