@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>EventEngine</id>
+    <version>$version$</version>
+    <authors>Andrew Duff &amp; Matthew Malkin</authors>
+    <licenseUrl>https://raw.githubusercontent.com/CodeConceptsUk/EventEngine/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/CodeConceptsUk/EventEngine</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>.NET Event Sourcing library with support for event versioning and other cool things.</description>
+    <copyright>Copyright Andrew Duff &amp; Matthew Malkin</copyright>
+    <tags>event sourcing, event engine</tags>
+  </metadata>
+  <!--
+  <files>
+     <file src="bin\Release\EventEngine.Application.dll" target="lib\net452" />
+  </files>
+-->
+</package>
