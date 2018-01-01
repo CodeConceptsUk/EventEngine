@@ -4,8 +4,7 @@ namespace EventEngine.Application.Interfaces.Events
 {
     public interface IEventPlayer
     {
-        TView Evaluate<TView, TEvent>(IEnumerable<TEvent> events, TView view)
-            where TView : class, IView
-            where TEvent : class, IEvent;
+        void Play<TView>(IEnumerable<IEvent> events, TView view)
+            where TView : class, IView;
     }
 }

@@ -1,21 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using EventEngine.Application.Exceptions;
 using EventEngine.Application.Interfaces.Commands;
 using EventEngine.Application.Interfaces.Events;
 using EventEngine.Application.Interfaces.Repositories;
+using EventEngine.Application.Interfaces.Services;
 
 namespace EventEngine.Application.Dispatchers
 {
     internal class CommandDispatcher : ICommandDispatcher
     {
         private readonly IEventStore _eventStore;
+        private readonly ICommandHandlerFilteringService _commandHandlerFilteringService;
         private readonly ICommandHandler[] _commandHandlers;
 
-        internal CommandDispatcher(IEventStore eventStore, params ICommandHandler[] commandHandlers)
+        internal CommandDispatcher(IEventStore eventStore, ICommandHandlerFilteringService commandHandlerFilteringService, params ICommandHandler[] commandHandlers)
         {
             _eventStore = eventStore;
+            _commandHandlerFilteringService = commandHandlerFilteringService;
             _commandHandlers = commandHandlers;
         }
 
@@ -23,7 +25,7 @@ namespace EventEngine.Application.Dispatchers
             where TCommand : ICommand
         {
             var events = new List<IEvent>();
-            var handlers = GetHandlers(command.GetType()).ToArray();
+            var handlers = _commandHandlerFilteringService.Filter(_commandHandlers, command.GetType());
 
             if (!handlers.Any())
                 throw new EventEngineMissingCommandHandlerException(command);
@@ -35,13 +37,6 @@ namespace EventEngine.Application.Dispatchers
             }
             _eventStore.Add(events);
         }
-
-        public ICommandHandler[] GetHandlers(Type command)
-        {
-            return _commandHandlers.Where(t => t.GetType()
-                .GetInterfaces()
-                .Any(i => i.GetGenericArguments().Contains(command)))
-                .ToArray();
-        }
+        
     }
 }
