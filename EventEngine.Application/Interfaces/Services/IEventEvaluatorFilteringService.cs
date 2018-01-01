@@ -4,7 +4,9 @@ namespace EventEngine.Application.Interfaces.Services
 {
     public interface IEventEvaluatorFilteringService
     {
-        IEventEvaluator[] Filter<TView>(IEventEvaluator[] eventEvaluators, IEventType eventType)
+        IEventEvaluator[] Filter<TView>(IEventType eventType)
             where TView : class, IView;
+
+        void Register(params IEventEvaluator[] eventEvaluators );
     }
 }

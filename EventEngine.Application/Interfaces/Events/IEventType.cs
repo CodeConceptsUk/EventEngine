@@ -4,7 +4,7 @@ namespace EventEngine.Application.Interfaces.Events
 {
     public interface IEventType
     {
-        string Type { get; }
+        string Name { get; }
 
         Version Version { get; }
     }

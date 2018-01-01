@@ -13,45 +13,55 @@ namespace EventEngine.UnitTests.Services
     [TestFixture]
     public class EventEvaluatorFilteringServiceUnitTests
     {
+        private IEventEvaluatorFilteringService _target;
+        private IEventEvaluatorAttributeService _eventEvaluatorAttributeService;
+
         [SetUp]
         public void SetUp()
         {
-            _target = new EventEvaluatorFilteringService();
+            _eventEvaluatorAttributeService = Substitute.For<IEventEvaluatorAttributeService>();
+            _target = new EventEvaluatorFilteringService(_eventEvaluatorAttributeService);
+            _eventEvaluatorAttributeService.Get(Arg.Any<Type>())
+                .Returns((Guid.NewGuid().ToString(), new Version(0, 0), (Version)null));
         }
 
-        private IEventEvaluatorFilteringService _target;
-
-        private static IEventEvaluator CreateEventEvaluatorSubstitute(bool interfaceMatches, bool nameMatches, string minimumVersion, string maximumVersion, string expectedEventName, Version expectedVersion)
+        private IEventEvaluator CreateEventEvaluatorSubstitute(bool interfaceMatches, bool nameMatches,
+            string minimumVersionCondition, string maximumVersionCondition, string expectedEventName, Version expectedVersion)
         {
-            var eventEvaluator = interfaceMatches ? (IEventEvaluator) Substitute.For<IEventEvaluator<TestView>>() : Substitute.For<IEventEvaluator<SomeOtherView>>();
-            eventEvaluator.Name.Returns(nameMatches ? expectedEventName : Guid.NewGuid().ToString());
-            switch (minimumVersion) // is {} than event version
+            var eventEvaluator = interfaceMatches ? (IEventEvaluator)Substitute.For<IEventEvaluator<TestView>>() : Substitute.For<IEventEvaluator<SomeOtherView>>();
+            Version minimumVersion = null;
+            Version maximumVersion = null;
+            var eventName = nameMatches ? expectedEventName : Guid.NewGuid().ToString();
+
+            switch (minimumVersionCondition) // is {} than event version
             {
                 case "LT":
-                    eventEvaluator.MinimumVersion.Returns(new Version(expectedVersion.Major, expectedVersion.Minor, expectedVersion.Build, expectedVersion.Revision - 1));
+                    minimumVersion = new Version(expectedVersion.Major, expectedVersion.Minor, expectedVersion.Build, expectedVersion.Revision - 1);
                     break;
                 case "EQ":
-                    eventEvaluator.MinimumVersion.Returns(expectedVersion);
+                    minimumVersion = expectedVersion;
                     break;
                 case "GT":
-                    eventEvaluator.MinimumVersion.Returns(new Version(expectedVersion.Major, expectedVersion.Minor, expectedVersion.Build, expectedVersion.Revision + 1));
+                    minimumVersion = new Version(expectedVersion.Major, expectedVersion.Minor, expectedVersion.Build, expectedVersion.Revision + 1);
                     break;
             }
-            switch (maximumVersion) // is {} than event version
+            switch (maximumVersionCondition) // is {} than event version
             {
                 case "LT":
-                    eventEvaluator.MaximumVersion.Returns(new Version(expectedVersion.Major, expectedVersion.Minor, expectedVersion.Build, expectedVersion.Revision - 1));
+                    maximumVersion = new Version(expectedVersion.Major, expectedVersion.Minor, expectedVersion.Build, expectedVersion.Revision - 1);
                     break;
                 case "EQ":
-                    eventEvaluator.MaximumVersion.Returns(expectedVersion);
+                    maximumVersion = expectedVersion;
                     break;
                 case "GT":
-                    eventEvaluator.MaximumVersion.Returns(new Version(expectedVersion.Major, expectedVersion.Minor, expectedVersion.Build, expectedVersion.Revision + 1));
+                    maximumVersion = new Version(expectedVersion.Major, expectedVersion.Minor, expectedVersion.Build, expectedVersion.Revision + 1);
                     break;
                 case null:
-                    eventEvaluator.MaximumVersion.Returns((Version) null);
+                    maximumVersion = (Version)null;
                     break;
             }
+
+            _eventEvaluatorAttributeService.Get(eventEvaluator.GetType()).Returns((eventName, minimumVersion, maximumVersion));
             return eventEvaluator;
         }
 
@@ -68,35 +78,36 @@ namespace EventEngine.UnitTests.Services
             [Values(1, 2, 3)] int matchingQuantity,
             [Values(true, false)] bool interfaceMatches,
             [Values(true, false)] bool nameMatches,
-            [Values("LT", "EQ", "GT")] string minimumVersion,
-            [Values("LT", "EQ", "GT", null)] string maximumVersion)
+            [Values("LT", "EQ", "GT")] string minimumVersionCondition,
+            [Values("LT", "EQ", "GT", null)] string maximumVersionCondition)
         {
-            var evaluators = new List<IEventEvaluator>();
-
             var expectedEventName = Guid.NewGuid().ToString();
             var expectedVersion = new Version(1, 2, 3, 4);
 
             var eventType = Substitute.For<IEventType>();
-            eventType.Type.Returns(expectedEventName);
+            eventType.Name.Returns(expectedEventName);
             eventType.Version.Returns(expectedVersion);
 
             var shouldMatch = interfaceMatches
                               && nameMatches
-                              && (minimumVersion == "EQ" || minimumVersion == "LT") // minimum version is {} than event version
-                              && (maximumVersion == null || maximumVersion == "GT" || maximumVersion == "EQ"); // maximum version is {} than event version
+                              && (minimumVersionCondition == "EQ" || minimumVersionCondition == "LT") // minimum version is {} than event version
+                              && (maximumVersionCondition == null || maximumVersionCondition == "GT" || maximumVersionCondition == "EQ"); // maximum version is {} than event version
+
+            Console.WriteLine(shouldMatch ? "Expecting to match" : "Expecting no matches");
 
             var expectedEvaluators = new List<IEventEvaluator>();
 
             for (var i = 1; i <= matchingQuantity; i++)
-                expectedEvaluators.Add(CreateEventEvaluatorSubstitute(interfaceMatches, nameMatches, minimumVersion, maximumVersion, expectedEventName, expectedVersion));
+            {
+                var expectedEvaluator = CreateEventEvaluatorSubstitute(interfaceMatches, nameMatches, minimumVersionCondition,
+                    maximumVersionCondition, expectedEventName, expectedVersion);
+                expectedEvaluators.Add(expectedEvaluator);
+                _target.Register(expectedEvaluator);
+            }
 
-            evaluators.AddRange(expectedEvaluators);
-            evaluators.Add(Substitute.For<IEventEvaluator>());
-            evaluators.Add(Substitute.For<IEventEvaluator>());
-            evaluators.Add(Substitute.For<IEventEvaluator>());
-            evaluators.Add(Substitute.For<IEventEvaluator>());
+            _target.Register(Substitute.For<IEventEvaluator<SomeOtherView>>());
 
-            var matchingEvaluators = _target.Filter<TestView>(evaluators.ToArray(), eventType);
+            var matchingEvaluators = _target.Filter<TestView>(eventType);
 
             if (!shouldMatch)
             {

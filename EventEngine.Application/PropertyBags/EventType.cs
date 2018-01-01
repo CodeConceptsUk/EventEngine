@@ -7,11 +7,11 @@ namespace EventEngine.Application.PropertyBags
     {
         public EventType(string type, Version version)
         {
-            Type = type;
+            Name = type;
             Version = version;
         }
 
-        public string Type { get; }
+        public string Name { get; }
 
         public Version Version { get; }
     }

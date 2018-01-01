@@ -24,7 +24,7 @@ namespace EventEngine.UnitTests.PropertyBags
             _target = new EventType(expectedType, expectedVersion);
 
             Assert.AreSame(expectedVersion, _target.Version);
-            Assert.AreEqual(expectedType, _target.Type);
+            Assert.AreEqual(expectedType, _target.Name);
         }
     }
 }

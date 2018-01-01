@@ -42,7 +42,7 @@ namespace EventEngine.UnitTests.Services
 
             var result = _target.Get<Event2>();
 
-            Assert.AreEqual(expectedType, result.Type);
+            Assert.AreEqual(expectedType, result.Name);
             Assert.AreEqual(expectedVersion, result.Version);
         }
 
@@ -54,7 +54,7 @@ namespace EventEngine.UnitTests.Services
 
             var result = _target.Get<Event1>();
 
-            Assert.AreEqual(expectedType, result.Type);
+            Assert.AreEqual(expectedType, result.Name);
             Assert.AreEqual(expectedVersion, result.Version);
         }
 

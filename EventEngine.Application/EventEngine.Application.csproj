@@ -21,6 +21,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <LangVersion>7</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -44,6 +45,7 @@
     <Compile Include="Dispatchers\CommandDispatcher.cs" />
     <Compile Include="Attributes\MinimumVersionAttribute.cs" />
     <Compile Include="Attributes\VersionAttribute.cs" />
+    <Compile Include="Interfaces\Services\IEventEvaluatorAttributeService.cs" />
     <Compile Include="Providers\DateTimeProvider.cs" />
     <Compile Include="Services\EventDataSerializationService.cs" />
     <Compile Include="Services\CommandHandlerFilteringService.cs" />
@@ -77,6 +79,7 @@
     <Compile Include="PropertyBags\Event.cs" />
     <Compile Include="PropertyBags\EventType.cs" />
     <Compile Include="Services\EventDataDeserializationService.cs" />
+    <Compile Include="Services\EventEvaluatorAttributeService.cs" />
     <Compile Include="Services\EventEvaluatorFilteringService.cs" />
     <Compile Include="Services\EventTypeService.cs" />
   </ItemGroup>

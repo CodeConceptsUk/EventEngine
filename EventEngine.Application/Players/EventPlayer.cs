@@ -21,7 +21,7 @@ namespace EventEngine.Application.Players
         {
             foreach (var @event in events)
             {
-                var eventEvaluators = _eventEvaluatorFilteringService.Filter<TView>(_eventEvaluators, @event.EventType);
+                var eventEvaluators = _eventEvaluatorFilteringService.Filter<TView>(@event.EventType);
                 foreach (var eventEvaluator in eventEvaluators)
                     ((IEventEvaluator<TView>) eventEvaluator).EvaluateGenericEvent(view, @event);
             }
