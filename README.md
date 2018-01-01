@@ -1,4 +1,7 @@
 # EventEngine
+
+[![Build status](https://ci.appveyor.com/api/projects/status/s43g0nu23aqks25i/branch/master?svg=true)](https://ci.appveyor.com/project/m3zercat/eventengine/branch/master)
+
 CodeConcepts EventEngine is a library to provide an implementation of event sourcing that should be easily reusable, including event versioning and many other goodies! Woo
 
 +=======================+==========================================================
