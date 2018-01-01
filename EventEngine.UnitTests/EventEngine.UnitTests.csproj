@@ -56,6 +56,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PropertyBags\EventTypeUnitTests.cs" />
     <Compile Include="PropertyBags\EventUnitTests.cs" />
+    <Compile Include="Providers\DateTimeProviderUnitTests.cs" />
     <Compile Include="Services\CommandHandlerFilteringServiceUnitTests.cs" />
     <Compile Include="Services\EventDataDeserializationService.cs" />
     <Compile Include="Services\EventEvaluatorFilteringServiceUnitTests.cs" />
