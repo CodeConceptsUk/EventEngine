@@ -18,9 +18,9 @@ namespace EventEngine.ExampleApplication.CommandHandlers
 
         public IEnumerable<IEvent> Execute(SetDateOfBirthCommand command)
         {
-            var setNameEventData = new SetDateOfBirthEventData {DateOfBirth = command.DateOfBirth};
+            var setNameEventData = new SetDateOfBirthEventData { DateOfBirth = command.DateOfBirth };
             var @event = _eventFactory.Create(command.ContextId, setNameEventData);
-            return new[] {@event};
+            return new[] { @event };
         }
     }
 }

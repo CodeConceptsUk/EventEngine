@@ -29,7 +29,7 @@ namespace EventEngine.Application
 
         public void EvaluateGenericEvent(TView view, IEvent @event)
         {
-            var eventData = _eventDataDeserializationService.Serialize<TEventData>(@event.EventData);
+            var eventData = _eventDataDeserializationService.Deserialize<TEventData>(@event.EventData);
             Evaluate(view, @event, eventData);
         }
 
