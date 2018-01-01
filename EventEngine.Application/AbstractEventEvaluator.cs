@@ -10,8 +10,11 @@ namespace EventEngine.Application
        where TEventData : IEventData
        where TView : class, IView
     {
-        protected AbstractEventEvaluator()
+        private readonly IEventDataDeserializationService _eventDataDeserializationService;
+
+        protected AbstractEventEvaluator(IEventDataDeserializationService eventDataDeserializationService)
         {
+            _eventDataDeserializationService = eventDataDeserializationService;
             MinimumVersion = GetMinimumVersion().Version;
             MaximumVersion = GetMaximumVersion()?.Version;
             Name = GetName().Name;
@@ -27,31 +30,32 @@ namespace EventEngine.Application
 
         public void EvaluateGenericEvent(TView view, IEvent @event)
         {
-            
+            var eventData = _eventDataDeserializationService.Serialize<TEventData>(@event.EventData);
+            Evaluate(view, @event, eventData);
         }
 
         private EventNameAttribute GetName()
         {
-            var eventName = (EventNameAttribute)GetType()
+            var attribute = (EventNameAttribute)GetType()
                 .GetCustomAttributes(typeof(EventNameAttribute), true)
                 .Single();
-            return eventName;
+            return attribute;
         }
 
         private MinimumVersionAttribute GetMinimumVersion()
         {
-            var minimumVersion = (MinimumVersionAttribute)GetType()
+            var attribute = (MinimumVersionAttribute)GetType()
                 .GetCustomAttributes(typeof(MinimumVersionAttribute), true)
                 .SingleOrDefault() ?? new MinimumVersionAttribute();
-            return minimumVersion;
+            return attribute;
         }
 
         private MaximumVersionAttribute GetMaximumVersion()
         {
-            var minimumVersion = (MaximumVersionAttribute)GetType()
+            var attribute = (MaximumVersionAttribute)GetType()
                 .GetCustomAttributes(typeof(MaximumVersionAttribute), true)
                 .SingleOrDefault();
-            return minimumVersion;
+            return attribute;
         }
     }
 }
