@@ -10,9 +10,9 @@ namespace EventEngine.UnitTests.Players
 {
     public class EventPlayerUnitTests
     {
+        private IEventEvaluatorFilteringService _eventEvaluatorFilteringService;
         private IEventPlayerFactory _factory;
         private IEventPlayer _target;
-        private IEventEvaluatorFilteringService _eventEvaluatorFilteringService;
 
         [SetUp]
         public void SetUp()
@@ -24,7 +24,7 @@ namespace EventEngine.UnitTests.Players
         [Test]
         public void WhenIRunMultipleEventsOnTheEventPlayerTheyAreEvaluated()
         {
-            var eventEvaluators = new[] { Substitute.For<IEventEvaluator>() };
+            var eventEvaluators = new[] {Substitute.For<IEventEvaluator>()};
             _target = _factory.Create(eventEvaluators);
 
             var eventType1 = Substitute.For<IEventType>();
@@ -46,9 +46,9 @@ namespace EventEngine.UnitTests.Players
             events[1].EventType.Returns(eventType2);
             events[2].EventType.Returns(eventType3);
 
-            _eventEvaluatorFilteringService.Filter<IView>(eventEvaluators, eventType1).Returns(new IEventEvaluator[] { evaluator1 });
-            _eventEvaluatorFilteringService.Filter<IView>(eventEvaluators, eventType2).Returns(new IEventEvaluator[] { evaluator2 });
-            _eventEvaluatorFilteringService.Filter<IView>(eventEvaluators, eventType3).Returns(new IEventEvaluator[] { evaluator3 });
+            _eventEvaluatorFilteringService.Filter<IView>(eventEvaluators, eventType1).Returns(new IEventEvaluator[] {evaluator1});
+            _eventEvaluatorFilteringService.Filter<IView>(eventEvaluators, eventType2).Returns(new IEventEvaluator[] {evaluator2});
+            _eventEvaluatorFilteringService.Filter<IView>(eventEvaluators, eventType3).Returns(new IEventEvaluator[] {evaluator3});
 
             var view = Substitute.For<IView>();
 

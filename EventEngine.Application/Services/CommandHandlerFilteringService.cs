@@ -12,7 +12,7 @@ namespace EventEngine.Application.Services
             return commandHandlers.Where(t => t.GetType()
                     .GetInterfaces()
                     .Any(i => i.GetGenericArguments().Contains(commandType)))
-                    .ToArray();
+                .ToArray();
         }
     }
 }

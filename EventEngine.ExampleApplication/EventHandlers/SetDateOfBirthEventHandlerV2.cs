@@ -7,7 +7,7 @@ using EventEngine.ExampleApplication.Events;
 namespace EventEngine.ExampleApplication.EventHandlers
 {
     [EventName("SetDateOfBirth")]
-    [MinimumVersion( 2)]
+    [MinimumVersion(2)]
     public class SetDateOfBirthEventHandlerV2 : AbstractEventEvaluator<SetDateOfBirthEventDataV2, ExampleView>
     {
         public SetDateOfBirthEventHandlerV2(IEventDataDeserializationService eventDataDeserializationService) : base(eventDataDeserializationService)

@@ -18,9 +18,9 @@ namespace EventEngine.ExampleApplication.CommandHandlers
 
         public IEnumerable<IEvent> Execute(SetNameCommand command)
         {
-            var setNameEventData = new SetNameEventData { Name = command.Name };
+            var setNameEventData = new SetNameEventData {Name = command.Name};
             var @event = _eventFactory.Create(command.ContextId, setNameEventData);
-            return new[] { @event };
+            return new[] {@event};
         }
     }
 }

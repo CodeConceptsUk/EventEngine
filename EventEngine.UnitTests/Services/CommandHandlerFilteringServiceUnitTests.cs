@@ -9,19 +9,53 @@ using NUnit.Framework;
 
 namespace EventEngine.UnitTests.Services
 {
-
     [TestFixture]
     public class CommandHandlerFilteringServiceUnitTests
     {
-
-        private ICommandHandlerFilteringService _target;
-        private ICommandHandler[] _commandHandlerList;
-
         [SetUp]
         public void SetUp()
         {
             _commandHandlerList = new ICommandHandler[] {new CommandACommandHandler(), new CommandACommandHandler2(), new CommandBCommandHandler()};
             _target = new CommandHandlerFilteringService();
+        }
+
+        private ICommandHandlerFilteringService _target;
+        private ICommandHandler[] _commandHandlerList;
+
+        public class CommandA : ICommand
+        {
+        }
+
+        public class CommandB : ICommand
+        {
+        }
+
+        public class CommandC : ICommand
+        {
+        }
+
+        public class CommandACommandHandler : ICommandHandler<CommandA>
+        {
+            public IEnumerable<IEvent> Execute(CommandA command)
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public class CommandACommandHandler2 : ICommandHandler<CommandA>
+        {
+            public IEnumerable<IEvent> Execute(CommandA command)
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public class CommandBCommandHandler : ICommandHandler<CommandB>
+        {
+            public IEnumerable<IEvent> Execute(CommandB command)
+            {
+                throw new NotImplementedException();
+            }
         }
 
         [Test]
@@ -35,15 +69,6 @@ namespace EventEngine.UnitTests.Services
         }
 
         [Test]
-        public void WhenThereIsJustOneHandlerForACommandItIsReturned()
-        {
-            var handlers = _target.Filter(_commandHandlerList, typeof(CommandB));
-
-            Assert.AreEqual(1, handlers.Length);
-            Assert.IsNotNull(handlers.SingleOrDefault(h => h.GetType() == typeof(CommandBCommandHandler)));
-        }
-
-        [Test]
         public void WhenThereAreNoHandlersForACommandAnEmptyArrayIsReturned()
         {
             var handlers = _target.Filter(_commandHandlerList, typeof(CommandC));
@@ -51,41 +76,13 @@ namespace EventEngine.UnitTests.Services
             Assert.AreEqual(0, handlers.Length);
         }
 
-        public class CommandA : ICommand
+        [Test]
+        public void WhenThereIsJustOneHandlerForACommandItIsReturned()
         {
+            var handlers = _target.Filter(_commandHandlerList, typeof(CommandB));
 
+            Assert.AreEqual(1, handlers.Length);
+            Assert.IsNotNull(handlers.SingleOrDefault(h => h.GetType() == typeof(CommandBCommandHandler)));
         }
-        public class CommandB : ICommand
-        {
-
-        }
-        public class CommandC : ICommand
-        {
-
-        }
-
-        public class CommandACommandHandler : ICommandHandler<CommandA>
-        {
-            public IEnumerable<IEvent> Execute(CommandA command)
-            {
-                throw new NotImplementedException();
-            }
-        }
-        public class CommandACommandHandler2 : ICommandHandler<CommandA>
-        {
-            public IEnumerable<IEvent> Execute(CommandA command)
-            {
-                throw new NotImplementedException();
-            }
-        }
-        public class CommandBCommandHandler : ICommandHandler<CommandB>
-        {
-            public IEnumerable<IEvent> Execute(CommandB command)
-            {
-                throw new NotImplementedException();
-            }
-        }
-
-
     }
 }

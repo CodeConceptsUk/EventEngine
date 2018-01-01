@@ -8,6 +8,17 @@ namespace EventEngine.UnitTests.Attributes
     public class VersionAttributeUnitTests
     {
         [Test]
+        public void AssertThatTheAttributeTargetsCorrectly()
+        {
+            var attributeUsage = (AttributeUsageAttribute) typeof(VersionAttribute)
+                .GetCustomAttributes(typeof(AttributeUsageAttribute), true)[0];
+
+            Assert.AreEqual(AttributeTargets.Class, attributeUsage.ValidOn);
+            Assert.IsTrue(attributeUsage.Inherited);
+            Assert.IsFalse(attributeUsage.AllowMultiple);
+        }
+
+        [Test]
         public void WhenCreateAVersionAttributeItIsCreated()
         {
             var expectedVersion = new Version(1, 2, 3, 4);
@@ -16,17 +27,6 @@ namespace EventEngine.UnitTests.Attributes
                 expectedVersion.Build, expectedVersion.Revision);
 
             Assert.AreEqual(expectedVersion, target.Version);
-        }
-
-        [Test]
-        public void AssertThatTheAttributeTargetsCorrectly()
-        {
-            var attributeUsage = (AttributeUsageAttribute)typeof(VersionAttribute)
-                .GetCustomAttributes(typeof(AttributeUsageAttribute), true)[0];
-
-            Assert.AreEqual(AttributeTargets.Class, attributeUsage.ValidOn);
-            Assert.IsTrue(attributeUsage.Inherited);
-            Assert.IsFalse(attributeUsage.AllowMultiple);
         }
     }
 }

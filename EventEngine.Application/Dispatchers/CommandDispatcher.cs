@@ -10,9 +10,9 @@ namespace EventEngine.Application.Dispatchers
 {
     internal class CommandDispatcher : ICommandDispatcher
     {
-        private readonly IEventStore _eventStore;
         private readonly ICommandHandlerFilteringService _commandHandlerFilteringService;
         private readonly ICommandHandler[] _commandHandlers;
+        private readonly IEventStore _eventStore;
 
         internal CommandDispatcher(IEventStore eventStore, ICommandHandlerFilteringService commandHandlerFilteringService, params ICommandHandler[] commandHandlers)
         {
@@ -33,10 +33,9 @@ namespace EventEngine.Application.Dispatchers
             foreach (var handler in handlers)
             {
                 var executionMethodInfo = handler.GetType().GetMethod(nameof(ICommandHandler<ICommand>.Execute));
-                events.AddRange((IEnumerable<IEvent>)executionMethodInfo.Invoke(handler, new object[] { command }));
+                events.AddRange((IEnumerable<IEvent>) executionMethodInfo.Invoke(handler, new object[] {command}));
             }
             _eventStore.Add(events);
         }
-        
     }
 }

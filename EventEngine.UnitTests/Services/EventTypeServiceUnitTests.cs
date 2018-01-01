@@ -8,29 +8,30 @@ using NUnit.Framework;
 
 namespace EventEngine.UnitTests.Services
 {
-
     [TestFixture]
     public class EventTypeServiceUnitTests
     {
-
-        private IEventTypeService _target;
-
         [SetUp]
         public void SetUp()
         {
             _target = new EventTypeService();
         }
 
-        [Test]
-        public void WhenIGetTheEventTypeForAnEventWhichHasNoVersionAttributeADefaultVersionIsReturned()
+        private IEventTypeService _target;
+
+        public class NonEvent : IEventData
         {
-            const string expectedType = nameof(Event1);
-            var expectedVersion = new Version(0, 0, 0, 0);
+        }
 
-            var result = _target.Get<Event1>();
+        [EventName(nameof(Event1))]
+        public class Event1 : IEventData
+        {
+        }
 
-            Assert.AreEqual(expectedType, result.Type);
-            Assert.AreEqual(expectedVersion, result.Version);
+        [EventName(nameof(Event2))]
+        [Version(1, 2, 3, 4)]
+        public class Event2 : IEventData
+        {
         }
 
         [Test]
@@ -40,6 +41,18 @@ namespace EventEngine.UnitTests.Services
             var expectedVersion = new Version(1, 2, 3, 4);
 
             var result = _target.Get<Event2>();
+
+            Assert.AreEqual(expectedType, result.Type);
+            Assert.AreEqual(expectedVersion, result.Version);
+        }
+
+        [Test]
+        public void WhenIGetTheEventTypeForAnEventWhichHasNoVersionAttributeADefaultVersionIsReturned()
+        {
+            const string expectedType = nameof(Event1);
+            var expectedVersion = new Version(0, 0, 0, 0);
+
+            var result = _target.Get<Event1>();
 
             Assert.AreEqual(expectedType, result.Type);
             Assert.AreEqual(expectedVersion, result.Version);
@@ -59,24 +72,5 @@ namespace EventEngine.UnitTests.Services
                 Assert.AreEqual(expectedMessage, eventDeclarationException.Message);
             }
         }
-
-        public class NonEvent : IEventData
-        {
-            
-        }
-
-        [EventName(nameof(Event1))]
-        public class Event1 : IEventData
-        {
-            
-        }
-
-        [EventName(nameof(Event2))]
-        [Version(1,2,3,4)]
-        public class Event2 : IEventData
-        {
-            
-        }
-
     }
 }

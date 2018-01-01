@@ -8,8 +8,8 @@ using EventEngine.Application.Interfaces.Services;
 namespace EventEngine.Application
 {
     public abstract class AbstractEventEvaluator<TEventData, TView> : IEventEvaluator<TView>
-       where TEventData : IEventData
-       where TView : class, IView
+        where TEventData : IEventData
+        where TView : class, IView
     {
         private readonly IEventDataDeserializationService _eventDataDeserializationService;
 
@@ -27,17 +27,17 @@ namespace EventEngine.Application
 
         public Version MaximumVersion { get; }
 
-        public abstract void Evaluate(TView view, IEvent @event, TEventData eventData);
-
         public void EvaluateGenericEvent(TView view, IEvent @event)
         {
             var eventData = _eventDataDeserializationService.Serialize<TEventData>(@event.EventData);
             Evaluate(view, @event, eventData);
         }
 
+        public abstract void Evaluate(TView view, IEvent @event, TEventData eventData);
+
         private EventNameAttribute GetName()
         {
-            var attribute = (EventNameAttribute)GetType()
+            var attribute = (EventNameAttribute) GetType()
                 .GetCustomAttributes(typeof(EventNameAttribute), true)
                 .Single();
             return attribute;
@@ -45,15 +45,15 @@ namespace EventEngine.Application
 
         private MinimumVersionAttribute GetMinimumVersion()
         {
-            var attribute = (MinimumVersionAttribute)GetType()
-                .GetCustomAttributes(typeof(MinimumVersionAttribute), true)
-                .SingleOrDefault() ?? new MinimumVersionAttribute();
+            var attribute = (MinimumVersionAttribute) GetType()
+                                .GetCustomAttributes(typeof(MinimumVersionAttribute), true)
+                                .SingleOrDefault() ?? new MinimumVersionAttribute();
             return attribute;
         }
 
         private MaximumVersionAttribute GetMaximumVersion()
         {
-            var attribute = (MaximumVersionAttribute)GetType()
+            var attribute = (MaximumVersionAttribute) GetType()
                 .GetCustomAttributes(typeof(MaximumVersionAttribute), true)
                 .SingleOrDefault();
             return attribute;

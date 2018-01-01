@@ -4,7 +4,7 @@ namespace EventEngine.Application.Interfaces.Services
 {
     public interface IEventTypeService
     {
-        IEventType Get<TEventData>() 
+        IEventType Get<TEventData>()
             where TEventData : IEventData;
     }
 }

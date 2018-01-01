@@ -3,7 +3,7 @@ using EventEngine.Application.Interfaces.Events;
 
 namespace EventEngine.Application.PropertyBags
 {
-    public class Event : IEvent 
+    public class Event : IEvent
     {
         internal Event(Guid contextId, IEventType eventType, string eventData, DateTime eventDateTime)
         {
@@ -12,7 +12,7 @@ namespace EventEngine.Application.PropertyBags
             EventData = eventData;
             EventDateTime = eventDateTime;
         }
-        
+
         public Guid ContextId { get; }
 
         public DateTime EventDateTime { get; }

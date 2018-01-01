@@ -14,9 +14,9 @@ namespace EventEngine.Application.Services
                 .Where(e => e.GetType()
                                 .GetInterfaces()
                                 .Any(i => i == typeof(IEventEvaluator<TView>))
-                            && e.Name.Equals(eventType.Type) 
-                            && eventType.Version >= e.MinimumVersion 
-                            && (e.MaximumVersion == null 
+                            && e.Name.Equals(eventType.Type)
+                            && eventType.Version >= e.MinimumVersion
+                            && (e.MaximumVersion == null
                                 || eventType.Version <= e.MaximumVersion))
                 .ToArray();
         }

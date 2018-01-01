@@ -9,20 +9,20 @@ namespace EventEngine.Application.Factories
 {
     public class EventFactory : IEventFactory
     {
+        private readonly IDateTimeProvider _dateTimeProvider;
         private readonly IEventDataSerializationService _eventDataSerializationService;
         private readonly IEventTypeService _eventTypeService;
-        private readonly IDateTimeProvider _dateTimeProvider;
 
         public EventFactory(IEventDataSerializationService eventDataSerializationService,
-                            IEventTypeService eventTypeService,
-                            IDateTimeProvider dateTimeProvider)
+            IEventTypeService eventTypeService,
+            IDateTimeProvider dateTimeProvider)
         {
             _eventDataSerializationService = eventDataSerializationService;
             _eventTypeService = eventTypeService;
             _dateTimeProvider = dateTimeProvider;
         }
 
-        public IEvent Create <TEventData>(Guid contextId, TEventData eventData)
+        public IEvent Create<TEventData>(Guid contextId, TEventData eventData)
             where TEventData : IEventData
         {
             var serializedEventData = _eventDataSerializationService.Serialize(eventData);

@@ -10,9 +10,9 @@ namespace EventEngine.Application.Interfaces.Events
 
         Version MaximumVersion { get; }
     }
-        
+
     public interface IEventEvaluator<in TView> : IEventEvaluator
-     where TView : class, IView
+        where TView : class, IView
     {
         void EvaluateGenericEvent(TView view, IEvent @event);
     }

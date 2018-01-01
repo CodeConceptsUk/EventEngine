@@ -11,12 +11,10 @@ namespace EventEngine.Application.Services
     {
         public IEventType Get<TEventData>() where TEventData : IEventData
         {
-            var eventName = (EventNameAttribute)typeof(TEventData).GetCustomAttributes(typeof(EventNameAttribute), true).SingleOrDefault();
+            var eventName = (EventNameAttribute) typeof(TEventData).GetCustomAttributes(typeof(EventNameAttribute), true).SingleOrDefault();
             if (string.IsNullOrWhiteSpace(eventName?.Name))
-            {
                 throw new EventDeclarationException($"Event '{typeof(TEventData).Name}' is missing the EventName attribute or the attribute has no value!");
-            }
-            var eventTarget = (VersionAttribute)typeof(TEventData).GetCustomAttributes(typeof(VersionAttribute), true).SingleOrDefault() ?? new VersionAttribute();
+            var eventTarget = (VersionAttribute) typeof(TEventData).GetCustomAttributes(typeof(VersionAttribute), true).SingleOrDefault() ?? new VersionAttribute();
             return new EventType(eventName.Name, eventTarget.Version);
         }
     }

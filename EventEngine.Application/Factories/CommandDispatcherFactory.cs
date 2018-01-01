@@ -8,8 +8,8 @@ namespace EventEngine.Application.Factories
 {
     public class CommandDispatcherFactory : ICommandDispatcherFactory
     {
-        private readonly IEventStore _eventStore;
         private readonly ICommandHandlerFilteringService _commandHandlerFilteringService;
+        private readonly IEventStore _eventStore;
 
         public CommandDispatcherFactory(IEventStore eventStore, ICommandHandlerFilteringService commandHandlerFilteringService)
         {

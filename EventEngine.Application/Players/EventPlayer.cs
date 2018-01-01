@@ -23,11 +23,8 @@ namespace EventEngine.Application.Players
             {
                 var eventEvaluators = _eventEvaluatorFilteringService.Filter<TView>(_eventEvaluators, @event.EventType);
                 foreach (var eventEvaluator in eventEvaluators)
-                {
-                    ((IEventEvaluator<TView>)eventEvaluator).EvaluateGenericEvent(view, @event);
-                }
+                    ((IEventEvaluator<TView>) eventEvaluator).EvaluateGenericEvent(view, @event);
             }
         }
-        
     }
 }

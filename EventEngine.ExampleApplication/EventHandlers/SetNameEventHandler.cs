@@ -18,6 +18,4 @@ namespace EventEngine.ExampleApplication.EventHandlers
             view.Name = eventData.Name;
         }
     }
-
-    
 }

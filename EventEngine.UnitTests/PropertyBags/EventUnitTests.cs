@@ -12,12 +12,6 @@ namespace EventEngine.UnitTests.PropertyBags
     [TestFixture]
     public class EventUnitTests
     {
-
-        private IEventDataSerializationService _eventDataSerializationService;
-        private IEventTypeService _eventTypeService;
-        private IDateTimeProvider _dateTimeProvider;
-        private IEventFactory _target;
-
         [SetUp]
         public void SetUp()
         {
@@ -27,6 +21,11 @@ namespace EventEngine.UnitTests.PropertyBags
             _target = new EventFactory(_eventDataSerializationService, _eventTypeService,
                 _dateTimeProvider);
         }
+
+        private IEventDataSerializationService _eventDataSerializationService;
+        private IEventTypeService _eventTypeService;
+        private IDateTimeProvider _dateTimeProvider;
+        private IEventFactory _target;
 
         [Test]
         public void WhenICreateAnEventItIsCreated()
