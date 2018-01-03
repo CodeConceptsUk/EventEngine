@@ -1,16 +1,16 @@
 ﻿using System;
+using System.Linq;
+using System.Threading;
 using EventEngine.Application.Interfaces.Commands;
 using EventEngine.Application.Interfaces.Events;
 using EventEngine.Application.Interfaces.Factories;
 using EventEngine.Application.Interfaces.Repositories;
 using EventEngine.Application.Interfaces.Services;
-using EventEngine.Application.Players;
 using EventEngine.Application.Services;
 using EventEngine.ExampleApplication.Commands;
+using EventEngine.ExampleApplication.Interfaces.Queries;
 using Newtonsoft.Json;
 using Unity;
-using Unity.Container.Lifetime;
-using Unity.Extension;
 
 namespace EventEngine.ExampleApplication
 {
@@ -19,40 +19,31 @@ namespace EventEngine.ExampleApplication
         public static void Main(string[] args)
         {
             var container = new ContainerFactory().Create();
-            var player = container.Resolve<IEventPlayer>();
+            var exampleViewQuery = container.Resolve<IExampleViewQuery>();
             var commandDispatcher = container.Resolve<ICommandDispatcher>();
-            var eventStore = container.Resolve<IEventStore>();
             var eventFactory = container.Resolve<IEventFactory>();
             SetupEventEvaluators(container);
             SetupCommandHandlers(container, eventFactory);
 
             var contextId = Guid.NewGuid();
-            var view = new ExampleView();
-
-            var setNameCommand = new SetNameCommand { ContextId = contextId, Name = Guid.NewGuid().ToString() };
+            
+            var setNameCommand = new SetNameCommand { ContextId = contextId, Name = "Name1" };
             commandDispatcher.Dispatch(setNameCommand);
-            player.Play(eventStore.Get(), view);
-            ViewToConsole(view);
 
-            setNameCommand = new SetNameCommand { ContextId = contextId, Name = Guid.NewGuid().ToString() };
+            setNameCommand = new SetNameCommand { ContextId = contextId, Name = "Name2" };
             commandDispatcher.Dispatch(setNameCommand);
-            player.Play(eventStore.Get(), view);
-            ViewToConsole(view);
 
             var setDateOfBirthCommand = new SetDateOfBirthCommand { ContextId = contextId, DateOfBirth = DateTime.Now };
             commandDispatcher.Dispatch(setDateOfBirthCommand);
-            player.Play(eventStore.Get(), view);
-            ViewToConsole(view);
-
-            setNameCommand = new SetNameCommand { ContextId = contextId, Name = Guid.NewGuid().ToString() };
+            
+            setNameCommand = new SetNameCommand { ContextId = contextId, Name = "Name3" };
             commandDispatcher.Dispatch(setNameCommand);
-            player.Play(eventStore.Get(), view);
-            ViewToConsole(view);
 
             var setDateOfBirth2Command = new SetDateOfBirth2Command { ContextId = contextId, DateOfBirth = DateTime.Now.AddDays(1) };
             commandDispatcher.Dispatch(setDateOfBirth2Command);
-            player.Play(eventStore.Get(), view);
-            ViewToConsole(view);
+
+            var exampleView = exampleViewQuery.Get(contextId);
+            ViewToConsole(exampleView);
 
             Console.ReadLine();
         }
