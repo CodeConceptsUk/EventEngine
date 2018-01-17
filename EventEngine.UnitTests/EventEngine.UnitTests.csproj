@@ -67,15 +67,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\EventEngine.Application\EventEngine.Application.csproj">
+    <ProjectReference Include="..\EventEngine\EventEngine.csproj">
       <Project>{F5BC713D-17CC-4C8A-B892-050E3B660401}</Project>
-      <Name>EventEngine.Application</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\EventEngine.ExampleApplication\EventEngine.ExampleApplication.csproj">
-      <Project>{3C4013E1-C731-42DD-A56E-406266F8C671}</Project>
-      <Name>EventEngine.ExampleApplication</Name>
+      <Name>EventEngine</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

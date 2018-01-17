@@ -86,13 +86,13 @@
     <Compile Include="Start.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\EventEngine.Application\EventEngine.Application.csproj">
-      <Project>{F5BC713D-17CC-4C8A-B892-050E3B660401}</Project>
-      <Name>EventEngine.Application</Name>
-    </ProjectReference>
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
+    <ProjectReference Include="..\EventEngine\EventEngine.csproj">
+      <Project>{F5BC713D-17CC-4C8A-B892-050E3B660401}</Project>
+      <Name>EventEngine</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

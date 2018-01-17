@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26730.16
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventEngine.Application", "EventEngine.Application\EventEngine.Application.csproj", "{F5BC713D-17CC-4C8A-B892-050E3B660401}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventEngine", "EventEngine\EventEngine.csproj", "{F5BC713D-17CC-4C8A-B892-050E3B660401}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{8B67E292-B505-4945-A606-9AB844E22161}"
 EndProject
