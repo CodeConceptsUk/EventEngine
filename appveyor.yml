@@ -1,4 +1,4 @@
-version: 1.0.{build}
+version: 1.1.{build}
 skip_tags: true
 image: Visual Studio 2017
 configuration: Release
@@ -19,14 +19,14 @@ build:
   verbosity: minimal
 before_package:
 - ps: >-
-    Set-Location -Path "EventEngine\bin"
+    Set-Location -Path "C:\projects\eventengine\EventEngine\bin"
 
     New-Item -ItemType directory -Path "Any CPU"
 
     Copy-Item "Release" "Any CPU" -recurse
 after_build:
 - ps: >-
-    Set-Location -Path "EventEngine.UnitTests\bin"
+    Set-Location -Path "C:\projects\eventengine\EventEngine.UnitTests\bin"
 
     New-Item -ItemType directory -Path "Any CPU"
 
