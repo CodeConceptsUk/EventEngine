@@ -19,15 +19,13 @@ build:
   verbosity: minimal
 after_build:
 - ps: >-
+    dotnet pack
+
     Set-Location -Path "EventEngine.UnitTests\bin"
 
     New-Item -ItemType directory -Path "Any CPU"
 
     Copy-Item "Release" "Any CPU" -recurse
-test:
-  assemblies:
-    only:
-    - EventEngine.UnitTests/bin/Release/netcoreapp2.0/EventEngine.UnitTests.dll
 deploy:
 - provider: NuGet
   api_key:
