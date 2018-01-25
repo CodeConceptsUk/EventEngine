@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace EventEngine.Application.Interfaces.Services
+namespace EventEngine.Interfaces.Services
 {
     public interface IEventEvaluatorAttributeService
     {

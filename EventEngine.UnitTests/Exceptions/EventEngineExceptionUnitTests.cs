@@ -1,5 +1,5 @@
 using System;
-using EventEngine.Application.Exceptions;
+using EventEngine.Exceptions;
 using NUnit.Framework;
 
 namespace EventEngine.UnitTests.Exceptions

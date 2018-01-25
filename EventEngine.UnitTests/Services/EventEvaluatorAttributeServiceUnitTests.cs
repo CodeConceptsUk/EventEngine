@@ -1,10 +1,9 @@
 ﻿using System;
-using EventEngine.Application.Attributes;
-using EventEngine.Application.Interfaces.Events;
-using EventEngine.Application.Interfaces.Services;
-using EventEngine.Application.Services;
+using EventEngine.Attributes;
+using EventEngine.Interfaces.Events;
+using EventEngine.Interfaces.Services;
+using EventEngine.Services;
 using NUnit.Framework;
-using NUnit.Framework.Internal;
 
 namespace EventEngine.UnitTests.Services
 {

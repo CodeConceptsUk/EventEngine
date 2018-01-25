@@ -1,6 +1,6 @@
 ﻿using System;
-using EventEngine.Application.Interfaces.Providers;
-using EventEngine.Application.Providers;
+using EventEngine.Interfaces.Providers;
+using EventEngine.Providers;
 using NUnit.Framework;
 
 namespace EventEngine.UnitTests.Providers

@@ -1,5 +1,5 @@
 ﻿using System;
-using EventEngine.Application.Attributes;
+using EventEngine.Attributes;
 using NUnit.Framework;
 
 namespace EventEngine.UnitTests.Attributes

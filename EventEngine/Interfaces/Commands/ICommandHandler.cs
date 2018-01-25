@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using EventEngine.Application.Interfaces.Events;
+using EventEngine.Interfaces.Events;
 
-namespace EventEngine.Application.Interfaces.Commands
+namespace EventEngine.Interfaces.Commands
 {
     public interface ICommandHandler
     {

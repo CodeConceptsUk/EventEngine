@@ -1,9 +1,9 @@
 ﻿using System;
-using EventEngine.Application.Factories;
-using EventEngine.Application.Interfaces.Events;
-using EventEngine.Application.Interfaces.Factories;
-using EventEngine.Application.Interfaces.Providers;
-using EventEngine.Application.Interfaces.Services;
+using EventEngine.Factories;
+using EventEngine.Interfaces.Events;
+using EventEngine.Interfaces.Factories;
+using EventEngine.Interfaces.Providers;
+using EventEngine.Interfaces.Services;
 using NSubstitute;
 using NUnit.Framework;
 

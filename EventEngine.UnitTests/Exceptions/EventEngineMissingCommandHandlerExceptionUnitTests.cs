@@ -1,5 +1,5 @@
-﻿using EventEngine.Application.Exceptions;
-using EventEngine.Application.Interfaces.Commands;
+﻿using EventEngine.Exceptions;
+using EventEngine.Interfaces.Commands;
 using NSubstitute;
 using NUnit.Framework;
 

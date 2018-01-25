@@ -1,8 +1,7 @@
 ﻿using System;
-using System.Security.Cryptography.X509Certificates;
-using EventEngine.Application.Interfaces.Events;
-using EventEngine.Application.Interfaces.Services;
-using EventEngine.Application.Services;
+using EventEngine.Interfaces.Events;
+using EventEngine.Interfaces.Services;
+using EventEngine.Services;
 using NUnit.Framework;
 
 namespace EventEngine.UnitTests.Services

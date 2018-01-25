@@ -1,6 +1,6 @@
-﻿using EventEngine.Application.Interfaces.Events;
+﻿using EventEngine.Interfaces.Events;
 
-namespace EventEngine.Application.Interfaces.Services
+namespace EventEngine.Interfaces.Services
 {
     public interface IEventDataSerializationService
     {

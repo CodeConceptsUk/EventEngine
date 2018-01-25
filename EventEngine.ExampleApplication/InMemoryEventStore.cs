@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using EventEngine.Application.Interfaces.Events;
-using EventEngine.Application.Interfaces.Repositories;
+using EventEngine.Interfaces.Events;
+using EventEngine.Interfaces.Repositories;
 
 namespace EventEngine.ExampleApplication
 {

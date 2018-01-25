@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace EventEngine.Application.Interfaces.Events
+﻿namespace EventEngine.Interfaces.Events
 {
     public interface IEventEvaluator
     {

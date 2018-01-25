@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using EventEngine.Application.Interfaces.Commands;
-using EventEngine.Application.Interfaces.Services;
+using EventEngine.Interfaces.Commands;
+using EventEngine.Interfaces.Services;
 
-namespace EventEngine.Application.Services
+namespace EventEngine.Services
 {
     public class CommandHandlerRegistry : ICommandHandlerRegistry
     {

@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using EventEngine.Application.Dispatchers;
-using EventEngine.Application.Exceptions;
-using EventEngine.Application.Interfaces.Commands;
-using EventEngine.Application.Interfaces.Events;
-using EventEngine.Application.Interfaces.Repositories;
-using EventEngine.Application.Interfaces.Services;
+using EventEngine.Dispatchers;
+using EventEngine.Exceptions;
+using EventEngine.Interfaces.Commands;
+using EventEngine.Interfaces.Events;
+using EventEngine.Interfaces.Repositories;
+using EventEngine.Interfaces.Services;
 using NSubstitute;
 using NUnit.Framework;
 

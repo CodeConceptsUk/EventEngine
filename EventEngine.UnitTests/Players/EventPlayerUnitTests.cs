@@ -1,8 +1,8 @@
 ﻿using System;
-using EventEngine.Application.Interfaces;
-using EventEngine.Application.Interfaces.Events;
-using EventEngine.Application.Interfaces.Services;
-using EventEngine.Application.Players;
+using EventEngine.Interfaces;
+using EventEngine.Interfaces.Events;
+using EventEngine.Interfaces.Services;
+using EventEngine.Players;
 using NSubstitute;
 using NUnit.Framework;
 

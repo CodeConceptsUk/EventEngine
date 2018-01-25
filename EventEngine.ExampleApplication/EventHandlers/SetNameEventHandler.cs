@@ -1,8 +1,6 @@
-﻿using EventEngine.Application;
-using EventEngine.Application.Attributes;
-using EventEngine.Application.Interfaces.Events;
-using EventEngine.Application.Interfaces.Services;
+﻿using EventEngine.Attributes;
 using EventEngine.ExampleApplication.Events;
+using EventEngine.Interfaces.Events;
 
 namespace EventEngine.ExampleApplication.EventHandlers
 {

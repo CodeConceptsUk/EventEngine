@@ -1,5 +1,5 @@
 ﻿using System;
-using EventEngine.Application.Interfaces.Commands;
+using EventEngine.Interfaces.Commands;
 
 namespace EventEngine.ExampleApplication.Commands
 {

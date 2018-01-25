@@ -1,4 +1,4 @@
-﻿namespace EventEngine.Application.Interfaces.Commands
+﻿namespace EventEngine.Interfaces.Commands
 {
     public interface ICommandDispatcher
     {

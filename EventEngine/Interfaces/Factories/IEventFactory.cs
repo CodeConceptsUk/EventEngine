@@ -1,7 +1,7 @@
 ﻿using System;
-using EventEngine.Application.Interfaces.Events;
+using EventEngine.Interfaces.Events;
 
-namespace EventEngine.Application.Interfaces.Factories
+namespace EventEngine.Interfaces.Factories
 {
     public interface IEventFactory
     {

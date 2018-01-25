@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace EventEngine.Application.Attributes
+namespace EventEngine.Attributes
 {
     [AttributeUsage(AttributeTargets.Class)]
     public class EventNameAttribute : Attribute

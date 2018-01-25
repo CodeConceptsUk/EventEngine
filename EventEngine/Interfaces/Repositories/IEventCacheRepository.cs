@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace EventEngine.Application.Interfaces.Repositories
+namespace EventEngine.Interfaces.Repositories
 {
     public interface IEventCacheRepository
     {

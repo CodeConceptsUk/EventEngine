@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using EventEngine.Application.Interfaces.Events;
+using EventEngine.Interfaces.Events;
 
-namespace EventEngine.Application.Interfaces.Repositories
+namespace EventEngine.Interfaces.Repositories
 {
     public interface IEventStore
     {

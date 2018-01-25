@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace EventEngine.Application.Interfaces.Providers
+namespace EventEngine.Interfaces.Providers
 {
     public interface IDateTimeProvider
     {

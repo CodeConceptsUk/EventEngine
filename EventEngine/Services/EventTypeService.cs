@@ -1,11 +1,11 @@
 ﻿using System.Linq;
-using EventEngine.Application.Attributes;
-using EventEngine.Application.Exceptions;
-using EventEngine.Application.Interfaces.Events;
-using EventEngine.Application.Interfaces.Services;
-using EventEngine.Application.PropertyBags;
+using EventEngine.Attributes;
+using EventEngine.Exceptions;
+using EventEngine.Interfaces.Events;
+using EventEngine.Interfaces.Services;
+using EventEngine.PropertyBags;
 
-namespace EventEngine.Application.Services
+namespace EventEngine.Services
 {
     public class EventTypeService : IEventTypeService
     {

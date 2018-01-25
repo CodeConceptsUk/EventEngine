@@ -1,6 +1,6 @@
-using EventEngine.Application.Interfaces.Commands;
+using EventEngine.Interfaces.Commands;
 
-namespace EventEngine.Application.Exceptions
+namespace EventEngine.Exceptions
 {
     public class EventEngineMissingCommandHandlerException : EventEngineException
     {

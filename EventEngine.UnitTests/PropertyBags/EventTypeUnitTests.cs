@@ -1,6 +1,6 @@
 ﻿using System;
-using EventEngine.Application.Interfaces.Events;
-using EventEngine.Application.PropertyBags;
+using EventEngine.Interfaces.Events;
+using EventEngine.PropertyBags;
 using NUnit.Framework;
 
 namespace EventEngine.UnitTests.PropertyBags

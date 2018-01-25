@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using EventEngine.Application.Interfaces.Commands;
-using EventEngine.Application.Interfaces.Events;
-using EventEngine.Application.Interfaces.Factories;
+﻿using System.Collections.Generic;
 using EventEngine.ExampleApplication.Commands;
 using EventEngine.ExampleApplication.Events;
-using EventEngine.Application.Attributes;
+using EventEngine.Interfaces.Commands;
+using EventEngine.Interfaces.Events;
+using EventEngine.Interfaces.Factories;
 
 namespace EventEngine.ExampleApplication.CommandHandlers
 {

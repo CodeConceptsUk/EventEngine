@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace EventEngine.Application.Interfaces.Events
+namespace EventEngine.Interfaces.Events
 {
     public interface IEventPlayer
     {

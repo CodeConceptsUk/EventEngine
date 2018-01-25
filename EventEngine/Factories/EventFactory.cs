@@ -1,11 +1,11 @@
 ﻿using System;
-using EventEngine.Application.Interfaces.Events;
-using EventEngine.Application.Interfaces.Factories;
-using EventEngine.Application.Interfaces.Providers;
-using EventEngine.Application.Interfaces.Services;
-using EventEngine.Application.PropertyBags;
+using EventEngine.Interfaces.Events;
+using EventEngine.Interfaces.Factories;
+using EventEngine.Interfaces.Providers;
+using EventEngine.Interfaces.Services;
+using EventEngine.PropertyBags;
 
-namespace EventEngine.Application.Factories
+namespace EventEngine.Factories
 {
     public class EventFactory : IEventFactory
     {

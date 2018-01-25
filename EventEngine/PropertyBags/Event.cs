@@ -1,7 +1,7 @@
 ﻿using System;
-using EventEngine.Application.Interfaces.Events;
+using EventEngine.Interfaces.Events;
 
-namespace EventEngine.Application.PropertyBags
+namespace EventEngine.PropertyBags
 {
     public class Event : IEvent
     {

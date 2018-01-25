@@ -1,9 +1,8 @@
 ﻿using System;
-using EventEngine.Application.Interfaces.Events;
-using EventEngine.Application.Interfaces.Services;
+using EventEngine.Interfaces.Services;
 using Newtonsoft.Json;
 
-namespace EventEngine.Application.Services
+namespace EventEngine.Services
 {
     public class EventDataDeserializationService : IEventDataDeserializationService
     {

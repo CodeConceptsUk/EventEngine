@@ -1,4 +1,4 @@
-﻿namespace EventEngine.Application.Interfaces
+﻿namespace EventEngine.Interfaces
 {
     public interface IView
     {

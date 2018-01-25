@@ -1,9 +1,9 @@
 ﻿using System;
-using EventEngine.Application.Attributes;
-using EventEngine.Application.Exceptions;
-using EventEngine.Application.Interfaces.Events;
-using EventEngine.Application.Interfaces.Services;
-using EventEngine.Application.Services;
+using EventEngine.Attributes;
+using EventEngine.Exceptions;
+using EventEngine.Interfaces.Events;
+using EventEngine.Interfaces.Services;
+using EventEngine.Services;
 using NUnit.Framework;
 
 namespace EventEngine.UnitTests.Services

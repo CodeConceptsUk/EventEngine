@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
-using EventEngine.Application.Interfaces.Commands;
-using EventEngine.Application.Interfaces.Events;
-using EventEngine.Application.Interfaces.Factories;
-using EventEngine.Application.Interfaces.Repositories;
+using EventEngine.Interfaces.Commands;
+using EventEngine.Interfaces.Events;
+using EventEngine.Interfaces.Factories;
+using EventEngine.Interfaces.Repositories;
 using Unity;
 using Unity.Lifetime;
 using Unity.RegistrationByConvention;

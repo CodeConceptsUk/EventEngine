@@ -1,12 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using EventEngine.Application.Exceptions;
-using EventEngine.Application.Interfaces.Commands;
-using EventEngine.Application.Interfaces.Events;
-using EventEngine.Application.Interfaces.Repositories;
-using EventEngine.Application.Interfaces.Services;
+using EventEngine.Exceptions;
+using EventEngine.Interfaces.Commands;
+using EventEngine.Interfaces.Events;
+using EventEngine.Interfaces.Repositories;
+using EventEngine.Interfaces.Services;
 
-namespace EventEngine.Application.Dispatchers
+namespace EventEngine.Dispatchers
 {
     public class CommandDispatcher : ICommandDispatcher
     {

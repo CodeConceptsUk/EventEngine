@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace EventEngine.Application.Exceptions
+namespace EventEngine.Exceptions
 {
     public class EventEngineException : Exception
     {

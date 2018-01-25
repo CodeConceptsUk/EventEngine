@@ -1,7 +1,7 @@
 ﻿using System;
-using EventEngine.Application.Interfaces.Commands;
+using EventEngine.Interfaces.Commands;
 
-namespace EventEngine.Application.Interfaces.Services
+namespace EventEngine.Interfaces.Services
 {
     public interface ICommandHandlerRegistry
     {

@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Linq;
-using EventEngine.Application.Attributes;
-using EventEngine.Application.Interfaces.Services;
+using EventEngine.Attributes;
+using EventEngine.Interfaces.Services;
 
-namespace EventEngine.Application.Services
+namespace EventEngine.Services
 {
     public class EventEvaluatorAttributeService : IEventEvaluatorAttributeService
     {

@@ -1,6 +1,6 @@
 using System;
-using EventEngine.Application.Attributes;
-using EventEngine.Application.Interfaces.Events;
+using EventEngine.Attributes;
+using EventEngine.Interfaces.Events;
 
 namespace EventEngine.ExampleApplication.Events
 {

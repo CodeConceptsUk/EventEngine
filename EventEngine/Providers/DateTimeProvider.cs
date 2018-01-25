@@ -1,7 +1,7 @@
 ﻿using System;
-using EventEngine.Application.Interfaces.Providers;
+using EventEngine.Interfaces.Providers;
 
-namespace EventEngine.Application.Providers
+namespace EventEngine.Providers
 {
     public class DateTimeProvider : IDateTimeProvider
     {

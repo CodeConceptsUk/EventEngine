@@ -1,4 +1,4 @@
-﻿namespace EventEngine.Application.Exceptions
+﻿namespace EventEngine.Exceptions
 {
     public class EventDeclarationException : EventEngineException
     {

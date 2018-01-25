@@ -1,5 +1,5 @@
 ﻿using System;
-using EventEngine.Application.Interfaces;
+using EventEngine.Interfaces;
 
 namespace EventEngine.UnitTests
 {

@@ -1,11 +1,11 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using EventEngine.Application.Interfaces;
-using EventEngine.Application.Interfaces.Events;
-using EventEngine.Application.Interfaces.Services;
+using EventEngine.Interfaces;
+using EventEngine.Interfaces.Events;
+using EventEngine.Interfaces.Services;
 
-namespace EventEngine.Application.Services
+namespace EventEngine.Services
 {
     public class EventEvaluatorRegistry : IEventEvaluatorRegistry
     {

@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Linq;
-using EventEngine.Application.Interfaces;
-using EventEngine.Application.Interfaces.Events;
-using EventEngine.Application.Interfaces.Repositories;
 using EventEngine.ExampleApplication.Interfaces.Queries;
+using EventEngine.Interfaces;
+using EventEngine.Interfaces.Events;
+using EventEngine.Interfaces.Repositories;
 
 namespace EventEngine.ExampleApplication.Queries
 {

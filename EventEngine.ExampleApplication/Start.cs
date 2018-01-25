@@ -1,14 +1,9 @@
 ﻿using System;
-using System.Linq;
-using System.Threading;
-using EventEngine.Application.Interfaces.Commands;
-using EventEngine.Application.Interfaces.Events;
-using EventEngine.Application.Interfaces.Factories;
-using EventEngine.Application.Interfaces.Repositories;
-using EventEngine.Application.Interfaces.Services;
-using EventEngine.Application.Services;
 using EventEngine.ExampleApplication.Commands;
 using EventEngine.ExampleApplication.Interfaces.Queries;
+using EventEngine.Interfaces.Commands;
+using EventEngine.Interfaces.Factories;
+using EventEngine.Interfaces.Services;
 using Newtonsoft.Json;
 using Unity;
 
