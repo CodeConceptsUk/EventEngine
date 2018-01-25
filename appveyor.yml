@@ -17,6 +17,17 @@ build:
   project: EventEngine.sln
   publish_nuget: true
   verbosity: minimal
+after_build:
+- ps: >-
+    Set-Location -Path "EventEngine.UnitTests\bin"
+
+    New-Item -ItemType directory -Path "Any CPU"
+
+    Copy-Item "Release" "Any CPU" -recurse
+
+    cd "Any CPU"
+
+    ls
 test:
   assemblies:
     only:
