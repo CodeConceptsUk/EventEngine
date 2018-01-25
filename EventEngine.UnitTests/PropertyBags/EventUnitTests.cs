@@ -5,15 +5,13 @@ using EventEngine.Interfaces.Factories;
 using EventEngine.Interfaces.Providers;
 using EventEngine.Interfaces.Services;
 using NSubstitute;
-using NUnit.Framework;
+using Xunit;
 
 namespace EventEngine.UnitTests.PropertyBags
 {
-    [TestFixture]
     public class EventUnitTests
     {
-        [SetUp]
-        public void SetUp()
+        public EventUnitTests()
         {
             _eventDataSerializationService = Substitute.For<IEventDataSerializationService>();
             _eventTypeService = Substitute.For<IEventTypeService>();
@@ -27,7 +25,7 @@ namespace EventEngine.UnitTests.PropertyBags
         private IDateTimeProvider _dateTimeProvider;
         private IEventFactory _target;
 
-        [Test]
+        [Fact]
         public void WhenICreateAnEventItIsCreated()
         {
             var expectedContextId = Guid.NewGuid();
@@ -42,10 +40,10 @@ namespace EventEngine.UnitTests.PropertyBags
 
             var result = _target.Create(expectedContextId, eventData);
 
-            Assert.AreEqual(expectedContextId, result.ContextId);
-            Assert.AreEqual(expectedEventDateTime, result.EventDateTime);
-            Assert.AreSame(expectedEventType, result.EventType);
-            Assert.AreEqual(expectedEventData, result.EventData);
+            Assert.Equal(expectedContextId, result.ContextId);
+            Assert.Equal(expectedEventDateTime, result.EventDateTime);
+            Assert.Same(expectedEventType, result.EventType);
+            Assert.Equal(expectedEventData, result.EventData);
         }
     }
 }

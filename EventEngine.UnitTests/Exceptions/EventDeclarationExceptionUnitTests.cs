@@ -1,19 +1,18 @@
 using System;
 using EventEngine.Exceptions;
-using NUnit.Framework;
+using Xunit;
 
 namespace EventEngine.UnitTests.Exceptions
 {
-    [TestFixture]
     public class EventDeclarationExceptionUnitTests
     {
-        [Test]
+        [Fact]
         public void WhenICreateAnExceptionItIsCreated()
         {
             var expectedMessage = Guid.NewGuid().ToString();
             var target = new EventDeclarationException(expectedMessage);
 
-            Assert.AreEqual(expectedMessage, target.Message);
+            Assert.Equal(expectedMessage, target.Message);
         }
     }
 }

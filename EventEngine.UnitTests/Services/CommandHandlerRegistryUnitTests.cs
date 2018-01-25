@@ -5,15 +5,13 @@ using EventEngine.Interfaces.Commands;
 using EventEngine.Interfaces.Events;
 using EventEngine.Interfaces.Services;
 using EventEngine.Services;
-using NUnit.Framework;
+using Xunit;
 
 namespace EventEngine.UnitTests.Services
 {
-    [TestFixture]
     public class CommandHandlerRegistryUnitTests
     {
-        [SetUp]
-        public void SetUp()
+        public CommandHandlerRegistryUnitTests()
         {
             _commandHandlerList = new ICommandHandler[] {new CommandACommandHandler(),
                 new CommandACommandHandler2(), new CommandBCommandHandler()};
@@ -60,31 +58,31 @@ namespace EventEngine.UnitTests.Services
             }
         }
 
-        [Test]
+        [Fact]
         public void WhenThereAreMultipleHandlersForACommandTheyAreAllReturned()
         {
             var handlers = _target.Filter(typeof(CommandA));
 
-            Assert.AreEqual(2, handlers.Length);
-            Assert.IsNotNull(handlers.SingleOrDefault(h => h.GetType() == typeof(CommandACommandHandler)));
-            Assert.IsNotNull(handlers.SingleOrDefault(h => h.GetType() == typeof(CommandACommandHandler2)));
+            Assert.Collection(handlers, 
+                e => Assert.IsType<CommandACommandHandler>(e), 
+                e => Assert.IsType<CommandACommandHandler2>(e));
         }
 
-        [Test]
+        [Fact]
         public void WhenThereAreNoHandlersForACommandAnEmptyArrayIsReturned()
         {
             var handlers = _target.Filter(typeof(CommandC));
 
-            Assert.AreEqual(0, handlers.Length);
+            Assert.Empty(handlers);
         }
 
-        [Test]
+        [Fact]
         public void WhenThereIsJustOneHandlerForACommandItIsReturned()
         {
             var handlers = _target.Filter(typeof(CommandB));
 
-            Assert.AreEqual(1, handlers.Length);
-            Assert.IsNotNull(handlers.SingleOrDefault(h => h.GetType() == typeof(CommandBCommandHandler)));
+            Assert.Collection(handlers, 
+                e => Assert.IsType<CommandBCommandHandler>(e));
         }
     }
 }

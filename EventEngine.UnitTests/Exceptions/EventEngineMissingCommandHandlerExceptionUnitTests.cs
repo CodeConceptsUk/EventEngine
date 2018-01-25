@@ -1,22 +1,21 @@
 ﻿using EventEngine.Exceptions;
 using EventEngine.Interfaces.Commands;
 using NSubstitute;
-using NUnit.Framework;
+using Xunit;
 
 namespace EventEngine.UnitTests.Exceptions
 {
-    [TestFixture]
     public class EventEngineMissingCommandHandlerExceptionUnitTests
     {
-        [Test]
+        [Fact]
         public void WhenICreateAnExceptionItIsCreated()
         {
             var expectedCommand = Substitute.For<ICommand>();
             var expectedMessage = $"No event handler for command '{expectedCommand.GetType()}'";
             var target = new EventEngineMissingCommandHandlerException(expectedCommand);
 
-            Assert.AreSame(expectedCommand, target.Command);
-            Assert.AreEqual(expectedMessage, target.Message);
+            Assert.Same(expectedCommand, target.Command);
+            Assert.Equal(expectedMessage, target.Message);
         }
     }
 }

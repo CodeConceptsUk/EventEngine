@@ -1,39 +1,38 @@
 ﻿using System;
 using EventEngine.Interfaces.Providers;
 using EventEngine.Providers;
-using NUnit.Framework;
+using Xunit;
 
 namespace EventEngine.UnitTests.Providers
 {
-    [TestFixture]
     public class DateTimeProviderUnitTests
     {
-        private IDateTimeProvider _target;
+        private readonly IDateTimeProvider _target;
 
-        [SetUp]
-        public void SetUp()
+        
+        public DateTimeProviderUnitTests()
         {
             _target = new DateTimeProvider();
         }
 
-        [Test]
+        [Fact]
         public void WhenIGetTheLocalDateTimeItIsReturned()
         {
-            var expectedDateTime = DateTime.Now.ToLocalTime();
-
+            var timeBefore = DateTime.Now;
             var result = _target.GetLocalTime();
+            var timeAfter = DateTime.Now;
 
-            Assert.That(result, Is.EqualTo(expectedDateTime).Within(TimeSpan.FromSeconds(1)));
+            Assert.InRange(result, timeBefore, timeAfter);
         }
 
-        [Test]
+        [Fact]
         public void WhenIGetTheUtcDateTimeItIsReturned()
         {
-            var expectedDateTime = DateTime.Now.ToUniversalTime();
-
+            var timeBefore = DateTime.UtcNow;
             var result = _target.GetUtcTime();
+            var timeAfter = DateTime.UtcNow;
 
-            Assert.That(result, Is.EqualTo(expectedDateTime).Within(TimeSpan.FromSeconds(1)));
+            Assert.InRange(result, timeBefore, timeAfter);
         }
     }
 }

@@ -1,30 +1,29 @@
 ﻿using System;
 using EventEngine.Attributes;
-using NUnit.Framework;
+using Xunit;
 
 namespace EventEngine.UnitTests.Attributes
 {
-    [TestFixture]
     public class EventNameAttributeUnitTests
     {
-        [Test]
+        [Fact]
         public void AssertThatTheAttributeTargetsCorrectly()
         {
             var attributeUsage = (AttributeUsageAttribute) typeof(EventNameAttribute).GetCustomAttributes(typeof(AttributeUsageAttribute), true)[0];
 
-            Assert.AreEqual(AttributeTargets.Class, attributeUsage.ValidOn);
-            Assert.IsTrue(attributeUsage.Inherited);
-            Assert.IsFalse(attributeUsage.AllowMultiple);
+            Assert.Equal(AttributeTargets.Class, attributeUsage.ValidOn);
+            Assert.True(attributeUsage.Inherited);
+            Assert.False(attributeUsage.AllowMultiple);
         }
 
-        [Test]
+        [Fact]
         public void WhenCreateAEventNameAttributeItIsCreated()
         {
             var expectedName = Guid.NewGuid().ToString();
 
             var target = new EventNameAttribute(expectedName);
 
-            Assert.AreEqual(expectedName, target.Name);
+            Assert.Equal(expectedName, target.Name);
         }
     }
 }

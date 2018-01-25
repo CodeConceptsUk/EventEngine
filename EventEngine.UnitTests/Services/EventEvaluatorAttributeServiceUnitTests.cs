@@ -3,49 +3,47 @@ using EventEngine.Attributes;
 using EventEngine.Interfaces.Events;
 using EventEngine.Interfaces.Services;
 using EventEngine.Services;
-using NUnit.Framework;
+using Xunit;
 
 namespace EventEngine.UnitTests.Services
 {
-    [TestFixture]
     public class EventEvaluatorAttributeServiceUnitTests
     {
         private IEventEvaluatorAttributeService _target;
 
-        [SetUp]
-        public void SetUp()
+        public EventEvaluatorAttributeServiceUnitTests()
         {
             _target = new EventEvaluatorAttributeService();
         }
 
-        [Test]
+        [Fact]
         public void WhenIGetEventAttributesWithOnlyEventNameItIsReturned()
         {
             var result = _target.Get(typeof(Test1));
 
-            Assert.AreEqual("Test1", result.EventName);
-            Assert.AreEqual(new Version(0, 0, 0, 0), result.MinimumVersion);
-            Assert.IsNull(result.MaximumVersion);
+            Assert.Equal("Test1", result.EventName);
+            Assert.Equal(new Version(0, 0, 0, 0), result.MinimumVersion);
+            Assert.Null(result.MaximumVersion);
         }
 
-        [Test]
+        [Fact]
         public void WhenIGetEventAttributesWithEventNameAndMinimumVersionItIsReturned()
         {
             var result = _target.Get(typeof(Test2));
 
-            Assert.AreEqual("Test2", result.EventName);
-            Assert.AreEqual(new Version(1, 2, 3, 4), result.MinimumVersion);
-            Assert.IsNull(result.MaximumVersion);
+            Assert.Equal("Test2", result.EventName);
+            Assert.Equal(new Version(1, 2, 3, 4), result.MinimumVersion);
+            Assert.Null(result.MaximumVersion);
         }
 
-        [Test]
+        [Fact]
         public void WhenIGetEventAttributesWithAllAttibutesItIsReturned()
         {
             var result = _target.Get(typeof(Test3));
 
-            Assert.AreEqual("Test3", result.EventName);
-            Assert.AreEqual(new Version(1, 2, 3, 4), result.MinimumVersion);
-            Assert.AreEqual(new Version(2, 3, 4, 5), result.MaximumVersion);
+            Assert.Equal("Test3", result.EventName);
+            Assert.Equal(new Version(1, 2, 3, 4), result.MinimumVersion);
+            Assert.Equal(new Version(2, 3, 4, 5), result.MaximumVersion);
         }
 
         [EventName("Test1")]

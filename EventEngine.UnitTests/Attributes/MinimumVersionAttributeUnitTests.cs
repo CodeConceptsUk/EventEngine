@@ -1,23 +1,22 @@
 ﻿using System;
 using EventEngine.Attributes;
-using NUnit.Framework;
+using Xunit;
 
 namespace EventEngine.UnitTests.Attributes
 {
-    [TestFixture]
     public class MinimumVersionAttributeUnitTests
     {
-        [Test]
+        [Fact]
         public void AssertThatTheAttributeTargetsCorrectly()
         {
             var attributeUsage = (AttributeUsageAttribute) typeof(MinimumVersionAttribute).GetCustomAttributes(typeof(AttributeUsageAttribute), true)[0];
 
-            Assert.AreEqual(AttributeTargets.Class, attributeUsage.ValidOn);
-            Assert.IsTrue(attributeUsage.Inherited);
-            Assert.IsFalse(attributeUsage.AllowMultiple);
+            Assert.Equal(AttributeTargets.Class, attributeUsage.ValidOn);
+            Assert.True(attributeUsage.Inherited);
+            Assert.False(attributeUsage.AllowMultiple);
         }
 
-        [Test]
+        [Fact]
         public void WhenCreateAMinimumVersionAttributeItIsCreated()
         {
             var expectedVersion = new Version(1, 2, 3, 4);
@@ -25,7 +24,7 @@ namespace EventEngine.UnitTests.Attributes
             var target = new MinimumVersionAttribute(expectedVersion.Major, expectedVersion.Minor,
                 expectedVersion.Build, expectedVersion.Revision);
 
-            Assert.AreEqual(expectedVersion, target.Version);
+            Assert.Equal(expectedVersion, target.Version);
         }
     }
 }

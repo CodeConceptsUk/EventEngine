@@ -4,7 +4,7 @@ using EventEngine.Interfaces.Events;
 using EventEngine.Interfaces.Services;
 using EventEngine.Players;
 using NSubstitute;
-using NUnit.Framework;
+using Xunit;
 
 namespace EventEngine.UnitTests.Players
 {
@@ -14,15 +14,14 @@ namespace EventEngine.UnitTests.Players
         private IEventPlayer _target;
         private IEventDataDeserializationService _eventDataDeserializationService;
 
-        [SetUp]
-        public void SetUp()
+        public EventPlayerUnitTests()
         {
             _eventEvaluatorRegistry = Substitute.For<IEventEvaluatorRegistry>();
             _eventDataDeserializationService = Substitute.For<IEventDataDeserializationService>();
             _target = new EventPlayer(_eventEvaluatorRegistry, _eventDataDeserializationService);
         }
 
-        [Test]
+        [Fact]
         public void WhenIRunMultipleEventsOnTheEventPlayerTheyAreEvaluated()
         {
             var evaluator1 = Substitute.For<IEventEvaluator<IView, IEventData>>();

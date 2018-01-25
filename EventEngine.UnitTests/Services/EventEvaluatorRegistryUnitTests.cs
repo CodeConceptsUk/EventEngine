@@ -6,18 +6,16 @@ using EventEngine.Interfaces.Events;
 using EventEngine.Interfaces.Services;
 using EventEngine.Services;
 using NSubstitute;
-using NUnit.Framework;
+using Xunit;
 
 namespace EventEngine.UnitTests.Services
 {
-    [TestFixture]
     public class EventEvaluatorRegistryUnitTests
     {
         private IEventEvaluatorRegistry _target;
         private IEventEvaluatorAttributeService _eventEvaluatorAttributeService;
 
-        [SetUp]
-        public void SetUp()
+        public EventEvaluatorRegistryUnitTests()
         {
             _eventEvaluatorAttributeService = Substitute.For<IEventEvaluatorAttributeService>();
             _target = new EventEvaluatorRegistry(_eventEvaluatorAttributeService);
@@ -73,13 +71,13 @@ namespace EventEngine.UnitTests.Services
         {
         }
 
-        [Test]
+        [Theory, CombinatorialData]
         public void WhenIFilterEventEvaluatorsTheyAreFilteredCorrectly(
-            [Values(1, 2, 3)] int matchingQuantity,
-            [Values(true, false)] bool interfaceMatches,
-            [Values(true, false)] bool nameMatches,
-            [Values("LT", "EQ", "GT")] string minimumVersionCondition,
-            [Values("LT", "EQ", "GT", null)] string maximumVersionCondition)
+            [CombinatorialValues(1, 2, 3)] int matchingQuantity,
+            [CombinatorialValues(true, false)] bool interfaceMatches,
+            [CombinatorialValues(true, false)] bool nameMatches,
+            [CombinatorialValues("LT", "EQ", "GT")] string minimumVersionCondition,
+            [CombinatorialValues("LT", "EQ", "GT", null)] string maximumVersionCondition)
         {
             var expectedEventName = Guid.NewGuid().ToString();
             var expectedVersion = new Version(1, 2, 3, 4);
@@ -111,13 +109,12 @@ namespace EventEngine.UnitTests.Services
 
             if (!shouldMatch)
             {
-                Assert.IsTrue(!matchingEvaluators.Any());
+                Assert.Empty(matchingEvaluators);
             }
             else
             {
-                Assert.AreEqual(matchingQuantity, matchingEvaluators.Length);
-                foreach (var eventEvaluator in expectedEvaluators)
-                    Assert.IsTrue(matchingEvaluators.Contains(eventEvaluator));
+                var actions = expectedEvaluators.Select<IEventEvaluator, Action<IEventEvaluator>>(q => (e => Assert.Same(q, e))).ToArray();
+                Assert.Collection(matchingEvaluators, actions);
             }
         }
     }

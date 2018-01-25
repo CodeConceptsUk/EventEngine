@@ -4,15 +4,13 @@ using EventEngine.Exceptions;
 using EventEngine.Interfaces.Events;
 using EventEngine.Interfaces.Services;
 using EventEngine.Services;
-using NUnit.Framework;
+using Xunit;
 
 namespace EventEngine.UnitTests.Services
 {
-    [TestFixture]
     public class EventTypeServiceUnitTests
     {
-        [SetUp]
-        public void SetUp()
+        public EventTypeServiceUnitTests()
         {
             _target = new EventTypeService();
         }
@@ -34,7 +32,7 @@ namespace EventEngine.UnitTests.Services
         {
         }
 
-        [Test]
+        [Fact]
         public void WhenIGetTheEventTypeForAnEventWhichHasAVersionAttributeATheCorrectVersionIsReturned()
         {
             const string expectedType = nameof(Event2);
@@ -42,11 +40,11 @@ namespace EventEngine.UnitTests.Services
 
             var result = _target.Get<Event2>();
 
-            Assert.AreEqual(expectedType, result.Name);
-            Assert.AreEqual(expectedVersion, result.Version);
+            Assert.Equal(expectedType, result.Name);
+            Assert.Equal(expectedVersion, result.Version);
         }
 
-        [Test]
+        [Fact]
         public void WhenIGetTheEventTypeForAnEventWhichHasNoVersionAttributeADefaultVersionIsReturned()
         {
             const string expectedType = nameof(Event1);
@@ -54,22 +52,22 @@ namespace EventEngine.UnitTests.Services
 
             var result = _target.Get<Event1>();
 
-            Assert.AreEqual(expectedType, result.Name);
-            Assert.AreEqual(expectedVersion, result.Version);
+            Assert.Equal(expectedType, result.Name);
+            Assert.Equal(expectedVersion, result.Version);
         }
 
-        [Test]
+        [Fact]
         public void WhenIGetTheEventTypeForAnEventWhichIsMissingTheEventNameAttributeIGetAEventDeclarationException()
         {
             var expectedMessage = $"Event '{typeof(NonEvent).Name}' is missing the EventName attribute or the attribute has no value!";
             try
             {
                 _target.Get<NonEvent>();
-                Assert.Fail("Should not reach!");
+                Assert.True(false, "Should not reach!");
             }
             catch (EventDeclarationException eventDeclarationException)
             {
-                Assert.AreEqual(expectedMessage, eventDeclarationException.Message);
+                Assert.Equal(expectedMessage, eventDeclarationException.Message);
             }
         }
     }

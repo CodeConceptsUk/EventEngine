@@ -7,19 +7,17 @@ using EventEngine.Interfaces.Events;
 using EventEngine.Interfaces.Repositories;
 using EventEngine.Interfaces.Services;
 using NSubstitute;
-using NUnit.Framework;
+using Xunit;
 
 namespace EventEngine.UnitTests.CommandDispatchers
 {
-    [TestFixture]
     public class CommandDispatcherUnitTests
     {        
-        private IEventStore _repository;
-        private ICommandDispatcher _target;
-        private ICommandHandlerRegistry _commandHandlerRegistry;
+        private readonly IEventStore _repository;
+        private readonly ICommandDispatcher _target;
+        private readonly ICommandHandlerRegistry _commandHandlerRegistry;
 
-        [SetUp]
-        public void SetUp()
+        public CommandDispatcherUnitTests()
         {
             _repository = Substitute.For<IEventStore>();
             _commandHandlerRegistry = Substitute.For<ICommandHandlerRegistry>();
@@ -36,7 +34,7 @@ namespace EventEngine.UnitTests.CommandDispatchers
         {
         }
 
-        [Test]
+        [Fact]
         public void WhenIExecuteACommandItIsDispatchedToItsHandler()
         {
             var commandHandler = Substitute.For<ICommandHandler<TestCommand>>();
@@ -54,7 +52,7 @@ namespace EventEngine.UnitTests.CommandDispatchers
             _repository.Received().Add(Arg.Is<IEnumerable<IEvent>>(e => ValidateEventList(expectedEvents, e.ToArray())));
         }
 
-        [Test]
+        [Fact]
         public void WhenIExecuteACommandWithMultipleHandlersItIsDispatchedToItsHandlers()
         {
             var commandHandler1 = Substitute.For<ICommandHandler<TestCommand>>();
@@ -74,7 +72,7 @@ namespace EventEngine.UnitTests.CommandDispatchers
             _repository.Received().Add(Arg.Is<IEnumerable<IEvent>>(e => ValidateEventList(expectedEvents, e.ToArray())));
         }
 
-        [Test]
+        [Fact]
         public void WhenIExecuteACommandWithNoHandlerAnExceptionIsThrown()
         {
             var expectedCommand = new TestCommand();
@@ -82,11 +80,11 @@ namespace EventEngine.UnitTests.CommandDispatchers
             try
             {
                 _target.Dispatch(expectedCommand);
-                Assert.Fail("Expected expcetion to be thrown");
+                Assert.True(false, "Expected expcetion to be thrown");
             }
             catch (EventEngineMissingCommandHandlerException exception)
             {
-                Assert.AreSame(expectedCommand, exception.Command);
+                Assert.Same(expectedCommand, exception.Command);
             }
         }
     }
