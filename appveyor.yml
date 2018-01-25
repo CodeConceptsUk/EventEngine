@@ -17,10 +17,15 @@ build:
   project: EventEngine.sln
   publish_nuget: true
   verbosity: minimal
+before_package:
+- ps: >-
+    Set-Location -Path "EventEngine\bin"
+
+    New-Item -ItemType directory -Path "Any CPU"
+
+    Copy-Item "Release" "Any CPU" -recurse
 after_build:
 - ps: >-
-    dotnet pack
-
     Set-Location -Path "EventEngine.UnitTests\bin"
 
     New-Item -ItemType directory -Path "Any CPU"
