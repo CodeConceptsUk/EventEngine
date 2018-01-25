@@ -7,16 +7,19 @@ using EventEngine.Interfaces.Services;
 using EventEngine.Services;
 using NSubstitute;
 using Xunit;
+using Xunit.Abstractions;
 
 namespace EventEngine.UnitTests.Services
 {
     public class EventEvaluatorRegistryUnitTests
     {
-        private IEventEvaluatorRegistry _target;
-        private IEventEvaluatorAttributeService _eventEvaluatorAttributeService;
+        private readonly ITestOutputHelper _output;
+        private readonly IEventEvaluatorRegistry _target;
+        private readonly IEventEvaluatorAttributeService _eventEvaluatorAttributeService;
 
-        public EventEvaluatorRegistryUnitTests()
+        public EventEvaluatorRegistryUnitTests(ITestOutputHelper output)
         {
+            _output = output;
             _eventEvaluatorAttributeService = Substitute.For<IEventEvaluatorAttributeService>();
             _target = new EventEvaluatorRegistry(_eventEvaluatorAttributeService);
             _eventEvaluatorAttributeService.Get(Arg.Any<Type>())
@@ -91,7 +94,7 @@ namespace EventEngine.UnitTests.Services
                               && (minimumVersionCondition == "EQ" || minimumVersionCondition == "LT") // minimum version is {} than event version
                               && (maximumVersionCondition == null || maximumVersionCondition == "GT" || maximumVersionCondition == "EQ"); // maximum version is {} than event version
 
-            Console.WriteLine(shouldMatch ? "Expecting to match" : "Expecting no matches");
+            _output.WriteLine(shouldMatch ? "Expecting to match" : "Expecting no matches");
 
             var expectedEvaluators = new List<IEventEvaluator>();
 

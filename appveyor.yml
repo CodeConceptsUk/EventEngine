@@ -24,10 +24,6 @@ after_build:
     New-Item -ItemType directory -Path "Any CPU"
 
     Copy-Item "Release" "Any CPU" -recurse
-
-    cd "Any CPU"
-
-    ls
 test:
   assemblies:
     only:
