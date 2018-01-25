@@ -5,32 +5,33 @@ using EventEngine.Interfaces.Commands;
 using EventEngine.Interfaces.Events;
 using EventEngine.Interfaces.Factories;
 using EventEngine.Interfaces.Repositories;
-using Unity;
-using Unity.Lifetime;
-using Unity.RegistrationByConvention;
+using StructureMap;
 
 namespace EventEngine.ExampleApplication
 {
+    public class ExampleRegistry : Registry
+    {
+        public ExampleRegistry()
+        {
+            Scan(cfg =>
+            {
+                cfg.TheCallingAssembly();
+            });
+        }
+    }
+
     public class ContainerFactory
     {
-        public IUnityContainer Create()
+        public IContainer Create()
         {
-            var container = new UnityContainer();
-            container.RegisterType<IEventStore, InMemoryEventStore>(new TransientLifetimeManager());
-            RegisterByConvention(container);
+            var container = new Container(cfg =>
+                cfg.For<IEventStore>().Use<InMemoryEventStore>()
+                
+            );
             return container;
         }
-
-        private static void RegisterByConvention(IUnityContainer container)
-        {
-            container.RegisterTypes(
-                AllClasses.FromLoadedAssemblies(),
-                WithMappings.FromMatchingInterface,
-                WithName.Default,
-                WithLifetime.ContainerControlled);
-        }
-
-        public static IEnumerable<IEventEvaluator> GetAllEventEvaluators(IUnityContainer container)
+        
+        public static IEnumerable<IEventEvaluator> GetAllEventEvaluators(IContainer container)
         {
             var types = typeof(ContainerFactory).Assembly.GetTypes().Where(t => t.GetInterfaces().Contains(typeof(IEventEvaluator)));
             foreach (var type in types)
@@ -39,7 +40,7 @@ namespace EventEngine.ExampleApplication
             }
         }
 
-        public static IEnumerable<ICommandHandler> GetAllCommandHandlers(IUnityContainer container, IEventFactory eventFactory)
+        public static IEnumerable<ICommandHandler> GetAllCommandHandlers(IContainer container, IEventFactory eventFactory)
         {
             var types = typeof(ContainerFactory).Assembly.GetTypes().Where(t => t.GetInterfaces().Contains(typeof(ICommandHandler)));
             foreach (var type in types)

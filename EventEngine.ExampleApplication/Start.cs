@@ -5,7 +5,7 @@ using EventEngine.Interfaces.Commands;
 using EventEngine.Interfaces.Factories;
 using EventEngine.Interfaces.Services;
 using Newtonsoft.Json;
-using Unity;
+using StructureMap;
 
 namespace EventEngine.ExampleApplication
 {
@@ -14,9 +14,9 @@ namespace EventEngine.ExampleApplication
         public static void Main(string[] args)
         {
             var container = new ContainerFactory().Create();
-            var exampleViewQuery = container.Resolve<IExampleViewQuery>();
-            var commandDispatcher = container.Resolve<ICommandDispatcher>();
-            var eventFactory = container.Resolve<IEventFactory>();
+            var exampleViewQuery = container.GetInstance<IExampleViewQuery>();
+            var commandDispatcher = container.GetInstance<ICommandDispatcher>();
+            var eventFactory = container.GetInstance<IEventFactory>();
             SetupEventEvaluators(container);
             SetupCommandHandlers(container, eventFactory);
 
@@ -48,24 +48,24 @@ namespace EventEngine.ExampleApplication
             Console.WriteLine(JsonConvert.SerializeObject(view, Formatting.Indented));
         }
 
-        private static void SetupCommandHandlers(IUnityContainer container, IEventFactory eventFactory)
+        private static void SetupCommandHandlers(IContainer container, IEventFactory eventFactory)
         {
-            var commandHandlerRegistry = container.Resolve<ICommandHandlerRegistry>();
+            var commandHandlerRegistry = container.GetInstance<ICommandHandlerRegistry>();
             foreach (var commandHandler in ContainerFactory.GetAllCommandHandlers(container, eventFactory))
             {
                 commandHandlerRegistry.Register(commandHandler);
             }
-            container.RegisterInstance(typeof(ICommandHandlerRegistry), commandHandlerRegistry);
+            container.Inject(typeof(ICommandHandlerRegistry), commandHandlerRegistry);
         }
 
-        private static void SetupEventEvaluators(IUnityContainer container)
+        private static void SetupEventEvaluators(IContainer container)
         {
-            var eventEvaluatorRegistry = container.Resolve<IEventEvaluatorRegistry>();
+            var eventEvaluatorRegistry = container.GetInstance<IEventEvaluatorRegistry>();
             foreach (var eventEvaluator in ContainerFactory.GetAllEventEvaluators(container))
             {
                 eventEvaluatorRegistry.Register(eventEvaluator);
             }
-            container.RegisterInstance(typeof(IEventEvaluatorRegistry), eventEvaluatorRegistry);
+            container.Inject(typeof(IEventEvaluatorRegistry), eventEvaluatorRegistry);
         }
     }
 }
