@@ -1,9 +1,10 @@
 ﻿using System;
+using EventEngine.PropertyBags;
 
 namespace EventEngine.Interfaces.Services
 {
     public interface IEventEvaluatorAttributeService
     {
-        (string EventName, Version MinimumVersion, Version MaximumVersion) Get(Type eventEvaluatorType);
+        EventValidityData Get(Type eventEvaluatorType);
     }
 }

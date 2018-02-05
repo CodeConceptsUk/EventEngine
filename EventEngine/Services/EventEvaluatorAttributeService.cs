@@ -2,17 +2,23 @@
 using System.Linq;
 using EventEngine.Attributes;
 using EventEngine.Interfaces.Services;
+using EventEngine.PropertyBags;
 
 namespace EventEngine.Services
 {
     public class EventEvaluatorAttributeService : IEventEvaluatorAttributeService
     {
-        public (string EventName, Version MinimumVersion, Version MaximumVersion) Get(Type eventEvaluatorType)
+        public EventValidityData Get(Type eventEvaluatorType)
         {
             var eventName = GetEventEvaluatorName(eventEvaluatorType);
             var minimumVersion = GetMinimumVersion(eventEvaluatorType);
             var maximumVersion = GetMaximumVersion(eventEvaluatorType);
-            return (eventName, minimumVersion, maximumVersion);
+            return new EventValidityData
+            {
+                EventName = eventName,
+                MinimumVersion = minimumVersion,
+                MaximumVersion = maximumVersion
+            };
         }
 
         private static string GetEventEvaluatorName(Type eventEvaluatorType)

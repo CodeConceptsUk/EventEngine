@@ -4,6 +4,7 @@ using System.Linq;
 using EventEngine.Interfaces;
 using EventEngine.Interfaces.Events;
 using EventEngine.Interfaces.Services;
+using EventEngine.PropertyBags;
 using EventEngine.Services;
 using NSubstitute;
 using Xunit;
@@ -23,7 +24,12 @@ namespace EventEngine.UnitTests.Services
             _eventEvaluatorAttributeService = Substitute.For<IEventEvaluatorAttributeService>();
             _target = new EventEvaluatorRegistry(_eventEvaluatorAttributeService);
             _eventEvaluatorAttributeService.Get(Arg.Any<Type>())
-                .Returns((Guid.NewGuid().ToString(), new Version(0, 0), (Version)null));
+                .Returns(new EventValidityData()
+                {
+                    EventName = Guid.NewGuid().ToString(),
+                    MinimumVersion = new Version(0, 0),
+                    MaximumVersion = null
+                });
         }
 
         private IEventEvaluator CreateEventEvaluatorSubstitute(bool interfaceMatches, bool nameMatches,
@@ -62,7 +68,12 @@ namespace EventEngine.UnitTests.Services
                     break;
             }
 
-            _eventEvaluatorAttributeService.Get(eventEvaluator.GetType()).Returns((eventName, minimumVersion, maximumVersion));
+            _eventEvaluatorAttributeService.Get(eventEvaluator.GetType()).Returns(new EventValidityData()
+            {
+                EventName = eventName,
+                MaximumVersion = maximumVersion,
+                MinimumVersion = minimumVersion
+            });
             return eventEvaluator;
         }
 
