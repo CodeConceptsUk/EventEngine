@@ -8,7 +8,7 @@ namespace EventEngine.Services
     {
         public string Serialize(IEventData eventData)
         {
-            return JsonConvert.SerializeObject(eventData, Formatting.Indented);
+            return JsonHelper.Serializer.SerializeObject(eventData, Formatting.Indented);
         }
     }
 }
