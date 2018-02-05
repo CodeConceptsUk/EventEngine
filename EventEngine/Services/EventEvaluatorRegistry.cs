@@ -50,7 +50,7 @@ namespace EventEngine.Services
 
                 foreach (var viewType in viewTypes)
                 {
-                    _registeredEvaluators.Add(new (attributes.EventName, attributes.MinimumVersion, attributes.MaximumVersion, viewType, eventEvaluator));
+                    _registeredEvaluators.Add(new EventEvaluatorListItem(attributes.EventName, attributes.MinimumVersion, attributes.MaximumVersion, viewType, eventEvaluator));
                 }
             }
         }
