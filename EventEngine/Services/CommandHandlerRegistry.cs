@@ -8,11 +8,21 @@ namespace EventEngine.Services
 {
     public class CommandHandlerRegistry : ICommandHandlerRegistry
     {
-        private readonly List<(Type CommandType, ICommandHandler CommandHandler)> _commandHandlers;
+        private class CommandHandlerListItem {
+            public Type CommandType {get;set;}
+            public ICommandHandler CommandHandler {get;set;}
+            public CommandHandlerListItem(Type commandType, ICommandHandler commandHandler)
+            {
+                CommandType = commandType;
+                CommandHandler = commandHandler;
+            }
+        }
+    
+        private readonly List<CommandHandlerListItem> _commandHandlers;
 
         public CommandHandlerRegistry()
         {
-            _commandHandlers = new List<(Type CommandType, ICommandHandler CommandHandler)>();
+            _commandHandlers = new List<CommandHandlerListItem>();
         }
 
         public void Register(params ICommandHandler[] commandHandlers)
@@ -27,7 +37,7 @@ namespace EventEngine.Services
 
                 foreach (var commandType in commandTypes)
                 {
-                    _commandHandlers.Add((commandType, commandHandler));
+                    _commandHandlers.Add(new CommandHandlerListItem(commandType, commandHandler));
                 }
             }
         }
