@@ -11,13 +11,29 @@ namespace EventEngine.Services
     {
         private readonly IEventEvaluatorAttributeService _eventEvaluatorAttributeService;
 
-        private readonly IList<(string Name, Version MinimumVersion, Version MaximumVersion, Type ViewType, IEventEvaluator Evaluator)>
+        private class EventEvaluatorListItem {
+            public string Name {get;set;}
+            public Version MinimumVersion {get;set;}
+            public Version MaximumVersion {get;set;}
+            public Type ViewType {get;set;}
+            public IEventEvaluator Evaluator {get;set;}
+            public EventEvaluatorListItem(string name, Version minimumVersion, Version maximumVersion, Type viewType, IEventEvaluator evaluator)
+            {
+                Name = name;
+                MinimumVersion = minimumVersion;
+                MaximumVersion = maximumVersion;
+                ViewType = viewType;
+                Evaluator = evaluator;
+            }
+        }
+
+        private readonly IList<EventEvaluatorListItem>
             _registeredEvaluators;
 
         public EventEvaluatorRegistry(IEventEvaluatorAttributeService eventEvaluatorAttributeService)
         {
             _eventEvaluatorAttributeService = eventEvaluatorAttributeService;
-            _registeredEvaluators = new List<(string Name, Version MinimumVersion, Version MaximumVersion, Type ViewType, IEventEvaluator Evaluator)>();
+            _registeredEvaluators = new List<EventEvaluatorListItem>();
         }
 
         public void Register(params IEventEvaluator[] eventEvaluators)
@@ -34,7 +50,7 @@ namespace EventEngine.Services
 
                 foreach (var viewType in viewTypes)
                 {
-                    _registeredEvaluators.Add((attributes.EventName, attributes.MinimumVersion, attributes.MaximumVersion, viewType, eventEvaluator));
+                    _registeredEvaluators.Add(new (attributes.EventName, attributes.MinimumVersion, attributes.MaximumVersion, viewType, eventEvaluator));
                 }
             }
         }
