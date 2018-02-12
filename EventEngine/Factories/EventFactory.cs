@@ -27,7 +27,7 @@ namespace EventEngine.Factories
         {
             var serializedEventData = _eventDataSerializationService.Serialize(eventData);
             var eventType = _eventTypeService.Get<TEventData>();
-            var eventDateTime = _dateTimeProvider.GetUtcTime();
+            var eventDateTime = _dateTimeProvider.GetUtc();
 
             return new Event(contextId, eventType, serializedEventData, eventDateTime);
         }

@@ -34,7 +34,7 @@ namespace EventEngine.UnitTests.PropertyBags
             var expectedEventDateTime = DateTime.Now;
             var eventData = Substitute.For<IEventData>();
 
-            _dateTimeProvider.GetUtcTime().Returns(expectedEventDateTime);
+            _dateTimeProvider.GetUtc().Returns(expectedEventDateTime);
             _eventDataSerializationService.Serialize(eventData).Returns(expectedEventData);
             _eventTypeService.Get<IEventData>().Returns(expectedEventType);
 
