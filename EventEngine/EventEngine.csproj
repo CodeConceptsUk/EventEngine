@@ -17,6 +17,7 @@
         <Product>EventEngine</Product>
     </PropertyGroup>
     <ItemGroup>
-        <PackageReference Include="Newtonsoft.Json" Version="10.0.3"/>
+        <PackageReference Include="Coresian" Version="1.0.8" />
+        <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
     </ItemGroup>
 </Project>

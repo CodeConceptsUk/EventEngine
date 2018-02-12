@@ -1,7 +1,7 @@
 ﻿using System;
+using Coresian.Interfaces.Providers;
 using EventEngine.Interfaces.Events;
 using EventEngine.Interfaces.Factories;
-using EventEngine.Interfaces.Providers;
 using EventEngine.Interfaces.Services;
 using EventEngine.PropertyBags;
 
