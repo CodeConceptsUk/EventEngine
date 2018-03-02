@@ -32,6 +32,7 @@ namespace EventEngine.UnitTests.PropertyBags
             var expectedEventData = Guid.NewGuid().ToString();
             var expectedEventType = Substitute.For<IEventType>();
             var expectedEventDateTime = DateTime.Now;
+            var expectedEffectiveDateTime = DateTime.Now.AddDays(-2);
             var eventData = Substitute.For<IEventData>();
 
             _dateTimeProvider.GetUtc().Returns(expectedEventDateTime);
@@ -41,7 +42,8 @@ namespace EventEngine.UnitTests.PropertyBags
             var result = _target.Create(expectedContextId, eventData);
 
             Assert.Equal(expectedContextId, result.ContextId);
-            Assert.Equal(expectedEventDateTime, result.EventDateTime);
+            Assert.Equal(expectedEventDateTime, result.CreatedDateTime);
+            Assert.Equal(expectedEffectiveDateTime, result.EffectiveDateTime);
             Assert.Same(expectedEventType, result.EventType);
             Assert.Equal(expectedEventData, result.EventData);
         }

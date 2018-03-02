@@ -6,7 +6,9 @@ namespace EventEngine.Interfaces.Events
     {
         Guid ContextId { get; }
 
-        DateTime EventDateTime { get; }
+        DateTime CreatedDateTime { get; }
+        
+        DateTime EffectiveDateTime { get; }
 
         IEventType EventType { get; }
 

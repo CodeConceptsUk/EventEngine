@@ -20,7 +20,7 @@ namespace EventEngine.ExampleApplication
             var eventTypeNames = eventTypes?.Select(t => t.Name);
             return Events.Where(@event =>
                 (contextId == null || @event.ContextId == contextId) &&
-                (@from == null || @event.EventDateTime > @from) &&
+                (@from == null || @event.CreatedDateTime > @from) &&
                 (eventTypeNames == null || eventTypeNames.Contains(@event.EventType.Name)));
         }
     }

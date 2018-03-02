@@ -22,7 +22,7 @@ namespace EventEngine.ExampleApplication.Queries
         public TView Get(Guid contextId, DateTime? to = null)
         {
             var view = new TView();
-            var events = _eventStore.Get(contextId).Where(@event => to == null || @event.EventDateTime <= to);
+            var events = _eventStore.Get(contextId).Where(@event => to == null || @event.CreatedDateTime <= to);
             _eventPlayer.Play(events, view);
             return view;
         }
