@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using EventEngine.Interfaces;
@@ -52,6 +53,7 @@ namespace EventEngine.UnitTests.Services
                     minimumVersion = new Version(expectedVersion.Major, expectedVersion.Minor, expectedVersion.Build, expectedVersion.Revision + 1);
                     break;
             }
+
             switch (maximumVersionCondition) // is {} than event version
             {
                 case "LT":
@@ -85,13 +87,68 @@ namespace EventEngine.UnitTests.Services
         {
         }
 
-        [Theory, CombinatorialData]
+        internal class TestData : IEnumerable<object[]>
+        {
+            private readonly List<object[]> _items;
+
+            public TestData()
+            {
+                var options = new[]
+                {
+                    new object[] {1, 2, 3},
+                    new object[] {true, false},
+                    new object[] {true, false},
+                    new object[] {"LT", "EQ", "GT"},
+                    new object[] {"LT", "EQ", "GT", null}
+                };
+                _items = IterateOptions(options);
+            }
+
+            private List<object[]> IterateOptions(IReadOnlyList<IReadOnlyList<object>> options, List<object[]> items = null, object[] parts = null, int optionIndex = 0)
+            {
+                parts = parts ?? new object[options.Count];
+                items = items ?? new List<object[]>();
+
+                if (options.Count == 1)
+                {
+                    items.Add(options[0].ToArray());
+                    return items;
+                }
+                foreach (var option in options[optionIndex])
+                {
+                    parts[optionIndex] = option;
+                    if (optionIndex == (options.Count - 1))
+                    {
+                        items.Add(parts.ToArray());
+                    }
+                    else
+                    {
+                        IterateOptions(options, items, parts, optionIndex + 1);
+                    }
+                }
+
+                return items;
+            }
+
+            public IEnumerator<object[]> GetEnumerator()
+            {
+                return _items.GetEnumerator();
+            }
+
+            IEnumerator IEnumerable.GetEnumerator()
+            {
+                return ((IEnumerable)_items).GetEnumerator();
+            }
+        }
+
+        [Theory]
+        [ClassData(typeof(TestData))]
         public void WhenIFilterEventEvaluatorsTheyAreFilteredCorrectly(
-            [CombinatorialValues(1, 2, 3)] int matchingQuantity,
-            [CombinatorialValues(true, false)] bool interfaceMatches,
-            [CombinatorialValues(true, false)] bool nameMatches,
-            [CombinatorialValues("LT", "EQ", "GT")] string minimumVersionCondition,
-            [CombinatorialValues("LT", "EQ", "GT", null)] string maximumVersionCondition)
+            int matchingQuantity,
+            bool interfaceMatches,
+            bool nameMatches,
+            string minimumVersionCondition,
+            string maximumVersionCondition)
         {
             var expectedEventName = Guid.NewGuid().ToString();
             var expectedVersion = new Version(1, 2, 3, 4);
