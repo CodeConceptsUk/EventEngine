@@ -30,13 +30,14 @@ namespace EventEngine.Services
         private readonly IList<EventEvaluatorListItem>
             _registeredEvaluators;
 
-        public EventEvaluatorRegistry(IEventEvaluatorAttributeService eventEvaluatorAttributeService)
+        public EventEvaluatorRegistry(IEventEvaluatorAttributeService eventEvaluatorAttributeService, IEventEvaluator[] eventEvaluators)
         {
             _eventEvaluatorAttributeService = eventEvaluatorAttributeService;
             _registeredEvaluators = new List<EventEvaluatorListItem>();
+            Register(eventEvaluators);
         }
 
-        public void Register(params IEventEvaluator[] eventEvaluators)
+        private void Register(params IEventEvaluator[] eventEvaluators)
         {
             foreach (var eventEvaluator in eventEvaluators)
             {

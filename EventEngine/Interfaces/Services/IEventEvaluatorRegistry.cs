@@ -6,7 +6,5 @@ namespace EventEngine.Interfaces.Services
     {
         IEventEvaluator[] Filter<TView>(IEventType eventType)
             where TView : class, IView;
-
-        void Register(params IEventEvaluator[] eventEvaluators );
     }
 }

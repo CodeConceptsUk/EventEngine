@@ -2,10 +2,7 @@
 using EventEngine.ExampleApplication.Commands;
 using EventEngine.ExampleApplication.Interfaces.Queries;
 using EventEngine.Interfaces.Commands;
-using EventEngine.Interfaces.Factories;
-using EventEngine.Interfaces.Services;
 using Newtonsoft.Json;
-using StructureMap;
 
 namespace EventEngine.ExampleApplication
 {
@@ -16,9 +13,6 @@ namespace EventEngine.ExampleApplication
             var container = new ContainerFactory().Create();
             var exampleViewQuery = container.GetInstance<IExampleViewQuery>();
             var commandDispatcher = container.GetInstance<ICommandDispatcher>();
-            var eventFactory = container.GetInstance<IEventFactory>();
-            SetupEventEvaluators(container);
-            SetupCommandHandlers(container, eventFactory);
 
             var contextId = Guid.NewGuid();
             
@@ -47,25 +41,6 @@ namespace EventEngine.ExampleApplication
         {
             Console.WriteLine(JsonConvert.SerializeObject(view, Formatting.Indented));
         }
-
-        private static void SetupCommandHandlers(IContainer container, IEventFactory eventFactory)
-        {
-            var commandHandlerRegistry = container.GetInstance<ICommandHandlerRegistry>();
-            foreach (var commandHandler in ContainerFactory.GetAllCommandHandlers(container, eventFactory))
-            {
-                commandHandlerRegistry.Register(commandHandler);
-            }
-            container.Inject(typeof(ICommandHandlerRegistry), commandHandlerRegistry);
-        }
-
-        private static void SetupEventEvaluators(IContainer container)
-        {
-            var eventEvaluatorRegistry = container.GetInstance<IEventEvaluatorRegistry>();
-            foreach (var eventEvaluator in ContainerFactory.GetAllEventEvaluators(container))
-            {
-                eventEvaluatorRegistry.Register(eventEvaluator);
-            }
-            container.Inject(typeof(IEventEvaluatorRegistry), eventEvaluatorRegistry);
-        }
+        
     }
 }

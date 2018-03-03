@@ -16,21 +16,12 @@ namespace EventEngine.UnitTests.Services
     public class EventEvaluatorRegistryUnitTests
     {
         private readonly ITestOutputHelper _output;
-        private readonly IEventEvaluatorRegistry _target;
-        private readonly IEventEvaluatorAttributeService _eventEvaluatorAttributeService;
+        private IEventEvaluatorRegistry _target;
+        private IEventEvaluatorAttributeService _eventEvaluatorAttributeService;
 
         public EventEvaluatorRegistryUnitTests(ITestOutputHelper output)
         {
             _output = output;
-            _eventEvaluatorAttributeService = Substitute.For<IEventEvaluatorAttributeService>();
-            _target = new EventEvaluatorRegistry(_eventEvaluatorAttributeService);
-            _eventEvaluatorAttributeService.Get(Arg.Any<Type>())
-                .Returns(new EventValidityData()
-                {
-                    EventName = Guid.NewGuid().ToString(),
-                    MinimumVersion = new Version(0, 0),
-                    MaximumVersion = null
-                });
         }
 
         private IEventEvaluator CreateEventEvaluatorSubstitute(bool interfaceMatches, bool nameMatches,
@@ -150,6 +141,16 @@ namespace EventEngine.UnitTests.Services
             string minimumVersionCondition,
             string maximumVersionCondition)
         {
+
+            _eventEvaluatorAttributeService = Substitute.For<IEventEvaluatorAttributeService>();
+            _eventEvaluatorAttributeService.Get(Arg.Any<Type>())
+                .Returns(new EventValidityData()
+                {
+                    EventName = Guid.NewGuid().ToString(),
+                    MinimumVersion = new Version(0, 0),
+                    MaximumVersion = null
+                });
+
             var expectedEventName = Guid.NewGuid().ToString();
             var expectedVersion = new Version(1, 2, 3, 4);
 
@@ -165,16 +166,19 @@ namespace EventEngine.UnitTests.Services
             _output.WriteLine(shouldMatch ? "Expecting to match" : "Expecting no matches");
 
             var expectedEvaluators = new List<IEventEvaluator>();
-
+            var allEvaluators = new List<IEventEvaluator>();
+            
             for (var i = 1; i <= matchingQuantity; i++)
             {
                 var expectedEvaluator = CreateEventEvaluatorSubstitute(interfaceMatches, nameMatches, minimumVersionCondition,
                     maximumVersionCondition, expectedEventName, expectedVersion);
                 expectedEvaluators.Add(expectedEvaluator);
-                _target.Register(expectedEvaluator);
+                allEvaluators.Add(expectedEvaluator);
             }
 
-            _target.Register(Substitute.For<IEventEvaluator<SomeOtherView, IEventData>>());
+            allEvaluators.Add(Substitute.For<IEventEvaluator<SomeOtherView, IEventData>>());
+
+            _target = new EventEvaluatorRegistry(_eventEvaluatorAttributeService, allEvaluators.ToArray());
 
             var matchingEvaluators = _target.Filter<TestView>(eventType);
 

@@ -15,8 +15,7 @@ namespace EventEngine.UnitTests.Services
         {
             _commandHandlerList = new ICommandHandler[] {new CommandACommandHandler(),
                 new CommandACommandHandler2(), new CommandBCommandHandler()};
-            _target = new CommandHandlerRegistry();
-            _target.Register(_commandHandlerList);
+            _target = new CommandHandlerRegistry(_commandHandlerList);
         }
 
         private ICommandHandlerRegistry _target;

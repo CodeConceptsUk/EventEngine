@@ -20,12 +20,13 @@ namespace EventEngine.Services
     
         private readonly List<CommandHandlerListItem> _commandHandlers;
 
-        public CommandHandlerRegistry()
+        public CommandHandlerRegistry(ICommandHandler[] commandHandlers)
         {
             _commandHandlers = new List<CommandHandlerListItem>();
+            Register(commandHandlers);
         }
 
-        public void Register(params ICommandHandler[] commandHandlers)
+        private void Register(params ICommandHandler[] commandHandlers)
         {
             foreach (var commandHandler in commandHandlers)
             {
