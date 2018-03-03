@@ -3,11 +3,12 @@
     <TargetFramework>netcoreapp2.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Coresian" Version="1.0.8" />
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.6.0-preview-20180109-01" />
+    <PackageReference Include="AutoFixture.AutoNSubstitute" Version="4.1.0" />
+    <PackageReference Include="AutoFixture.Xunit2" Version="4.1.0" />
+    <PackageReference Include="Coresian" Version="1.0.14" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.6.0" />
     <PackageReference Include="Microsoft.NETCore.App" Version="2.0.0" />
     <PackageReference Include="NSubstitute" Version="3.1.0" />
-    <PackageReference Include="Xunit.Combinatorial" Version="1.2.7" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.3.1" />
   </ItemGroup>
   <ItemGroup>
