@@ -11,13 +11,16 @@ namespace EventEngine.Factories
     {
         private readonly IDateTimeProvider _dateTimeProvider;
         private readonly IEventDataSerializationService _eventDataSerializationService;
+        private readonly IGuidProvider _guidProvider;
         private readonly IEventTypeService _eventTypeService;
 
         public EventFactory(IEventDataSerializationService eventDataSerializationService,
+            IGuidProvider guidProvider,
             IEventTypeService eventTypeService,
             IDateTimeProvider dateTimeProvider)
         {
             _eventDataSerializationService = eventDataSerializationService;
+            _guidProvider = guidProvider;
             _eventTypeService = eventTypeService;
             _dateTimeProvider = dateTimeProvider;
         }
@@ -25,12 +28,13 @@ namespace EventEngine.Factories
         public IEvent Create<TEventData>(Guid contextId, TEventData eventData, DateTime? effectiveDateTime = null)
             where TEventData : IEventData
         {
+            var eventId = _guidProvider.Create();
             var serializedEventData = _eventDataSerializationService.Serialize(eventData);
             var eventType = _eventTypeService.Get<TEventData>();
             var createdDateTime = _dateTimeProvider.GetUtc();
             var eventEffectiveDateTime = effectiveDateTime ?? createdDateTime;
 
-            return new Event(contextId, eventType, serializedEventData, createdDateTime, eventEffectiveDateTime);
+            return new Event(eventId, contextId, eventType, serializedEventData, createdDateTime, eventEffectiveDateTime);
         }
     }
 }

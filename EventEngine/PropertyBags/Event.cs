@@ -5,8 +5,9 @@ namespace EventEngine.PropertyBags
 {
     public class Event : IEvent
     {
-        internal Event(Guid contextId, IEventType eventType, string eventData, DateTime createdDateTime, DateTime effectiveDateTime)
+        internal Event(Guid eventId, Guid contextId, IEventType eventType, string eventData, DateTime createdDateTime, DateTime effectiveDateTime)
         {
+            EventId = eventId;
             ContextId = contextId;
             EventType = eventType;
             EventData = eventData;
@@ -16,6 +17,8 @@ namespace EventEngine.PropertyBags
 
         public Guid ContextId { get; }
 
+        public Guid EventId { get; }
+
         public DateTime CreatedDateTime { get; }
         
         public DateTime EffectiveDateTime { get; }
@@ -23,5 +26,7 @@ namespace EventEngine.PropertyBags
         public IEventType EventType { get; }
 
         public string EventData { get; }
+
+        public bool Undone { get; set; }
     }
 }

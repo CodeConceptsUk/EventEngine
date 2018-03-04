@@ -1,7 +1,6 @@
 ﻿using System;
-using EventEngine.Interfaces;
 
-namespace EventEngine.ExampleApplication.Interfaces.Queries
+namespace EventEngine.Interfaces.Queries
 {
     public interface IEventQuery<out TView>
         where TView : IView

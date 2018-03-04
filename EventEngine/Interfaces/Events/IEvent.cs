@@ -6,6 +6,8 @@ namespace EventEngine.Interfaces.Events
     {
         Guid ContextId { get; }
 
+        Guid EventId { get; }
+
         DateTime CreatedDateTime { get; }
         
         DateTime EffectiveDateTime { get; }
@@ -13,5 +15,7 @@ namespace EventEngine.Interfaces.Events
         IEventType EventType { get; }
 
         string EventData { get; }
+
+        bool Undone { get; set; }
     }
 }

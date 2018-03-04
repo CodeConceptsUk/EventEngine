@@ -6,7 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Coresian" Version="1.0.14" />
+    <PackageReference Include="Coresian" Version="1.0.15" />
     <PackageReference Include="StructureMap" Version="4.6.1" />
   </ItemGroup>
 
