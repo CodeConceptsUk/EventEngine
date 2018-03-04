@@ -8,8 +8,8 @@ namespace EventEngine.ExampleApplication.Queries
 {
     public class ExampleViewQuery : EventQuery<ExampleView>, IExampleViewQuery
     {
-        public ExampleViewQuery(IEventStore eventStore, IEventPlayer eventPlayer, IEventDataDeserializationService eventDataDeserializationService) 
-            : base(eventStore, eventPlayer, eventDataDeserializationService)
+        public ExampleViewQuery(IEventStore eventStore, IEventPlayer eventPlayer, IUndoEventProcessingService undoEventProcessingService) 
+            : base(eventStore, eventPlayer, undoEventProcessingService)
         {
         }
     }

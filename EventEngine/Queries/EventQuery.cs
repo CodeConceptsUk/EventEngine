@@ -1,13 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using EventEngine.Events;
 using EventEngine.Interfaces;
 using EventEngine.Interfaces.Events;
 using EventEngine.Interfaces.Queries;
 using EventEngine.Interfaces.Repositories;
 using EventEngine.Interfaces.Services;
-using EventEngine.PropertyBags;
 
 namespace EventEngine.Queries
 {
@@ -16,36 +13,24 @@ namespace EventEngine.Queries
     {
         private readonly IEventStore _eventStore;
         private readonly IEventPlayer _eventPlayer;
-        private readonly IEventDataDeserializationService _eventDataDeserializationService;
+        private readonly IUndoEventProcessingService _undoEventProcessingService;
 
         public EventQuery(IEventStore eventStore, IEventPlayer eventPlayer,
-            IEventDataDeserializationService eventDataDeserializationService)
+            IUndoEventProcessingService undoEventProcessingService)
         {
             _eventStore = eventStore;
             _eventPlayer = eventPlayer;
-            _eventDataDeserializationService = eventDataDeserializationService;
+            _undoEventProcessingService = undoEventProcessingService;
         }
 
         public TView Get(Guid contextId, DateTime? to = null)
         {
             var view = new TView();
-            var events = _eventStore
-                .Get(contextId)
-                .Where(@event => to == null || @event.CreatedDateTime <= to)
-                .OrderByDescending(@event => @event.EffectiveDateTime);
+            var events = _eventStore.Get(contextId);
+            if (to.HasValue)
+                events = events.Where(@event => @event.CreatedDateTime <= to);
 
-           
-
-            //// TODO: EffectivateDate order
-            //var undoEventIds = events
-            //    .Where(t => t.EventType.Name == "Undo")
-            //    .SelectMany(t => ((UndoData)_eventDataDeserializationService.Deserialize(typeof(UndoData), t.EventData)).EventIds);
-            //undoEventIds.ForEach(e =>
-            //{
-            //    var @event = (Event)events.Single(t => t.EventIds == e);
-            //    @event.Undone = !@event.Undone;
-            //});
-
+            events = _undoEventProcessingService.Execute(events);
 
             _eventPlayer.Play(events, view);
             return view;
