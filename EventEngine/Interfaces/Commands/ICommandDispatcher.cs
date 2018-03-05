@@ -1,8 +1,10 @@
-﻿namespace EventEngine.Interfaces.Commands
+﻿using System;
+
+namespace EventEngine.Interfaces.Commands
 {
     public interface ICommandDispatcher
     {
-        void Dispatch<TCommand>(TCommand command)
+        void Dispatch<TCommand>(Guid contextId, TCommand command)
             where TCommand : ICommand;
     }
 }

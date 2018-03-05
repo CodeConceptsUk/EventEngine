@@ -35,7 +35,7 @@ namespace EventEngine.UnitTests.Services
 
         public class CommandACommandHandler : ICommandHandler<CommandA>
         {
-            public IEnumerable<IEvent> Execute(CommandA command)
+            public IEnumerable<IEvent> Execute(Guid contextId, CommandA command)
             {
                 throw new NotImplementedException();
             }
@@ -43,7 +43,7 @@ namespace EventEngine.UnitTests.Services
 
         public class CommandACommandHandler2 : ICommandHandler<CommandA>
         {
-            public IEnumerable<IEvent> Execute(CommandA command)
+            public IEnumerable<IEvent> Execute(Guid contextId, CommandA command)
             {
                 throw new NotImplementedException();
             }
@@ -51,7 +51,7 @@ namespace EventEngine.UnitTests.Services
 
         public class CommandBCommandHandler : ICommandHandler<CommandB>
         {
-            public IEnumerable<IEvent> Execute(CommandB command)
+            public IEnumerable<IEvent> Execute(Guid contextId, CommandB command)
             {
                 throw new NotImplementedException();
             }

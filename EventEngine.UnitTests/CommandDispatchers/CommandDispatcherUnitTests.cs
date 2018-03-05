@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using EventEngine.Dispatchers;
 using EventEngine.Exceptions;
@@ -12,7 +13,7 @@ using Xunit;
 namespace EventEngine.UnitTests.CommandDispatchers
 {
     public class CommandDispatcherUnitTests
-    {        
+    {
         private readonly IEventStore _repository;
         private readonly ICommandDispatcher _target;
         private readonly ICommandHandlerRegistry _commandHandlerRegistry;
@@ -23,7 +24,7 @@ namespace EventEngine.UnitTests.CommandDispatchers
             _commandHandlerRegistry = Substitute.For<ICommandHandlerRegistry>();
             _target = new CommandDispatcher(_repository, _commandHandlerRegistry);
         }
-        
+
         private bool ValidateEventList(List<IEvent> expectedEvents, IEvent[] events)
         {
             var i = 0;
@@ -38,16 +39,17 @@ namespace EventEngine.UnitTests.CommandDispatchers
         public void WhenIExecuteACommandItIsDispatchedToItsHandler()
         {
             var commandHandler = Substitute.For<ICommandHandler<TestCommand>>();
-            var actualCommandHandlerList = new ICommandHandler[] {commandHandler};
-            var expectedEvents = new List<IEvent> {Substitute.For<IEvent>(), Substitute.For<IEvent>()};
+            var actualCommandHandlerList = new ICommandHandler[] { commandHandler };
+            var expectedEvents = new List<IEvent> { Substitute.For<IEvent>(), Substitute.For<IEvent>() };
+            var expectedContextId = Guid.NewGuid();
 
             _commandHandlerRegistry.Filter(typeof(TestCommand)).Returns(actualCommandHandlerList);
 
             var command = new TestCommand();
 
-            commandHandler.Execute(command).Returns(expectedEvents);
+            commandHandler.Execute(expectedContextId, command).Returns(expectedEvents);
 
-            _target.Dispatch(command);
+            _target.Dispatch(expectedContextId, command);
 
             _repository.Received().Add(Arg.Is<IEnumerable<IEvent>>(e => ValidateEventList(expectedEvents, e.ToArray())));
         }
@@ -57,17 +59,18 @@ namespace EventEngine.UnitTests.CommandDispatchers
         {
             var commandHandler1 = Substitute.For<ICommandHandler<TestCommand>>();
             var commandHandler2 = Substitute.For<ICommandHandler<TestCommand>>();
-             var actualCommandHandlerList = new ICommandHandler[] {commandHandler1, commandHandler2};
-            var expectedEvents = new List<IEvent> {Substitute.For<IEvent>(), Substitute.For<IEvent>()};
-         
+            var actualCommandHandlerList = new ICommandHandler[] { commandHandler1, commandHandler2 };
+            var expectedEvents = new List<IEvent> { Substitute.For<IEvent>(), Substitute.For<IEvent>() };
+            var expectedContextId = Guid.NewGuid();
+
             _commandHandlerRegistry.Filter(typeof(TestCommand)).Returns(actualCommandHandlerList);
 
             var command = new TestCommand();
 
-            commandHandler1.Execute(command).Returns(new[] {expectedEvents[0]});
-            commandHandler2.Execute(command).Returns(new[] {expectedEvents[1]});
+            commandHandler1.Execute(expectedContextId, command).Returns(new[] { expectedEvents[0] });
+            commandHandler2.Execute(expectedContextId, command).Returns(new[] { expectedEvents[1] });
 
-            _target.Dispatch(command);
+            _target.Dispatch(expectedContextId, command);
 
             _repository.Received().Add(Arg.Is<IEnumerable<IEvent>>(e => ValidateEventList(expectedEvents, e.ToArray())));
         }
@@ -79,7 +82,7 @@ namespace EventEngine.UnitTests.CommandDispatchers
 
             try
             {
-                _target.Dispatch(expectedCommand);
+                _target.Dispatch(Guid.NewGuid(), expectedCommand);
                 Assert.True(false, "Expected expcetion to be thrown");
             }
             catch (EventEngineMissingCommandHandlerException exception)

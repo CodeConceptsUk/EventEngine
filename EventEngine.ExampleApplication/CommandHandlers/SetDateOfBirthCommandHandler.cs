@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using EventEngine.ExampleApplication.Commands;
 using EventEngine.ExampleApplication.Events;
 using EventEngine.Interfaces.Commands;
@@ -16,10 +17,10 @@ namespace EventEngine.ExampleApplication.CommandHandlers
             _eventFactory = eventFactory;
         }
 
-        public IEnumerable<IEvent> Execute(SetDateOfBirthCommand command)
+        public IEnumerable<IEvent> Execute(Guid contextId, SetDateOfBirthCommand command)
         {
             var setNameEventData = new SetDateOfBirthEventData { DateOfBirth = command.DateOfBirth };
-            var @event = _eventFactory.Create(command.ContextId, setNameEventData);
+            var @event = _eventFactory.Create(contextId, setNameEventData);
             return new[] { @event };
         }
     }
@@ -33,10 +34,10 @@ namespace EventEngine.ExampleApplication.CommandHandlers
             _eventFactory = eventFactory;
         }
 
-        public IEnumerable<IEvent> Execute(SetDateOfBirth2Command command)
+        public IEnumerable<IEvent> Execute(Guid contextId, SetDateOfBirth2Command command)
         {
             var setNameEventData = new SetDateOfBirthEventDataV2 { DateOfBirth = command.DateOfBirth, HourOfBirth = 10 };
-            var @event = _eventFactory.Create(command.ContextId, setNameEventData);
+            var @event = _eventFactory.Create(contextId, setNameEventData);
             return new[] { @event };
         }
     }

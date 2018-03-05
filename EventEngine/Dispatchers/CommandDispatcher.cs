@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using EventEngine.Exceptions;
 using EventEngine.Interfaces.Commands;
@@ -19,7 +20,7 @@ namespace EventEngine.Dispatchers
             _commandHandlerRegistry = commandHandlerRegistry;
         }
 
-        public void Dispatch<TCommand>(TCommand command)
+        public void Dispatch<TCommand>(Guid contextId, TCommand command)
             where TCommand : ICommand
         {
             var events = new List<IEvent>();
@@ -31,7 +32,7 @@ namespace EventEngine.Dispatchers
             foreach (var handler in handlers)
             {
                 var executionMethodInfo = handler.GetType().GetMethod(nameof(ICommandHandler<ICommand>.Execute));
-                events.AddRange((IEnumerable<IEvent>) executionMethodInfo.Invoke(handler, new object[] {command}));
+                events.AddRange((IEnumerable<IEvent>) executionMethodInfo.Invoke(handler, new object[] { contextId, command }));
             }
             _eventStore.Add(events);
         }

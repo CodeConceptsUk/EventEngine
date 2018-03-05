@@ -16,20 +16,20 @@ namespace EventEngine.ExampleApplication
 
             var contextId = Guid.NewGuid();
             
-            var setNameCommand = new SetNameCommand { ContextId = contextId, Name = "Name1" };
-            commandDispatcher.Dispatch(setNameCommand);
+            var setNameCommand = new SetNameCommand { Name = "Name1" };
+            commandDispatcher.Dispatch(contextId, setNameCommand);
 
-            setNameCommand = new SetNameCommand { ContextId = contextId, Name = "Name2" };
-            commandDispatcher.Dispatch(setNameCommand);
+            setNameCommand = new SetNameCommand { Name = "Name2" };
+            commandDispatcher.Dispatch(contextId, setNameCommand);
 
-            var setDateOfBirthCommand = new SetDateOfBirthCommand { ContextId = contextId, DateOfBirth = DateTime.Now };
-            commandDispatcher.Dispatch(setDateOfBirthCommand);
+            var setDateOfBirthCommand = new SetDateOfBirthCommand { DateOfBirth = DateTime.Now };
+            commandDispatcher.Dispatch(contextId, setDateOfBirthCommand);
             
-            setNameCommand = new SetNameCommand { ContextId = contextId, Name = "Name3" };
-            commandDispatcher.Dispatch(setNameCommand);
+            setNameCommand = new SetNameCommand { Name = "Name3" };
+            commandDispatcher.Dispatch(contextId, setNameCommand);
 
-            var setDateOfBirth2Command = new SetDateOfBirth2Command { ContextId = contextId, DateOfBirth = DateTime.Now.AddDays(1) };
-            commandDispatcher.Dispatch(setDateOfBirth2Command);
+            var setDateOfBirth2Command = new SetDateOfBirth2Command { DateOfBirth = DateTime.Now.AddDays(1) };
+            commandDispatcher.Dispatch(contextId, setDateOfBirth2Command);
 
             var exampleView = exampleViewQuery.Get(contextId);
             ViewToConsole(exampleView);

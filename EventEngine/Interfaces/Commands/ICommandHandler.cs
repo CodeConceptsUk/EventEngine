@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using EventEngine.Interfaces.Events;
 
 namespace EventEngine.Interfaces.Commands
@@ -10,6 +11,6 @@ namespace EventEngine.Interfaces.Commands
     public interface ICommandHandler<in TCommand> : ICommandHandler
         where TCommand : class, ICommand
     {
-        IEnumerable<IEvent> Execute(TCommand command);
+        IEnumerable<IEvent> Execute(Guid contextId, TCommand command);
     }
 }
